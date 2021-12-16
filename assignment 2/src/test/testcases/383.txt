@@ -2,4 +2,10 @@
             Class A: Program {
                 Val r: Program = New Program(main);
             }
+            Class A: Program {
+                Val r: Program = New Program(main);
+            }
+            Class A: Program {
+                Val r: Program = New Program(main);
+            }
             

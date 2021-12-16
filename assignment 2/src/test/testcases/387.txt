@@ -5,4 +5,10 @@
                     Self.age = age;
                 }
             }
+            Class Name {
+                Constructor(name: String; age: Int) {
+                    Self.name = name;
+                    Self.age = age;
+                }
+            }
             

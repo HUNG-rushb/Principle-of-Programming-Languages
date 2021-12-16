@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(A),Id(Program),[AttributeDecl(Instance,ConstDecl(Id(r),ClassType(Id(Program)),NewExpr(Id(Program),[Id(main)])))])])
+Program([ClassDecl(Id(A),Id(Program),[AttributeDecl(Instance,ConstDecl(Id(r),ClassType(Id(Program)),NewExpr(Id(Program),[Id(main)])))]),ClassDecl(Id(A),Id(Program),[AttributeDecl(Instance,ConstDecl(Id(r),ClassType(Id(Program)),NewExpr(Id(Program),[Id(main)])))]),ClassDecl(Id(A),Id(Program),[AttributeDecl(Instance,ConstDecl(Id(r),ClassType(Id(Program)),NewExpr(Id(Program),[Id(main)])))])])
