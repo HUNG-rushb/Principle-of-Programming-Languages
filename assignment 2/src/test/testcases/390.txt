@@ -3,4 +3,8 @@
                 Val count: Int = 0;
                 f() { Return For.f(); }
             }
+            Class For {
+                Val count: Int = 0;
+                f() { Return For.f(); }
+            }
             
