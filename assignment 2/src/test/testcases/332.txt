@@ -7,4 +7,10 @@
             Destructor() {
                 STD::$delete();
             }
+            Constructor(a,b,c: Float) {
+                Return a[1][2][3] + b[1][3][4];
+            }
+            Destructor() {
+                STD::$delete();
+            }
         }

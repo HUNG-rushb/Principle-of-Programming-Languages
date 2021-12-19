@@ -12,6 +12,14 @@
                     prev = step;
                     step = step + Math.sqrt(n);
                     If (prev >= n) {
+                        If (start >= end)
+                        {
+                            Return ;
+                        }
+                        Var p : Int = QuickSort::$partition(arr, start, end);
+                        QuickSort::$quickSort(arr, start, p - 1);
+                        QuickSort::$quickSort(arr, p + 1, end);
+
                         Return -1;
                     }
                 }

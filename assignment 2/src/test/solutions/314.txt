@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Dog),Id(Animal),[MethodDecl(Id($test),Static,[],Block([AssignStmt(Id(a),IntLit(5)),AssignStmt(Id(b),IntLit(7)),AssignStmt(Id(c),BinaryOp(-,IntLit(5),BinaryOp(*,BinaryOp(/,IntLit(8),IntLit(3)),IntLit(8))))]))])])
+Program([ClassDecl(Id(Solution),[MethodDecl(Id(prefixCount),Instance,[param(Id(words),ArrayType(10,StringType)),param(Id(pref),StringType)],Block([VarDecl(Id(ans),IntType,IntLit(0)),For(Id(w),IntLit(0),IntLit(10),IntLit(1),Block([AssignStmt(Id(ans),BinaryOp(+,Id(ans),CallExpr(Id(w),Id(find),[Id(pref)])))])]),Return(Id(ans))]))])])

@@ -1,6 +1,7 @@
 
-        Class Dog { 
-            f() {
-                a = b[0][1][2];
+        Class Solution {
+
+            average(s: Int) {
+                Return (that.accumulate(begin) - that.min_element(begin, end) - that.max_element(begin, end)) / (s.size() - 2) ;
             }
         }

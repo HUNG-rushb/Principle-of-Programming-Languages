@@ -1,10 +1,16 @@
 
-        Class Dog : Animal 
-        { 
-            $test(a, b, c:Int)
-            { 
-                Var a: Int; 
-                Break; 
-                Continue; 
-            } 
+        Class Solution {
+            subtractProductAndSum( n : Int) {
+
+                Var sum , product : Int = 0 , 1;
+                
+                ## Foreach (; n > 0; n /= 10) { ##
+                
+                Foreach (n In 0 .. 10 By 1) {
+                    sum = sum + (n % 10);
+                    product = sum *( n % 10 );
+                }
+                
+                Return (product - sum);
+            }
         }

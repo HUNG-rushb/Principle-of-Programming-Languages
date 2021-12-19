@@ -1,10 +1,11 @@
 
-            Class Dog: Animal { }
-            Class Snake: De { }
-            Class butterfly {
-                __str__() {
-                    Var a, b, c, d, e: Int = 0,0,0,0,0;
-                    Val a,b,c,d,e: Int;
-                }
-            }
+            Class D__________og: Ani__________mal { }
+            Class S_____: _____________ { }
+            Class Do__________g: Ani2387dy832dhASFEW_______921839djawjefkbmal { }
+            Class Sna2387dy832dhASFEW_______921839djawjefkbke_____ { }
+            Class _____: Ani__________mal { }
+            Class Sna2387dy832dhASFEW_______921839djawjefkbke: _____________ { }
+            Class Do2387dy832dhASFEW_______921839djawjefkbg: A2387dy832dhASFEW_______921839djawjefkbnimal { }
+            Class Sn__________ake: _____________ { }
+
             

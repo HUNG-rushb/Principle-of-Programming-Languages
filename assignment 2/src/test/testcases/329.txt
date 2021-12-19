@@ -1,6 +1,10 @@
 
-        Class Dog 
-        { 
-            Var a : Int;
-            Val b : Int;
-        }
+        Class fsfaewfwa {
+                Var ffffffff____________: Array[String, 3] = Array(
+                                            Array(3,______________,5),
+                                            Array(____,2)
+                                        );
+                fwafdasdf() {
+                    fwefa.print(________[wefadfa1][2234]);
+                }
+            }

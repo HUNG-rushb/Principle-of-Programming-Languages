@@ -1,10 +1,17 @@
 
-        Class Dog : Animal 
-        { 
-            $test()
-            { 
-                a = 5;
-                b = 7;
-                c = 5-8/3*8;
-            } 
-        }
+        Class Solution {
+                prefixCount(words : Array[String, 10]; pref : String) {
+                    Var  ans : Int = 0;
+
+                    ## for(string w: words) ##
+
+                    Foreach ( w In 0 .. 10 By 1) 
+                    {
+                        ## ans += w.find(pref) == 0; ##
+
+                        ans = ans + w.find(pref) ;
+                    }
+
+                    Return ans;
+                }
+            }

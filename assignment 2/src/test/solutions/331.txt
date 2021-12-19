@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(A),Id(B),[AttributeDecl(Instance,VarDecl(Id(a),StringType,StringLit(Hello))),MethodDecl(Id(main),Instance,[],Block([Call(Id(myC),Id(f),[]),AssignStmt(Id(a),CallExpr(Id(myB),Id(f),[])),Return(FieldAccess(Self(),Id(b)))]))])])
+Program([ClassDecl(Id(eqwego678dhgf),[MethodDecl(Id(main),Instance,[],Block([For(Id(rtyre564tsg),IntLit(1),BinaryOp(+,IntLit(111111110),IntLit(5)),BinaryOp(>=,ArrayCell(Id(adfacv),[Id(i)]),IntLit(234)),Block([If(BinaryOp(!=,ArrayCell(Id(a),[Id(ifaf),IntLit(1123)]),ArrayCell(Id(b),[IntLit(11)])),Block([Return()]))])])]))])])

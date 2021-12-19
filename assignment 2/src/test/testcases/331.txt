@@ -1,10 +1,11 @@
 
-            Class A: B {
-                Var a: String = "Hello";
+            Class eqwego678dhgf {
                 main() {
-                    myC.f();
-                    a = myB.f();
-                    Return Self.b;
+                    Foreach (rtyre564tsg In 1 .. 111111110 + 5 By adfacv[i] >= 234) {
+                        If (a[ifaf][1123] != b[11]) {
+                            Return;
+                        }
+                    }
                 }
             }
             

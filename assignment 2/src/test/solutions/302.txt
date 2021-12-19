@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Dog),[MethodDecl(Id(f),Instance,[],Block([AssignStmt(Id(a),ArrayCell(Id(b),[IntLit(0),IntLit(1),IntLit(2)]))]))])])
+Program([ClassDecl(Id(Solution),[MethodDecl(Id(average),Instance,[param(Id(s),IntType)],Block([Return(BinaryOp(/,BinaryOp(-,BinaryOp(-,CallExpr(Id(that),Id(accumulate),[Id(begin)]),CallExpr(Id(that),Id(min_element),[Id(begin),Id(end)])),CallExpr(Id(that),Id(max_element),[Id(begin),Id(end)])),BinaryOp(-,CallExpr(Id(s),Id(size),[]),IntLit(2))))]))])])

@@ -6,13 +6,14 @@
                     }
                     Elseif (b) {
                         If (d + 2 == 7) {
-
+                               
                         }
                         Elseif (b - 9 < 0) {
 
                         }
                         Else {
                             Return;
+                            
                         }
                     }
                     Elseif (c < 8) {
@@ -20,6 +21,7 @@
                     }
                     Else {
                         If (d) {
+                            
                             a = b;
                         }
                     }

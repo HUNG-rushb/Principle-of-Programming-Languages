@@ -1,1 +1,30 @@
-Class Dog : Animal { main(){} }
+Class Solution {
+                   
+                        Binary_search(nums: Array[Int, 0xA]; target: Int) {
+
+                            ## https://leetcode.com/problems/binary-search/discuss/423162/Binary-Search-101 ##
+
+                            Var  low : Int = 0;
+                            Var  high : Int = nums.size() - 1;
+                            
+                            ## While(low <= high){           CMT vi day la D96 hihi ##
+                            
+                            If (low <= high)
+                            {
+                                Val mid : Int = low + (high - low) / 2;
+                                
+                                If (nums[mid] == target){
+                                    Return mid;
+                                }
+                                Elseif (nums[mid] < target){
+                                    low = mid + 1;
+                                }
+                                Else{
+                                    high = mid - 1;
+                                }
+                            }
+                            
+                            Return -1;
+                        }
+                        
+                    }

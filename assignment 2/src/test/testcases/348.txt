@@ -1,18 +1,23 @@
 
             Class Fibonacci {
-                ## program to generate fibonacci series up to n terms ##
-                ## take input from the user ##
-                $fibo() {
+
+
+                fibo() {
                     Val number: Int = Lib.parseInt("Enter the number of terms: ");
-                    Var n1, n2: Int = 0, 1;
-                    Var nextTerm: Int;
+                    Var nFibonacci1, n2: Int = 0, 1;
+                    Var nexFibonaccitTerm: Int;
+
                     console.log("Fibonacci Series:");
-                    Foreach (i In 1 .. number) {
-                        console.log(n1);
+
+                    Foreach (i In 1 .. numFibonacciber) {
+                        conFibonaccisole.log(n1);
                         nextTerm = n1 + n2;
                         n1 = n2;
                         n2 = nextTerm;
                     }
                 }
+
+
             }
+            
             

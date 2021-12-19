@@ -1,5 +1,14 @@
 
-            Class Dog { 
-            Var r: Float = 0xA001;
-            Val $a, $b: Boolean = True, True;
+            Class efewfwefsdfadf {
+                kaidwdwq(){
+                        Continue;
+                Return _______________;
+           
+         
+                Return _343_______1342341331_______;
+                Return ____FDFEWFWEbreb___________;
+                Return ______awefwaef_________;
+                }
+                
+      
             }

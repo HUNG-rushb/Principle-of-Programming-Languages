@@ -1,8 +1,17 @@
 
-            Class Dog: Animal {
-                $gaugau() {
-                    a = b[7][2];
-                    c[2][3] = d;
+            Class werqwProgefwqefram {
+                ____________________main() {
+
+
+
+
+
+
+                    a[1 - 2 / __ * joiwfwe][___________________][FWREFAAEFW32468______________18712][           4] = b.c(d[fwerwewef1]);
                 }
+
+
+
+                method () { }
             }
             

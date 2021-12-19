@@ -1,5 +1,17 @@
 
-        Class Dog { 
-            Var r: Float = 0xA001;
-            Val $a, $b: Boolean = True, True;
+        Class Future { 
+
+            countOdds (low, high : Int) {
+
+                Var res : Int = (high - low) / 2;
+                
+                If ((low % 2 != 0) || (high % 2 != 0))
+                {
+                    res = res +  1;
+                }
+            
+                Return res;
+            }
+    
         }
+        

@@ -57,8 +57,7 @@ class ASTGeneration(D96Visitor):
         return [MethodDecl(si, name, list_parameters, block_statements)]
 
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
-    #! Variable declaration ****************************************************************************
-    #! Variable declaration ****************************************************************************
+    #! Variable declaration 
 
     # var_variable_declaration_noinit: VAR variable_in_func_identifier_list COLON variable_type SEMICOLON;
     def visitVar_variable_declaration_noinit(self, ctx: D96Parser.Var_variable_declaration_noinitContext):
@@ -368,7 +367,6 @@ class ASTGeneration(D96Visitor):
             return [self.visit(ctx.variable_type())]
 
 
-    # *******************************************************************************************
 
     # ! Function declaration
     # function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
@@ -407,8 +405,6 @@ class ASTGeneration(D96Visitor):
 
 
 
-    # # ! Call Func
-    # # ! Call Func
     # # ! Call Func
 
     # # a.b.c.d()
@@ -478,7 +474,6 @@ class ASTGeneration(D96Visitor):
 
         
     # ! If statements 
-    # *************************************************************************************************
     # if_statements: IF LB expr RB block_statements elseif_list_statements;
     def visitIf_statements(self, ctx: D96Parser.If_statementsContext):
         expr = self.visit(ctx.expr())
@@ -543,7 +538,6 @@ class ASTGeneration(D96Visitor):
             return [For(id, expr1, expr2, loop, expr3)]
 
     # ! Member access
-    #***************************************************************************************
     # instance_attr_access: expr DOT VARIABLE_IN_FUNC_IDENTIFIERS;
     def visitInstance_attr_access(self, ctx: D96Parser.Instance_attr_accessContext):
         obj = self.visit(ctx.expr())

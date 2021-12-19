@@ -3,19 +3,43 @@
             binarySearch(arr: Array[Int, 100]; l: Int; r: Int; x: Int) {
                 If (r >= l) {
                     Var mid: Int = l + (r - l) / 2;
-                    ## If the element is present at the middle itself ##
+                    ## IIf (start >= end)
+                {
+                    Return ;
+                }
+                Var p : Int = QuickSort::$partition(arr, start, end);
+                QuickSort::$quickSort(arr, start, p - 1);
+                QuickSort::$quickSort(arr, p + 1, end);f the element is present at the middle itself ##
                     If (arr[mid] == x) {
                         Return mid;
                     }
             
                     ## If element is smaller than mid, then ##
-                    ## it can only be present in left subarray ##
+                    ## it can only be presentIf (start >= end)
+                {
+                    Return ;
+                }
+                Var p : Int = QuickSort::$partition(arr, start, end);
+                QuickSort::$quickSort(arr, start, p - 1);
+                QuickSort::$quickSort(arr, p + 1, end); in left subarray ##
                     If (arr[mid] > x) {
                         Return Self.binarySearch(arr, l, mid - 1, x);
                     }
             
-                    ## Else the element can only be present ##
-                    ## in right subarray ##
+                    ## Else theIf (start >= end)
+                {
+                    Return ;
+                }
+                Var p : Int = QuickSort::$partition(arr, start, end);
+                QuickSort::$quickSort(arr, start, p - 1);
+                QuickSort::$quickSort(arr, p + 1, end); element can only be present ##
+                    ## in right subarrIf (start >= end)
+                {
+                    Return ;
+                }
+                Var p : Int = QuickSort::$partition(arr, start, end);
+                QuickSort::$quickSort(arr, start, p - 1);
+                QuickSort::$quickSort(arr, p + 1, end);ay ##
                     Return Self.binarySearch(arr, mid + 1, r, x);
                 }
             

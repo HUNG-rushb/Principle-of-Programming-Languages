@@ -1,10 +1,10 @@
 
-        Class Dog : Animal 
-        { 
-            $test()
-            { 
-                Var ast, bdafs, cdadsas: Int; 
-                Break; 
-                Continue; 
-            } 
-        }
+        Class fewfasdf {
+                $methowqfewfuykyud() {
+                    Foreach(i In -323432 .. -1.213e-313421 By -3432) {
+                        Foreach(j_______________________ In 00 .. -0xFF1235176 By 0b1101010101) {
+                            Var fwewefa: String = 0.2e213;
+                        }
+                    }
+                }
+            }

@@ -1,27 +1,18 @@
 
-        Class A {
+        Class Future { 
+            Var ielts: Float = 0xFBACDE2132768279244646464;
+            Var H, _DASFDSKVwefiauwh34628374____, dfsk1123c  , d1111111111111111111110000000000 ,  _____________________ : Float = 
+                                                                0xFBACDE2132768279244646464, 
+                                                                343271.22384792874,
+                                                                9999999999999999999999999999999,
+                                                                0b11111010101010101011111111111,
+                                                                999.345345e-3782374236;
+            
+            Val $wife, $child: Boolean = True, True;
+             Val $____: String = "Tr!@#$%^&*()<>fwekfwehufhiweudndsdue";
+            Var health: Int = 912873713043264780;
+
+            Var $_a_1_0______: Float = 00;
+            Val $vvmsm32873, $DSFASFaw: Boolean = False, False;
 
         }
-        Class B {
-            foo() { 
-                If (a) {
-                    a = 4;
-                }
-                Elseif (b) {
-                    a = 3;
-                    b = 5;
-                    c = 8;
-                }
-                Elseif (12 == 8) {
-                    r = 1;
-                    pi = 0.3;
-                }
-                Elseif (9) {
-                    r = 6;
-                }
-                Else {
-                    t = myElse;
-                }
-            }
-        }
-        
