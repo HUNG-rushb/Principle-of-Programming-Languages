@@ -32,21 +32,6 @@ options {
 // program: class_declarations class_main_program_declarations class_declarations EOF;
 program: class_declarations EOF;
 
-// program: function_declaration EOF;
-
-// program: if_statements;
-
-// program: assignment_statements;
-
-// program: call_func_statement*;
-
-// program: array_type SEMICOLON;
-
-// program: (expr COMMA)+;
-
-// program: variable_declaration+;
-
-
 //   _____        _____   _____ ______ _____  
 //  |  __ \ /\   |  __ \ / ____|  ____|  __ \ 
 //  | |__) /  \  | |__) | (___ | |__  | |__) |
@@ -55,6 +40,7 @@ program: class_declarations EOF;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Class declaration
+
 // class_main_program_declarations: CLASS PROGRAM program_block_class_statements;
 // class_declarations: class_declaration class_declarations | class_declaration | ;
 class_declarations: class_declaration class_declarations | class_declaration ;
@@ -65,7 +51,6 @@ class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
 // Constructor Destructor
 constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
 destructor_dclr: DESTRUCTOR LB RB block_statements;
-
 
 // Method declaration
 method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
@@ -116,10 +101,8 @@ call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
 // Assignment statement
 assignment_statements: lhs ASSIGNOP expr SEMICOLON;
 lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
-        // | DOLLAR_IDENTIFIERS 
         | instance_attr_access 
         | static_attr_access 
-        // | call_funcs (multiple_accesses| )
         ) (index_operators | );
 
 // If statements 
@@ -196,16 +179,12 @@ expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
 expr5: NOTOP expr5 | expr6;
 expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
-// expr [number][///].a.c
-
-// expr8: expr8 (index_operators | ) instance_accesses | expr9;
 expr8: expr8 instance_accesses | expr9;
 expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
 
 expr10: NEW expr LB list_expr RB | expr11;
 expr11: literal 
         | VARIABLE_IN_FUNC_IDENTIFIERS 
-        // | DOLLAR_IDENTIFIERS 
         | SELF 
         | expr12; 
 expr12: LB expr RB;
@@ -261,7 +240,6 @@ value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
 array_type: ARRAY LSB array_element_type COMMA INTLIT_IN_ARRAY RSB;
 array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
 // array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING | VARIABLE_IN_FUNC_IDENTIFIERS;
-// array_size: INTLIT_IN_ARRAY;
 
 // Primitive type
 primitive_type: BOOLEAN | INT | FLOAT | STRING;
@@ -388,16 +366,15 @@ FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replac
 
 // Interher literal
 fragment DEC: [1-9] (UNDERSCORE [0-9] | [0-9])*;
-// fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
+
 fragment HEX: '0' X ([1-9A-F]+ ((UNDERSCORE [0-9A-F]+)* | [0-9A-F]*) | '0');
-// fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
+
 fragment OCT: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* ) | '0'); 
-// fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
+
 fragment BIN: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*)| '0');
 
-// fragment DEC_ARRAY_SIZE: [1-9] (UNDERSCORE [0-9] | [0-9])*;
 fragment HEX_ARRAY_SIZE: '0' X ([1-9A-F]+ ((UNDERSCORE [0-9A-F]+)* | [0-9A-F]*));
-fragment OCT_ARRAY_SIZE: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]*)); 
+fragment OCT_ARRAY_SIZE: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7])); 
 fragment BIN_ARRAY_SIZE: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*));
 
 INTLIT_IN_ARRAY: (DEC
