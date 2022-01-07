@@ -232,7 +232,8 @@ expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
 // expr [number][///].a.c
 
-expr8: expr8 (index_operators | ) instance_accesses | expr9;
+// expr8: expr8 (index_operators | ) instance_accesses | expr9;
+expr8: expr8 instance_accesses | expr9;
 expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
 
 // expr10: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr11;
