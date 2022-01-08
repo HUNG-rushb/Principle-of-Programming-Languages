@@ -26,7 +26,17 @@ options{
 
 program  : VAR COLON ID SEMI EOF ;
 
-ID: [a-z]+ ;
+// ID: [a-z][a-z\d]* ;
+
+// fragment COM: [0-9] | [1-9][0-9] | [1-9][0-9][0-9];
+// ID:  COM'.'COM'.'COM'.'COM;
+
+// fragment DIGIT: [0-9];
+// ID: [0-9]+(('.'DIGIT+)|'e'('+'|'-'|)DIGIT+|'.'DIGIT+'e'('+'|'-'|)DIGIT+);
+
+fragment DIGIT: [0-9];  
+// ID: '\''[.*]'\'';
+ID: [0-9]|[1-9][0-9_]*;
 
 SEMI: ';' ;
 
@@ -34,7 +44,8 @@ COLON: ':' ;
 
 VAR: 'Var' ;
 
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+// WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+WS : [ \t\r\n_]+ -> skip ; // skip spaces, tabs, newlines
 
 
 ERROR_CHAR: .;
