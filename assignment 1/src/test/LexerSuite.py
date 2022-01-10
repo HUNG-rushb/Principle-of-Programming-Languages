@@ -5,10 +5,10 @@ class LexerSuite(unittest.TestCase):
       
     def test_lowercase_identifier(self):
         """test identifiers"""
-        self.assertTrue(TestLexer.test("abc","abc,<EOF>",101))
+        self.assertTrue(TestLexer.test("int","int,<EOF>",101))
 
-    def test_lower_upper_id(self):
-        self.assertTrue(TestLexer.test("aCBbdc","aCBbdc,<EOF>",102))
+    # def test_lower_upper_id(self):
+    #     self.assertTrue(TestLexer.test("aCBbdc","aCBbdc,<EOF>",102))
 
     # def test_mixed_id(self):
     #     self.assertTrue(TestLexer.test("aAsVN3","aAsVN,3,<EOF>",103))

@@ -320,12 +320,6 @@ LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 WS : [ \t\r\n\f]+ -> skip ; 
 
 
-
-
-
-
-
-
 UNCLOSE_STRING: '"' STR_CHAR* ( [\b\t\n\f\r"'\\] | EOF )
 	{
 		y = str(self.text)

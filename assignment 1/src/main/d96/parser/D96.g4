@@ -19,14 +19,13 @@ body: funcall SEMI;
 
 exp: funcall | INTLIT;
 
-funcall: ID LB exp? RB;
+funcall:  LB exp? RB;
 
 INTTYPE: 'int';
 
 VOIDTYPE: 'void';
 
-// fragment LOWERCASE_LETTER   :  [a-z] ;
-// fragment DIGIT              :  [0-9] ;
+
 // fragment SIGN               :  [+-]? ;
 // fragment SCIENTIFIC         :  [e](SIGN)(DIGIT)+ ;
 // fragment DECIMAL_POINT      :  [.](DIGIT)+ ;
@@ -35,8 +34,6 @@ VOIDTYPE: 'void';
 // INT                :  SIGN(DIGIT)+ ;
 // ID                 :  LOWERCASE_LETTER (LOWERCASE_LETTER | DIGIT)* ;
 // STRING             :  ['][^']+['] ;
-
-ID: [a-zA-Z]+;
 
 INTLIT: [0-9]+;
 
@@ -50,7 +47,13 @@ RP: '}';
 
 SEMI: ';';
 
-WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
+// Skip comments
+BLOCK_COMMENT: ('(*' .*? '*)' | LP .*? RP) -> skip ;
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+
+// Skip spaces, tabs, newlines
+//WS : [ \t\r\n\f]+ -> skip ; 
+WS: [ \t\r\n]+ -> skip; 
 
 ERROR_CHAR: .;
 UNCLOSE_STRING: .;
