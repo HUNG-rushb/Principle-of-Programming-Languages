@@ -11,7 +11,8 @@ options {
 	language = Python3;
 }
 
-program: mptype 'main' LB RB LP body? RP EOF;
+// program: mptype 'main' LB RB LP body? RP EOF;
+program: BLOCK_COMMENT;
 
 mptype: INTTYPE | VOIDTYPE;
 
@@ -35,25 +36,47 @@ VOIDTYPE: 'void';
 // ID                 :  LOWERCASE_LETTER (LOWERCASE_LETTER | DIGIT)* ;
 // STRING             :  ['][^']+['] ;
 
+// Stop Statement
+BREAK   : B R E A K ;
+CONTINUE: C O N T I N U E ;
+
+// Flow Statement
+IF  : I F ;
+ELSEIF: E L S E I F;
+ELSE: E L S E ;
+FOREACH: F O R E A C H;
+
+// Boolean Value
+TRUE : T R U E ;
+FALSE: F A L S E ;
+
+// Primitive Types
+ARRAYINT: A R R A Y I N T;
+FLOAT: F L O A T;
+BOOLEAN: B O O L E A N ;
+STRING : S T R I N G ;
+
+// Null
+NULL: N U L L;
+
+// Boolean literal 
+BOOLLIT: TRUE | FALSE ;
+
 INTLIT: [0-9]+;
 
 LB: '(';
-
 RB: ')';
-
 LP: '{';
-
 RP: '}';
-
 SEMI: ';';
 
 // Skip comments
-BLOCK_COMMENT: ('(*' .*? '*)' | LP .*? RP) -> skip ;
-LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+// BLOCK_COMMENT: ('**' .*? '**' | LP .*? RP) -> skip ;
+BLOCK_COMMENT: '**' .*? '**' -> skip ;
 
 // Skip spaces, tabs, newlines
-//WS : [ \t\r\n\f]+ -> skip ; 
-WS: [ \t\r\n]+ -> skip; 
+WS : [ \t\r\n\f\b]+ -> skip ; 
+// WS: [ \t\r\n]+ -> skip; 
 
 ERROR_CHAR: .;
 UNCLOSE_STRING: .;

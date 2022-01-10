@@ -11,19 +11,17 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21")
-        buf.write("\'\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2")
-        buf.write("\3\2\3\2\3\2\5\2\23\n\2\3\2\3\2\3\2\3\3\3\3\3\4\3\4\3")
-        buf.write("\4\3\5\3\5\5\5\37\n\5\3\6\3\6\5\6#\n\6\3\6\3\6\3\6\2\2")
-        buf.write("\7\2\4\6\b\n\2\3\3\2\4\5\2$\2\f\3\2\2\2\4\27\3\2\2\2\6")
-        buf.write("\31\3\2\2\2\b\36\3\2\2\2\n \3\2\2\2\f\r\5\4\3\2\r\16\7")
-        buf.write("\3\2\2\16\17\7\7\2\2\17\20\7\b\2\2\20\22\7\t\2\2\21\23")
-        buf.write("\5\6\4\2\22\21\3\2\2\2\22\23\3\2\2\2\23\24\3\2\2\2\24")
-        buf.write("\25\7\n\2\2\25\26\7\2\2\3\26\3\3\2\2\2\27\30\t\2\2\2\30")
-        buf.write("\5\3\2\2\2\31\32\5\n\6\2\32\33\7\13\2\2\33\7\3\2\2\2\34")
-        buf.write("\37\5\n\6\2\35\37\7\6\2\2\36\34\3\2\2\2\36\35\3\2\2\2")
-        buf.write("\37\t\3\2\2\2 \"\7\7\2\2!#\5\b\5\2\"!\3\2\2\2\"#\3\2\2")
-        buf.write("\2#$\3\2\2\2$%\7\b\2\2%\13\3\2\2\2\5\22\36\"")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\35")
+        buf.write("\36\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3")
+        buf.write("\3\3\3\3\4\3\4\3\4\3\5\3\5\5\5\26\n\5\3\6\3\6\5\6\32\n")
+        buf.write("\6\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\3\3\2\3\4\2\32\2\f\3")
+        buf.write("\2\2\2\4\16\3\2\2\2\6\20\3\2\2\2\b\25\3\2\2\2\n\27\3\2")
+        buf.write("\2\2\f\r\7\31\2\2\r\3\3\2\2\2\16\17\t\2\2\2\17\5\3\2\2")
+        buf.write("\2\20\21\5\n\6\2\21\22\7\30\2\2\22\7\3\2\2\2\23\26\5\n")
+        buf.write("\6\2\24\26\7\23\2\2\25\23\3\2\2\2\25\24\3\2\2\2\26\t\3")
+        buf.write("\2\2\2\27\31\7\24\2\2\30\32\5\b\5\2\31\30\3\2\2\2\31\32")
+        buf.write("\3\2\2\2\32\33\3\2\2\2\33\34\7\25\2\2\34\13\3\2\2\2\4")
+        buf.write("\25\31")
         return buf.getvalue()
 
 
@@ -37,12 +35,18 @@ class D96Parser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'main'", "'int'", "'void'", "<INVALID>", 
-                     "'('", "')'", "'{'", "'}'", "';'" ]
+    literalNames = [ "<INVALID>", "'int'", "'void'", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'('", "')'", "'{'", "'}'", "';'" ]
 
-    symbolicNames = [ "<INVALID>", "<INVALID>", "INTTYPE", "VOIDTYPE", "INTLIT", 
-                      "LB", "RB", "LP", "RP", "SEMI", "BLOCK_COMMENT", "LINE_COMMENT", 
-                      "WS", "ERROR_CHAR", "UNCLOSE_STRING", "ILLEGAL_ESCAPE" ]
+    symbolicNames = [ "<INVALID>", "INTTYPE", "VOIDTYPE", "BREAK", "CONTINUE", 
+                      "IF", "ELSEIF", "ELSE", "FOREACH", "TRUE", "FALSE", 
+                      "ARRAYINT", "FLOAT", "BOOLEAN", "STRING", "NULL", 
+                      "BOOLLIT", "INTLIT", "LB", "RB", "LP", "RP", "SEMI", 
+                      "BLOCK_COMMENT", "WS", "ERROR_CHAR", "UNCLOSE_STRING", 
+                      "ILLEGAL_ESCAPE" ]
 
     RULE_program = 0
     RULE_mptype = 1
@@ -53,21 +57,33 @@ class D96Parser ( Parser ):
     ruleNames =  [ "program", "mptype", "body", "exp", "funcall" ]
 
     EOF = Token.EOF
-    T__0=1
-    INTTYPE=2
-    VOIDTYPE=3
-    INTLIT=4
-    LB=5
-    RB=6
-    LP=7
-    RP=8
-    SEMI=9
-    BLOCK_COMMENT=10
-    LINE_COMMENT=11
-    WS=12
-    ERROR_CHAR=13
-    UNCLOSE_STRING=14
-    ILLEGAL_ESCAPE=15
+    INTTYPE=1
+    VOIDTYPE=2
+    BREAK=3
+    CONTINUE=4
+    IF=5
+    ELSEIF=6
+    ELSE=7
+    FOREACH=8
+    TRUE=9
+    FALSE=10
+    ARRAYINT=11
+    FLOAT=12
+    BOOLEAN=13
+    STRING=14
+    NULL=15
+    BOOLLIT=16
+    INTLIT=17
+    LB=18
+    RB=19
+    LP=20
+    RP=21
+    SEMI=22
+    BLOCK_COMMENT=23
+    WS=24
+    ERROR_CHAR=25
+    UNCLOSE_STRING=26
+    ILLEGAL_ESCAPE=27
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -84,28 +100,8 @@ class D96Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def mptype(self):
-            return self.getTypedRuleContext(D96Parser.MptypeContext,0)
-
-
-        def LB(self):
-            return self.getToken(D96Parser.LB, 0)
-
-        def RB(self):
-            return self.getToken(D96Parser.RB, 0)
-
-        def LP(self):
-            return self.getToken(D96Parser.LP, 0)
-
-        def RP(self):
-            return self.getToken(D96Parser.RP, 0)
-
-        def EOF(self):
-            return self.getToken(D96Parser.EOF, 0)
-
-        def body(self):
-            return self.getTypedRuleContext(D96Parser.BodyContext,0)
-
+        def BLOCK_COMMENT(self):
+            return self.getToken(D96Parser.BLOCK_COMMENT, 0)
 
         def getRuleIndex(self):
             return D96Parser.RULE_program
@@ -117,31 +113,10 @@ class D96Parser ( Parser ):
 
         localctx = D96Parser.ProgramContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_program)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 10
-            self.mptype()
-            self.state = 11
-            self.match(D96Parser.T__0)
-            self.state = 12
-            self.match(D96Parser.LB)
-            self.state = 13
-            self.match(D96Parser.RB)
-            self.state = 14
-            self.match(D96Parser.LP)
-            self.state = 16
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==D96Parser.LB:
-                self.state = 15
-                self.body()
-
-
-            self.state = 18
-            self.match(D96Parser.RP)
-            self.state = 19
-            self.match(D96Parser.EOF)
+            self.match(D96Parser.BLOCK_COMMENT)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -176,7 +151,7 @@ class D96Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 21
+            self.state = 12
             _la = self._input.LA(1)
             if not(_la==D96Parser.INTTYPE or _la==D96Parser.VOIDTYPE):
                 self._errHandler.recoverInline(self)
@@ -217,9 +192,9 @@ class D96Parser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_body)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 23
+            self.state = 14
             self.funcall()
-            self.state = 24
+            self.state = 15
             self.match(D96Parser.SEMI)
         except RecognitionException as re:
             localctx.exception = re
@@ -254,17 +229,17 @@ class D96Parser ( Parser ):
         localctx = D96Parser.ExpContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_exp)
         try:
-            self.state = 28
+            self.state = 19
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [D96Parser.LB]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 26
+                self.state = 17
                 self.funcall()
                 pass
             elif token in [D96Parser.INTLIT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 27
+                self.state = 18
                 self.match(D96Parser.INTLIT)
                 pass
             else:
@@ -308,17 +283,17 @@ class D96Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 30
+            self.state = 21
             self.match(D96Parser.LB)
-            self.state = 32
+            self.state = 23
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==D96Parser.INTLIT or _la==D96Parser.LB:
-                self.state = 31
+                self.state = 22
                 self.exp()
 
 
-            self.state = 34
+            self.state = 25
             self.match(D96Parser.RB)
         except RecognitionException as re:
             localctx.exception = re
