@@ -11,21 +11,22 @@ options {
 	language = Python3;
 }
 
-// program: mptype 'main' LB RB LP body? RP EOF;
+// program: mptype 'main' LCB RCB LB body? RB EOF;
 program: BLOCK_COMMENT;
+// program: (vardclr | funcdclr)+ EOF;
 
-mptype: INTTYPE | VOIDTYPE;
+// mptype: INTTYPE | VOIDTYPE;
 
-body: funcall SEMI;
+body: funcall SEMICOLON;
 
 exp: funcall | INTLIT;
 
 funcall:  LB exp? RB;
 
-INTTYPE: 'int';
+// INTTYPE: 'int';
 
-VOIDTYPE: 'void';
-
+// VOIDTYPE: 'void';	
+	
 
 // fragment SIGN               :  [+-]? ;
 // fragment SCIENTIFIC         :  [e](SIGN)(DIGIT)+ ;
@@ -36,77 +37,132 @@ VOIDTYPE: 'void';
 // ID                 :  LOWERCASE_LETTER (LOWERCASE_LETTER | DIGIT)* ;
 // STRING             :  ['][^']+['] ;
 
-// Stop Statement
-BREAK   : B R E A K ;
-CONTINUE: C O N T I N U E ;
 
-// Flow Statement
-IF  : I F ;
-ELSEIF: E L S E I F;
-ELSE: E L S E ;
-FOREACH: F O R E A C H;
+// Integer literal 
+INTLIT: DEC | HEX | OCT | BIN;
 
-// Boolean Value
-TRUE : T R U E ;
-FALSE: F A L S E ;
+fragment DEC:([1-9] [0-9]* (UNDERSCORE [0-9]+)*){ self.text = self.text.replace("_", "")} | '0';
+fragment HEX: '0' X [1-9]+;
+fragment OCT: '0' [0-9a-fA-F]+; 
+fragment BIN: '0' B [01]+;
 
-// Primitive Types
-ARRAYINT: A R R A Y I N T;
-FLOAT: F L O A T;
-BOOLEAN: B O O L E A N ;
-STRING : S T R I N G ;
 
-// Null
-NULL: N U L L;
+// Float literal 
+FLOATLIT: DEC DECIMALPART EXPONENTPART;
+fragment DECIMALPART: (DOT [0-9]+)?;
+fragment EXPONENTPART:[0-9]*? (E (MINUSOP | PLUSOP)? [1-9]+)?;
 
 // Boolean literal 
-BOOLLIT: TRUE | FALSE ;
+BOOLLIT: TRUE | FALSE;
 
-INTLIT: [0-9]+;
+// String literal 
+STRINGLIT:;
 
+// Indexed Array literal 
+INDEXEDARRAYLIT:;
+
+// Multi-dimensional Array literal 
+MULTIDIMENSIONALARRAYLIT:;
+
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// Stop Statement
+BREAK: 'Break';
+CONTINUE: 'Continue';
+
+// Flow Statement
+IF: 'If';
+ELSEIF: 'Elseif';
+ELSE: 'Else';
+FOREACH: 'Foreach';
+
+// Boolean Value
+TRUE: 'True';
+FALSE: 'False';
+
+// Primitive Types
+ARRAY: 'Array';
+IN: 'In';
+INT: 'Int';
+FLOAT: 'Float';
+BOOLEAN:'Boolean';
+STRING: 'String';
+RETURN: 'Return';
+
+// Null
+NULL: 'Null';
+
+// Class
+CLASS: 'Class';
+VAL: 'Val';
+VAR: 'Var';
+CONSTRUCTOR: 'Constructor';
+DESTRUCTOR: 'Destructor';
+NEW: 'New';
+BY: 'By';
+
+SELF: 'Self';
+
+// Operators
+DOUBLECOLONOP: '::';
+DOUBLEDOTOP: '.';
+UNDERSCORE: '_';
+PLUSOP: '+';
+MINUSOP: '-';
+MULTIPLYOP: '*';
+DIVIDEOP: '/';
+MODULOOP: '%';
+NOTOP: '!';
+ANDOP: '&&';
+OROP: '||';
+EQUALOP: '==';
+ASSIGNOP: '=';
+NOTEQUAL: '!=';
+GT : '>' ;
+LT : '<' ;
+GTE: '>=';
+LTE: '<=';
+STREQUALOP: '==.';
+STRCONCATOP: '+.';
+
+// Separators
 LB: '(';
 RB: ')';
-LP: '{';
-RP: '}';
-SEMI: ';';
+LSB: '[';
+RSB: ']';
+LCB: '{';
+RCB: '}';
+DOT: '.';
+COMMA: ',';
+COLON:':';
+SEMICOLON: ';';
+// SEPARATOR: ;
+
+
+DOLLARD: '$';
 
 // Skip comments
 // BLOCK_COMMENT: ('**' .*? '**' | LP .*? RP) -> skip ;
-BLOCK_COMMENT: '**' .*? '**' -> skip ;
+BLOCK_COMMENT: '**' .*? '**' -> skip;
 
 // Skip spaces, tabs, newlines
-WS : [ \t\r\n\f\b]+ -> skip ; 
-// WS: [ \t\r\n]+ -> skip; 
+WS : [ \t\r\n\f\b]+ -> skip; 
 
-ERROR_CHAR: .;
 UNCLOSE_STRING: .;
 ILLEGAL_ESCAPE: .;
 
 
+ESC_SEQ: '\\' [btnfr"'\\] ;
+ESC_ILLEGAL: '\\' ~[btnfr"'\\] | ~'\\' ;
+
+
+ERROR_CHAR: . { raise ErrorToken(self.text) };
+
+// Name
+ID:[_a-zA-Z];
+
 // Alphabet
-fragment A: [aA];
 fragment B: [bB];
-fragment C: [cC];
-fragment D: [dD];
 fragment E: [eE];
-fragment F: [fF];
-fragment G: [gG];
-fragment H: [hH];
-fragment I: [iI];
-fragment J: [jJ];
-fragment K: [kK];
-fragment L: [lL];
-fragment M: [mM];
-fragment N: [nN];
-fragment O: [oO];
-fragment P: [pP];
-fragment Q: [qQ];
-fragment R: [rR];
-fragment S: [sS];
-fragment T: [tT];
-fragment U: [uU];
-fragment V: [vV];
-fragment W: [wW];
 fragment X: [xX];
-fragment Y: [yY];
-fragment Z: [zZ];
