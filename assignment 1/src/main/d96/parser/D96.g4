@@ -23,25 +23,44 @@ exp: funcall | INTLIT;
 
 funcall:  LB exp? RB;
 
-// INTTYPE: 'int';
+//   _____        _____   _____ ______ _____  
+//  |  __ \ /\   |  __ \ / ____|  ____|  __ \ 
+//  | |__) /  \  | |__) | (___ | |__  | |__) |
+//  |  ___/ /\ \ |  _  / \___ \|  __| |  _  / 
+//  | |  / ____ \| | \ \ ____) | |____| | \ \ 
+//  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
-// VOIDTYPE: 'void';	
-	
 
-// fragment SIGN               :  [+-]? ;
-// fragment SCIENTIFIC         :  [e](SIGN)(DIGIT)+ ;
-// fragment DECIMAL_POINT      :  [.](DIGIT)+ ;
 
-// REAL               :  SIGN(DIGIT)+(DECIMAL_POINT(SCIENTIFIC)? | SCIENTIFIC) ;
-// INT                :  SIGN(DIGIT)+ ;
-// ID                 :  LOWERCASE_LETTER (LOWERCASE_LETTER | DIGIT)* ;
-// STRING             :  ['][^']+['] ;
+// String literal 
+stringlit: ('"') STRING_CHAR ('"') 
+{
+	self.text = str(self.text)[1:-1].replace('\"','')
+};
 
+// Indexed Array literal 
+indexarraylit: ARRAY LB ((TYPE | indexarraylit) (COMMA (TYPE | indexarraylit)*))? RB;
+
+// Multi-dimensional Array literal 
+// multidimensionalarraylit:;
+
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+//   _      ________   ________ _____  
+//  | |    |  ____\ \ / /  ____|  __ \ 
+//  | |    | |__   \ V /| |__  | |__) |
+//  | |    |  __|   > < |  __| |  _  / 
+//  | |____| |____ / . \| |____| | \ \ 
+//  |______|______/_/ \_\______|_|  \_\                    
+
+TYPE: INT | FLOAT | BOOLEAN | STRING;
+// VALUE: NULL | INTLIT | FLOATLIT | STRINGLIT | BOOLLIT | INDEXEDARRAYLIT | MULTIDIMENSIONALARRAYLIT;
+CONDITION: IF | ELSEIF | ELSE;
 
 // Integer literal 
 INTLIT: DEC | HEX | OCT | BIN;
-
-fragment DEC:([1-9] [0-9]* (UNDERSCORE [0-9]+)*){ self.text = self.text.replace("_", "")} | '0';
+fragment DEC: ([1-9] [0-9]* (UNDERSCORE [0-9]+)*){ self.text = self.text.replace("_", "")} | '0';
 fragment HEX: '0' X [1-9]+;
 fragment OCT: '0' [0-9a-fA-F]+; 
 fragment BIN: '0' B [01]+;
@@ -50,23 +69,15 @@ fragment BIN: '0' B [01]+;
 // Float literal 
 FLOATLIT: DEC DECIMALPART EXPONENTPART;
 fragment DECIMALPART: (DOT [0-9]+)?;
-fragment EXPONENTPART:[0-9]*? (E (MINUSOP | PLUSOP)? [1-9]+)?;
+fragment EXPONENTPART:[0-9]*? (E (MINUSOP | PLUSOP)? [0-9]+)?;
 
 // Boolean literal 
 BOOLLIT: TRUE | FALSE;
 
-// String literal 
-STRINGLIT:;
+// Identifiers
+IDENTIFIERS: (DOLLAR [a-zA-Z_0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]+);
+DOLLAR: '$';
 
-// Indexed Array literal 
-INDEXEDARRAYLIT:;
-
-// Multi-dimensional Array literal 
-MULTIDIMENSIONALARRAYLIT:;
-
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
 // Stop Statement
 BREAK: 'Break';
 CONTINUE: 'Continue';
@@ -101,8 +112,7 @@ CONSTRUCTOR: 'Constructor';
 DESTRUCTOR: 'Destructor';
 NEW: 'New';
 BY: 'By';
-
-SELF: 'Self';
+// SELF: 'Self';
 
 // Operators
 DOUBLECOLONOP: '::';
@@ -139,28 +149,36 @@ COLON:':';
 SEMICOLON: ';';
 // SEPARATOR: ;
 
-
-DOLLARD: '$';
-
 // Skip comments
-// BLOCK_COMMENT: ('**' .*? '**' | LP .*? RP) -> skip ;
 BLOCK_COMMENT: '**' .*? '**' -> skip;
 
 // Skip spaces, tabs, newlines
 WS : [ \t\r\n\f\b]+ -> skip; 
 
-UNCLOSE_STRING: .;
-ILLEGAL_ESCAPE: .;
+// UNCLOSE_STRING: '"' STRING_CHAR* ( [\t\r\n\f\b"'\\] | EOF )
+UNCLOSE_STRING: '"' STRING_CHAR* 
+{
+	current = str(self.text)
+	raise UncloseString(y[1:])
+};
 
+ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
+{
+	current = str(self.text)
+	raise IllegalEscape(current[1:])
+};
 
-ESC_SEQ: '\\' [btnfr"'\\] ;
-ESC_ILLEGAL: '\\' ~[btnfr"'\\] | ~'\\' ;
+// String char except special character 
+fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
+
+fragment ESC_CHAR: '\\' [trnfb"'\\] ;
+fragment ESC_UNAVAILABLE: '\\' ~[trnfb"'\\] | ~'\\';
 
 
 ERROR_CHAR: . { raise ErrorToken(self.text) };
 
 // Name
-ID:[_a-zA-Z];
+ID: [_a-zA-Z]+;
 
 // Alphabet
 fragment B: [bB];
