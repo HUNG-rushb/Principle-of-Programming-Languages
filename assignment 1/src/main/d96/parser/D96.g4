@@ -33,7 +33,7 @@ funcall:  LB exp? RB;
 
 
 // String literal 
-stringlit: ('"') STRING_CHAR ('"') 
+STRINGLIT: ('"') STRING_CHAR* ('"') 
 {
 	self.text = str(self.text)[1:-1].replace('\"','')
 };
@@ -59,24 +59,30 @@ TYPE: INT | FLOAT | BOOLEAN | STRING;
 CONDITION: IF | ELSEIF | ELSE;
 
 // Integer literal 
-INTLIT: DEC | HEX | OCT | BIN;
-fragment DEC: ([1-9] [0-9]* (UNDERSCORE [0-9]+)*){ self.text = self.text.replace("_", "")} | '0';
-fragment HEX: '0' X [1-9]+;
-fragment OCT: '0' [0-9a-fA-F]+; 
+INTLIT: DEC { 
+	self.text = self.text.replace("_", "")
+	} 
+	| HEX 
+	| OCT 
+	| BIN;
+fragment DEC: [1-9]+ (UNDERSCORE | [0-9])*  ;
+fragment HEX: '0' X [0-9a-fA-F]+;
+fragment OCT: '0' [0-7]+; 
 fragment BIN: '0' B [01]+;
 
 
 // Float literal 
-FLOATLIT: DEC DECIMALPART EXPONENTPART;
-fragment DECIMALPART: (DOT [0-9]+)?;
-fragment EXPONENTPART:[0-9]*? (E (MINUSOP | PLUSOP)? [0-9]+)?;
+FLOATLIT: [0-9]+ (DECIMALPART EXPONENTPART? | EXPONENTPART);
+fragment DECIMALPART: '.' [0-9]+;
+fragment EXPONENTPART:E (MINUSOP | PLUSOP)? [0-9]+;
+// fragment EXPONENTPART:E [+-]? [0-9]+;
 
 // Boolean literal 
 BOOLLIT: TRUE | FALSE;
 
 // Identifiers
-IDENTIFIERS: (DOLLAR [a-zA-Z_0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]+);
-DOLLAR: '$';
+IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
+fragment DOLLAR: '$';
 
 // Stop Statement
 BREAK: 'Break';
@@ -143,14 +149,14 @@ LSB: '[';
 RSB: ']';
 LCB: '{';
 RCB: '}';
-DOT: '.';
+// DOT: '.';
 COMMA: ',';
-COLON:':';
+COLON: ':';
 SEMICOLON: ';';
 // SEPARATOR: ;
 
 // Skip comments
-BLOCK_COMMENT: '**' .*? '**' -> skip;
+BLOCK_COMMENT: '##' .*? '##' -> skip;
 
 // Skip spaces, tabs, newlines
 WS : [ \t\r\n\f\b]+ -> skip; 
@@ -169,9 +175,12 @@ ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 };
 
 // String char except special character 
-fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
 
-fragment ESC_CHAR: '\\' [trnfb"'\\] ;
+// fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
+fragment STRING_CHAR: ~[\b\t\n\f\r"'\\] | ESC_CHAR;
+
+fragment ESC_CHAR: '\\' [trnfb"'\\];
+
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb"'\\] | ~'\\';
 
 
