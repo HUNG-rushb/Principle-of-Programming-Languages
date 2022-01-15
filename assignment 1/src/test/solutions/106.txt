@@ -1,1 +1,1 @@
-$_dollarstatic,<EOF>
+GameDevClub HCMUT,;,<EOF>

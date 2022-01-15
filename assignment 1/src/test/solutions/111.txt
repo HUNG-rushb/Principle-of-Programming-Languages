@@ -1,1 +1,1 @@
-%,duyHUNG,<EOF>
+Illegal Escape In String: GameDev\d

@@ -150,11 +150,16 @@ ids_list_with_type: ids_list COLON data_types ;
 
 ids_list: ID (COMMA ID)* ;
 
+
+
+
 exps_list: exp (COMMA exp)* ;
 
 stmts_list: stmt+ ;
 
 method_types: PROCEDURE | FUNCTION ;
+
+
 
 data_types: primitive_types | compound_types;
 
@@ -162,9 +167,7 @@ compound_types: ARRAY LSB number DOTDOT number RSB OF primitive_types ;
 
 primitive_types: INTEGER | REAL | STRING | BOOLEAN;
 
-op_and_then: AND THEN ;
 
-op_or_else: OR ELSE ;
 
 literal
 	: INTEGER_LITERAL
@@ -174,6 +177,17 @@ literal
 	;
 
 number: SUB? INTEGER_LITERAL ;
+
+
+
+
+
+
+
+
+op_and_then: AND THEN ;
+
+op_or_else: OR ELSE ;
 
 /** Lexers Declaration */
 

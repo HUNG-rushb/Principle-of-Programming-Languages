@@ -1,1 +1,1 @@
-000000001234567765531243,_duyhungZzDW____wfwoeifj,<EOF>
+Var,$arr,:,Array,[,Array,[,Int,,,6,],,,5,],;,<EOF>

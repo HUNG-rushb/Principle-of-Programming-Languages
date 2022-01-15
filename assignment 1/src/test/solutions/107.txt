@@ -1,1 +1,1 @@
-$saf,afte,<EOF>
+Illegal Escape In String: GameDev\C

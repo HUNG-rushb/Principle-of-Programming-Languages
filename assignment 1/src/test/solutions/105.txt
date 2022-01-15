@@ -1,1 +1,1 @@
-$12abc,<EOF>
+Var,$dec,:,Float,=,-,1.562e-90,;,<EOF>

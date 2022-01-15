@@ -1,1 +1,1 @@
-23427b5
+Var $dec, num: Int = 0b0101110, 0xaff;

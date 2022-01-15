@@ -5,6 +5,23 @@ grammar D96;
 
 @lexer::header {
 from lexererr import *
+import inspect
+}
+
+@lexer::members {
+def emit(self):
+    tk = self.type
+    result = super().emit() # result mean for input
+
+    # delete later
+    print('--------------------------------------------------------------------------------')
+    attributes = inspect.getmembers(D96Lexer, lambda a:not(inspect.isroutine(a)))
+    user_defined_attr = [a for a in attributes if not(a[0].startswith('__') and a[0].endswith('__'))]
+    for i in user_defined_attr:
+        if tk == i[1]:
+            print ("{:<30} {:<30} {:<50}".format(result.text, '|', i[0]))
+    print('--------------------------------------------------------------------------------')
+    return result
 }
 
 options {
@@ -17,11 +34,11 @@ program: BLOCK_COMMENT;
 
 // mptype: INTTYPE | VOIDTYPE;
 
-body: funcall SEMICOLON;
+// body: funcall SEMICOLON;
 
-exp: funcall | INTLIT;
+// exp: funcall | INTLIT;
 
-funcall:  LB exp? RB;
+// funcall:  LB exp? RB;
 
 //   _____        _____   _____ ______ _____  
 //  |  __ \ /\   |  __ \ / ____|  ____|  __ \ 
@@ -30,59 +47,84 @@ funcall:  LB exp? RB;
 //  | |  / ____ \| | \ \ ____) | |____| | \ \ 
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
+// Class declaration
 
 
-// String literal 
-STRINGLIT: ('"') STRING_CHAR* ('"') 
-{
-	self.text = str(self.text)[1:-1].replace('\"','')
-};
+// Variable declaration/
+attr_declaration: (VAR | VAL) identifier_list COLON variable_type (value_list)? SEMICOLON;
 
-// Indexed Array literal 
-indexarraylit: ARRAY LB ((TYPE | indexarraylit) (COMMA (TYPE | indexarraylit)*))? RB;
+// Method declaration
+method_declaration: IDENTIFIERS LB list_parameters RB block_statements;
 
-// Multi-dimensional Array literal 
-// multidimensionalarraylit:;
 
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
+
+// Statements
+block_statements: LCB statements RCB;
+
+
+statements:;
+
+
+
+
+
+
+
+// Exxpression
+expr:;
+
+// Constructor Destructor
+// constructor_dclr: CONSTRUCTOR LB list_parameters RB ;
+// destructor_dclr: DESTRUCTOR;
+
+
+
+// Array literal
+array_lit: ARRAY LB array_val RB;
+array_val: expr COMMA array_val | expr;
+
+// Literals
+literal: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
+
+
+// List of parameters
+list_parameters: parameters | ;
+parameters: param SEMICOLON parameters | param;
+param: identifier_list COLON variable_type;
+
+// Identifiers list
+// a, _b, C123
+identifier_list: IDENTIFIERS (COMMA IDENTIFIERS)*;
+// identifier_list: (identifier_list COMMA | IDENTIFIERS);
+
+// Value list
+value_list: literal (COMMA literal)*;
+
+
+
+
+
+
+
+// Class type
+
+// Array type
+array_type: ARRAY LSB array_element_type COMMA array_size RSB;
+array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
+array_size: INTLIT;
+
+// Primitive type
+primitive_type: BOOLEAN | INT | FLOAT | STRING;
+
+// Variable type
+variable_type: primitive_type | array_type;
+
 //   _      ________   ________ _____  
 //  | |    |  ____\ \ / /  ____|  __ \ 
 //  | |    | |__   \ V /| |__  | |__) |
 //  | |    |  __|   > < |  __| |  _  / 
 //  | |____| |____ / . \| |____| | \ \ 
 //  |______|______/_/ \_\______|_|  \_\                    
-
-TYPE: INT | FLOAT | BOOLEAN | STRING;
-// VALUE: NULL | INTLIT | FLOATLIT | STRINGLIT | BOOLLIT | INDEXEDARRAYLIT | MULTIDIMENSIONALARRAYLIT;
-CONDITION: IF | ELSEIF | ELSE;
-
-// Integer literal 
-INTLIT: DEC { 
-	self.text = self.text.replace("_", "")
-	} 
-	| HEX 
-	| OCT 
-	| BIN;
-fragment DEC: [1-9]+ (UNDERSCORE | [0-9])*  ;
-fragment HEX: '0' X [0-9a-fA-F]+;
-fragment OCT: '0' [0-7]+; 
-fragment BIN: '0' B [01]+;
-
-
-// Float literal 
-FLOATLIT: [0-9]+ (DECIMALPART EXPONENTPART? | EXPONENTPART);
-fragment DECIMALPART: '.' [0-9]+;
-fragment EXPONENTPART:E (MINUSOP | PLUSOP)? [0-9]+;
-// fragment EXPONENTPART:E [+-]? [0-9]+;
-
-// Boolean literal 
-BOOLLIT: TRUE | FALSE;
-
-// Identifiers
-IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
-fragment DOLLAR: '$';
 
 // Stop Statement
 BREAK: 'Break';
@@ -93,6 +135,9 @@ IF: 'If';
 ELSEIF: 'Elseif';
 ELSE: 'Else';
 FOREACH: 'Foreach';
+
+// Boolean literal 
+BOOLLIT: TRUE | FALSE;
 
 // Boolean Value
 TRUE: 'True';
@@ -118,11 +163,11 @@ CONSTRUCTOR: 'Constructor';
 DESTRUCTOR: 'Destructor';
 NEW: 'New';
 BY: 'By';
-// SELF: 'Self';
+SELF: 'Self';
 
 // Operators
 DOUBLECOLONOP: '::';
-DOUBLEDOTOP: '.';
+DOUBLEDOTOP: '..';
 UNDERSCORE: '_';
 PLUSOP: '+';
 MINUSOP: '-';
@@ -135,10 +180,10 @@ OROP: '||';
 EQUALOP: '==';
 ASSIGNOP: '=';
 NOTEQUAL: '!=';
-GT : '>' ;
-LT : '<' ;
 GTE: '>=';
 LTE: '<=';
+GT : '>' ;
+LT : '<' ;
 STREQUALOP: '==.';
 STRCONCATOP: '+.';
 
@@ -149,17 +194,43 @@ LSB: '[';
 RSB: ']';
 LCB: '{';
 RCB: '}';
-// DOT: '.';
+DOT: '.';
 COMMA: ',';
 COLON: ':';
 SEMICOLON: ';';
 // SEPARATOR: ;
 
-// Skip comments
-BLOCK_COMMENT: '##' .*? '##' -> skip;
+// Identifiers
+IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
+fragment DOLLAR: '$';
 
-// Skip spaces, tabs, newlines
-WS : [ \t\r\n\f\b]+ -> skip; 
+// String literal 
+// '" -> "
+STRINGLIT: ('"') STRING_CHAR* ('"') 
+{
+	self.text = str(self.text)[1:-1].replace('\'"','"')
+	
+};
+
+// Float literal 
+fragment DECIMALPART: '.' '0'* DEC;
+// fragment EXPONENTPART:E (MINUSOP | PLUSOP)? [0-9]+;
+fragment EXPONENTPART: E (MINUSOP | PLUSOP)? '0'* DEC;
+// fragment EXPONENTPART:E [+-]? [0-9]+;
+FLOATLIT: ((DEC | '0' [0-9]*) (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) {
+	self.text = self.text.replace("_", "")};
+
+// Interher literal
+fragment DEC: [1-9] (UNDERSCORE | [0-9])*;
+fragment HEX: '0' X [0-9a-fA-F]+ (UNDERSCORE [0-9a-fA-F]+)*;
+fragment OCT: '0' [0-7]+ (UNDERSCORE [0-7]+)*; 
+fragment BIN: '0' B [01]+ (UNDERSCORE [01]+)*;
+INTLIT: (DEC 
+	| HEX 
+	| OCT 
+	| BIN) {self.text = self.text.replace("_", "")} 
+	| '0';
+
 
 // UNCLOSE_STRING: '"' STRING_CHAR* ( [\t\r\n\f\b"'\\] | EOF )
 UNCLOSE_STRING: '"' STRING_CHAR* 
@@ -175,14 +246,17 @@ ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 };
 
 // String char except special character 
-
-// fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
-fragment STRING_CHAR: ~[\b\t\n\f\r"'\\] | ESC_CHAR;
+fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
 
 fragment ESC_CHAR: '\\' [trnfb"'\\];
 
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb"'\\] | ~'\\';
 
+// Skip comments
+BLOCK_COMMENT: '##' .*? '##' -> skip;
+
+// Skip spaces, tabs, newlines
+WS : [ \t\r\n\f\b]+ -> skip; 
 
 ERROR_CHAR: . { raise ErrorToken(self.text) };
 
