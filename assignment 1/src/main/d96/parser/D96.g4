@@ -272,7 +272,7 @@ WS : [ \t\r\n\f\b]+ -> skip;
 ERROR_CHAR: . { raise ErrorToken(self.text) };
 
 // Name
-ID: [_a-zA-Z]+;
+// ID: [_a-zA-Z]+;
 
 // Alphabet
 fragment B: [bB];
