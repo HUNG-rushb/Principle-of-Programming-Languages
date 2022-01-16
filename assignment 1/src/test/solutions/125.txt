@@ -1,1 +1,1 @@
-$saf,afte,<EOF>
+<EOF>

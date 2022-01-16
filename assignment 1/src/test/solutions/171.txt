@@ -1,1 +1,1 @@
-Var,$a,:,Int,=,0x45Abcdf89a,;,<EOF>
+a,=,1,;,b,[,1,+,c,],=,(,true,&&,!,f,||,_z,),!=,false,;,<EOF>

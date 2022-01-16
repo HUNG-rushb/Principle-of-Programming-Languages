@@ -1,1 +1,1 @@
-12.45e67,<EOF>
+New,Return,True,False,Foreach,If,Elseif,Else,Float,Int,String,Var,Val,Constructor,Destructor,Null,Class,By,In,<EOF>

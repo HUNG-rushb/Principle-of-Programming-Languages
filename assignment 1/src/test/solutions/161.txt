@@ -1,1 +1,1 @@
-xin\r\b\f\tchao,<EOF>
+str1  \r ahihi ,<EOF>

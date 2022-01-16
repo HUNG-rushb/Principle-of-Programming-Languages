@@ -1,1 +1,1 @@
-(,*,nac,*,),+,1.1,Illegal Escape In String: ba\q
+function_test,(,a,:,Int,),{,getString,(,input,),;,},<EOF>

@@ -1,1 +1,1 @@
-Var,$a,:,Float,=,1256.5,;,<EOF>
+Unclosed String:   str \' 

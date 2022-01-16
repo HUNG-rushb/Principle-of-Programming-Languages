@@ -1,1 +1,1 @@
-Illegal Escape In String: GameDev\d
+*,abcd,<EOF>

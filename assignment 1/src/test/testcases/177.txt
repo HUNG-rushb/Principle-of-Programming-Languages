@@ -1,1 +1,1 @@
-38n"[#Ffs?0ED"0."T`#
+ string get_Special_String(){return "abc\g!!";}

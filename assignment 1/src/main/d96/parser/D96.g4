@@ -71,7 +71,15 @@ statements:;
 
 
 // Exxpression
-expr:;
+exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
+
+exp1: exp2 ( EQ | NEQ | GT | LT | GTE | LTE ) exp2 | exp2 ;
+
+exp2: exp2 ( ADD | SUB | OR ) exp3 | exp3;
+
+exp3: exp3 ( DIV | MUL | MOD | DIV_INT | AND ) exp4 | exp4;
+
+exp4: (NOT | SUB) exp4 | operands ;
 
 // Constructor Destructor
 // constructor_dclr: CONSTRUCTOR LB list_parameters RB ;
@@ -213,18 +221,21 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 };
 
 // Float literal 
-fragment DECIMALPART: '.' '0'* DEC;
-// fragment EXPONENTPART:E (MINUSOP | PLUSOP)? [0-9]+;
-fragment EXPONENTPART: E (MINUSOP | PLUSOP)? '0'* DEC;
-// fragment EXPONENTPART:E [+-]? [0-9]+;
-FLOATLIT: ((DEC | '0' [0-9]*) (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) {
-	self.text = self.text.replace("_", "")};
+// fragment DECIMALPART: '.' ('0'+ | '0'* DEC) ;
+// fragment EXPONENTPART: E UNDERSCORE* (MINUSOP | PLUSOP)? ('0'* DEC | '0'+);
+fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
+fragment EXPONENTPART: UNDERSCORE* E UNDERSCORE* (MINUSOP | PLUSOP)? UNDERSCORE*  ('0'* UNDERSCORE* DEC | '0'+) UNDERSCORE*;
+// FLOATLIT: ((DEC | '0') (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) 
+FLOATLIT: ( (UNDERSCORE* (DEC | '0') UNDERSCORE* DECIMALPART UNDERSCORE* EXPONENTPART) 
+            | (UNDERSCORE* (DEC | '0') UNDERSCORE* DECIMALPART)
+            | (UNDERSCORE* (DEC | '0') UNDERSCORE* EXPONENTPART))
+{self.text = self.text.replace("_", "")};
 
 // Interher literal
 fragment DEC: [1-9] (UNDERSCORE | [0-9])*;
-fragment HEX: '0' X [0-9a-fA-F]+ (UNDERSCORE [0-9a-fA-F]+)*;
-fragment OCT: '0' [0-7]+ (UNDERSCORE [0-7]+)*; 
-fragment BIN: '0' B [01]+ (UNDERSCORE [01]+)*;
+fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
+fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
+fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
 INTLIT: (DEC 
 	| HEX 
 	| OCT 
@@ -236,7 +247,7 @@ INTLIT: (DEC
 UNCLOSE_STRING: '"' STRING_CHAR* 
 {
 	current = str(self.text)
-	raise UncloseString(y[1:])
+	raise UncloseString(current[1:])
 };
 
 ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
@@ -246,9 +257,9 @@ ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 };
 
 // String char except special character 
-fragment STRING_CHAR: ~[\\"] | ESC_CHAR | '\'"';
+fragment STRING_CHAR:  '\'"'| ESC_CHAR | ~[\\"];
 
-fragment ESC_CHAR: '\\' [trnfb"'\\];
+fragment ESC_CHAR: '\\' [trnfb'\\];
 
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb"'\\] | ~'\\';
 
