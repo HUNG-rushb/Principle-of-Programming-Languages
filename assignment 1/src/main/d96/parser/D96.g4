@@ -50,11 +50,25 @@ program: BLOCK_COMMENT;
 // Class declaration
 
 
-// Variable declaration/
-attr_declaration: (VAR | VAL) identifier_list COLON variable_type (value_list)? SEMICOLON;
+// Attribute declaration
+attribute_declaration: (VAR | VAL) identifier_list COLON variable_type (value_list)? SEMICOLON;
+
 
 // Method declaration
 method_declaration: IDENTIFIERS LB list_parameters RB block_statements;
+
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+
+// Variable declaration
+variable_declaration: (VAR | VAL) variable_identifier_list COLON variable_type (value_list)? SEMICOLON;
+
+// // Function declaration
+// function_declaration: VARIABLE_IDENTIFIERS LB list_parameters RB block_statements;
+
+// Assignment statements
+assignment_statements: VARIABLE_IDENTIFIERS EQUALOP expr;
 
 
 
@@ -71,15 +85,19 @@ statements:;
 
 
 // Exxpression
-exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
+expr:;
+// exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
 
-exp1: exp2 ( EQ | NEQ | GT | LT | GTE | LTE ) exp2 | exp2 ;
+// exp1: exp2 ( EQ | NEQ | GT | LT | GTE | LTE ) exp2 | exp2 ;
 
-exp2: exp2 ( ADD | SUB | OR ) exp3 | exp3;
+// exp2: exp2 ( ADD | SUB | OR ) exp3 | exp3;
 
-exp3: exp3 ( DIV | MUL | MOD | DIV_INT | AND ) exp4 | exp4;
+// exp3: exp3 ( DIV | MUL | MOD | DIV_INT | AND ) exp4 | exp4;
 
-exp4: (NOT | SUB) exp4 | operands ;
+// exp4: (NOT | SUB) exp4 | operands ;
+
+
+
 
 // Constructor Destructor
 // constructor_dclr: CONSTRUCTOR LB list_parameters RB ;
@@ -103,6 +121,7 @@ param: identifier_list COLON variable_type;
 // Identifiers list
 // a, _b, C123
 identifier_list: IDENTIFIERS (COMMA IDENTIFIERS)*;
+variable_identifier_list: VARIABLE_IDENTIFIERS (COMMA VARIABLE_IDENTIFIERS)*;
 // identifier_list: (identifier_list COMMA | IDENTIFIERS);
 
 // Value list
@@ -210,6 +229,7 @@ SEMICOLON: ';';
 
 // Identifiers
 IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
+VARIABLE_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
 fragment DOLLAR: '$';
 
 // String literal 
@@ -223,7 +243,8 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 // Float literal 
 // fragment DECIMALPART: '.' ('0'+ | '0'* DEC) ;
 // fragment EXPONENTPART: E UNDERSCORE* (MINUSOP | PLUSOP)? ('0'* DEC | '0'+);
-fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
+// fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
+fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* '0'* UNDERSCORE* DEC? UNDERSCORE*;
 fragment EXPONENTPART: UNDERSCORE* E UNDERSCORE* (MINUSOP | PLUSOP)? UNDERSCORE*  ('0'* UNDERSCORE* DEC | '0'+) UNDERSCORE*;
 // FLOATLIT: ((DEC | '0') (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) 
 FLOATLIT: ( (UNDERSCORE* (DEC | '0') UNDERSCORE* DECIMALPART UNDERSCORE* EXPONENTPART) 
