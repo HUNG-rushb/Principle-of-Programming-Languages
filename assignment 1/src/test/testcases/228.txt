@@ -1,0 +1,1 @@
+Var $bcd : Int = player.a(b,c,d);

@@ -1,11 +1,1 @@
-
-        add(s: Int, t: Int) {
-            Var obj = New Bus();
-            if (s > 0) {
-                obj.insert(s,t);
-            }    
-            else {
-                return obj;
-            }
-        }
-    
+"Thang 4 cua anh"

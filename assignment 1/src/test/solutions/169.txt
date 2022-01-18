@@ -1,1 +1,1 @@
-callFn,then,unction,(,a,+,b,*,c,%,(,d,+,2,),),;,<EOF>
+Var,$a,:,Float,=,1.560000000000000e-125,;,<EOF>

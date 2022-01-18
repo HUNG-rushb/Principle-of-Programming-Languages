@@ -1,1 +1,1 @@
-123,abc,Illegal Escape In String: xyz\k
+Val,$arrayList,:,Array,[,String,,,6,],=,Array,(,ABC,,,DEF,,,GHI,,,JKL,,,MNO,,,PQR,),;,<EOF>

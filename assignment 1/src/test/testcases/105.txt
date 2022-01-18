@@ -1,1 +1,1 @@
-$_free
+Var $dec: Float = -1.562e-90;

@@ -1,0 +1,1 @@
+Var $bcd : Array[Int, 3] = Array(1, 4, 3);

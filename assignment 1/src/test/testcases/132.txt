@@ -1,3 +1,1 @@
-
-                    0b12 0b01 12.34 1560 0X1B
-                    
+Var $dec, num: Int = 0b0101110, 0xaff

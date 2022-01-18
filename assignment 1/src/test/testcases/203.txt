@@ -1,1 +1,1 @@
-int main( {}
+Var $e : String;

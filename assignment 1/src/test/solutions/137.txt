@@ -1,1 +1,1 @@
-abc\ta\nbc,<EOF>
+Hello from "Python",<EOF>

@@ -1,1 +1,1 @@
-"baMD\HLSc\na"
+"##This is a string, not a comment##"

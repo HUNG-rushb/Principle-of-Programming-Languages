@@ -1,1 +1,1 @@
-Illegal Escape In String: str11\ 
+Thang 8 cua anh,<EOF>

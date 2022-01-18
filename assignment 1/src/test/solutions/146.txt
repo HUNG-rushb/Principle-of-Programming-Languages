@@ -1,1 +1,1 @@
-Illegal Escape In String: baMD\H
+##This is a string, not a comment##,<EOF>

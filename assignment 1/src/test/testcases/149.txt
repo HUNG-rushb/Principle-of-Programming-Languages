@@ -1,1 +1,1 @@
-123abc "xyz\k 456
+Val $arrayList : Array[String, 6] = Array("ABC","DEF","GHI","JKL","MNO","PQR");

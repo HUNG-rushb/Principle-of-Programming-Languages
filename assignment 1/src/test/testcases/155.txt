@@ -1,1 +1,1 @@
-"bacxyc
+Var s : String = "adsfsdf\das"

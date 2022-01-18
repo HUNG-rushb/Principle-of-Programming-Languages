@@ -1,1 +1,1 @@
-aCBbdc
+Var $x, num : Int = 5, 6;

@@ -1,1 +1,1 @@
-{,true,,,false,,,true,,,false,},;,{, nam,,, vat ly ,,, aaa ,},<EOF>
+Var,$a,:,Float,=,0.2345,;,<EOF>

@@ -1,1 +1,1 @@
-remove,(,s,:,Int,,,t,:,Int,,,obj,:,Class,),{,obj,.,removeBus,(,t,),;,},minPark,(,),{,return,max,;,},<EOF>
+Thang 5 cua anh,<EOF>

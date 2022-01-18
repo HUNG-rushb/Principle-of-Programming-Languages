@@ -1,1 +1,1 @@
-abc\nabcde,<EOF>
+$12abc,<EOF>

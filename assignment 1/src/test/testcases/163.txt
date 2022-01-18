@@ -1,1 +1,1 @@
-"  str \' \" str "
+Var $a : Float = 1_25_6.5;

@@ -28,17 +28,10 @@ options {
 	language = Python3;
 }
 
-// program: mptype 'main' LCB RCB LB body? RB EOF;
-program: BLOCK_COMMENT;
-// program: (vardclr | funcdclr)+ EOF;
 
-// mptype: INTTYPE | VOIDTYPE;
+// program: class_declaration;
+program: variable_declaration+;
 
-// body: funcall SEMICOLON;
-
-// exp: funcall | INTLIT;
-
-// funcall:  LB exp? RB;
 
 //   _____        _____   _____ ______ _____  
 //  |  __ \ /\   |  __ \ / ____|  ____|  __ \ 
@@ -48,11 +41,10 @@ program: BLOCK_COMMENT;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Class declaration
-
+// class_declaration: CLASS VARIABLE_IDENTIFIERS LCB RCB;
 
 // Attribute declaration
 attribute_declaration: (VAR | VAL) identifier_list COLON variable_type (value_list)? SEMICOLON;
-
 
 // Method declaration
 method_declaration: IDENTIFIERS LB list_parameters RB block_statements;
@@ -61,33 +53,83 @@ method_declaration: IDENTIFIERS LB list_parameters RB block_statements;
 // -----------------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------
 
+
+// STATEMENTS ------------------------------------------------------------------------------
+// STATEMENTS ------------------------------------------------------------------------------
+// STATEMENTS ------------------------------------------------------------------------------
+// STATEMENTS ------------------------------------------------------------------------------
 // Variable declaration
-variable_declaration: (VAR | VAL) variable_identifier_list COLON variable_type (value_list)? SEMICOLON;
+variable_declaration: (VAR | VAL) identifier_list COLON variable_type (ASSIGNOP (value_list))? SEMICOLON;
 
 // // Function declaration
 // function_declaration: VARIABLE_IDENTIFIERS LB list_parameters RB block_statements;
 
 // Assignment statements
-assignment_statements: VARIABLE_IDENTIFIERS EQUALOP expr;
-
-
-
-// Statements
-block_statements: LCB statements RCB;
-
-
-statements:;
+// assignment_statements: VARIABLE_IDENTIFIERS EQUALOP expr;
+assignment_statements: 'afef';
 
 
 
 
+// If statements 
+if_statements: IF LB expr RB block_statements elseif_list_statements else_statement;
+elseif_list_statements: elseif_statement | elseif_statement elseif_list_statements;
+elseif_statement: ELSEIF LB expr RB block_statements;
+else_statement: ELSE block_statements;
+
+
+// For In statement
+forin_statements: FOREACH LB IN RB;
+
+// Method invocation statement
+methodinvocation_statement: 'sdfsdfsa';
+
+// Break statement
+break_statements: BREAK SEMICOLON;
+
+// Continue statement
+continue_statements: CONTINUE SEMICOLON;
+
+// Return statement
+return_statements: RETURN SEMICOLON;
 
 
 
-// Exxpression
-expr:;
+
+
+// Block statements
+block_statements: LCB (variable_declaration 
+            | assignment_statements 
+            | if_statements 
+            | forin_statements 
+            | break_statements
+            | continue_statements
+            | return_statements
+            | methodinvocation_statement)* RCB;
+
+
+
+// Exxpression ----------------------------------------------------------------------------------
+// Exxpression ----------------------------------------------------------------------------------
+// Exxpression ----------------------------------------------------------------------------------
+// Exxpression ----------------------------------------------------------------------------------
+expr: expr1 (STRCONCATOP | STREQUALOP) expr1 | expr1;
+expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
+expr2: expr2 (ANDOP | OROP) expr3 | expr3;
+expr3: expr3 (PLUSOP | MINUSOP) expr4 | expr4;
+expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
+expr5: NOTOP expr5 | expr6;
+expr6: MINUSOP expr6 | expr7;
+expr7: expr7 index_operators | expr8;
+expr8: expr8 (DOT | DOUBLEDOTOP) expr9 | expr9;
+expr9: NEW expr9 | expr10;
+expr10:; 
+
+// elements_expr: expr index_operators;
+index_operators: LSB expr RSB | LSB expr RSB index_operators;
+
 // exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
-
+ 
 // exp1: exp2 ( EQ | NEQ | GT | LT | GTE | LTE ) exp2 | exp2 ;
 
 // exp2: exp2 ( ADD | SUB | OR ) exp3 | exp3;
@@ -121,11 +163,11 @@ param: identifier_list COLON variable_type;
 // Identifiers list
 // a, _b, C123
 identifier_list: IDENTIFIERS (COMMA IDENTIFIERS)*;
-variable_identifier_list: VARIABLE_IDENTIFIERS (COMMA VARIABLE_IDENTIFIERS)*;
+// variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS (COMMA VARIABLE_IN_FUNC_IDENTIFIERS)*;
 // identifier_list: (identifier_list COMMA | IDENTIFIERS);
 
 // Value list
-value_list: literal (COMMA literal)*;
+value_list: (literal (COMMA literal)* | expr (COMMA expr)*);
 
 
 
@@ -206,7 +248,7 @@ ANDOP: '&&';
 OROP: '||';
 EQUALOP: '==';
 ASSIGNOP: '=';
-NOTEQUAL: '!=';
+NOTEQUALOP: '!=';
 GTE: '>=';
 LTE: '<=';
 GT : '>' ;
@@ -228,8 +270,9 @@ SEMICOLON: ';';
 // SEPARATOR: ;
 
 // Identifiers
+// VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
 IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
-VARIABLE_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
+
 fragment DOLLAR: '$';
 
 // String literal 
@@ -244,12 +287,12 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 // fragment DECIMALPART: '.' ('0'+ | '0'* DEC) ;
 // fragment EXPONENTPART: E UNDERSCORE* (MINUSOP | PLUSOP)? ('0'* DEC | '0'+);
 // fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
-fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* '0'* UNDERSCORE* DEC? UNDERSCORE*;
-fragment EXPONENTPART: UNDERSCORE* E UNDERSCORE* (MINUSOP | PLUSOP)? UNDERSCORE*  ('0'* UNDERSCORE* DEC | '0'+) UNDERSCORE*;
+fragment DECIMALPART: '.' '0'* DEC? ;
+fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  DEC | '0'+); 
 // FLOATLIT: ((DEC | '0') (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) 
-FLOATLIT: ( (UNDERSCORE* (DEC | '0') UNDERSCORE* DECIMALPART UNDERSCORE* EXPONENTPART) 
-            | (UNDERSCORE* (DEC | '0') UNDERSCORE* DECIMALPART)
-            | (UNDERSCORE* (DEC | '0') UNDERSCORE* EXPONENTPART))
+FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
+            | ((DEC | '0') DECIMALPART)
+            | ((DEC | '0') EXPONENTPART))
 {self.text = self.text.replace("_", "")};
 
 // Interher literal
@@ -282,7 +325,9 @@ fragment STRING_CHAR:  '\'"'| ESC_CHAR | ~[\\"];
 
 fragment ESC_CHAR: '\\' [trnfb'\\];
 
-fragment ESC_UNAVAILABLE: '\\' ~[trnfb"'\\] | ~'\\';
+fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
+// fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
+
 
 // Skip comments
 BLOCK_COMMENT: '##' .*? '##' -> skip;
