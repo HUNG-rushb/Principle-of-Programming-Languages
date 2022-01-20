@@ -29,8 +29,10 @@ options {
 }
 
 
-// program: class_declaration;
-program: variable_declaration+;
+program: class_declarations class_main_program_declarations class_declarations EOF;
+// program: forin_statements;
+
+// program: variable_declaration+;
 // program: expr+;
 
 
@@ -42,7 +44,13 @@ program: variable_declaration+;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Class declaration
-class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS block_statements;
+class_main_program_declarations: CLASS PROGRAM program_block_class_statements;
+
+
+class_declarations: class_declaration class_declarations | class_declaration | ;
+class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance block_class_statements;
+class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
+// class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance | COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
 
 // Constructor Destructor
 constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
@@ -50,13 +58,13 @@ destructor_dclr: DESTRUCTOR LB RB block_statements;
 
 // Member access
 instance_attr_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF);
-instance_method_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB expr_list RB;
+instance_method_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB list_expr RB;
 
 static_attr_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF);
-static_method_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB expr_list RB;
+static_method_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB list_expr RB;
 
 // Object creation
-obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB expr_list RB;
+obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
 
 // Attribute declaration
 // attribute_declaration: (VAR | VAL) identifier_list COLON variable_type ((ASSIGNOP (value_list | )) | ) SEMICOLON;
@@ -75,22 +83,29 @@ variable_declaration: (VAR | VAL) identifier_list COLON variable_type (ASSIGNOP 
 
 // // Function declaration
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
+main_function_declaration: MAIN LB RB block_statements;
 
 // Assignment statement
-assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) EQUALOP expr SEMICOLON;
+assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS 
+                        | DOLLAR_IDENTIFIERS 
+                        | instance_attr_access
+                        | static_attr_access) ASSIGNOP expr SEMICOLON;
 
 // If statements 
-if_statements: IF LB expr RB block_statements elseif_list_statements else_statement;
-elseif_list_statements: elseif_statement | elseif_statement elseif_list_statements;
-elseif_statement: ELSEIF LB expr RB block_statements;
-else_statement: ELSE block_statements;
+if_statements: IF LB expr RB (block_statements | ) elseif_list_statements else_statement;
+elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement | ;
+elseif_statement: ELSEIF LB expr RB (block_statements | );
+else_statement: ELSE (block_statements | );
 
-// For In statement****************************************************************************************************************
-forin_statements: FOREACH LB VARIABLE_IN_FUNC_IDENTIFIERS IN expr DOUBLEDOTOP expr (BY expr)? RB block_statements;
+// For In statement
+by_expr: (BY expr) | ;
+forin_statements: FOREACH LB (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) IN expr DOUBLEDOTOP expr by_expr RB block_statements;
+
 
 // Method invocation statement
 methodinvocation_statement: (instance_method_access | static_method_access) SEMICOLON;
-call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB;
+call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
+call_func_statement: call_func SEMICOLON;
 
 
 // Break statement
@@ -100,13 +115,20 @@ break_statements: BREAK SEMICOLON;
 continue_statements: CONTINUE SEMICOLON;
 
 // Return statement
-return_statements: RETURN SEMICOLON;
+return_expr: expr | ;
+return_statements: RETURN return_expr SEMICOLON;
 
-// Block statements
-block_statements: LCB (statements | statements_class) RCB;
+// Block statements ---------------------------------------------------------------------------------
+// Block statements ---------------------------------------------------------------------------------
+// Block statements ---------------------------------------------------------------------------------
 
-statements: statement statements | statement | ;
+
+program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
+block_class_statements: LCB statements_class RCB;
+block_statements: LCB statements RCB;
+
 statements_class: statement_class statements_class | statement_class | ;
+statements: statement statements | statement | ;
 
 statement_class: variable_declaration 
             | function_declaration
@@ -114,17 +136,18 @@ statement_class: variable_declaration
             | if_statements 
             | forin_statements 
             | methodinvocation_statement
-            | call_func SEMICOLON
+            | call_func_statement
             | break_statements
             | continue_statements
             | return_statements;
 
+// no function declaration
 statement: variable_declaration 
             | assignment_statements 
             | if_statements 
             | forin_statements 
             | methodinvocation_statement
-            | call_func SEMICOLON
+            | call_func_statement
             | break_statements
             | continue_statements
             | return_statements;
@@ -142,14 +165,20 @@ expr5: NOTOP expr5 | expr6;
 expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
 expr8: expr8 (DOT | DOUBLEDOTOP) expr9 | expr9;
-expr9: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB expr_list RB | expr10;
-expr10: literal | VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF | expr11; 
+expr9: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr10;
+expr10: literal 
+        | VARIABLE_IN_FUNC_IDENTIFIERS 
+        | DOLLAR_IDENTIFIERS 
+        | SELF 
+        | call_func 
+        | obj_creation 
+        | expr11; 
 expr11: LB expr RB;
 
 index_operators: LSB expr RSB | LSB expr RSB index_operators;
 
 // Expression list 
-expr_list: expr COMMA expr_list | expr | ;
+list_expr: expr COMMA list_expr | expr | ;
 
 
 // --------------------------------------------------------------------------------------------------
@@ -158,17 +187,18 @@ expr_list: expr COMMA expr_list | expr | ;
 
 // Array literal
 array_lit: ARRAY LB array_val RB;
-array_val: expr COMMA array_val | expr;
+array_val: expr COMMA array_val | expr | ;
 
 // Literals
 literal: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
 
 // List of parameters
-// list_parameters: parameters | ;
 list_parameters: param SEMICOLON list_parameters | param | ;
+// param a:Int
 param: identifier_list COLON variable_type;
 
 // Identifiers list
+// a,b,c
 identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | ;
 variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list | VARIABLE_IN_FUNC_IDENTIFIERS | ;
 // identifier_list: (identifier_list COMMA | IDENTIFIERS);
@@ -195,6 +225,9 @@ variable_type: primitive_type | array_type;
 //  | |    |  __|   > < |  __| |  _  / 
 //  | |____| |____ / . \| |____| | \ \ 
 //  |______|______/_/ \_\______|_|  \_\                    
+
+// Main
+MAIN: 'main';
 
 // Stop Statement
 BREAK: 'Break';
@@ -270,7 +303,8 @@ COLON: ':';
 SEMICOLON: ';';
 
 // Identifiers
-VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
+PROGRAM: 'Program';
+VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]* ;
 DOLLAR_IDENTIFIERS:  DOLLAR [_a-zA-Z0-9]+; 
 // IDENTIFIERS: DOLLAR_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS;
 fragment DOLLAR: '$';
@@ -294,8 +328,8 @@ fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  [1-9] [0-9]* | '0'+);
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
             | ((DEC | '0') DECIMALPART)
             | ((DEC | '0') EXPONENTPART)
-            | (DECIMALPART EXPONENTPART)
-            | DECIMALPART)
+            | (DECIMALPART EXPONENTPART))
+            // | DECIMALPART)
 {self.text = self.text.replace("_", "")};
 
 // Interher literal

@@ -1,1 +1,19 @@
-Var a : Int = 5 + 4;
+
+            Class Dog: Animal {
+                
+            }
+
+            Class Snake: De {
+                
+            }
+
+            Class Program {
+               
+            }
+
+            Class Dog: Animal {
+                
+            }
+
+            
+            

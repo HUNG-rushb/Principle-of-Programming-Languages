@@ -1,1 +1,12 @@
-Var $e : String;
+
+            Class Program {
+                
+
+                fksfywkfwi (a, b: Int ; d : Float) {
+                    Self.age = age;
+                    s = d;
+               }
+            }
+                    
+              
+            

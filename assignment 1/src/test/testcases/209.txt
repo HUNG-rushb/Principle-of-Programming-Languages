@@ -1,1 +1,12 @@
- 12 / 2 % 3 + 5 - 6 * 5.6 
+
+            Class $Dog {
+                Var $d: Int = 0x12345;
+                foo() {
+                    func(a,b,c);
+                    Return result;
+                }
+            }
+            Class Program {
+                main(){}
+            }
+        

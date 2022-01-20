@@ -1,1 +1,12 @@
- 1_23.6 + 56_123_123.4e-12 - 12. * 071 
+
+            Class super {
+                get(){
+
+                }
+            }
+            Class child: super {
+                set() {
+                    Return super::get();
+                }
+            }
+        

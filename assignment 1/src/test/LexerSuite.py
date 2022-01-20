@@ -71,82 +71,44 @@ class LexerSuite(unittest.TestCase):
     #     self.assertTrue(TestLexer.test("\"abc\\nabcde\"",
     #                     "abc\\nabcde,<EOF>", 120))
 
-    # def test_string_3(self):
-    #     self.assertTrue(TestLexer.test("""
-    #         "Hello from '"Python'""
-    #     """, """Hello from "Python",<EOF>""", 121))
+    def test_string_3(self):
+        self.assertTrue(TestLexer.test("""
+            "dfafuwifweij123123ninfwuef wefbmfbo_3249182 '"weufnwGJTTYR32479akfnkjsdf'""
+        """, """dfafuwifweij123123ninfwuef wefbmfbo_3249182 "weufnwGJTTYR32479akfnkjsdf",<EOF>""", 121))
 
-    # def test_string_4(self):
-    #     self.assertTrue(TestLexer.test("\"\r\"", """,<EOF>""", 122))
+    def test_string_4(self):
+        self.assertTrue(TestLexer.test("\"\r\r\"", """,<EOF>""", 122))
 
+    def test_block_comment_1(self):
+        self.assertTrue(TestLexer.test("""
+            ## Testing comment fowifjowfnwio!@#@#$$#%@^@%^&?<>":{{}}({}()}:(){(})}) ##
+        """, "<EOF>", 123))
 
-
-
-
-
-    # def test_block_comment_1(self):
-    #     self.assertTrue(TestLexer.test("""
-    #         ## Testing comment fowifjowfnwio!@#@#$$#%@^@%^&?<>":{{}}({}()}:(){(})}) ##
-    #     """, "<EOF>", 123))
-
-    # def test_block_comment_2(self):
-    #     self.assertTrue(TestLexer.test("## ASCWEasdasd !@@#%$#  %lgvkhjk$%^&*(&*~{}[]\;]\p/.,.,<>>) ##", "<EOF>",124))
+    def test_block_comment_2(self):
+        self.assertTrue(TestLexer.test("## ASCWEasdasd !@@#%$#  %lgvkhjk$%^&*(&*~{}[]\;]\p/.,.,<>>) ##", "<EOF>",124))
     
-    # def test_block_comment_3(self):
-    #     self.assertTrue(TestLexer.test("## # ASCWEasdasd !@@#%$#%$%^&*(&*~{}[]\;]\p/.,.,<>>) # ##", "<EOF>",125))
+    def test_block_comment_3(self):
+        self.assertTrue(TestLexer.test("## # ASCWEasdasd !@@#%$#%$%^&*(&*~{}[]\;]\p/.,.,<>>) # ##", "<EOF>",125))
 
-    # def test_hex_number_2(self):
-    #     self.assertTrue(TestLexer.test("0x1A2bFf09", "0x1A2bFf09,<EOF>", 126))
+    def test_hex_number_2(self):
+        self.assertTrue(TestLexer.test("0x1A2bFf09", "0x1A2bFf09,<EOF>", 126))
 
-    # def test_hex_number_3(self):
-    #     self.assertTrue(TestLexer.test("0x09aFZXY_asd123", "0x09aF,ZXY_asd123,<EOF>", 127))
+    def test_hex_number_3(self):
+        self.assertTrue(TestLexer.test("0x09aFZXY_asd123", "0x09aF,ZXY_asd123,<EOF>", 127))
 
-    # def test_keywords(self):
-    #     self.assertTrue(TestLexer.test("""
-    #     Break Continue If Elseif Else Foreach True False Array In Int 
-    #     Float Boolean String Return Null Class Val Var Constructor Destructor New By""", 
-    #     "Break,Continue,If,Elseif,Else,Foreach,True,False,Array,In,Int,Float,Boolean,String,Return,Null,Class,Val,Var,Constructor,Destructor,New,By,<EOF>", 128))
+    def test_keywords(self):
+        self.assertTrue(TestLexer.test("""
+        Break Continue If Elseif Else Foreach True False Array In Int 
+        Float Boolean String Return Null Class Val Var Constructor Destructor New By""", 
+        "Break,Continue,If,Elseif,Else,Foreach,True,False,Array,In,Int,Float,Boolean,String,Return,Null,Class,Val,Var,Constructor,Destructor,New,By,<EOF>", 128))
 
-    # def test_float(self):
-    #     self.assertTrue(TestLexer.test("0.1_2", "0.12,<EOF>", 129))
+    def test_float_number_29(self):
+        self.assertTrue(TestLexer.test(
+        "90000.32482e67234981 3411E-872199 10101E6667213 345.67890000 17756488.30102E+0009 2099. .46578995 .e37777 .47876e12345 49823.e410 45666.e134_23542344 19453.49992_45rwkejrtnjk", 
+        "90000.32482e67234981,3411E-872199,10101E6667213,345.67890000,17756488.30102E+0009,2099.,.46578995,.e37777,.47876e12345,49823.e410,45666.e134,_23542344,19453.49992,_45rwkejrtnjk,<EOF>", 129))
 
-    # def test_float_2(self):
-    #     self.assertTrue(TestLexer.test("1_____0.1_2____", "10.12,<EOF>", 130))
-
-
-
-    # def test_string_1(self):
-    #     self.assertTrue(TestLexer.test("\"aj\elhadef\"", "Illegal Escape In String: aj\e", 117)) 
-
-    # def test_string_2(self):
-    #     self.assertTrue(TestLexer.test("\"ab3j\tlhadef\"", "ab3j    lhadef,<EOF>", 118))  
-
-    # def test_string_3(self):
-    #     self.assertTrue(TestLexer.test("""
-    #         "Hello from '"Python'""
-    #     """, """Hello from "Python",<EOF>""", 119))  
-
-    # def test_string_4(self):
-    #     self.assertTrue(TestLexer.test("\"abc \r babc", """Unclosed String: abc babc""", 120))
-
-    # def test_expression_1(self):
-    #     self.assertTrue(TestLexer.test("(23 >= 5 && a != 9) || 7 + 9", "(,23,>=,5,&&,a,!=,9,),||,7,+,9,<EOF>", 121))
-    
-    # def test_expression_2(self):
-    #     self.assertTrue(TestLexer.test("34 < 9 + 12e3 - 1.34", "34,<,9,+,12e3,-,1.34,<EOF>", 122))
-   
-    # def test_lower_upper_id(self):
-    #     self.assertTrue(TestLexer.test("aCBbdc","aCBbdc,<EOF>",102))
-
-    # def test_mixed_id(self):
-    #     self.assertTrue(TestLexer.test("aAsVN3","aAsVN,3,<EOF>",103))
-        
-    # def test_integer(self):
-    #     """test integers"""
-    #     self.assertTrue(TestLexer.test("123a123","123,a,123,<EOF>",104))
-
-# ------------------------------------------------------------------------------------------------
-      
+    def test_hex_oct_number_30(self):
+        self.assertTrue(TestLexer.test("0x23987TABCDEF 0XA100 0x123 0x0000 00123 0346 0895 0345","0x23987,TABCDEF,0XA100,0x123,0x0000,00123,0346,0,895,0345,<EOF>", 130))
 
 
     # def test1(self):
@@ -406,7 +368,7 @@ class LexerSuite(unittest.TestCase):
     #     self.assertTrue(TestLexer.test("\"Khong lam ma doi co an, thi chi co an dau b***, an c** - Huan Rose\"", "Khong lam ma doi co an, thi chi co an dau b***, an c** - Huan Rose,<EOF>", 200))
         
 
-    def test_float_number(self):
-        self.assertTrue(TestLexer.test(
-        "12.45e67 12E-9 1E3 12.2 17.3E+9 2. .45 .e3 .4e5 4.e10 45.e1_234 19.4_456e3", 
-        "12.45e67,12E-9,1E3,12.2,17.3E+9,2.,.45,.e3,.4e5,4.e10,45.e1,_234,19.4,_456e3,<EOF>", 115))
+    
+
+    def test_hex_oct_number(self):
+        self.assertTrue(TestLexer.test("0x1T 0XA100 0x123 0x0000 00123 0346 0895 0345","0x1,T,0XA100,0x123,0x0000,00123,0346,0,895,0345,<EOF>", 110))

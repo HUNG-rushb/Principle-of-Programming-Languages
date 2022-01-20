@@ -1,4 +1,5 @@
 import sys
+from types import NoneType
 from antlr4 import *
 from D96Lexer import D96Lexer
 from D96Parser import D96Parser
@@ -20,17 +21,19 @@ def main(argv):
     print('Input test: ' + str(input) + '\n')
     print(Trees.toStringTree(tree, None, parser))  
     print('\n')
-    traverse(tree, parser.ruleNames, parser.symbolicNames)
+    traverse(tree, parser.ruleNames)
 
-def traverse(tree, rule_names, symbolic_names, indent = 0):
+def traverse(tree, rule_names, indent = 0):
     if tree.getText() == "<EOF>":
         return
-
     elif isinstance(tree, TerminalNodeImpl):
         print("{0}TOKEN->'{1}'".format("|  " * indent, tree.getText()))
     else:
-        print("{0}{1}".format("|  " * indent, rule_names[tree.getRuleIndex()]))
-        for child in tree.children:
-            traverse(child, rule_names, symbolic_names, indent + 1) 
+        if tree.children is None:
+            print("{0}{1}: null".format("|  " * indent, rule_names[tree.getRuleIndex()]))
+        if tree.children is not None:
+            print("{0}{1}".format("|  " * indent, rule_names[tree.getRuleIndex()]))
+            for child in tree.children:
+                traverse(child, rule_names, indent + 1) 
 if __name__ == '__main__':
     main(sys.argv)

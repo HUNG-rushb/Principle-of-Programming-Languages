@@ -1,1 +1,10 @@
- (myConst < b || myConst >= a) && -8 + 2e4 + 5e-9 
+
+            Class Pro {
+                MainMenu(a: Int; b: Int) {
+                    Self.arr[4] = b.getName() + a.exp();
+                }
+            }
+            Class Program {
+                main(){}
+            }
+            
