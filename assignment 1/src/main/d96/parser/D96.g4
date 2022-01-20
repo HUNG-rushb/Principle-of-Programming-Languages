@@ -31,6 +31,7 @@ options {
 
 // program: class_declaration;
 program: variable_declaration+;
+// program: expr+;
 
 
 //   _____        _____   _____ ______ _____  
@@ -41,35 +42,42 @@ program: variable_declaration+;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Class declaration
-// class_declaration: CLASS VARIABLE_IDENTIFIERS LCB RCB;
+class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS block_statements;
+
+// Constructor Destructor
+constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
+destructor_dclr: DESTRUCTOR LB RB block_statements;
+
+// Member access
+instance_attr_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF);
+instance_method_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB expr_list RB;
+
+static_attr_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF);
+static_method_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS | SELF) LB expr_list RB;
+
+// Object creation
+obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB expr_list RB;
 
 // Attribute declaration
-attribute_declaration: (VAR | VAL) identifier_list COLON variable_type (value_list)? SEMICOLON;
+// attribute_declaration: (VAR | VAL) identifier_list COLON variable_type ((ASSIGNOP (value_list | )) | ) SEMICOLON;
 
 // Method declaration
-method_declaration: IDENTIFIERS LB list_parameters RB block_statements;
+method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
 
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------
 
 
 // STATEMENTS ------------------------------------------------------------------------------
 // STATEMENTS ------------------------------------------------------------------------------
 // STATEMENTS ------------------------------------------------------------------------------
-// STATEMENTS ------------------------------------------------------------------------------
+
 // Variable declaration
-variable_declaration: (VAR | VAL) identifier_list COLON variable_type (ASSIGNOP (value_list))? SEMICOLON;
+variable_declaration: (VAR | VAL) identifier_list COLON variable_type (ASSIGNOP value_list | ) SEMICOLON;
 
 // // Function declaration
-// function_declaration: VARIABLE_IDENTIFIERS LB list_parameters RB block_statements;
+function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
 
-// Assignment statements
-// assignment_statements: VARIABLE_IDENTIFIERS EQUALOP expr;
-assignment_statements: 'afef';
-
-
-
+// Assignment statement
+assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) EQUALOP expr SEMICOLON;
 
 // If statements 
 if_statements: IF LB expr RB block_statements elseif_list_statements else_statement;
@@ -77,12 +85,13 @@ elseif_list_statements: elseif_statement | elseif_statement elseif_list_statemen
 elseif_statement: ELSEIF LB expr RB block_statements;
 else_statement: ELSE block_statements;
 
-
-// For In statement
-forin_statements: FOREACH LB IN RB;
+// For In statement****************************************************************************************************************
+forin_statements: FOREACH LB VARIABLE_IN_FUNC_IDENTIFIERS IN expr DOUBLEDOTOP expr (BY expr)? RB block_statements;
 
 // Method invocation statement
-methodinvocation_statement: 'sdfsdfsa';
+methodinvocation_statement: (instance_method_access | static_method_access) SEMICOLON;
+call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB;
+
 
 // Break statement
 break_statements: BREAK SEMICOLON;
@@ -93,26 +102,37 @@ continue_statements: CONTINUE SEMICOLON;
 // Return statement
 return_statements: RETURN SEMICOLON;
 
-
-
-
-
 // Block statements
-block_statements: LCB (variable_declaration 
+block_statements: LCB (statements | statements_class) RCB;
+
+statements: statement statements | statement | ;
+statements_class: statement_class statements_class | statement_class | ;
+
+statement_class: variable_declaration 
+            | function_declaration
             | assignment_statements 
             | if_statements 
             | forin_statements 
+            | methodinvocation_statement
+            | call_func SEMICOLON
             | break_statements
             | continue_statements
-            | return_statements
-            | methodinvocation_statement)* RCB;
+            | return_statements;
+
+statement: variable_declaration 
+            | assignment_statements 
+            | if_statements 
+            | forin_statements 
+            | methodinvocation_statement
+            | call_func SEMICOLON
+            | break_statements
+            | continue_statements
+            | return_statements;
 
 
-
-// Exxpression ----------------------------------------------------------------------------------
-// Exxpression ----------------------------------------------------------------------------------
-// Exxpression ----------------------------------------------------------------------------------
-// Exxpression ----------------------------------------------------------------------------------
+// EXPRESSIONS ----------------------------------------------------------------------------------
+// EXPRESSIONS ----------------------------------------------------------------------------------
+// EXPRESSIONS ----------------------------------------------------------------------------------
 expr: expr1 (STRCONCATOP | STREQUALOP) expr1 | expr1;
 expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
 expr2: expr2 (ANDOP | OROP) expr3 | expr3;
@@ -122,30 +142,19 @@ expr5: NOTOP expr5 | expr6;
 expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
 expr8: expr8 (DOT | DOUBLEDOTOP) expr9 | expr9;
-expr9: NEW expr9 | expr10;
-expr10:; 
+expr9: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB expr_list RB | expr10;
+expr10: literal | VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS | SELF | expr11; 
+expr11: LB expr RB;
 
-// elements_expr: expr index_operators;
 index_operators: LSB expr RSB | LSB expr RSB index_operators;
 
-// exp: exp ( op_and_then | op_or_else ) exp1 | exp1;
- 
-// exp1: exp2 ( EQ | NEQ | GT | LT | GTE | LTE ) exp2 | exp2 ;
-
-// exp2: exp2 ( ADD | SUB | OR ) exp3 | exp3;
-
-// exp3: exp3 ( DIV | MUL | MOD | DIV_INT | AND ) exp4 | exp4;
-
-// exp4: (NOT | SUB) exp4 | operands ;
+// Expression list 
+expr_list: expr COMMA expr_list | expr | ;
 
 
-
-
-// Constructor Destructor
-// constructor_dclr: CONSTRUCTOR LB list_parameters RB ;
-// destructor_dclr: DESTRUCTOR;
-
-
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
 
 // Array literal
 array_lit: ARRAY LB array_val RB;
@@ -154,28 +163,20 @@ array_val: expr COMMA array_val | expr;
 // Literals
 literal: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
 
-
 // List of parameters
-list_parameters: parameters | ;
-parameters: param SEMICOLON parameters | param;
+// list_parameters: parameters | ;
+list_parameters: param SEMICOLON list_parameters | param | ;
 param: identifier_list COLON variable_type;
 
 // Identifiers list
-// a, _b, C123
-identifier_list: IDENTIFIERS (COMMA IDENTIFIERS)*;
-// variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS (COMMA VARIABLE_IN_FUNC_IDENTIFIERS)*;
+identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | ;
+variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list | VARIABLE_IN_FUNC_IDENTIFIERS | ;
 // identifier_list: (identifier_list COMMA | IDENTIFIERS);
 
 // Value list
-value_list: (literal (COMMA literal)* | expr (COMMA expr)*);
+// value_list: (literal (COMMA literal)* | expr (COMMA expr)*);
+value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
 
-
-
-
-
-
-
-// Class type
 
 // Array type
 array_type: ARRAY LSB array_element_type COMMA array_size RSB;
@@ -267,12 +268,11 @@ DOT: '.';
 COMMA: ',';
 COLON: ':';
 SEMICOLON: ';';
-// SEPARATOR: ;
 
 // Identifiers
-// VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
-IDENTIFIERS: (DOLLAR [_a-zA-Z0-9]+) | ([_a-zA-Z] [_a-zA-Z0-9]*);
-
+VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
+DOLLAR_IDENTIFIERS:  DOLLAR [_a-zA-Z0-9]+; 
+// IDENTIFIERS: DOLLAR_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS;
 fragment DOLLAR: '$';
 
 // String literal 
@@ -287,12 +287,15 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 // fragment DECIMALPART: '.' ('0'+ | '0'* DEC) ;
 // fragment EXPONENTPART: E UNDERSCORE* (MINUSOP | PLUSOP)? ('0'* DEC | '0'+);
 // fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
-fragment DECIMALPART: '.' '0'* DEC? ;
-fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  DEC | '0'+); 
+// fragment DECIMALPART: '.' '0'* ([1-9] [0-9]*)? ;
+fragment DECIMALPART: '.' [0-9]* ;
+fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  [1-9] [0-9]* | '0'+); 
 // FLOATLIT: ((DEC | '0') (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) 
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
             | ((DEC | '0') DECIMALPART)
-            | ((DEC | '0') EXPONENTPART))
+            | ((DEC | '0') EXPONENTPART)
+            | (DECIMALPART EXPONENTPART)
+            | DECIMALPART)
 {self.text = self.text.replace("_", "")};
 
 // Interher literal
@@ -307,7 +310,6 @@ INTLIT: (DEC
 	| '0';
 
 
-// UNCLOSE_STRING: '"' STRING_CHAR* ( [\t\r\n\f\b"'\\] | EOF )
 UNCLOSE_STRING: '"' STRING_CHAR* 
 {
 	current = str(self.text)
@@ -328,7 +330,6 @@ fragment ESC_CHAR: '\\' [trnfb'\\];
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
 // fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
 
-
 // Skip comments
 BLOCK_COMMENT: '##' .*? '##' -> skip;
 
@@ -336,9 +337,6 @@ BLOCK_COMMENT: '##' .*? '##' -> skip;
 WS : [ \t\r\n\f\b]+ -> skip; 
 
 ERROR_CHAR: . { raise ErrorToken(self.text) };
-
-// Name
-// ID: [_a-zA-Z]+;
 
 // Alphabet
 fragment B: [bB];

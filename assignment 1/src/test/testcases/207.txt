@@ -1,1 +1,1 @@
-Var a : Int = 56_789;
+ (myConst < b || myConst >= a) && -8 + 2e4 + 5e-9 
