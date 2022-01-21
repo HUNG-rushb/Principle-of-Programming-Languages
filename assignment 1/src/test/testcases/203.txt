@@ -3,6 +3,7 @@
                 getName() {
                     Var b: Float = 0.3;
                 }
+                
                 main() {
                     If (a >= b) {
                         Var a: Int = 0;
