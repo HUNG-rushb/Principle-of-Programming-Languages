@@ -30,7 +30,7 @@ options {
 
 
 // program: class_declarations class_main_program_declarations class_declarations EOF;
-program: class_declarations EOF;
+// program: class_declarations EOF;
 
 // program: function_declaration EOF;
 
@@ -40,7 +40,7 @@ program: class_declarations EOF;
 
 // program: array_type SEMICOLON;
 
-// program: (expr COMMA)+;
+program: (expr COMMA)+;
 
 
 //   _____        _____   _____ ______ _____  
