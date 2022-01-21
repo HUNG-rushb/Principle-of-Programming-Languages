@@ -1,6 +1,8 @@
-
+ 
             Class Program {
-                main(){}
+                main() {
+
+                }
             }
             Class MeowMeow: Dog {
                 Var b: Int;

@@ -1,1 +1,8 @@
-Var a : String = "abc" +. "bcd";
+
+            Class Program {
+                dethod() {
+                    Return Self.method();
+                }
+                main(){}
+            }
+        

@@ -1,12 +1,12 @@
 
-            Class ari {
-                $_getMethod() {
-                    Return 12 + 1.2 - c + !b >= 8 || 4 || (a + b);
+            Class myVar {
+                Constructor(arr: Array[Float, 3]) {
+                    Self.a = arr[1];
+                    Self.b = arr[2];
+                    Self.c = arr[2][1];
                 }
             }
             Class Program {
-                main() {
-                    a = (myConst + b) && a + b + abcde;
-                }
+                main(){}
             }
         

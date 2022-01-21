@@ -1,1 +1,11 @@
-Var $bcd : Float = 1_25.6e5 + (5.4 - 9.56) - (c / d) + arr[6];
+
+            Class obj {
+                Var _obj: Int = 0, 9;
+            }
+            Class Program {
+                main() {
+                    func(Array("a", "b", "c"));
+                    Return Self.arr;
+                }
+            }
+        

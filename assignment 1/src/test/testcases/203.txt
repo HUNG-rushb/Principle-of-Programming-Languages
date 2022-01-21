@@ -1,12 +1,28 @@
 
             Class Program {
-                
+                getName() {
+                    Var b: Float = 0.3;
+                }
+                main() {
+                    If (a >= b) {
+                        Var a: Int = 0;
+                        a = a + 3;
+                    }
+                    Elseif (b >= c) {
+                        Self.getName(a >= b);
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Else {
+                        GiaBao = Hieu;
+                        Hung = Vi;
+                    }
+                }
 
-                fksfywkfwi (a, b: Int ; d : Float) {
+                setAge(age: Int) {
                     Self.age = age;
-                    s = d;
-               }
+                }
             }
-                    
-              
+            
             

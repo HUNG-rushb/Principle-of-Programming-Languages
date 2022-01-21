@@ -1,1 +1,13 @@
-Var $bcd : Float = 1_25.6e5 + (5.4 - 9.56) - (c / d) + (arr[6] - ar[5][7]) * a[3][5][1][2];
+
+            Class Program {
+                main() {
+
+                }
+            }
+            Class parent {
+                Var lname, fname: String = "";
+                $getName() {
+                    Return Self.name[2];
+                }
+            }
+        

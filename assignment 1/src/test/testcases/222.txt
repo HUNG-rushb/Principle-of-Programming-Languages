@@ -1,1 +1,10 @@
-Var $bcd : Array[Int, 3] = Array(1, 4, 3);
+
+            Class myFunc {
+                func(s: Int; r: String) {
+                    Return Stand.Str(s + r);
+                }
+            }
+            Class Program {
+                main() {}
+            }
+        

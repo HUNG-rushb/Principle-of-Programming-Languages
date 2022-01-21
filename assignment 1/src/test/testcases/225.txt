@@ -1,1 +1,12 @@
-Var $bcd : Float = 1_25.6e5 + (5.4 - 9.56) - (c / d) + arr[6] - ar[5][7];
+
+            Class Program {
+                main() {
+                
+                }
+            }
+            Class lop {
+                attr(a, b: Int) {
+                    Return a[4] != b[1].name;
+                }
+            }
+        

@@ -1,1 +1,1 @@
-Error on line 9 col 32: ::
+Error on line 12 col 8: <EOF>

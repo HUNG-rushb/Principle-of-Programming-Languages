@@ -1,1 +1,10 @@
-Var a : Boolean = !b;
+
+            Class Program {
+                main(){}
+            }
+            Class Des {
+                Destructor() {
+                    Des.Delete();
+                }
+            }
+        

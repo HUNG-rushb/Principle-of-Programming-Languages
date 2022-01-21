@@ -1,1 +1,12 @@
-a != b >= c
+
+            Class Program {
+                main() {
+
+                }
+            }
+            Class className {
+                Destructor(param: Int, param_2: String) {
+
+                }
+            }
+        

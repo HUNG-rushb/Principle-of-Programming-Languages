@@ -1,1 +1,10 @@
-Var a : Int = 5 + b;
+
+            Class myDog {
+                method(a: Array[Int, 4]) {
+                    Return a[0]
+                }
+            }
+            Class Program {
+                main(){}
+            }
+        

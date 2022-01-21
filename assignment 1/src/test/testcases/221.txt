@@ -1,1 +1,8 @@
-Var $bcd : Float = 1_25.6e5 + (5.4 - 9.56) - (c / d);
+
+            Class Program {
+                main() {
+                    Out.print("Hello From Main");
+                }
+            }
+            Class iden {}
+        

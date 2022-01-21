@@ -1,21 +1,14 @@
 
             Class Program {
                 main(){
-                    If (a >= b) {
-                        Var a: Int = 0;
-                        a = a + 3;
-                    }
-                    Elseif (b >= c) {
-                        getName(a >= b);
-                    }
-                    Elseif (12 >= g) {
-                        insert("String");
-                    }
-                    Else {
-                        GiaBao = Hieu;
-                        Hung = Vi;
+
+                }
+            }
+            Class mini {
+                loop(a: Int; b: Float) {
+                    Foreach (i In 0 .. 150 By i <= 8) {
+                        sum = sum + a[i];
                     }
                 }
             }
-
             

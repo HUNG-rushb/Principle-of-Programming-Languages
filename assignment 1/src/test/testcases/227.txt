@@ -1,1 +1,7 @@
-Var $bcd : Int = New Player(a, b, c);
+
+            Class Program {
+                main() {
+                    Return New object();
+                }
+            }
+        

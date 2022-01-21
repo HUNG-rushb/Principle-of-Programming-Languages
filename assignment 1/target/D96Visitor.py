@@ -44,28 +44,8 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#instance_attr_access.
-    def visitInstance_attr_access(self, ctx:D96Parser.Instance_attr_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#instance_method_access.
-    def visitInstance_method_access(self, ctx:D96Parser.Instance_method_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_attr_access.
-    def visitStatic_attr_access(self, ctx:D96Parser.Static_attr_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_method_access.
-    def visitStatic_method_access(self, ctx:D96Parser.Static_method_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#obj_creation.
-    def visitObj_creation(self, ctx:D96Parser.Obj_creationContext):
+    # Visit a parse tree produced by D96Parser#new_obj_creation.
+    def visitNew_obj_creation(self, ctx:D96Parser.New_obj_creationContext):
         return self.visitChildren(ctx)
 
 
@@ -76,6 +56,31 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#variable_declaration.
     def visitVariable_declaration(self, ctx:D96Parser.Variable_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#declare_initiate_list.
+    def visitDeclare_initiate_list(self, ctx:D96Parser.Declare_initiate_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#type_and_assign.
+    def visitType_and_assign(self, ctx:D96Parser.Type_and_assignContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#variable_in_func_declaration.
+    def visitVariable_in_func_declaration(self, ctx:D96Parser.Variable_in_func_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#declare_initiate_in_func_list.
+    def visitDeclare_initiate_in_func_list(self, ctx:D96Parser.Declare_initiate_in_func_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#type_and_assign_in_func.
+    def visitType_and_assign_in_func(self, ctx:D96Parser.Type_and_assign_in_funcContext):
         return self.visitChildren(ctx)
 
 
@@ -124,18 +129,33 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#methodinvocation_statement.
-    def visitMethodinvocation_statement(self, ctx:D96Parser.Methodinvocation_statementContext):
+    # Visit a parse tree produced by D96Parser#instance_attr_access.
+    def visitInstance_attr_access(self, ctx:D96Parser.Instance_attr_accessContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#call_func.
-    def visitCall_func(self, ctx:D96Parser.Call_funcContext):
+    # Visit a parse tree produced by D96Parser#instance_method_access.
+    def visitInstance_method_access(self, ctx:D96Parser.Instance_method_accessContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#call_func_statement.
-    def visitCall_func_statement(self, ctx:D96Parser.Call_func_statementContext):
+    # Visit a parse tree produced by D96Parser#static_attr_access.
+    def visitStatic_attr_access(self, ctx:D96Parser.Static_attr_accessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#static_method_access.
+    def visitStatic_method_access(self, ctx:D96Parser.Static_method_accessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#method_invocation.
+    def visitMethod_invocation(self, ctx:D96Parser.Method_invocationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#method_invocation_statement.
+    def visitMethod_invocation_statement(self, ctx:D96Parser.Method_invocation_statementContext):
         return self.visitChildren(ctx)
 
 
@@ -194,6 +214,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#index_operators.
+    def visitIndex_operators(self, ctx:D96Parser.Index_operatorsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#expr.
     def visitExpr(self, ctx:D96Parser.ExprContext):
         return self.visitChildren(ctx)
@@ -239,11 +264,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#expr9.
-    def visitExpr9(self, ctx:D96Parser.Expr9Context):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#expr10.
     def visitExpr10(self, ctx:D96Parser.Expr10Context):
         return self.visitChildren(ctx)
@@ -254,8 +274,18 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#index_operators.
-    def visitIndex_operators(self, ctx:D96Parser.Index_operatorsContext):
+    # Visit a parse tree produced by D96Parser#expr12.
+    def visitExpr12(self, ctx:D96Parser.Expr12Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#index_expr.
+    def visitIndex_expr(self, ctx:D96Parser.Index_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#index.
+    def visitIndex(self, ctx:D96Parser.IndexContext):
         return self.visitChildren(ctx)
 
 

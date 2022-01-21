@@ -3,13 +3,15 @@
                     Var name: String;
                     Var age: Int = 0;
                     $printName() {
-                        print(Self.name);
+                        Out.print(Self.name);
                     }
                     setAge(_age: Int) {
                         Self.age = _age;
                     }
                 }
                 Class Program {
-                    main(){}
+                    main(){
+
+                    }
                 }
             

@@ -1,1 +1,11 @@
-Var a : Int = b[5];
+
+            Class Program {
+                main(){}
+            }
+
+            Class Main {
+                menu() {
+                    Return Self.arr;
+                }
+            }
+        

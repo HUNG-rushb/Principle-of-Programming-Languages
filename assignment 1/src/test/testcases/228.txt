@@ -1,1 +1,7 @@
-Var $bcd : Int = player.a(b,c,d);
+
+            Class Program {
+                main(a: Int, b: Float) {
+
+                }
+            }
+        

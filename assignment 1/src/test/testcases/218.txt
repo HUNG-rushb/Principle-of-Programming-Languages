@@ -1,1 +1,18 @@
-Var $bcd : Array[Array[String, 7], 6];
+
+            Class Meow {
+                returnMethod() {
+
+                }
+                Constructor() {
+                    Self.init = value;
+                }
+                Destructor() {
+                    Mew.EraseAll();
+                }
+            }
+            Class Program {
+                main(){
+
+                }
+            }
+        
