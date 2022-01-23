@@ -1,6 +1,13 @@
 
-            
-                b[1].name,
+            Class Program {
+                main() {
+                    Return;
                 
-            
+                }
+                attr(a, b: Int) {
+                    Return a[4] != b[1].name;
+                }
+            }
+            Class lop {
+            }
         

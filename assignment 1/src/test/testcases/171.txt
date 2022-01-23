@@ -1,1 +1,4 @@
-Var $a : Int = 0x45_Abc_df_89_a;
+
+        a = 1;
+        b[1+c] = (true && !f || _z) != false;
+        

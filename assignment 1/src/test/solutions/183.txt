@@ -1,1 +1,1 @@
-Thang 2 cua anh,<EOF>
+12.2e0,-,101,11E-2,11.1e2,<EOF>

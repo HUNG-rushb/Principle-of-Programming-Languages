@@ -1,1 +1,11 @@
-"Samsung Galaxy A50 voi 5 camera macro chup can canh, dem lai trai nghiem thuc te cho nguoi dung"
+
+            If (a >= b) {
+                a = a + b;
+            }
+            Elseif (b >= c) {
+                b = a + b || r;
+            }
+            Else {
+                Return result;
+            }
+        

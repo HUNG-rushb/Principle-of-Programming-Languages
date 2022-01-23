@@ -7,6 +7,7 @@
             Class Program {
                 main() {
                     a = (myConst + b) && a + b + abcde;
+                    Return;
                 }
             }
         

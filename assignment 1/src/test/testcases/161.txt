@@ -1,1 +1,1 @@
-"xin\r\b\f\tchao"
+"str1  \r ahihi "

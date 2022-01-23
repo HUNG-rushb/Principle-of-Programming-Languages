@@ -1,12 +1,12 @@
 
             Class Program {
                 main() {
-
+                    Return;
                 }
             }
             Class Meo: Dog {
                 $get() {
-                    Self.name = Dog::name;
+                    Self.name = Dog::$name;
                 }
             }
         

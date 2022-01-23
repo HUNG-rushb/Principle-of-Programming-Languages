@@ -1,1 +1,1 @@
-Var s : String = "adsfsdfas"
+"acms!,lds " {"abc"} 123"abc

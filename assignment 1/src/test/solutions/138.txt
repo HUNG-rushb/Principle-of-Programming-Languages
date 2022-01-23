@@ -1,1 +1,1 @@
-Unclosed String: abc \r babc
+abc,0,12ab\fc0.1,<EOF>

@@ -1,1 +1,1 @@
-Var,$a,:,Float,=,1e+125,;,<EOF>
+return,newn,then,animal,(,a,,,b,+,c,),;,<EOF>

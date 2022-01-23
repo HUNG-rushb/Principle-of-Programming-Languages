@@ -1,1 +1,11 @@
-NmkobYn{!}+I1+"`YS2h.J(
+
+        String Return(input: String; l: Int) {
+            classSTR.getData(input);
+            if (l > 0) {
+                return getS() + input;
+            }
+            else {
+                return input;
+            }
+        }
+        

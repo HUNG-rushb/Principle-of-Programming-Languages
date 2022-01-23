@@ -1,1 +1,6 @@
-(*nac*)+1.1 "ba\qm\f"
+
+        function_test(a: Int) {
+            ## comment at here ##
+            getString("input");
+        }
+        

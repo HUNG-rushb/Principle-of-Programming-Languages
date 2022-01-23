@@ -1,1 +1,1 @@
-Var,s,:,String,=,adsfsdfas,<EOF>
+acms!,lds ,{,abc,},123,Unclosed String: abc

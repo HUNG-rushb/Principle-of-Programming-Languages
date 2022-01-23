@@ -209,6 +209,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#block_statements_in_main.
+    def visitBlock_statements_in_main(self, ctx:D96Parser.Block_statements_in_mainContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#statements_class.
     def visitStatements_class(self, ctx:D96Parser.Statements_classContext):
         return self.visitChildren(ctx)
@@ -226,26 +231,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#statement.
     def visitStatement(self, ctx:D96Parser.StatementContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#instance_accesses.
-    def visitInstance_accesses(self, ctx:D96Parser.Instance_accessesContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#instance_access.
-    def visitInstance_access(self, ctx:D96Parser.Instance_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_accesses.
-    def visitStatic_accesses(self, ctx:D96Parser.Static_accessesContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_access.
-    def visitStatic_access(self, ctx:D96Parser.Static_accessContext):
         return self.visitChildren(ctx)
 
 
@@ -326,6 +311,26 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#index.
     def visitIndex(self, ctx:D96Parser.IndexContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#instance_accesses.
+    def visitInstance_accesses(self, ctx:D96Parser.Instance_accessesContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#instance_access.
+    def visitInstance_access(self, ctx:D96Parser.Instance_accessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#static_accesses.
+    def visitStatic_accesses(self, ctx:D96Parser.Static_accessesContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#static_access.
+    def visitStatic_access(self, ctx:D96Parser.Static_accessContext):
         return self.visitChildren(ctx)
 
 

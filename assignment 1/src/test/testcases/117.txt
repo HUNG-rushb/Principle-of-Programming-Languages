@@ -1,6 +1,1 @@
-Var $arr : Array[Array[Int, 3], 3] = 
-                                       Array(
-                                           Array(1,2,5),
-                                           Array(2,5,6),
-                                           Array(5,8,7)
-                                           );
+0x1T 0XA100 0x123 0x0000 00123 0346 0895 0345

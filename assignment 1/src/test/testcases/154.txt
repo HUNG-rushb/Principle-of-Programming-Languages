@@ -1,1 +1,1 @@
-Var s : String = "ABC
+"concaheo\uabc

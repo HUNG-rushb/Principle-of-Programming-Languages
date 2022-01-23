@@ -1,1 +1,1 @@
-Var $a : Float = 1e+12_5;
+return newn then animal(a,b + c);

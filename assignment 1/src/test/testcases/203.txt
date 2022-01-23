@@ -3,7 +3,6 @@
                 getName() {
                     Var b: Float = 0.3;
                 }
-                
                 main() {
                     If (a >= b) {
                         Var a: Int = 0;
@@ -19,6 +18,7 @@
                         GiaBao = Hieu;
                         Hung = Vi;
                     }
+                    Return;
                 }
 
                 setAge(age: Int) {

@@ -1,6 +1,9 @@
 
             Class Program {
-                main(){}
+                main()
+                {
+                    Return;
+                }
             }
             Class Des {
                 Destructor() {

@@ -1,1 +1,6 @@
-Var $b : Int = 0b1_0101_110_1_1_0;
+
+        a[7+9] = 12;
+        Foreach(i = 1 In 1 .. str.length) {
+            b[i] = b[i] + 1;
+        }
+        

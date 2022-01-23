@@ -29,16 +29,15 @@ options {
 }
 
 
-// program: class_declarations class_main_program_declarations class_declarations EOF;
+program: class_declarations class_main_program_declarations class_declarations EOF;
 
 // program: function_declaration EOF;
 
 // program: if_statements;
 
-
 // program: instance_attr_access;
 
-program: (expr COMMA)+;
+// program: (expr COMMA)+;
 
 
 //   _____        _____   _____ ______ _____  
@@ -60,25 +59,11 @@ constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
 destructor_dclr: DESTRUCTOR LB RB block_statements;
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Attribute declaration
 // attribute_declaration: (VAR | VAL) identifier_list COLON variable_type ((ASSIGNOP (value_list | )) | ) SEMICOLON;
 
 // Method declaration
 method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
-
-
-
 
 // STATEMENTS ------------------------------------------------------------------------------
 // STATEMENTS ------------------------------------------------------------------------------
@@ -94,14 +79,14 @@ type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) type_
 
 // In function =====> SPECIAL
 variable_in_func_declaration: (VAR | VAL) declare_initiate_in_func_list SEMICOLON;
-declare_initiate_in_func_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) type_and_assign_in_func expr
+declare_initiate_in_func_list: VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign_in_func expr
                                 | variable_in_func_identifier_list COLON variable_type;
-type_and_assign_in_func: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) type_and_assign_in_func expr COMMA
+type_and_assign_in_func: COMMA VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign_in_func expr COMMA
                         | COLON variable_type ASSIGNOP;
 
 // Function declaration
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
-main_function_declaration: MAIN LB RB block_statements;
+main_function_declaration: MAIN LB RB block_statements_in_main;
 
 call_func_statement: call_funcs SEMICOLON;
 call_funcs: call_func (DOT | DOUBLECOLONOP) call_funcs | call_func ;
@@ -118,9 +103,8 @@ call_func_attr_list:  (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (DOT |
 //                         | DOLLAR_IDENTIFIERS 
 //                         | instance_attr_access
 //                         | static_attr_access) ASSIGNOP expr SEMICOLON;
-// assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS 
-//                         | DOLLAR_IDENTIFIERS 
-//                         | expr8) ASSIGNOP expr SEMICOLON;
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS 
                         | DOLLAR_IDENTIFIERS 
                         | expr) ASSIGNOP expr SEMICOLON;
@@ -138,7 +122,6 @@ forin_statements: FOREACH LB (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
 
 // Member access
 instance_attr_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS);
-// instance_attr_access: expr8;
 instance_method_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS) LB list_expr RB;
 
 static_attr_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS);
@@ -147,18 +130,6 @@ static_method_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_I
 // Method invocation statement
 method_invocation: instance_method_access | static_method_access;
 method_invocation_statement: method_invocation SEMICOLON;
-// method_invocation_expr: //  expr.attr
-//                             expr8 DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-//                             // expr
-//                             | expr8 index_operators DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-//                             | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-//                             | expr8 DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB
-//                             | expr8 index_operators DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB
-//                             | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
-
-
-
-
 
 // Break statement
 break_statements: BREAK SEMICOLON;
@@ -174,11 +145,10 @@ return_statements: RETURN return_expr SEMICOLON;
 // Block statements ---------------------------------------------------------------------------------
 // Block statements ---------------------------------------------------------------------------------
 // Block statements ---------------------------------------------------------------------------------
-
-
 program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
 block_class_statements: LCB statements_class RCB;
 block_statements: LCB statements RCB;
+block_statements_in_main: LCB statements RETURN SEMICOLON RCB;
 
 statements_class: statement_class statements_class | statement_class | ;
 statements: statement statements | statement | ;
@@ -187,7 +157,6 @@ statement_class: variable_declaration
                 | function_declaration
                 | constructor_dclr
                 | destructor_dclr
-                
                 // | method_invocation_statement
                 ;
 
@@ -203,37 +172,10 @@ statement: variable_in_func_declaration
             | continue_statements
             | return_statements;
 
-
-
-
-
-
-
 // EXPRESSIONS ----------------------------------------------------------------------------------
 // EXPRESSIONS ----------------------------------------------------------------------------------
 // EXPRESSIONS ----------------------------------------------------------------------------------
 
-// Object creation
-// new_obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
-
-// Instance, Static access
-instance_accesses: instance_access instance_accesses | instance_access;
-instance_access:  DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-                | DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
-
-static_accesses: static_access static_accesses | static_access;
-static_access:  DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-                | DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
-
-expr: expr1 (STRCONCATOP | STREQUALOP) expr1 | expr1;
-expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
-expr2: expr2 (ANDOP | OROP) expr3 | expr3;
-expr3: expr3 (PLUSOP | MINUSOP) expr4 | expr4;
-expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
-expr5: NOTOP expr5 | expr6;
-expr6: MINUSOP expr6 | expr7;
-
-expr7: expr7 index_operators | expr8; // expr [number]
 
 // a.b[1]              a.b()[1]           a.b[1]            a.b()[1].b()[1]
 // a::b[1]             a::b()[1]          a::b[1]           a::b()[1]::b()[1]  
@@ -273,17 +215,28 @@ expr7: expr7 index_operators | expr8; // expr [number]
 //         | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB
         
 //         | expr10;
-   
 
-expr8: expr8 instance_accesses | expr9;
 
+// Object creation
+// new_obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
+
+expr: expr1 (STRCONCATOP | STREQUALOP) expr1 | expr1;
+expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
+expr2: expr2 (ANDOP | OROP) expr3 | expr3;
+expr3: expr3 (PLUSOP | MINUSOP) expr4 | expr4;
+expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
+expr5: NOTOP expr5 | expr6;
+expr6: MINUSOP expr6 | expr7;
+expr7: expr7 index_operators | expr8;
+// expr [number][///].a.c
+
+// expr8: expr8 instance_accesses | expr9;
+expr8: expr8 (index_operators | ) instance_accesses | expr9;
 expr9: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) static_accesses | expr10;
 
-
-
 // expr10: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr11;
-expr10: NEW expr LB list_expr RB | expr11;
 // expr10: new_obj_creation (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr10;
+expr10: NEW expr LB list_expr RB | expr11;
 expr11: literal 
         | VARIABLE_IN_FUNC_IDENTIFIERS 
         | DOLLAR_IDENTIFIERS 
@@ -292,34 +245,25 @@ expr11: literal
 expr12: LB expr RB;
 
 // a[1][2]
-index_operators: LSB expr RSB | LSB expr RSB index_operators;
-
+index_operators: LSB expr RSB index_operators | LSB expr RSB ;
 index_expr: index | index index_operators;
-
 index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
         | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) | ;
 
+// Instance, Static accesses
+instance_accesses: instance_access instance_accesses | instance_access;
+instance_access:  DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
+                | DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
 
-
-
-
+static_accesses: static_access static_accesses | static_access;
+static_access:  DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
+                | DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
 
 // Expression list 
 list_expr: expr COMMA list_expr | expr | ;
-
-
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 // Array literal
 array_lit: ARRAY LB array_val RB;
@@ -335,8 +279,10 @@ param: identifier_list COLON variable_type;
 
 // Identifiers list
 // a,b,c
-identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | ;
-variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list | VARIABLE_IN_FUNC_IDENTIFIERS | ;
+identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list 
+                | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | ;
+variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list 
+                                        | VARIABLE_IN_FUNC_IDENTIFIERS | ;
 // identifier_list: (identifier_list COMMA | IDENTIFIERS);
 
 // Value list
@@ -471,7 +417,7 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 // fragment DECIMALPART: '.' '0'* ([1-9] [0-9]*)? ;
 fragment DECIMALPART: '.' [0-9]* ;
 fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  [1-9] [0-9]* | '0'+); 
-// FLOATLIT: ((DEC | '0') (DECIMALPART EXPONENTPART? | EXPONENTPART) | (DECIMALPART EXPONENTPART)) 
+
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
             | ((DEC | '0') DECIMALPART)
             | ((DEC | '0') EXPONENTPART)

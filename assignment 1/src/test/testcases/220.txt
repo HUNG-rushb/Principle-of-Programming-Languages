@@ -23,6 +23,7 @@
                 }
                 main() {
                     a = (myConst + b) && a + b + abcde;
+                    Return;
                 }
             }
         

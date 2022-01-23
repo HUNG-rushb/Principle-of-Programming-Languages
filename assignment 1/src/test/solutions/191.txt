@@ -1,1 +1,1 @@
-Thang 10 cua anh,<EOF>
+Illegal Escape In String: GameDev\d
