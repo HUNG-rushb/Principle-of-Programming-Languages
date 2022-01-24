@@ -94,6 +94,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#dot_doublesemicolon_and_name.
+    def visitDot_doublesemicolon_and_name(self, ctx:D96Parser.Dot_doublesemicolon_and_nameContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#call_funcs.
     def visitCall_funcs(self, ctx:D96Parser.Call_funcsContext):
         return self.visitChildren(ctx)
@@ -111,6 +116,16 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#assignment_statements.
     def visitAssignment_statements(self, ctx:D96Parser.Assignment_statementsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#lhs.
+    def visitLhs(self, ctx:D96Parser.LhsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#multiple_accesses.
+    def visitMultiple_accesses(self, ctx:D96Parser.Multiple_accessesContext):
         return self.visitChildren(ctx)
 
 

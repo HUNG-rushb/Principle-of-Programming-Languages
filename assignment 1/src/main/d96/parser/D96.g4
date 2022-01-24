@@ -29,13 +29,13 @@ options {
 }
 
 
-program: class_declarations class_main_program_declarations class_declarations EOF;
+// program: class_declarations class_main_program_declarations class_declarations EOF;
 
 // program: function_declaration EOF;
 
-// program: if_statements;
+program: assignment_statements+ ;
 
-// program: instance_attr_access;
+// program: call_funcs;
 
 // program: (expr COMMA)+;
 
@@ -89,12 +89,18 @@ function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB lis
 main_function_declaration: MAIN LB RB block_statements_in_main;
 
 call_func_statement: call_funcs SEMICOLON;
-call_funcs: call_func (DOT | DOUBLECOLONOP) call_funcs | call_func ;
-call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB 
-                | (call_func_attr_list (DOT | DOUBLECOLONOP) | ) (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB;
+// call_funcs: call_func (DOT | DOUBLECOLONOP) call_funcs | call_func ;
+// call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB 
+//                 | (call_func_attr_list (DOT | DOUBLECOLONOP) | ) (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB;
 
-call_func_attr_list:  (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (DOT | DOUBLECOLONOP) call_func_attr_list 
-                        | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS);
+dot_doublesemicolon_and_name: (DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | DOUBLECOLONOP DOLLAR_IDENTIFIERS) ;
+
+call_funcs: call_func call_funcs | call_func ;
+call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB call_func
+                | dot_doublesemicolon_and_name (LB value_list RB | );
+
+call_func_attr_list:  dot_doublesemicolon_and_name call_func_attr_list 
+                        | dot_doublesemicolon_and_name;
 
 
 
@@ -104,10 +110,16 @@ call_func_attr_list:  (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (DOT |
 //                         | instance_attr_access
 //                         | static_attr_access) ASSIGNOP expr SEMICOLON;
 
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS 
-                        | DOLLAR_IDENTIFIERS 
-                        | expr) ASSIGNOP expr SEMICOLON;
+assignment_statements: lhs ASSIGNOP expr SEMICOLON;
+lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
+        | DOLLAR_IDENTIFIERS 
+        | instance_attr_access 
+        | static_attr_access 
+        | call_funcs (multiple_accesses| )) (index_operators | );
+
+
+multiple_accesses: dot_doublesemicolon_and_name multiple_accesses | dot_doublesemicolon_and_name;
+
 
 // If statements 
 if_statements: IF LB expr RB block_statements (elseif_list_statements else_statement | else_statement | );
@@ -124,8 +136,8 @@ forin_statements: FOREACH LB (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
 instance_attr_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS);
 instance_method_access: expr DOT (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS) LB list_expr RB;
 
-static_attr_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS);
-static_method_access: expr DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS| DOLLAR_IDENTIFIERS) LB list_expr RB;
+static_attr_access: expr DOUBLECOLONOP DOLLAR_IDENTIFIERS;
+static_method_access: expr DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
 
 // Method invocation statement
 method_invocation: instance_method_access | static_method_access;
@@ -256,8 +268,8 @@ instance_access:  DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
                 | DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
 
 static_accesses: static_access static_accesses | static_access;
-static_access:  DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-                | DOUBLECOLONOP (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
+static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
+                | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
 
 // Expression list 
 list_expr: expr COMMA list_expr | expr | ;
@@ -411,11 +423,7 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 };
 
 // Float literal 
-// fragment DECIMALPART: '.' ('0'+ | '0'* DEC) ;
-// fragment EXPONENTPART: E UNDERSCORE* (MINUSOP | PLUSOP)? ('0'* DEC | '0'+);
-// fragment DECIMALPART: UNDERSCORE* '.' UNDERSCORE* ('0'+ | '0'* UNDERSCORE* DEC) UNDERSCORE*;
-// fragment DECIMALPART: '.' '0'* ([1-9] [0-9]*)? ;
-fragment DECIMALPART: '.' [0-9]* ;
+fragment DECIMALPART: '.' [0-9]*;
 fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  [1-9] [0-9]* | '0'+); 
 
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
@@ -427,9 +435,12 @@ FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART)
 
 // Interher literal
 fragment DEC: [1-9] (UNDERSCORE | [0-9])*;
-fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
-fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
-fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
+// fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
+fragment HEX: '0' X ([1-9a-fA-F]+ (UNDERSCORE [0-9a-fA-F]+)* | '0');
+// fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
+fragment OCT: '0' ([1-7]+ (UNDERSCORE [0-7]+)* | '0'); 
+// fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
+fragment BIN: '0' B ('1'+ (UNDERSCORE [01]+)* | '0');
 INTLIT: (DEC 
 	| HEX 
 	| OCT 
