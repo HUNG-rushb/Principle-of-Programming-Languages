@@ -416,31 +416,37 @@ fragment DOLLAR: '$';
 
 // String literal 
 // '" -> "
+// self.text = str(self.text)[1:-1].replace('\'"','\"')
 STRINGLIT: ('"') STRING_CHAR* ('"') 
 {
-	self.text = str(self.text)[1:-1].replace('\'"','"')
-	
+        if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
+            raise UncloseString(str(self.text)[1:])
+        
+        current = self.text.find('\n')
+        if current != -1: 
+            raise UncloseString(str(self.text[:current - 1]))
+        self.text = str(self.text)[1:-1]
 };
 
 // Float literal 
 fragment DECIMALPART: '.' [0-9]*;
-fragment EXPONENTPART: E  (MINUSOP | PLUSOP)?   ('0'*  [1-9] [0-9]* | '0'+); 
+fragment EXPONENTPART: E (MINUSOP | PLUSOP)? ('0'* [1-9] [0-9]* | '0'+); 
 
-FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) 
-            | ((DEC | '0') DECIMALPART)
-            | ((DEC | '0') EXPONENTPART)
-            | (DECIMALPART EXPONENTPART))
+FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")}
+            | ((DEC | '0') DECIMALPART) {self.text = self.text.replace("_", "")}
+            | ((DEC | '0') EXPONENTPART) {self.text = self.text.replace("_", "")}
+            | (DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")})
             // | DECIMALPART)
 {self.text = self.text.replace("_", "")};
 
 // Interher literal
-fragment DEC: [1-9] (UNDERSCORE | [0-9])*;
+fragment DEC: [1-9] (UNDERSCORE [0-9] | [0-9])*;
 // fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
-fragment HEX: '0' X ([1-9a-fA-F]+ (UNDERSCORE [0-9a-fA-F]+)* | '0');
+fragment HEX: '0' X ([1-9a-fA-F]+ ((UNDERSCORE [0-9a-fA-F]+)* | [0-9a-fA-F]*) | '0');
 // fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
-fragment OCT: '0' ([1-7]+ (UNDERSCORE [0-7]+)* | '0'); 
+fragment OCT: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* ) | '0'); 
 // fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
-fragment BIN: '0' B ('1'+ (UNDERSCORE [01]+)* | '0');
+fragment BIN: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*)| '0');
 INTLIT: (DEC 
 	| HEX 
 	| OCT 
