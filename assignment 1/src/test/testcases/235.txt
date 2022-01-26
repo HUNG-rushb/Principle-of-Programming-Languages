@@ -2,7 +2,6 @@
             Class Program {
                 main() {
                     Out.print(Dog.sound());
-                    Return;
                 }
             }
             Class Dog {

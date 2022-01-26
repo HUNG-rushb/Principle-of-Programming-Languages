@@ -1,0 +1,13 @@
+
+            Class Program {
+                main() {
+
+                }
+                method () {
+
+                }
+                method2 () {
+                    Return method();
+                }
+            }
+        

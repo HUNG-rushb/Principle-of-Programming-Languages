@@ -389,18 +389,6 @@ class ParserSuite(unittest.TestCase):
 
 
 
-
-    def test1(self):
-        input = """
-           a().a::$asfsd.$assafsa::$a().a::$asfsd.$assafsa.a().$dada().a = 1 + 2;
-           fasf.a = 1 + 2;
-           fasf::$a = 1 + 2;
-           a = 1 + 2;
-
-           a[2]::$a = 1 + 2;
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
     # def test1(self):
     #     input = """
     #         Class Dog: Animal {
@@ -411,12 +399,6 @@ class ParserSuite(unittest.TestCase):
     #         Class Snake: De {
     #             $OpOp() {
     #                 Return Self.Op;
-    #             }
-    #         }
-    #         Class Program {
-    #             main() {
-    #                 Var a, b: Int;
-    #                 Return;
     #             }
     #         }
     #         """
@@ -430,7 +412,6 @@ class ParserSuite(unittest.TestCase):
     #             }
     #             main() {
     #                 Var a: Int;
-    #                 Return;
     #             }
     #         }
     #         """
@@ -438,11 +419,11 @@ class ParserSuite(unittest.TestCase):
     #     self.assertTrue(TestParser.test(input, expect, 202))
     # def test3(self):
     #     input = """
-    #         Class Program {
+    #         Class A {
     #             getName() {
     #                 Var b: Float = 0.3;
     #             }
-    #             main() {
+    #             func() {
     #                 If (a >= b) {
     #                     Var a: Int = 0;
     #                     a = a + 3;
@@ -457,25 +438,17 @@ class ParserSuite(unittest.TestCase):
     #                     GiaBao = Hieu;
     #                     Hung = Vi;
     #                 }
-    #                 Return;
     #             }
 
     #             setAge(age: Int) {
     #                 Self.age = age;
     #             }
     #         }
-            
     #         """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect, 203))
     # def test4(self):
     #     input = """ 
-    #         Class Program {
-    #             main() {
-    #                 Return;
-
-    #             }
-    #         }
     #         Class MeowMeow: Dog {
     #             Var b: Int;
     #             Var $a, c, d: Float = .e4, 2., 78.9;
@@ -486,12 +459,6 @@ class ParserSuite(unittest.TestCase):
     #     self.assertTrue(TestParser.test(input, expect, 204))
     # def test5(self):
     #     input = """
-    #         Class Program {
-    #             main(){
-    #                 Return;
-
-    #             }
-    #         }
     #         Class mini {
     #             loop(a: Int; b: Float) {
     #                 Foreach (i In 0 .. 150 By i <= 8) {
@@ -509,11 +476,6 @@ class ParserSuite(unittest.TestCase):
     #                 Return a || b < c.get(1,2) && 23 + 1.4;
     #             }
     #         }
-    #         Class Program {
-    #             main() {
-    #                 Return;
-    #             }
-    #         }
     #         """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect, 206))
@@ -524,10 +486,9 @@ class ParserSuite(unittest.TestCase):
     #                 Self.arr[4] = b.getName() + a.exp();
     #             }
     #         }
-    #         Class Program {
-    #             main(){
-    #                 Return;
-
+    #         Class ProMax {
+    #             iPhone13(){
+    #                 Return 40000000;
     #             }
     #         }
     #         """
@@ -545,12 +506,6 @@ class ParserSuite(unittest.TestCase):
     #                     Self.age = _age;
     #                 }
     #             }
-    #             Class Program {
-    #                 main(){
-    #                     Return;
-
-    #                 }
-    #             }
     #         """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect, 208))
@@ -565,7 +520,6 @@ class ParserSuite(unittest.TestCase):
     #         }
     #         Class Program {
     #             main(){
-    #                 Return;
 
     #             }
     #         }
@@ -597,12 +551,6 @@ class ParserSuite(unittest.TestCase):
     #                 Return a <= b;
     #             }
     #         }
-    #         Class Program {
-    #             main() {
-    #                 Return;
-
-    #             }
-    #         }
     #     """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect, 211))
@@ -616,7 +564,6 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             main() {
     #                 a = (myConst + b) && a + b + abcde;
-    #                 Return;
     #             }
     #         }
     #     """
@@ -630,13 +577,10 @@ class ParserSuite(unittest.TestCase):
     #                 Return a[0]
     #             }
     #         }
-    #         Class Program {
-    #             main(){
-    #                 Return;}
-    #         }
     #     """
     #     expect = "Error on line 5 col 16: }"
     #     self.assertTrue(TestParser.test(input, expect,213))
+
 
     # def test14(self):
     #     input = """
@@ -647,10 +591,6 @@ class ParserSuite(unittest.TestCase):
     #                 Self.c = arr[2][1];
     #             }
     #         }
-    #         Class Program {
-    #             main(){
-    #                 Return;}
-    #         }
     #     """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,214))
@@ -658,14 +598,13 @@ class ParserSuite(unittest.TestCase):
     # def test15(self):
     #     input = """
     #         Class Program {
-    #             main()
-    #             {
-    #                 Return;
+    #             main(){
+
     #             }
     #         }
     #         Class Des {
     #             Destructor() {
-    #                 Des.Delete();
+    #                 Stand.Delete().All(0);
     #             }
     #         }
     #     """
@@ -674,17 +613,14 @@ class ParserSuite(unittest.TestCase):
 
     # def test16(self):
     #     input = """
-    #         Class Program {
-    #             main(){}
-    #         }
-
     #         Class Main {
     #             menu() {
+    #                 t = R::$test()[2] >= 8;
     #                 Return Self.arr;
     #             }
     #         }
     #     """
-    #     expect = "Error on line 3 col 23: }"
+    #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,216))
 
     # def test17(self):
@@ -693,8 +629,6 @@ class ParserSuite(unittest.TestCase):
     #             dethod() {
     #                 Return Self.method();
     #             }
-    #             main(){
-    #                 Return;}
     #         }
     #     """
     #     expect = "successful"
@@ -713,12 +647,6 @@ class ParserSuite(unittest.TestCase):
     #                 Mew.EraseAll();
     #             }
     #         }
-    #         Class Program {
-    #             main(){
-    #                 Return;
-
-    #             }
-    #         }
     #     """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,218))
@@ -726,10 +654,10 @@ class ParserSuite(unittest.TestCase):
     # def test19(self):
     #     input = """
     #         Class foo {
-    #             Var Foo: Int = 0xFF;
+    #             Var Foo: Array[Int, -5] = 0xFF;
     #         }
     #     """
-    #     expect = "Error on line 5 col 8: <EOF>"
+    #     expect = "Error on line 3 col 36: -"
     #     self.assertTrue(TestParser.test(input, expect,219))
 
     # def test20(self):
@@ -758,7 +686,6 @@ class ParserSuite(unittest.TestCase):
     #             }
     #             main() {
     #                 a = (myConst + b) && a + b + abcde;
-    #                 Return;
     #             }
     #         }
     #     """
@@ -770,10 +697,11 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             main() {
     #                 Out.print("Hello From Main");
-    #                 Return;
     #             }
     #         }
-    #         Class iden {}
+    #         Class iden {
+
+    #         }
     #     """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,221))
@@ -787,7 +715,8 @@ class ParserSuite(unittest.TestCase):
     #         }
     #         Class Program {
     #             main() {
-    #                 Return;}
+
+    #             }
     #         }
     #     """
     #     expect = "successful"
@@ -796,8 +725,7 @@ class ParserSuite(unittest.TestCase):
     # def test23(self):
     #     input = """
     #         Class Program {
-    #             main(){
-    #                 Return;}
+    #             main(){}
     #         }
 
     #         Class class1 {
@@ -829,35 +757,31 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
-                
+    #                 Var a,b: Array[Float, 4.5];
     #             }
+    #         }
+    #         Class lop {
     #             attr(a, b: Int) {
     #                 Return a[4] != b[1].name;
     #             }
     #         }
-    #         Class lop {
-    #         }
     #     """
-    #     expect = "successful"
+    #     expect = "Error on line 4 col 42: 4.5"
     #     self.assertTrue(TestParser.test(input, expect,225))
 
     # def test26(self):
     #     input = """
-    #         Class Program {
-    #             main() {
-    #                 Return;
-
-    #             }
-    #         }
     #         Class parent {
     #             Var lname, fname: String = "";
     #             $getName() {
     #                 Return Self.name[2];
     #             }
+    #             setName(name: Int) {
+    #                 lname = name[0];
+    #             }
     #         }
     #     """
-    #     expect = "Error on line 9 col 45: ;"
+    #     expect = "Error on line 3 col 45: ;"
     #     self.assertTrue(TestParser.test(input, expect,226))
 
     # def test27(self):
@@ -868,41 +792,36 @@ class ParserSuite(unittest.TestCase):
     #             }
     #         }
     #     """
-    #     expect = "Error on line 4 col 27: New"
+    #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,227))
 
     # def test28(self):
     #     input = """
     #         Class Program {
-    #             main(a: Int, b: Float) {
-    #                 Return;
-
+    #             main(a: Int; b: Float) {
+    #                 Return New A().B().C();
     #             }
     #         }
     #     """
-    #     expect = "Error on line 3 col 21: a"
+    #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,228))
 
     # def test29(self):
     #     input = """
-    #         Class Program {
-    #             main() {
-    #                 Return;
-
-    #             }
-    #         }
     #         Class Func {
     #             Constructor(){Return name;}
     #         }
+    #         Class B {
+    #             Return statements;
+    #         }
     #     """
-    #     expect = "successful"
+    #     expect = "Error on line 6 col 16: Return"
     #     self.assertTrue(TestParser.test(input, expect,229))
 
     # def test30(self):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -912,7 +831,7 @@ class ParserSuite(unittest.TestCase):
     #             }
     #         }
     #     """
-    #     expect = "Error on line 9 col 27: param"
+    #     expect = "Error on line 8 col 27: param"
     #     self.assertTrue(TestParser.test(input, expect,230))
 
     # def test31(self):
@@ -923,7 +842,6 @@ class ParserSuite(unittest.TestCase):
     #         }
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -940,35 +858,32 @@ class ParserSuite(unittest.TestCase):
     #                         Return;
     #                     }
     #                 }
-    #                 Return;
     #             }
     #         }
     #     """
     #     expect = "successful"
     #     self.assertTrue(TestParser.test(input, expect,232))
 
-    # def test33(self):
-    #     input = """
-    #         Class Program {
-    #             main() {
-    #                 Return;
+    def test33(self):
+        input = """
+            Class Program {
+                main() {
 
-    #             }
-    #         }
-    #         Class Another {
-    #             function() {
-    #                 program.Main();
-    #             }
-    #         }
-    #     """
-    #     expect = "successful"
-    #     self.assertTrue(TestParser.test(input, expect,233))
+                }
+            }
+            Class Another {
+                function() {
+                    A.Main()::$dollar();
+                }
+            }
+        """
+        expect = "Error on line 9 col 28: ::"
+        self.assertTrue(TestParser.test(input, expect,233))
 
     # def test34(self):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -986,7 +901,6 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             main() {
     #                 Out.print(Dog.sound());
-    #                 Return;
     #             }
     #         }
     #         Class Dog {
@@ -1003,11 +917,8 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             Var a: Int = 0;
     #             main() {
-    #                 Out.print(a.age);
     #                 a = New obj("string 1");
     #                 Out.print(a.age);
-    #                 a = New obj("string 1");
-    #                 Return;
     #             }
     #         }
     #     """
@@ -1018,13 +929,12 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
     #         Class Method {
     #             newMethod(a: String) {
-    #                 Return a[0].length;
+    #                 Return "This is a \\nstring"[1].getText();
     #             }
     #         }
     #     """
@@ -1046,7 +956,6 @@ class ParserSuite(unittest.TestCase):
     #                         }
     #                     }
     #                 }
-    #                 Return;
     #             }
     #         }
     #     """
@@ -1057,7 +966,6 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -1077,7 +985,6 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             main() {
     #                 Stand.getVector();
-    #                 Return;
     #             }
     #         }
     #         Class myClass {
@@ -1099,7 +1006,6 @@ class ParserSuite(unittest.TestCase):
     #         }
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -1111,7 +1017,6 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
@@ -1130,13 +1035,12 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
 
     #             }
     #         }
     #         Out.print(a, b, 3);
     #     """
-    #     expect = "Error on line 8 col 12: Out"
+    #     expect = "Error on line 7 col 12: Out"
     #     self.assertTrue(TestParser.test(input, expect,243))
 
     # def test44(self):
@@ -1148,7 +1052,6 @@ class ParserSuite(unittest.TestCase):
     #                         Continue;
     #                     }
     #                 }
-    #                 Return;
     #             }
     #         }
     #     """
@@ -1160,7 +1063,6 @@ class ParserSuite(unittest.TestCase):
     #         Class Program {
     #             main() {
     #                 Dog.name = Cat.name +. "1";
-    #                 Return;
     #             }
     #         }
     #     """
@@ -1171,16 +1073,16 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
+
     #             }
     #         }
     #         Class Meo: Dog {
     #             $get() {
-    #                 Self.name = Dog::$name;
+    #                 Self.name = Dog::name;
     #             }
     #         }
     #     """
-    #     expect = "successful"
+    #     expect = "Error on line 9 col 37: name"
     #     self.assertTrue(TestParser.test(input, expect,246))
 
     # def test47(self):
@@ -1190,7 +1092,7 @@ class ParserSuite(unittest.TestCase):
     #         }
     #         Class Program {
     #             main() {
-    #                 Return;
+
     #             }
     #         }
     #         Class Buffalo: $Animals {
@@ -1204,7 +1106,7 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
+
     #             }
     #         }
     #         Foreach (i In 0 .. 10 By 1 + 2 + 3 + a.get - b.name) {
@@ -1219,7 +1121,7 @@ class ParserSuite(unittest.TestCase):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Return;
+
     #             }
     #         }
     #         Class A {
@@ -1232,41 +1134,517 @@ class ParserSuite(unittest.TestCase):
     # def test50(self):
     #     input = """
     #         Class Program {
-    #             Var a, $b : Int = 1, 2;
     #             main() {
-    #                 Return;
-    #                 Var $c : Int = 5;
+
     #             }
     #         }
+    #         Class B: A {
+    #             Var a, b: Float = 3.5, 5;
+    #             Return a;
+    #         }
     #     """
-    #     expect = "Error on line 6 col 24: $c"
+    #     expect = "Error on line 9 col 16: Return"
     #     self.assertTrue(TestParser.test(input, expect,250))
-        
+
     # def test51(self):
     #     input = """
     #         Class Program {
     #             main() {
-    #                 Var $a: Int;
+
+    #             }
+
+    #             func(){
+    #                 test();
+    #                 test().a().b().c().d();
+
+    #                 test()::a()::b()::c()::d();
+    #             } 
+    #         }
+            
+    #     """
+    #     expect = "Error on line 8 col 24: ("
+    #     self.assertTrue(TestParser.test(input, expect,251))
+
+    # def test52(self):
+    #     input = """
+    #         Class Main {
+    #             If (a<=b)
+    #             Else Return
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 16: If"
+    #     self.assertTrue(TestParser.test(input, expect,252))
+
+    # def test53(self):
+    #     input = """
+    #         Self.age = 2;
+    #     """
+    #     expect = "Error on line 2 col 12: Self"
+    #     self.assertTrue(TestParser.test(input, expect,253))
+    # def test54(self):
+    #     input = """
+    #         Class V {
+    #             Val arr = Array[Array[Int, 0b1], 0xAF];
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 24: ="
+    #     self.assertTrue(TestParser.test(input, expect,254))
+
+    # def test55(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+
+    #             }
+    #         }
+    #         Class B {$method(){}}
+    #         Class C {$method(){}}
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,255))
+
+    # def test56(self):
+    #     input = """
+    #         Class Program {
+    #             main() {PPL() {}}
+    #             Var method(): Int;
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 27: ("
+    #     self.assertTrue(TestParser.test(input, expect,256))
+
+    # def test57(self):
+    #     input = """
+    #         Class B: A, T {
+    #             Var b: Int = 0;
+    #         }
+    #     """
+    #     expect = "Error on line 2 col 22: ,"
+    #     self.assertTrue(TestParser.test(input, expect,257))
+
+    # def test58(self):
+    #     input = """
+    #         Class B {
+    #             Var b, c : Int = 10.42;
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 38: ;"
+    #     self.assertTrue(TestParser.test(input, expect,258))
+
+    # def test59(self):
+    #     input = """
+    #         Class i {
+    #             method() {
+    #                 a = Self.age + 34 - 9 * B.getString();
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,259))
+
+    # def test60(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+    #                 a[0] = "String 1" ==. "string \\'";
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,260))
+
+    # def test61(self):
+    #     input = """
+    #         Class B {
+    #             B.call();
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 17: ."
+    #     self.assertTrue(TestParser.test(input, expect,261))
+
+    # def test62(self):
+    #     input = """
+    #         Class Program {
+    #             Constructor(a, b: Float; c: Int) {
+    #                 a = c + 1;
     #                 Return;
     #             }
     #         }
     #     """
-    #     expect = "Error on line 4 col 24: $a"
-    #     self.assertTrue(TestParser.test(input, expect,251))
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,262))
 
+    # def test63(self):
+    #     input = """
+    #         Class Construc {
+    #             Destruc() {
+    #                 Des.DeleteAll();
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,263))
 
+    # def test64(self):
+    #     input = """
+    #         Class C {
+    #             Var a: Int = func();
+    #             Val constVar: String = "Hello";
+    #             Val a,b,c: Int = 0.9, 1.0;
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 33: ("
+    #     self.assertTrue(TestParser.test(input, expect,264))
 
+    # def test65(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+    #                 func_declare() {
+    #                     Return main().text();
+    #                 }
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 32: ("
+    #     self.assertTrue(TestParser.test(input, expect,265))
 
+    # def test66(self):
+    #     input = """
+    #         Class Program {
+    #             Var b: Int = A::$f()[1] + a.g() * 4 + !y;
+    #             Var a: Stu = New Teach(New Stu());
+    #             Var d: Boolean = 4 >= f && t <= 2 || 7 == !b + 3;
+    #         }
+    #     """
+    #     expect = "Error on line 5 col 45: <="
+    #     self.assertTrue(TestParser.test(input, expect,266))
 
+    # def test67(self):
+    #     input = """
+    #         Class method {
+    #             $getName() {
+    #                 Out.print(B.$name);
+    #                 Return C.get;
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,267))
 
+    # def test68(self):
+    #     input = """
+    #         Class Method: Param {
+    #             m() {
+    #                 a = T::$get() + New X().G() - A.b().f().t();
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,268))
 
+    # def test69(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
 
+    #             }
+    #             method () {
 
+    #             }
+    #             method2 () {
+    #                 Return method();
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 10 col 33: ("
+    #     self.assertTrue(TestParser.test(input, expect,269))
 
+    # def test70(self):
+    #     input = """
+    #         Class E {
+    #             method() {
+    #                 Return a[1][2][3] + className.b()[4];
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,270))
 
+    # def test71(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
 
+    #             }
+    #         }
+    #         Class B {
+    #             Constructor(a,b,c: Int) {
+    #                 Return Self.a + b + 4;
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,271))
 
+    # def test72(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+    #                 Var $g: Int;
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 24: $g"
+    #     self.assertTrue(TestParser.test(input, expect,272))
 
+    # def test73(self):
+    #     input = """
+    #         Class A {
+    #             method() {
+    #                 Var a, b, $c: Float = 1.0, 2.3;
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 30: $c"
+    #     self.assertTrue(TestParser.test(input, expect,273))
+
+    # def test74(self):
+    #     input = """
+    #         Class _R {
+    #             Val $y: Int = 12;
+    #             _F() {
+    #                 Val _, _, _: String = 3, 4, 5;
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,274))
+
+    # def test75(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+    #                 Out.ar() {
+    #                     Return New ClassName();
+    #                 }
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 29: {"
+    #     self.assertTrue(TestParser.test(input, expect,275))
+
+    # def test76(self):
+    #     input = """
+    #         Class Program {
+    #             Var stu: Stu = New Stu();
+    #             mainStu() {
+    #                 Stu[1] = FUNC.stu().stu1().stu2()[5];
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,276))
+
+    # def test77(self):
+    #     input = """
+    #         Class myArray {
+    #             Var Arr: Array[Array[Int, 2], 0b0];
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 46: 0b0"
+    #     self.assertTrue(TestParser.test(input, expect,277))
+
+    # def test78(self):
+    #     input = """
+    #         Class myArray {
+    #             Var Arr: Array[Int, 3] = Array(
+    #                                         Array(3,4,5),
+    #                                         Array(1,2)
+    #                                     );
+    #             Method() {
+    #                 Out.print(Arr[1][2]);
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,278))
+
+    # def test79(self):
+    #     input = """
+    #         Class Name {
+    #             Continue;
+    #             Break;
+    #             Return;
+    #         }
+    #     """
+    #     expect = "Error on line 3 col 16: Continue"
+    #     self.assertTrue(TestParser.test(input, expect,279))
+
+    # def test80(self):
+    #     input = """
+    #         Class Program {
+    #             main() {
+    #                 Foreach(a[0] In 0+4 .. b <= c By get().count) {
+    #                     Break;
+    #                 }
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 29: ["
+    #     self.assertTrue(TestParser.test(input, expect,280))
+
+    # def test81(self):
+    #     input = """
+    #         Class dfskjf_jdss {
+    #             Rfsfsa() {
+    #                 Val $r: Int = 20;
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 24: $r"
+    #     self.assertTrue(TestParser.test(input, expect,281))
+
+    # def test82(self):
+    #     input = """
+    #         Class D96 {
+    #             Construc() {
+    #                 Val arr: Array[Array[Array[Float, 00],0x3_23],4];
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 4 col 54: 00"
+    #     self.assertTrue(TestParser.test(input, expect,282))
+
+    # def test83(self):
+    #     input = """
+    #         Class Soc {
+                
+    #             function() {
+    #                 Return A::$name() + t();
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 5 col 41: ("
+    #     self.assertTrue(TestParser.test(input, expect,283))
+    
+    # def test84(self):
+    #     input = """
+    #         Class test {
+    #             Var t, y: Int = 1, 2;
+    #             method(a,b,c:Int; r:Func) {
+    #                 If (a + b > 0) {
+    #                     Foreach(i In 1 .. 12 By r) {
+    #                         If (2 + 5) {
+    #                             If (f >= t) {
+    #                                 Continue;
+    #                             }
+    #                         }
+    #                     }
+    #                 }
+    #                 Elseif (t * 7) {
+    #                     If (34) { }
+    #                     Else { Return; }
+    #                 }
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,284))
+    # def test85(self):
+    #     input = """
+    #         Class name {
+    #             method () {
+    #                 a = name::$age;
+    #                 b = name.$age;
+    #                 c = age;
+    #                 d = age();
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 7 col 27: ("
+    #     self.assertTrue(TestParser.test(input, expect,285))
+
+    # def test86(self):
+    #     input = """
+    #         Class MyClass {
+    #             Var $a: Int = 0; ## This is comment ##
+    #             Method () {
+    #                 Self.constructor(a,b,c);
+    #                 name.method();
+    #                 If (r) {
+    #                     Return t; ##This is also a comment##
+    #                 }
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,286))
+
+    # def test87(self):
+    #     input = """
+    #         Class name {
+    #             method () {
+    #                 a = name::$age;
+    #                 c = age;
+    #                 e = $age();
+    #             }
+    #         }
+    #     """
+    #     expect = "Error on line 6 col 24: $age"
+    #     self.assertTrue(TestParser.test(input, expect,287))
+
+    # def test88(self):
+    #     input = """
+    #         Class MyClass {
+    #             Val count: Int = 0;
+    #             setCount() {
+    #                 Return Self.count + Self.count() - name::$turn() * age.$Age();
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,288))
+
+    # def test89(self):
+    #     input = """
+    #         Class InLit: Type {
+    #             __str__(str: String) {
+    #                 Self.str = str;
+    #                 Self.a = Self.count() + expr.$dollar();
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,289))
+
+    # def test90(self):
+    #     input = """
+    #         Class Note {
+    #             m() {
+    #                 a = name[0].length;
+    #                 b = age.len[1][2];
+    #                 c = age::$Len().t()[2];
+    #             }
+    #         }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect,290))
+
+    # def test91(self):
+    #     input = """
+    #         Class Test{
+    #         Var ins: Int;
+    #         Var $static: Int;
+            
+    #         Test(){
+    #             Var a: Int= Self::ins;
+    #             Var b: Int= Self::$static;
+    #         }
+    #         }
+    #     """
+    #     expect = "Error on line 7 col 32: ::"
+    #     self.assertTrue(TestParser.test(input, expect, 291))
 
 
 

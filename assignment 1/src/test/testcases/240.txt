@@ -2,7 +2,6 @@
             Class Program {
                 main() {
                     Stand.getVector();
-                    Return;
                 }
             }
             Class myClass {

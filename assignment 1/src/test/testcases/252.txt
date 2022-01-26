@@ -1,27 +1,6 @@
 
-            Class Program {
-                main() {
-
-                    Var a : Int = New Animal();
-
-                    Var a : Int = New Animal().Dog().Beagle();
-                }
-
-                Var a : Int = New Animal();
-
-                Var $a : Int = New Animal().Dog().Beagle();
-
-                Var a : Int = New Animal().Dog();
-
-                func() {
-
-                    Var a : Int = New Animal();
-
-                    Var $a : Int = New Animal().Dog().Beagle();
-
-                    Var a : Int = New Animal().Dog().Beagle();
-
-                }
+            Class Main {
+                If (a<=b)
+                Else Return
             }
-            
         

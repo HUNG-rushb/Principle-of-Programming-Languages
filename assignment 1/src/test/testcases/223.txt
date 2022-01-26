@@ -1,7 +1,6 @@
 
             Class Program {
-                main(){
-                    Return;}
+                main(){}
             }
 
             Class class1 {

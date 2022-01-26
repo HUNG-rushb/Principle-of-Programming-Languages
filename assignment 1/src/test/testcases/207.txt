@@ -4,10 +4,9 @@
                     Self.arr[4] = b.getName() + a.exp();
                 }
             }
-            Class Program {
-                main(){
-                    Return;
-
+            Class ProMax {
+                iPhone13(){
+                    Return 40000000;
                 }
             }
             

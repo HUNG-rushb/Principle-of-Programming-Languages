@@ -7,7 +7,6 @@
             }
             Class Program {
                 main() {
-                    Return;
 
                 }
             }

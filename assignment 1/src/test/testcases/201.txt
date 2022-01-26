@@ -1,8 +1,12 @@
 
-           a().a::$asfsd.$assafsa::$a().a::$asfsd.$assafsa.a().$dada().a = 1 + 2;
-           fasf.a = 1 + 2;
-           fasf::$a = 1 + 2;
-           a = 1 + 2;
-
-           a[2]::$a = 1 + 2;
+            Class Dog: Animal {
+                $gaugau() {
+                    a = b[7][2];
+                }
+            }
+            Class Snake: De {
+                $OpOp() {
+                    Return Self.Op;
+                }
+            }
             

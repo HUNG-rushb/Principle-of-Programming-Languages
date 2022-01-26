@@ -2,8 +2,9 @@
             Class Program {
                 main() {
                     Out.print("Hello From Main");
-                    Return;
                 }
             }
-            Class iden {}
+            Class iden {
+
+            }
         

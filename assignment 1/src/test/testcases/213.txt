@@ -4,8 +4,4 @@
                     Return a[0]
                 }
             }
-            Class Program {
-                main(){
-                    Return;}
-            }
         

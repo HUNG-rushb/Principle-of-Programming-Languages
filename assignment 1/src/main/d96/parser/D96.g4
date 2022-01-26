@@ -8,21 +8,21 @@ from lexererr import *
 import inspect
 }
 
-@lexer::members {
-def emit(self):
-    tk = self.type
-    result = super().emit() # result mean for input
+// @lexer::members {
+// def emit(self):
+//     tk = self.type
+//     result = super().emit() # result mean for input
 
-    # delete later
-    print('--------------------------------------------------------------------------------')
-    attributes = inspect.getmembers(D96Lexer, lambda a:not(inspect.isroutine(a)))
-    user_defined_attr = [a for a in attributes if not(a[0].startswith('__') and a[0].endswith('__'))]
-    for i in user_defined_attr:
-        if tk == i[1]:
-            print ("{:<30} {:<30} {:<50}".format(result.text, '|', i[0]))
-    print('--------------------------------------------------------------------------------')
-    return result
-}
+//     # delete later
+//     print('--------------------------------------------------------------------------------')
+//     attributes = inspect.getmembers(D96Lexer, lambda a:not(inspect.isroutine(a)))
+//     user_defined_attr = [a for a in attributes if not(a[0].startswith('__') and a[0].endswith('__'))]
+//     for i in user_defined_attr:
+//         if tk == i[1]:
+//             print ("{:<30} {:<30} {:<50}".format(result.text, '|', i[0]))
+//     print('--------------------------------------------------------------------------------')
+//     return result
+// }
 
 options {
 	language = Python3;
@@ -30,12 +30,15 @@ options {
 
 
 // program: class_declarations class_main_program_declarations class_declarations EOF;
+program: class_declarations EOF;
 
 // program: function_declaration EOF;
 
-program: assignment_statements+ ;
+// program: assignment_statements+ ;
 
 // program: call_funcs;
+
+// program: array_type SEMICOLON;
 
 // program: (expr COMMA)+;
 
@@ -48,7 +51,7 @@ program: assignment_statements+ ;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Class declaration
-class_main_program_declarations: CLASS PROGRAM program_block_class_statements;
+// class_main_program_declarations: CLASS PROGRAM program_block_class_statements;
 class_declarations: class_declaration class_declarations | class_declaration | ;
 class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance block_class_statements;
 class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
@@ -86,21 +89,20 @@ type_and_assign_in_func: COMMA VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign_in_f
 
 // Function declaration
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
-main_function_declaration: MAIN LB RB block_statements_in_main;
+// main_function_declaration: MAIN LB RB block_statements_in_main;
 
-call_func_statement: call_funcs SEMICOLON;
-// call_funcs: call_func (DOT | DOUBLECOLONOP) call_funcs | call_func ;
-// call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB 
-//                 | (call_func_attr_list (DOT | DOUBLECOLONOP) | ) (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB;
 
-dot_doublesemicolon_and_name: (DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | DOUBLECOLONOP DOLLAR_IDENTIFIERS) ;
+// ************************************************************************************************************************************
+// call_func_statement: call_funcs SEMICOLON;
 
-call_funcs: call_func call_funcs | call_func ;
-call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB call_func
-                | dot_doublesemicolon_and_name (LB value_list RB | );
+// dot_doublesemicolon_and_name: (DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | DOUBLECOLONOP DOLLAR_IDENTIFIERS) ;
 
-call_func_attr_list:  dot_doublesemicolon_and_name call_func_attr_list 
-                        | dot_doublesemicolon_and_name;
+// call_funcs: call_func call_funcs | call_func ;
+// call_func: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB value_list RB call_func
+//                 | dot_doublesemicolon_and_name (LB value_list RB | );
+
+// call_func_attr_list:  dot_doublesemicolon_and_name call_func_attr_list 
+//                         | dot_doublesemicolon_and_name;
 
 
 
@@ -115,10 +117,11 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
         | DOLLAR_IDENTIFIERS 
         | instance_attr_access 
         | static_attr_access 
-        | call_funcs (multiple_accesses| )) (index_operators | );
+        // | call_funcs (multiple_accesses| )
+        ) (index_operators | );
 
 
-multiple_accesses: dot_doublesemicolon_and_name multiple_accesses | dot_doublesemicolon_and_name;
+// multiple_accesses: dot_doublesemicolon_and_name multiple_accesses | dot_doublesemicolon_and_name;
 
 
 // If statements 
@@ -157,7 +160,7 @@ return_statements: RETURN return_expr SEMICOLON;
 // Block statements ---------------------------------------------------------------------------------
 // Block statements ---------------------------------------------------------------------------------
 // Block statements ---------------------------------------------------------------------------------
-program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
+// program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
 block_class_statements: LCB statements_class RCB;
 block_statements: LCB statements RCB;
 block_statements_in_main: LCB statements RETURN SEMICOLON RCB;
@@ -178,7 +181,7 @@ statement: variable_in_func_declaration
             | assignment_statements 
             | if_statements 
             | forin_statements 
-            | call_func_statement
+        //     | call_func_statement
             | method_invocation_statement
             | break_statements
             | continue_statements
@@ -282,7 +285,7 @@ array_lit: ARRAY LB array_val RB;
 array_val: expr COMMA array_val | expr | ;
 
 // Literals
-literal: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
+literal: INTLIT_IN_ARRAY | INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
 
 // List of parameters
 list_parameters: param SEMICOLON list_parameters | param | ;
@@ -303,9 +306,9 @@ value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
 
 
 // Array type
-array_type: ARRAY LSB array_element_type COMMA array_size RSB;
+array_type: ARRAY LSB array_element_type COMMA INTLIT_IN_ARRAY RSB;
 array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
-array_size: INTLIT_IN_ARRAY;
+// array_size: INTLIT_IN_ARRAY;
 
 // Primitive type
 primitive_type: BOOLEAN | INT | FLOAT | STRING;
@@ -407,8 +410,8 @@ COLON: ':';
 SEMICOLON: ';';
 
 // Identifiers
-PROGRAM: 'Program';
-MAIN: 'main';
+// PROGRAM: 'Program';
+// MAIN: 'main';
 VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]* ;
 DOLLAR_IDENTIFIERS:  DOLLAR [_a-zA-Z0-9]+; 
 // IDENTIFIERS: DOLLAR_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS;
@@ -447,15 +450,23 @@ fragment HEX: '0' X ([1-9a-fA-F]+ ((UNDERSCORE [0-9a-fA-F]+)* | [0-9a-fA-F]*) | 
 fragment OCT: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* ) | '0'); 
 // fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
 fragment BIN: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*)| '0');
+
+// fragment DEC_ARRAY_SIZE: [1-9] (UNDERSCORE [0-9] | [0-9])*;
+fragment HEX_ARRAY_SIZE: '0' X ([1-9a-fA-F]+ ((UNDERSCORE [0-9a-fA-F]+)* | [0-9a-fA-F]*));
+fragment OCT_ARRAY_SIZE: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* )); 
+fragment BIN_ARRAY_SIZE: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*));
+
+INTLIT_IN_ARRAY: (DEC
+                | HEX_ARRAY_SIZE 
+                | OCT_ARRAY_SIZE 
+                | BIN_ARRAY_SIZE) {self.text = self.text.replace("_", "")} ;
+
 INTLIT: (DEC 
 	| HEX 
 	| OCT 
 	| BIN) {self.text = self.text.replace("_", "")} 
 	| '0';
-INTLIT_IN_ARRAY: (DEC 
-	| HEX 
-	| OCT 
-	| BIN) {self.text = self.text.replace("_", "")} ;
+
 
 
 UNCLOSE_STRING: '"' STRING_CHAR* 

@@ -1,13 +1,12 @@
 
             Class Program {
                 main() {
-                    Return;
 
                 }
             }
             Class Method {
                 newMethod(a: String) {
-                    Return a[0].length;
+                    Return "This is a \nstring"[1].getText();
                 }
             }
         

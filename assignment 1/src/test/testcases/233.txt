@@ -1,13 +1,12 @@
 
             Class Program {
                 main() {
-                    Return;
 
                 }
             }
             Class Another {
                 function() {
-                    program.Main();
+                    A.Main()::$dollar();
                 }
             }
         

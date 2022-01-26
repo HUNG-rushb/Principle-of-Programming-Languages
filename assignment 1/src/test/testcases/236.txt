@@ -2,11 +2,8 @@
             Class Program {
                 Var a: Int = 0;
                 main() {
-                    Out.print(a.age);
                     a = New obj("string 1");
                     Out.print(a.age);
-                    a = New obj("string 1");
-                    Return;
                 }
             }
         
