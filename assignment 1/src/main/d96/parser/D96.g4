@@ -305,7 +305,7 @@ value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
 // Array type
 array_type: ARRAY LSB array_element_type COMMA array_size RSB;
 array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
-array_size: INTLIT;
+array_size: INTLIT_IN_ARRAY;
 
 // Primitive type
 primitive_type: BOOLEAN | INT | FLOAT | STRING;
@@ -452,6 +452,10 @@ INTLIT: (DEC
 	| OCT 
 	| BIN) {self.text = self.text.replace("_", "")} 
 	| '0';
+INTLIT_IN_ARRAY: (DEC 
+	| HEX 
+	| OCT 
+	| BIN) {self.text = self.text.replace("_", "")} ;
 
 
 UNCLOSE_STRING: '"' STRING_CHAR* 

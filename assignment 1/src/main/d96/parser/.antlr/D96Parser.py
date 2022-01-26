@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3E")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3F")
         buf.write("\u02dc\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -335,7 +335,7 @@ def serializedATN():
         buf.write("\u02d2\7\17\2\2\u02cf\u02d2\7\20\2\2\u02d0\u02d2\7\21")
         buf.write("\2\2\u02d1\u02cc\3\2\2\2\u02d1\u02cd\3\2\2\2\u02d1\u02ce")
         buf.write("\3\2\2\2\u02d1\u02cf\3\2\2\2\u02d1\u02d0\3\2\2\2\u02d2")
-        buf.write("\u009f\3\2\2\2\u02d3\u02d4\7@\2\2\u02d4\u00a1\3\2\2\2")
+        buf.write("\u009f\3\2\2\2\u02d3\u02d4\7A\2\2\u02d4\u00a1\3\2\2\2")
         buf.write("\u02d5\u02d6\t\t\2\2\u02d6\u00a3\3\2\2\2\u02d7\u02da\5")
         buf.write("\u00a2R\2\u02d8\u02da\5\u009cO\2\u02d9\u02d7\3\2\2\2\u02d9")
         buf.write("\u02d8\3\2\2\2\u02da\u00a5\3\2\2\2;\u00a9\u00b4\u00be")
@@ -380,8 +380,9 @@ class D96Parser ( Parser ):
                       "STRCONCATOP", "LB", "RB", "LSB", "RSB", "LCB", "RCB", 
                       "DOT", "COMMA", "COLON", "SEMICOLON", "PROGRAM", "MAIN", 
                       "VARIABLE_IN_FUNC_IDENTIFIERS", "DOLLAR_IDENTIFIERS", 
-                      "STRINGLIT", "FLOATLIT", "INTLIT", "UNCLOSE_STRING", 
-                      "ILLEGAL_ESCAPE", "BLOCK_COMMENT", "WS", "ERROR_CHAR" ]
+                      "STRINGLIT", "FLOATLIT", "INTLIT", "INTLIT_IN_ARRAY", 
+                      "UNCLOSE_STRING", "ILLEGAL_ESCAPE", "BLOCK_COMMENT", 
+                      "WS", "ERROR_CHAR" ]
 
     RULE_program = 0
     RULE_class_main_program_declarations = 1
@@ -555,11 +556,12 @@ class D96Parser ( Parser ):
     STRINGLIT=60
     FLOATLIT=61
     INTLIT=62
-    UNCLOSE_STRING=63
-    ILLEGAL_ESCAPE=64
-    BLOCK_COMMENT=65
-    WS=66
-    ERROR_CHAR=67
+    INTLIT_IN_ARRAY=63
+    UNCLOSE_STRING=64
+    ILLEGAL_ESCAPE=65
+    BLOCK_COMMENT=66
+    WS=67
+    ERROR_CHAR=68
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -5420,8 +5422,8 @@ class D96Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def INTLIT(self):
-            return self.getToken(D96Parser.INTLIT, 0)
+        def INTLIT_IN_ARRAY(self):
+            return self.getToken(D96Parser.INTLIT_IN_ARRAY, 0)
 
         def getRuleIndex(self):
             return D96Parser.RULE_array_size
@@ -5436,7 +5438,7 @@ class D96Parser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 721
-            self.match(D96Parser.INTLIT)
+            self.match(D96Parser.INTLIT_IN_ARRAY)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
