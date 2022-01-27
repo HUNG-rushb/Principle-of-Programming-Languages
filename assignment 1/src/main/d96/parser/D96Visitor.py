@@ -49,6 +49,16 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#no_value_assign_declare_list.
+    def visitNo_value_assign_declare_list(self, ctx:D96Parser.No_value_assign_declare_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#no_value_assign_declare.
+    def visitNo_value_assign_declare(self, ctx:D96Parser.No_value_assign_declareContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#declare_initiate_list.
     def visitDeclare_initiate_list(self, ctx:D96Parser.Declare_initiate_listContext):
         return self.visitChildren(ctx)
@@ -59,23 +69,63 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#variable_in_func_declaration.
-    def visitVariable_in_func_declaration(self, ctx:D96Parser.Variable_in_func_declarationContext):
+    # Visit a parse tree produced by D96Parser#both_variable_declaration.
+    def visitBoth_variable_declaration(self, ctx:D96Parser.Both_variable_declarationContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#declare_initiate_in_func_list.
-    def visitDeclare_initiate_in_func_list(self, ctx:D96Parser.Declare_initiate_in_func_listContext):
+    # Visit a parse tree produced by D96Parser#both_no_value_assign_declare_list.
+    def visitBoth_no_value_assign_declare_list(self, ctx:D96Parser.Both_no_value_assign_declare_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#type_and_assign_in_func.
-    def visitType_and_assign_in_func(self, ctx:D96Parser.Type_and_assign_in_funcContext):
+    # Visit a parse tree produced by D96Parser#both_no_value_assign_declare.
+    def visitBoth_no_value_assign_declare(self, ctx:D96Parser.Both_no_value_assign_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#both_declare_initiate_list.
+    def visitBoth_declare_initiate_list(self, ctx:D96Parser.Both_declare_initiate_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#both_type_and_assign.
+    def visitBoth_type_and_assign(self, ctx:D96Parser.Both_type_and_assignContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by D96Parser#function_declaration.
     def visitFunction_declaration(self, ctx:D96Parser.Function_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func_statement.
+    def visitCall_func_statement(self, ctx:D96Parser.Call_func_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func.
+    def visitCall_func(self, ctx:D96Parser.Call_funcContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func_header.
+    def visitCall_func_header(self, ctx:D96Parser.Call_func_headerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func_attr_list.
+    def visitCall_func_attr_list(self, ctx:D96Parser.Call_func_attr_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func_attr.
+    def visitCall_func_attr(self, ctx:D96Parser.Call_func_attrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#call_func_end.
+    def visitCall_func_end(self, ctx:D96Parser.Call_func_endContext):
         return self.visitChildren(ctx)
 
 

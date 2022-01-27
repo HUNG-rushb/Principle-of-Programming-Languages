@@ -1,1 +1,1 @@
-Khong lam ma doi co an, thi chi co an dau b***, an c** - Huan Rose,<EOF>
+Error on line 7 col 32: $e

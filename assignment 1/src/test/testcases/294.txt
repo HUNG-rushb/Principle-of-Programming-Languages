@@ -1,8 +1,8 @@
 
             Class Program {
                 main() {
-                    a[1][2][3][4] = b[4][3].c(d[1]);
+                    b = Main::$get()[1];
+                    a = Main[0][1][2].get();
                 }
-                method () { }
             }
         

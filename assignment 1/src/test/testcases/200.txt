@@ -1,1 +1,10 @@
-"Khong lam ma doi co an, thi chi co an dau b***, an c** - Huan Rose"
+
+            Class Dog: Animal { }
+            Class Snake: De { }
+            Class butterfly {
+                __str__() {
+                    Var a, b, c, d, e: Int = 0,0,0,0,0;
+                    Val a,b,c,d,$e: Int;
+                }
+            }
+            

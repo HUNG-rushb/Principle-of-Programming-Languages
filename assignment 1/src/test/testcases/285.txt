@@ -2,7 +2,7 @@
             Class name {
                 method () {
                     a = name::$age;
-                    b = name.$age;
+                    b = name::$age().b();
                     c = age;
                     d = age();
                 }

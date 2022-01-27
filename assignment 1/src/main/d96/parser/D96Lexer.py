@@ -15,7 +15,7 @@ import inspect
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2D")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2C")
         buf.write("\u02dc\b\1\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7")
         buf.write("\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r")
         buf.write("\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23")
@@ -78,55 +78,55 @@ def serializedATN():
         buf.write("O\6O\u02ce\nO\rO\16O\u02cf\3O\3O\3P\3P\3P\3Q\3Q\3R\3R")
         buf.write("\3S\3S\3\u02c4\2T\3\3\5\4\7\5\t\6\13\7\r\b\17\t\21\n\23")
         buf.write("\13\25\f\27\r\31\16\33\17\35\20\37\21!\22#\23%\24\'\25")
-        buf.write(")\26+\27-\30/\31\61\32\63\33\65\34\67\359\36;\37= ?!A")
-        buf.write("\"C#E$G%I&K\'M(O)Q*S+U,W-Y.[/]\60_\61a\62c\63e\64g\65")
-        buf.write("i\66k\67m8o9q:s;u\2w<y\2{\2}=\177\2\u0081\2\u0083\2\u0085")
-        buf.write("\2\u0087\2\u0089\2\u008b\2\u008d>\u008f?\u0091@\u0093")
-        buf.write("A\u0095\2\u0097\2\u0099\2\u009bB\u009dC\u009fD\u00a1\2")
+        buf.write(")\26+\27-\30/\31\61\32\63\33\65\34\67\359\2;\36=\37? ")
+        buf.write("A!C\"E#G$I%K&M\'O(Q)S*U+W,Y-[.]/_\60a\61c\62e\63g\64i")
+        buf.write("\65k\66m\67o8q9s:u\2w;y\2{\2}<\177\2\u0081\2\u0083\2\u0085")
+        buf.write("\2\u0087\2\u0089\2\u008b\2\u008d=\u008f>\u0091?\u0093")
+        buf.write("@\u0095\2\u0097\2\u0099\2\u009bA\u009dB\u009fC\u00a1\2")
         buf.write("\u00a3\2\u00a5\2\3\2\21\5\2C\\aac|\6\2\62;C\\aac|\3\2")
         buf.write("\62;\3\2\63;\5\2\63;CHch\5\2\62;CHch\3\2\639\3\2\629\3")
         buf.write("\2\62\63\4\2$$^^\t\2))^^ddhhppttvv\5\2\n\f\16\17\"\"\4")
-        buf.write("\2DDdd\4\2GGgg\4\2ZZzz\2\u030d\2\3\3\2\2\2\2\5\3\2\2\2")
+        buf.write("\2DDdd\4\2GGgg\4\2ZZzz\2\u030c\2\3\3\2\2\2\2\5\3\2\2\2")
         buf.write("\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17")
         buf.write("\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27\3")
         buf.write("\2\2\2\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2")
         buf.write("\2\2\2!\3\2\2\2\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3")
         buf.write("\2\2\2\2+\3\2\2\2\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2")
-        buf.write("\63\3\2\2\2\2\65\3\2\2\2\2\67\3\2\2\2\29\3\2\2\2\2;\3")
-        buf.write("\2\2\2\2=\3\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2\2E")
-        buf.write("\3\2\2\2\2G\3\2\2\2\2I\3\2\2\2\2K\3\2\2\2\2M\3\2\2\2\2")
-        buf.write("O\3\2\2\2\2Q\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2W\3\2\2\2")
-        buf.write("\2Y\3\2\2\2\2[\3\2\2\2\2]\3\2\2\2\2_\3\2\2\2\2a\3\2\2")
-        buf.write("\2\2c\3\2\2\2\2e\3\2\2\2\2g\3\2\2\2\2i\3\2\2\2\2k\3\2")
-        buf.write("\2\2\2m\3\2\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\2w\3")
-        buf.write("\2\2\2\2}\3\2\2\2\2\u008d\3\2\2\2\2\u008f\3\2\2\2\2\u0091")
-        buf.write("\3\2\2\2\2\u0093\3\2\2\2\2\u009b\3\2\2\2\2\u009d\3\2\2")
-        buf.write("\2\2\u009f\3\2\2\2\3\u00a7\3\2\2\2\5\u00ad\3\2\2\2\7\u00b6")
-        buf.write("\3\2\2\2\t\u00b9\3\2\2\2\13\u00c0\3\2\2\2\r\u00c5\3\2")
-        buf.write("\2\2\17\u00cf\3\2\2\2\21\u00d1\3\2\2\2\23\u00d6\3\2\2")
-        buf.write("\2\25\u00dc\3\2\2\2\27\u00e2\3\2\2\2\31\u00e5\3\2\2\2")
-        buf.write("\33\u00e9\3\2\2\2\35\u00ef\3\2\2\2\37\u00f7\3\2\2\2!\u00fe")
-        buf.write("\3\2\2\2#\u0105\3\2\2\2%\u010a\3\2\2\2\'\u0110\3\2\2\2")
-        buf.write(")\u0114\3\2\2\2+\u0118\3\2\2\2-\u0124\3\2\2\2/\u012f\3")
-        buf.write("\2\2\2\61\u0133\3\2\2\2\63\u0136\3\2\2\2\65\u013b\3\2")
-        buf.write("\2\2\67\u013e\3\2\2\29\u0141\3\2\2\2;\u0143\3\2\2\2=\u0145")
-        buf.write("\3\2\2\2?\u0147\3\2\2\2A\u0149\3\2\2\2C\u014b\3\2\2\2")
-        buf.write("E\u014d\3\2\2\2G\u014f\3\2\2\2I\u0152\3\2\2\2K\u0155\3")
-        buf.write("\2\2\2M\u0158\3\2\2\2O\u015a\3\2\2\2Q\u015d\3\2\2\2S\u0160")
-        buf.write("\3\2\2\2U\u0163\3\2\2\2W\u0165\3\2\2\2Y\u0167\3\2\2\2")
-        buf.write("[\u016b\3\2\2\2]\u016e\3\2\2\2_\u0170\3\2\2\2a\u0172\3")
-        buf.write("\2\2\2c\u0174\3\2\2\2e\u0176\3\2\2\2g\u0178\3\2\2\2i\u017a")
-        buf.write("\3\2\2\2k\u017c\3\2\2\2m\u017e\3\2\2\2o\u0180\3\2\2\2")
-        buf.write("q\u0182\3\2\2\2s\u0189\3\2\2\2u\u018f\3\2\2\2w\u0191\3")
-        buf.write("\2\2\2y\u019b\3\2\2\2{\u01a2\3\2\2\2}\u01d9\3\2\2\2\177")
-        buf.write("\u01dd\3\2\2\2\u0081\u01e7\3\2\2\2\u0083\u0204\3\2\2\2")
-        buf.write("\u0085\u0220\3\2\2\2\u0087\u023d\3\2\2\2\u0089\u0257\3")
-        buf.write("\2\2\2\u008b\u0270\3\2\2\2\u008d\u028e\3\2\2\2\u008f\u029b")
-        buf.write("\3\2\2\2\u0091\u029d\3\2\2\2\u0093\u02a6\3\2\2\2\u0095")
-        buf.write("\u02b4\3\2\2\2\u0097\u02b6\3\2\2\2\u0099\u02bc\3\2\2\2")
-        buf.write("\u009b\u02be\3\2\2\2\u009d\u02cd\3\2\2\2\u009f\u02d3\3")
-        buf.write("\2\2\2\u00a1\u02d6\3\2\2\2\u00a3\u02d8\3\2\2\2\u00a5\u02da")
-        buf.write("\3\2\2\2\u00a7\u00a8\7D\2\2\u00a8\u00a9\7t\2\2\u00a9\u00aa")
+        buf.write("\63\3\2\2\2\2\65\3\2\2\2\2\67\3\2\2\2\2;\3\2\2\2\2=\3")
+        buf.write("\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2\2E\3\2\2\2\2G")
+        buf.write("\3\2\2\2\2I\3\2\2\2\2K\3\2\2\2\2M\3\2\2\2\2O\3\2\2\2\2")
+        buf.write("Q\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2W\3\2\2\2\2Y\3\2\2\2")
+        buf.write("\2[\3\2\2\2\2]\3\2\2\2\2_\3\2\2\2\2a\3\2\2\2\2c\3\2\2")
+        buf.write("\2\2e\3\2\2\2\2g\3\2\2\2\2i\3\2\2\2\2k\3\2\2\2\2m\3\2")
+        buf.write("\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\2w\3\2\2\2\2}\3")
+        buf.write("\2\2\2\2\u008d\3\2\2\2\2\u008f\3\2\2\2\2\u0091\3\2\2\2")
+        buf.write("\2\u0093\3\2\2\2\2\u009b\3\2\2\2\2\u009d\3\2\2\2\2\u009f")
+        buf.write("\3\2\2\2\3\u00a7\3\2\2\2\5\u00ad\3\2\2\2\7\u00b6\3\2\2")
+        buf.write("\2\t\u00b9\3\2\2\2\13\u00c0\3\2\2\2\r\u00c5\3\2\2\2\17")
+        buf.write("\u00cf\3\2\2\2\21\u00d1\3\2\2\2\23\u00d6\3\2\2\2\25\u00dc")
+        buf.write("\3\2\2\2\27\u00e2\3\2\2\2\31\u00e5\3\2\2\2\33\u00e9\3")
+        buf.write("\2\2\2\35\u00ef\3\2\2\2\37\u00f7\3\2\2\2!\u00fe\3\2\2")
+        buf.write("\2#\u0105\3\2\2\2%\u010a\3\2\2\2\'\u0110\3\2\2\2)\u0114")
+        buf.write("\3\2\2\2+\u0118\3\2\2\2-\u0124\3\2\2\2/\u012f\3\2\2\2")
+        buf.write("\61\u0133\3\2\2\2\63\u0136\3\2\2\2\65\u013b\3\2\2\2\67")
+        buf.write("\u013e\3\2\2\29\u0141\3\2\2\2;\u0143\3\2\2\2=\u0145\3")
+        buf.write("\2\2\2?\u0147\3\2\2\2A\u0149\3\2\2\2C\u014b\3\2\2\2E\u014d")
+        buf.write("\3\2\2\2G\u014f\3\2\2\2I\u0152\3\2\2\2K\u0155\3\2\2\2")
+        buf.write("M\u0158\3\2\2\2O\u015a\3\2\2\2Q\u015d\3\2\2\2S\u0160\3")
+        buf.write("\2\2\2U\u0163\3\2\2\2W\u0165\3\2\2\2Y\u0167\3\2\2\2[\u016b")
+        buf.write("\3\2\2\2]\u016e\3\2\2\2_\u0170\3\2\2\2a\u0172\3\2\2\2")
+        buf.write("c\u0174\3\2\2\2e\u0176\3\2\2\2g\u0178\3\2\2\2i\u017a\3")
+        buf.write("\2\2\2k\u017c\3\2\2\2m\u017e\3\2\2\2o\u0180\3\2\2\2q\u0182")
+        buf.write("\3\2\2\2s\u0189\3\2\2\2u\u018f\3\2\2\2w\u0191\3\2\2\2")
+        buf.write("y\u019b\3\2\2\2{\u01a2\3\2\2\2}\u01d9\3\2\2\2\177\u01dd")
+        buf.write("\3\2\2\2\u0081\u01e7\3\2\2\2\u0083\u0204\3\2\2\2\u0085")
+        buf.write("\u0220\3\2\2\2\u0087\u023d\3\2\2\2\u0089\u0257\3\2\2\2")
+        buf.write("\u008b\u0270\3\2\2\2\u008d\u028e\3\2\2\2\u008f\u029b\3")
+        buf.write("\2\2\2\u0091\u029d\3\2\2\2\u0093\u02a6\3\2\2\2\u0095\u02b4")
+        buf.write("\3\2\2\2\u0097\u02b6\3\2\2\2\u0099\u02bc\3\2\2\2\u009b")
+        buf.write("\u02be\3\2\2\2\u009d\u02cd\3\2\2\2\u009f\u02d3\3\2\2\2")
+        buf.write("\u00a1\u02d6\3\2\2\2\u00a3\u02d8\3\2\2\2\u00a5\u02da\3")
+        buf.write("\2\2\2\u00a7\u00a8\7D\2\2\u00a8\u00a9\7t\2\2\u00a9\u00aa")
         buf.write("\7g\2\2\u00aa\u00ab\7c\2\2\u00ab\u00ac\7m\2\2\u00ac\4")
         buf.write("\3\2\2\2\u00ad\u00ae\7E\2\2\u00ae\u00af\7q\2\2\u00af\u00b0")
         buf.write("\7p\2\2\u00b0\u00b1\7v\2\2\u00b1\u00b2\7k\2\2\u00b2\u00b3")
@@ -394,45 +394,44 @@ class D96Lexer(Lexer):
     SELF = 25
     DOUBLECOLONOP = 26
     DOUBLEDOTOP = 27
-    UNDERSCORE = 28
-    PLUSOP = 29
-    MINUSOP = 30
-    MULTIPLYOP = 31
-    DIVIDEOP = 32
-    MODULOOP = 33
-    NOTOP = 34
-    ANDOP = 35
-    OROP = 36
-    EQUALOP = 37
-    ASSIGNOP = 38
-    NOTEQUALOP = 39
-    GTE = 40
-    LTE = 41
-    GT = 42
-    LT = 43
-    STREQUALOP = 44
-    STRCONCATOP = 45
-    LB = 46
-    RB = 47
-    LSB = 48
-    RSB = 49
-    LCB = 50
-    RCB = 51
-    DOT = 52
-    COMMA = 53
-    COLON = 54
-    SEMICOLON = 55
-    VARIABLE_IN_FUNC_IDENTIFIERS = 56
-    DOLLAR_IDENTIFIERS = 57
-    STRINGLIT = 58
-    FLOATLIT = 59
-    INTLIT_IN_ARRAY = 60
-    INTLIT = 61
-    UNCLOSE_STRING = 62
-    ILLEGAL_ESCAPE = 63
-    BLOCK_COMMENT = 64
-    WS = 65
-    ERROR_CHAR = 66
+    PLUSOP = 28
+    MINUSOP = 29
+    MULTIPLYOP = 30
+    DIVIDEOP = 31
+    MODULOOP = 32
+    NOTOP = 33
+    ANDOP = 34
+    OROP = 35
+    EQUALOP = 36
+    ASSIGNOP = 37
+    NOTEQUALOP = 38
+    GTE = 39
+    LTE = 40
+    GT = 41
+    LT = 42
+    STREQUALOP = 43
+    STRCONCATOP = 44
+    LB = 45
+    RB = 46
+    LSB = 47
+    RSB = 48
+    LCB = 49
+    RCB = 50
+    DOT = 51
+    COMMA = 52
+    COLON = 53
+    SEMICOLON = 54
+    VARIABLE_IN_FUNC_IDENTIFIERS = 55
+    DOLLAR_IDENTIFIERS = 56
+    STRINGLIT = 57
+    FLOATLIT = 58
+    INTLIT_IN_ARRAY = 59
+    INTLIT = 60
+    UNCLOSE_STRING = 61
+    ILLEGAL_ESCAPE = 62
+    BLOCK_COMMENT = 63
+    WS = 64
+    ERROR_CHAR = 65
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
 
@@ -443,23 +442,23 @@ class D96Lexer(Lexer):
             "'True'", "'False'", "'Array'", "'In'", "'Int'", "'Float'", 
             "'Boolean'", "'String'", "'Return'", "'Null'", "'Class'", "'Val'", 
             "'Var'", "'Constructor'", "'Destructor'", "'New'", "'By'", "'Self'", 
-            "'::'", "'..'", "'_'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", 
-            "'&&'", "'||'", "'=='", "'='", "'!='", "'>='", "'<='", "'>'", 
-            "'<'", "'==.'", "'+.'", "'('", "')'", "'['", "']'", "'{'", "'}'", 
-            "'.'", "','", "':'", "';'" ]
+            "'::'", "'..'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", "'&&'", 
+            "'||'", "'=='", "'='", "'!='", "'>='", "'<='", "'>'", "'<'", 
+            "'==.'", "'+.'", "'('", "')'", "'['", "']'", "'{'", "'}'", "'.'", 
+            "','", "':'", "';'" ]
 
     symbolicNames = [ "<INVALID>",
             "BREAK", "CONTINUE", "IF", "ELSEIF", "ELSE", "FOREACH", "BOOLLIT", 
             "TRUE", "FALSE", "ARRAY", "IN", "INT", "FLOAT", "BOOLEAN", "STRING", 
             "RETURN", "NULL", "CLASS", "VAL", "VAR", "CONSTRUCTOR", "DESTRUCTOR", 
-            "NEW", "BY", "SELF", "DOUBLECOLONOP", "DOUBLEDOTOP", "UNDERSCORE", 
-            "PLUSOP", "MINUSOP", "MULTIPLYOP", "DIVIDEOP", "MODULOOP", "NOTOP", 
-            "ANDOP", "OROP", "EQUALOP", "ASSIGNOP", "NOTEQUALOP", "GTE", 
-            "LTE", "GT", "LT", "STREQUALOP", "STRCONCATOP", "LB", "RB", 
-            "LSB", "RSB", "LCB", "RCB", "DOT", "COMMA", "COLON", "SEMICOLON", 
-            "VARIABLE_IN_FUNC_IDENTIFIERS", "DOLLAR_IDENTIFIERS", "STRINGLIT", 
-            "FLOATLIT", "INTLIT_IN_ARRAY", "INTLIT", "UNCLOSE_STRING", "ILLEGAL_ESCAPE", 
-            "BLOCK_COMMENT", "WS", "ERROR_CHAR" ]
+            "NEW", "BY", "SELF", "DOUBLECOLONOP", "DOUBLEDOTOP", "PLUSOP", 
+            "MINUSOP", "MULTIPLYOP", "DIVIDEOP", "MODULOOP", "NOTOP", "ANDOP", 
+            "OROP", "EQUALOP", "ASSIGNOP", "NOTEQUALOP", "GTE", "LTE", "GT", 
+            "LT", "STREQUALOP", "STRCONCATOP", "LB", "RB", "LSB", "RSB", 
+            "LCB", "RCB", "DOT", "COMMA", "COLON", "SEMICOLON", "VARIABLE_IN_FUNC_IDENTIFIERS", 
+            "DOLLAR_IDENTIFIERS", "STRINGLIT", "FLOATLIT", "INTLIT_IN_ARRAY", 
+            "INTLIT", "UNCLOSE_STRING", "ILLEGAL_ESCAPE", "BLOCK_COMMENT", 
+            "WS", "ERROR_CHAR" ]
 
     ruleNames = [ "BREAK", "CONTINUE", "IF", "ELSEIF", "ELSE", "FOREACH", 
                   "BOOLLIT", "TRUE", "FALSE", "ARRAY", "IN", "INT", "FLOAT", 
@@ -488,21 +487,6 @@ class D96Lexer(Lexer):
         self._predicates = None
 
 
-    def emit(self):
-        tk = self.type
-        result = super().emit() # result mean for input
-
-        # delete later
-        print('--------------------------------------------------------------------------------')
-        attributes = inspect.getmembers(D96Lexer, lambda a:not(inspect.isroutine(a)))
-        user_defined_attr = [a for a in attributes if not(a[0].startswith('__') and a[0].endswith('__'))]
-        for i in user_defined_attr:
-            if tk == i[1]:
-                print ("{:<30} {:<30} {:<50}".format(result.text, '|', i[0]))
-        print('--------------------------------------------------------------------------------')
-        return result
-
-
     def action(self, localctx:RuleContext, ruleIndex:int, actionIndex:int):
         if self._actions is None:
             actions = dict()
@@ -525,7 +509,8 @@ class D96Lexer(Lexer):
         if actionIndex == 0:
 
                     if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
-                        raise UncloseString(str(self.text)[1:])
+                        if not str(self.text)[-3] == '\\':
+                            raise UncloseString(str(self.text)[1:])
                     
                     current = self.text.find('\n')
                     if current != -1: 

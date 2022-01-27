@@ -1,1 +1,1 @@
-Error on line 4 col 23: Stu
+Error on line 2 col 16: Var
