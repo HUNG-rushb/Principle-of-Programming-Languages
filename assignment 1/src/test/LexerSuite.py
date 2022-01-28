@@ -37,142 +37,260 @@ class LexerSuite(unittest.TestCase):
     # def test_10(self):
     #     self.assertTrue(TestLexer.test("@abcd!ed", "Error Token @", 110))
 
-    def test_11(self):
-        self.assertTrue(TestLexer.test("%duyHUNG", "%,duyHUNG,<EOF>", 111))
+    # def test_11(self):
+    #     self.assertTrue(TestLexer.test("%duyHUNG", "%,duyHUNG,<EOF>", 111))
 
-    def test_12(self):
-        self.assertTrue(TestLexer.test("* + hung      /   ", "*,+,hung,/,<EOF>", 112))
+    # def test_12(self):
+    #     self.assertTrue(TestLexer.test("* + hung      /   ", "*,+,hung,/,<EOF>", 112))
 
-    def test_13(self):
-        self.assertTrue(TestLexer.test("$", "Error Token $", 113))
+    # def test_13(self):
+    #     self.assertTrue(TestLexer.test("$", "Error Token $", 113))
 
-    def test_var_declare(self):
-        self.assertTrue(TestLexer.test("Var $dec, num: Int = 0b0101110, 0xaff", "Var,$dec,,,num,:,Int,=,0b0101110,,,0xaff,<EOF>", 114))
+    # def test_14(self):
+    #     self.assertTrue(TestLexer.test("Val $_fajfaksd_ASDFADS213134Asdvas, num____fasdfh__2136512_____dafds: Int = 0b0101110010101010100011111, 0xAFFabcdefABCDEF",
+    #                     "Val,$_fajfaksd_ASDFADS213134Asdvas,,,num____fasdfh__2136512_____dafds,:,Int,=,0b0,101110010101010100011111,,,0xAFFabcdefABCDEF,<EOF>", 114))
 
-    # def test_float_(self):
+    # def test_15(self):
     #     self.assertTrue(TestLexer.test(
-    #         "12.34e167777 34E-2314690 1E3 12.2 875.3E+6", "12.34e167777,34E-2314690,1E3,12.2,875.3E+6,<EOF>", 115))
+    #         "18_8_128_2.364872364245e67 10002322E-97381237 232431E01023473 134422.787902 178434554357.4947563E+343256669 24346436. .452345 .e123133 .7674e99995 41239778.e23124410 4587467.e213400001_232342354 17635235_89996_111154_9.49324_888845484926e3 43351_2000098898934.3_777456342356", 
+    #         "18_8_128_2.364872364245e67,10002322E-97381237,232431E01023473,134422.787902,178434554357.4947563E+343256669,24346436.,.,452345,.e123133,.7674e99995,41239778.e23124410,45.87467e121340000,_232342354,17635235_89996_111154_9.49324,_888845484926e3,433512000098898934.3,_777456342356,<EOF>", 115))
 
-    # def test_integer(self):
+    # def test_16(self):
     #     self.assertTrue(TestLexer.test(
-    #         "1_234 34 12_56_234 0189", "1234,34,1256234,01,89,<EOF>", 116))
+    #         "1_2_3_4321479326523469234 39237247362177374 12039434778957392_5_6_2_3_4 01812374738946466", "1234321479326523469234,39237247362177374,1203943477895739256234,01,812374738946466,<EOF>", 116))
 
-    # def test_hex_number(self):
-    #     self.assertTrue(TestLexer.test("0x1T 0XA100 0x123 0x0000",
-    #                     "0x1,T,0XA100,0x123,0x0000,<EOF>", 117))
-
-    # def test_string_2(self):
-    #     self.assertTrue(TestLexer.test(
-    #         """
-    #         "a\\nbc"
-    #         """, "a\\nbc,<EOF>", 118))
-
-    # def test_hex_number_2(self):
-    #     self.assertTrue(TestLexer.test("0xFG 0FAA X123",
-    #                     "0xF,G,0,FAA,X123,<EOF>", 119))
-    # def test_string_1(self):
-    #     self.assertTrue(TestLexer.test("\"abc\\nabcde\"",
-    #                     "abc\\nabcde,<EOF>", 120))
-
-    # def test_string_3(self):
+    # def test_17(self):
     #     self.assertTrue(TestLexer.test("""
-    #         "dfafuwifweij123123ninfwuef wefbmfbo_3249182 '"weufnwGJTTYR32479akfnkjsdf'""
-    #     """, """dfafuwifweij123123ninfwuef wefbmfbo_3249182 "weufnwGJTTYR32479akfnkjsdf",<EOF>""", 121))
+    #     ## LoreamsdASDFOWFWJEFJ3129834329adasfdksfsdksdljfs
+    #     """, "Error Token #", 117))
 
-    # def test_string_4(self):
-    #     self.assertTrue(TestLexer.test("\"\r\r\"", """,<EOF>""", 122))
+    # def test_18(self):   
+    #     self.assertTrue(TestLexer.test("""
+    #     ##
+    #     asdajfsk767323283443274799712831236182497fjfiufhAFOAWEFWEFWJEFKFVFIVRFIFdjfwqwqlqdk
+    #     ##
+    #     DSAFWEFWEFOIWEWsdafbawuefygweu_______________________3214932842346935436971346912736
+    #     ##df767323283443274799712831236182497fjfiufhAFOAWEFWEFWJEFKFVFIVRFIFkss
+    #     ###sf767323283443274799712831236182497fjfiufhAFOAWEFWEFWJEFKFVFIVRFIFdjsls
+    #     ##
+    #     """, "DSAFWEFWEFOIWEWsdafbawuefygweu_______________________3214932842346935436971346912736,Error Token #", 118))
 
-    # def test_block_comment_1(self):
+    # def test_19(self):
+    #     self.assertTrue(TestLexer.test("\"34gegefaafwdfwogg\\mafwfweghterwd5768o\"","Illegal Escape In String: 34gegefaafwdfwogg\\m",119))
+
+    # def test_20(self):
+    #     self.assertTrue(TestLexer.test("$FSDGM834738____sadfidufuhabc 123476761abnvdsjjsdnMMMMASDZZZ_sdjdv _16855555423 dfwedwfwePPIHDWU3536dtehiiiiiiiiiiiif",
+    #                     "$FSDGM834738____sadfidufuhabc,123476761,abnvdsjjsdnMMMMASDZZZ_sdjdv,_16855555423,dfwedwfwePPIHDWU3536dtehiiiiiiiiiiiif,<EOF>", 120))
+
+    # def test_21(self):
+    #     self.assertTrue(TestLexer.test("""
+    #         "fwoieijwofjndanfDAFKWEOWJEGWG '"fjdsdsaklfjsaldkPPWHDNJNjnewwjnccedefg'""
+    #     """, """fwoieijwofjndanfDAFKWEOWJEGWG '"fjdsdsaklfjsaldkPPWHDNJNjnewwjnccedefg'",<EOF>""", 121))
+
+    # def test_22(self):
+    #     self.assertTrue(TestLexer.test("19789rthtrh \"wefwegxwgergyffwfewewz\k 456","19789,rthtrh,Illegal Escape In String: wefwegxwgergyffwfewewz\k",122))
+
+    # def test_23(self):
     #     self.assertTrue(TestLexer.test("""
     #         ## Testing comment fowifjowfnwio!@#@#$$#%@^@%^&?<>":{{}}({}()}:(){(})}) ##
     #     """, "<EOF>", 123))
 
-    # def test_block_comment_2(self):
+    # def test_24(self):
     #     self.assertTrue(TestLexer.test("## ASCWEasdasd !@@#%$#  %lgvkhjk$%^&*(&*~{}[]\;]\p/.,.,<>>) ##", "<EOF>",124))
     
-    # def test_block_comment_3(self):
+    # def test_25(self):
     #     self.assertTrue(TestLexer.test("## # ASCWEasdasd !@@#%$#%$%^&*(&*~{}[]\;]\p/.,.,<>>) # ##", "<EOF>",125))
 
-    # def test_hex_number_2(self):
-    #     self.assertTrue(TestLexer.test("0x1A2bFf09", "0x1A2bFf09,<EOF>", 126))
+    # def test_26(self):
+    #     self.assertTrue(TestLexer.test("Array(18983423,4000003023003032,352546546,9191993941294983248)",
+    #                 "Array,(,18983423,,,4000003023003032,,,352546546,,,9191993941294983248,),<EOF>", 126))
 
-    # def test_hex_number_3(self):
-    #     self.assertTrue(TestLexer.test("0x09aFZXY_asd123", "0x09aF,ZXY_asd123,<EOF>", 127))
-
-    # def test_keywords(self):
+    # def test_27(self):
     #     self.assertTrue(TestLexer.test("""
-    #     Break Continue If Elseif Else Foreach True False Array In Int 
-    #     Float Boolean String Return Null Class Val Var Constructor Destructor New By""", 
-    #     "Break,Continue,If,Elseif,Else,Foreach,True,False,Array,In,Int,Float,Boolean,String,Return,Null,Class,Val,Var,Constructor,Destructor,New,By,<EOF>", 128))
+    #         If (a123555 > B______123213) {Return a_63475_IIIIIIIIII;}
+    #         Elseif (c99999 == d0000007) {hunghunga = duydydtdda + opopopopopopb;}
+    #         Else {Return ppppppppppppppppppppppppppppppppp;}
+    #         """, "If,(,a123555,>,B______123213,),{,Return,a_63475_IIIIIIIIII,;,},Elseif,(,c99999,==,d0000007,),{,hunghunga,=,duydydtdda,+,opopopopopopb,;,},Else,{,Return,ppppppppppppppppppppppppppppppppp,;,},<EOF>", 127))
 
-    # def test_float_number_29(self):
-    #     self.assertTrue(TestLexer.test(
-    #     "90000.32482e67234981 3411E-872199 10101E6667213 345.67890000 17756488.30102E+0009 2099. .46578995 .e37777 .47876e12345 49823.e410 45666.e134_23542344 19453.49992_45rwkejrtnjk", 
-    #     "90000.32482e67234981,3411E-872199,10101E6667213,345.67890000,17756488.30102E+0009,2099.,.46578995,.e37777,.47876e12345,49823.e410,45666.e134,_23542344,19453.49992,_45rwkejrtnjk,<EOF>", 129))
+    # def test_28(self):
+    #     self.assertTrue(TestLexer.test("""
+    #         Foreach ($l_LLLLLLLLLLLLLL In 19 .. 100234 By 191) {
+    #             saloaloaloalaolaooo = saloaloaloalaolaooo + iiiuiuiuiuiuiu[$mn_______________7436fhhf];
+    #         }
+    #         """, "Foreach,(,$l_LLLLLLLLLLLLLL,In,19,..,100234,By,191,),{,saloaloaloalaolaooo,=,saloaloaloalaolaooo,+,iiiuiuiuiuiuiu,[,$mn_______________7436fhhf,],;,},<EOF>", 128))
 
-    # def test_hex_oct_number_30(self):
-    #     self.assertTrue(TestLexer.test("0x23987TABCDEF 0XA100 0x123 0x0000 00123 0346 0895 0345","0x23987,TABCDEF,0XA100,0x123,0x0000,00123,0346,0,895,0345,<EOF>", 130)) 
+    # def test_29(self):
+    #     self.assertTrue(TestLexer.test("""
+    #         {
+    #             Var jijijijijdaf, ijijijji: Int;
+    #             pkpsdfkpfasdf = 2_4546_898432.0123146;
+    #             Val a7654334, b7654334: Array[String, 987798798];
+    #             tutyuytus = pkpsdfkpfasdf * pkpsdfkpfasdf * Self.nidsidf;
+    #             uasdfhhhhhhhha[192837] = ppppppp;
+    #         }
+    #         """, "{,Var,jijijijijdaf,,,ijijijji,:,Int,;,pkpsdfkpfasdf,=,24546898432.0123146,;,Val,a7654334,,,b7654334,:,Array,[,String,,,987798798,],;,tutyuytus,=,pkpsdfkpfasdf,*,pkpsdfkpfasdf,*,Self,.,nidsidf,;,uasdfhhhhhhhha,[,192837,],=,ppppppp,;,},<EOF>", 129))
 
-    # def test_hex_oct_number(self):
-    #     self.assertTrue(TestLexer.test("0x1T 0XA100 0x123 0x0000 00123 0346 0895 0345","0x1,T,0XA100,0x123,0x0000,00123,0346,0,895,0345,<EOF>", 110))
+    # def test_30(self):
+    #     self.assertTrue(TestLexer.test("""
+    #         Var $arjijijijijdaf : Array[Array[Boolean, 3], 3] = Array(
+    #                                                     Array(199,987798798,7565),
+    #                                                     Array(346723439,87765,1236),
+    #                                                     Array(9000000005,1348,9632847)
+    #                                                     );
+    #         )""", "Var,$arjijijijijdaf,:,Array,[,Array,[,Boolean,,,3,],,,3,],=,Array,(,Array,(,199,,,987798798,,,7565,),,,Array,(,346723439,,,87765,,,1236,),,,Array,(,9000000005,,,1348,,,9632847,),),;,),<EOF>", 130))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#     def test_comment(self):
-#         self.assertTrue(TestLexer.test("""
-#         ## Loreamsdadasfdksfsdksdljfs
-#         """, "Error Token #", 90))
-#     def test_comment_2(self):
-#         self.assertTrue(TestLexer.test("""
-#         ## adsadaa\\adadff ## saadaa ##
-#         """, "saadaa,Error Token #", 91))
-#     def test_random_number_1(self):
-#         self.assertTrue(TestLexer.test("""
-#         0001231 0b000000000001 0xAF_01 34_21.000002100000e000008 0.000000000
-#         """, "00,01231,0b0,00,00,00,00,00,1,0xAF01,3421.000002100000e000008,0.000000000,<EOF>", 92))
-#     def test_string_20(self):
-#         self.assertTrue(TestLexer.test("""
-#         \"Abdskasakla \\' ajwqwla \\y adaff
-#         """, "Illegal Escape In String: Abdskasakla \\' ajwqwla \\y", 93))
-#     def test_comment_5(self):
-#         self.assertTrue(TestLexer.test("""
-#         ##
-#         asdajfskdjfwqwqlqdk
-#         ##
-#         ffskss
-#         ##dfkss
-#         ###sfdjsls
-#         ##
-#         """, "ffskss,Error Token #", 94))
+    # def test_37(self):
+    #     self.assertTrue(TestLexer.test("""anitrinhduyhungmal.canguyenthachngocquynht.talfuckk(cpluspus + "fio___adfshuf___sefoooobc");""",
+    #                                     """anitrinhduyhungmal,.,canguyenthachngocquynht,.,talfuckk,(,cpluspus,+,fio___adfshuf___sefoooobc,),;,<EOF>""",137))
     
+    # def test_32(self):
+    #         self.assertTrue(TestLexer.test("""
+    #                 0b111111111987 0B09998888 67.9898454600003443 34577777 0X2D3abcFfFfDdddDDD
+    #                 """, "0b111111111,987,0B0,9998888,67.9898454600003443,34577777,0X2D3abcFfFfDdddDDD,<EOF>", 132))
 
+    # def test_33(self):
+    #     self.assertTrue(TestLexer.test("""
+    #             New Return True False Foreach If Elseif Else Float Int String Var Val Constructor Destructor Null Class By In
+    #             """, "New,Return,True,False,Foreach,If,Elseif,Else,Float,Int,String,Var,Val,Constructor,Destructor,Null,Class,By,In,<EOF>", 133))
 
-#     def test_random_number_3(self):
-#         self.assertTrue(TestLexer.test("""
-#         34_123___X3 345_2331___341_3 23_3_521_52_2 0x1_23A_345___5 0b0100A 002141_2211474 0x_12_2 0_21_4 0b_01 12_0001_111 1_33_351_31.45e19_231 0xAF221.451 098_09 12_311_ 31___211__2
-#         """, "34123,___X3,3452331,___341_3,233521522,0x123A345,___5,0b0,100,A,00,21412211474,0,x_12_2,0,_21_4,0,b_01,120001111,13335131.45e19,_231,0xAF221,.,451,0,9809,12311,_,31,___211__2,<EOF>", 95))
+    # def test_34(self):
+    #     self.assertTrue(TestLexer.test("""
+    #             + - * / % == != ! > < >= <= || && . :: ( ) { } [ ] ==. +.
+    #             """, "+,-,*,/,%,==,!=,!,>,<,>=,<=,||,&&,.,::,(,),{,},[,],==.,+.,<EOF>", 134))
+
+    # def test_35(self):
+    #     self.assertTrue(TestLexer.test("\"duyhungduyhung\"ngocquynhngocquynh\"",
+    #     "duyhungduyhung,ngocquynhngocquynh,Unclosed String: ",135))
     
-# # 34123,___X3,3452331,___341_3,23352152,_2,0x123A345,___5,0b0,100,A,00,21412211474,0,x_12_2,0,_21_4,0,
-# # b_01,120001111,13335131.45e19,_231,0xAF221,.,451,0,9809,12311,_,31,___211__2,<EOF>
+    # def test_36(self):
+    #     self.assertTrue(TestLexer.test("\"jkqajkajqka\\njkqajkajqka\"","jkqajkajqka\\njkqajkajqka,<EOF>",136))
 
-#     def test_float_number(self):
-#         self.assertTrue(TestLexer.test("""
-#         1.2344 1_3_452_5.e000006 3e23391_393 5.45e-902_34 _1234.334 22___341___3
-#         """, "1.2344,134525.e000006,3e23391,_393,5.45e-902,_34,_1234,.,334,22,___341___3,<EOF>", 96))
+    # def test_37(self):
+    #     self.assertTrue(TestLexer.test("\"abhunghung\\thunghung\\nbhunghung\"","abhunghung\\thunghung\\nbhunghung,<EOF>",137))
+
+    # def test_38(self):
+    #     self.assertTrue(TestLexer.test("Return triangle.getCurriculum(1010304 false true + * - 8988) - (new object()).arrayer[8444];",
+    #     "Return,triangle,.,getCurriculum,(,1010304,false,true,+,*,-,8988,),-,(,new,object,(,),),.,arrayer,[,8444,],;,<EOF>",138))
+
+    # def test_39(self):
+    #     self.assertTrue(TestLexer.test("""
+    #     "7777.645656454235dfdsgjsidfgji888888...98f834jfjfnnvnvnnv\'trinhduyhung" 8956854.nguyenthachngocquynh "878736636\\\\0b10010101111111111"
+    #     ""","7777.645656454235dfdsgjsidfgji888888...98f834jfjfnnvnvnnv'trinhduyhung,8956854.,nguyenthachngocquynh,878736636\\\\0b10010101111111111,<EOF>",139))
+
+    # def test_40(self):
+    #     self.assertTrue(TestLexer.test("Trinh_Duy_Hung_fdfijf \"trinhduyhung1!!@#$@%%%%*&*&*&*&*&@#$@$#@$%^i\\n\" 555555555555jijijijiyz",
+    #                                     "Trinh_Duy_Hung_fdfijf,trinhduyhung1!!@#$@%%%%*&*&*&*&*&@#$@$#@$%^i\\n,555555555555,jijijijiyz,<EOF>",140))
+
+    # def test_41(self):
+    #     self.assertTrue(TestLexer.test("\"!h$5FBi6qwddasd\"_nguyenthachngocquynhq\"!SZRhungquynh,H}\"sI666677fpw",
+    #                                         "!h$5FBi6qwddasd,_nguyenthachngocquynhq,!SZRhungquynh,H},sI666677fpw,<EOF>",141))
+        
+    # def test_42(self):
+    #     self.assertTrue(TestLexer.test("""
+    #     uwufhweuf4"&uwufhweufJ^1uwufhweufa_." QuwufhweufGn"?6uwufhweuf7Sp"{,}6Asz"Yx]("
+    #     ""","uwufhweuf4,&uwufhweufJ^1uwufhweufa_.,QuwufhweufGn,?6uwufhweuf7Sp,{,,,},6,Asz,Yx](,<EOF>",142))
+
+    # def test_43(self):
+    #     self.assertTrue(TestLexer.test("0ff234f23f2f1_\"^VzxvLRfffffuuu@\\\\OushungquynhM;\"uGquynhhungM+jfffasdE",
+    #                                     "0,ff234f23f2f1_,^VzxvLRfffffuuu@\\\\OushungquynhM;,uGquynhhungM,+,jfffasdE,<EOF>",143))
+
+
+    # def test_44(self):
+    #     self.assertTrue(TestLexer.test("\"(trinhduyhungItrinhduyhungFtrinhduyhungq+trinhduyhunglq(\"trinhduyhungIhKtrinhduyhung6we(*.*)GdvS{(}",
+    #                                     "(trinhduyhungItrinhduyhungFtrinhduyhungq+trinhduyhunglq(,trinhduyhungIhKtrinhduyhung6we,(,*,.,*,),GdvS,{,(,},<EOF>",144))
+
+    # def test_45(self):
+    #     self.assertTrue(TestLexer.test("\"btrinhduyhungac\\mtrinhduyhunga\"","Illegal Escape In String: btrinhduyhungac\\m",145))
+
+    # def test_46(self):
+    #     self.assertTrue(TestLexer.test("\"btrinhduyhungatrinhduyhungMD\\HtrinhduyhungLtrinhduyhungSc\\ntrinhduyhungatrinhduyhung\"","Illegal Escape In String: btrinhduyhungatrinhduyhungMD\\H",146))
+
+    # def test_47(self):
+    #     self.assertTrue(TestLexer.test("\",dtrinhduyhungls\\Ftrinhduyhung1trinhduyhung2trinhduyhung!trinhduyhungLtrinhduyhungS\\ktrinhduyhungctrinhduyhung\\trinhduyhungnatrinhduyhung\"","Illegal Escape In String: ,dtrinhduyhungls\\F",147))
+
+    # def test_48(self):
+    #     self.assertTrue(TestLexer.test("\"atrinhduyhungdo\\madotrinhduyhung\"","Illegal Escape In String: atrinhduyhungdo\\m",148))
+
+    # def test_49(self):
+    #     self.assertTrue(TestLexer.test("78799923trinhduyhungnguyenthachngocquynhabc \"xtrinhduyhungytrinhduyhungz\k 456",
+    #                                 "78799923,trinhduyhungnguyenthachngocquynhabc,Illegal Escape In String: xtrinhduyhungytrinhduyhungz\k",149))
+
+    # def test_50(self):
+    #     self.assertTrue(TestLexer.test("\"nguyenthachngocquynhanguyenthachngocquynha\wb\"","Illegal Escape In String: nguyenthachngocquynhanguyenthachngocquynha\w",150))
+
+    # def test_51(self):
+    #     self.assertTrue(TestLexer.test("bnguyenthachngocquynha+1786544332+\"nnguyenthachngocquynha\"\"mnguyenthachngocquynhd+119238219.2-401203040468\lb",
+    #                                     "bnguyenthachngocquynha,+,1786544332,+,nnguyenthachngocquynha,Illegal Escape In String: mnguyenthachngocquynhd+119238219.2-401203040468\l",151))
+
+    # def test_52(self):
+    #     self.assertTrue(TestLexer.test("\"1.744462+1.744463+1.744464\\o'\"123","Illegal Escape In String: 1.744462+1.744463+1.744464\\o",152))
+
+    # def test_53(self):
+    #     self.assertTrue(TestLexer.test("(*nangocquynhdethuongc*)/2232881.73181231 \"bcuoingocquynha\\qm\f\"",
+    #                                     "(,*,nangocquynhdethuongc,*,),/,2232881.73181231,Illegal Escape In String: bcuoingocquynha\q",153))
+
+    # def test_54(self):
+    #     self.assertTrue(TestLexer.test("\"congocquynhdangyeuncahngocquynhdangyeueo\\uabc","Illegal Escape In String: congocquynhdangyeuncahngocquynhdangyeueo\\u",154))
+
+    # def test_55(self):
+    #     self.assertTrue(TestLexer.test("\"trinhduyhungbatrinhduyhungcxytrinhduyhungc",
+    #                                         "Unclosed String: trinhduyhungbatrinhduyhungcxytrinhduyhungc",155))
+
+    # def test_56(self):
+    #     self.assertTrue(TestLexer.test("NngocquynhsexymkngocquynhsexyobYngocquynhsexyn{!}+I1+\"`YSnewyodjdjdj2h.ueywuJ(",
+    #                                         "NngocquynhsexymkngocquynhsexyobYngocquynhsexyn,{,!,},+,I1,+,Unclosed String: `YSnewyodjdjdj2h.ueywuJ(",156))
+
+    # def test_57(self):
+    #     self.assertTrue(TestLexer.test("\"abeQuynhbeRotcbeQuynhbeRotnv \" \"ahunghudhdhdbc","abeQuynhbeRotcbeQuynhbeRotnv ,Unclosed String: ahunghudhdhdbc",157))
+
+    # def test_58(self):
+    #     self.assertTrue(TestLexer.test("\"bsaunaycuoiQuynhcms!,lds \" {\"gh6473f94f8hhhhfhASDGGGGGGGGGGGGGGGGGc\"} 123\"abeQuynhdethuong7273817361bc",
+    #                                     "bsaunaycuoiQuynhcms!,lds ,{,gh6473f94f8hhhhfhASDGGGGGGGGGGGGGGGGGc,},123,Unclosed String: abeQuynhdethuong7273817361bc",158))
+
+    # def test_59(self):
+    #     self.assertTrue(TestLexer.test("a+11.23749283470202002+\"masdanfjsdDAviidd_______m.123\" 12 \"%^_)3141927777&",
+    #                                     "a,+,11.23749283470202002,+,masdanfjsdDAviidd_______m.123,12,Unclosed String: %^_)3141927777&",159))
+
+    # def test_60(self):
+    #     self.assertTrue(TestLexer.test("323344448n\"[#FfQuynhsQuynh?0ED\"1.1\"dddd`#","323344448,n,[#FfQuynhsQuynh?0ED,1.1,Unclosed String: dddd`#",160))
+
+    def test_string_16(self):
+        self.assertTrue(TestLexer.test("\"str1  \\r ahihi \"","str1  \\r ahihi ,<EOF>",161))
+
+    def test_unclose_string_7(self):
+        self.assertTrue(TestLexer.test("\"He asked me: '\"Where \\t is John?'\"\"","He asked me: \'\"Where \\t is John?\'\",<EOF>",162))
+    def test_unclose_string_8(self):
+        self.assertTrue(TestLexer.test("\"  str \\\' \\\" str \"","Illegal Escape In String:   str \\' \\\"",163))
+        #   str \' \"
+    def test_string_17(self):
+        self.assertTrue(TestLexer.test("\" \\\\ \\n \\t \\n fddd \\\\\" "," \\\\ \\n \\t \\n fddd \\\\,<EOF>",164))
+
+    def test_21(self):
+        self.assertTrue(TestLexer.test("{ 1,2  ,  32,  2}; {1.2,2., 3e8  , 4.0e-1}","{,1,,,2,,,32,,,2,},;,{,1.2,,,2.,,,3e8,,,4.0e-1,},<EOF>",165))
+    def test_22(self):
+        self.assertTrue(TestLexer.test("{true,false   ,  true, false}; {\" nam\", \" vat ly \"  ,  \" aaa \" }",
+        """{,true,,,false,,,true,,,false,},;,{, nam,,, vat ly ,,, aaa ,},<EOF>""",166))
+
+    def test_stmt_1(self):
+        self.assertTrue(TestLexer.test("if(a != b)\nthen continuea=a+1;\nelse b=0;","if,(,a,!=,b,),then,continuea,=,a,+,1,;,else,b,=,0,;,<EOF>",167))
+    def test_stmt_2(self):
+        self.assertTrue(TestLexer.test("return newn then animal(a,b + c);","return,newn,then,animal,(,a,,,b,+,c,),;,<EOF>",168))
+    def test_stmt_3(self):
+        self.assertTrue(TestLexer.test("callFn then unction(a + b*c % (d+2));","callFn,then,unction,(,a,+,b,*,c,%,(,d,+,2,),),;,<EOF>",169))
+    def test_stmt_4(self):
+        self.assertTrue(TestLexer.test("""
+        a[7+9] = 12;
+        Foreach(i = 1 In 1 .. str.length) {
+            b[i] = b[i] + 1;
+        }
+        """,
+        "a,[,7,+,9,],=,12,;,Foreach,(,i,=,1,In,1,..,str,.,length,),{,b,[,i,],=,b,[,i,],+,1,;,},<EOF>", 170))
+
+
+
+
+
+
 
 
 
@@ -237,30 +355,7 @@ class LexerSuite(unittest.TestCase):
 #         self.assertTrue(TestLexer.test("Var $dec, num: Int = 0b0101110, 0xAFF",
 #                         "Var,$dec,,,num,:,Int,=,0b0,101110,,,0xAFF,<EOF>", 114))
 
-#     def test_float_number_2(self):
-#         self.assertTrue(TestLexer.test(
-#             "12.45e67 12E-9 1E3 12.2 17.3E+9 2. .45 .e3 .4e5 4.e10 45.e1_234 19.4_456e3 1_234.3_456", "12.45e67,12E-9,1E3,12.2,17.3E+9,2.,.,45,.e3,.4e5,4.e10,45.e1,_234,19.4,_456e3,1234.3,_456,<EOF>", 115))
-
-#     def test_integer_number(self):
-#         self.assertTrue(TestLexer.test(
-#             "1_234 34 12_56_234 0189", "1234,34,1256234,01,89,<EOF>", 116))
-
-#     def test_hex_oct_number(self):
-#         self.assertTrue(TestLexer.test("0x1T 0XA100 0x123 0x0000 00123 0346 0895 0345","0x1,T,0XA100,0x123,0x0,00,0,00,123,0346,0,895,0345,<EOF>", 117))
-
-#     def test_string_2(self):
-#         self.assertTrue(TestLexer.test(
-#             """
-#             "a\nbc"
-#             """, "Unclosed String: a", 118))
-
-#     def test_hex_number_2(self):
-#         self.assertTrue(TestLexer.test("0xFG 0FAA X123",
-#                         "0xF,G,0,FAA,X123,<EOF>", 119))
-#     def test_string_1(self):
-#         self.assertTrue(TestLexer.test("\"abc\\nabcde\"",
-#                         "abc\\nabcde,<EOF>", 120))
-
+#    
 #     def test_string_3(self):
 #         self.assertTrue(TestLexer.test("""
 #             "Hello from '"Python'""

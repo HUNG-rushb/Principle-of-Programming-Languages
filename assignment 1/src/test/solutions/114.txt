@@ -1,1 +1,1 @@
-Var,$dec,,,num,:,Int,=,0b0,101110,,,0xAFF,<EOF>
+Val,$_fajfaksd_ASDFADS213134Asdvas,,,num____fasdfh__2136512_____dafds,:,Int,=,0b0,101110010101010100011111,,,0xAFFabcdefABCDEF,<EOF>

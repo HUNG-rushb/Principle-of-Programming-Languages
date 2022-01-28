@@ -1,1 +1,1 @@
-0xF,G,0,FAA,X123,<EOF>
+Illegal Escape In String: 34gegefaafwdfwogg\m
