@@ -1,1 +1,1 @@
-$saf,afte,<EOF>
+$_dollarstatic,<EOF>

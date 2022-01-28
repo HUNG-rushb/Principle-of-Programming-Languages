@@ -1,7 +1,3 @@
-import unittest
-from TestUtils import TestParser
-
-class ParserSuite(unittest.TestCase):
     def test0(self):
         input = """
             Class Dog: Animal { }

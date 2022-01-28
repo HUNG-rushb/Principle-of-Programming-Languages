@@ -1,4 +1,4 @@
-// Trinh Duy Hung
+// Trịnh Duy Hưng
 // 1913652
 
 grammar D96;
@@ -56,7 +56,8 @@ program: class_declarations EOF;
 
 // Class declaration
 // class_main_program_declarations: CLASS PROGRAM program_block_class_statements;
-class_declarations: class_declaration class_declarations | class_declaration | ;
+// class_declarations: class_declaration class_declarations | class_declaration | ;
+class_declarations: class_declaration class_declarations | class_declaration ;
 class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance block_class_statements;
 class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
 // class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance | COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
@@ -70,13 +71,6 @@ destructor_dclr: DESTRUCTOR LB RB block_statements;
 method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
 
 // STATEMENTS ------------------------------------------------------------------------------
-
-// Attribute declaration
-// attribute_declaration: (VAR | VAL) (declare_initiate_list | identifier_list COLON variable_type) SEMICOLON;
-// declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) type_and_assign expr
-//                         | identifier_list COLON variable_type;
-// type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) type_and_assign expr COMMA
-//                     | COLON variable_type ASSIGNOP;
 
 // Variable declaration
 variable_declaration: (VAR | VAL) (declare_initiate_list | no_value_assign_declare_list) SEMICOLON;
@@ -95,7 +89,6 @@ type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign expr COMMA
 // dollar_type_and_assign_in_func: COMMA DOLLAR_IDENTIFIERS dollar_type_and_assign_in_func expr COMMA
 //                         | COLON variable_type ASSIGNOP;
 
-
 // Both declaration
 both_variable_declaration: (VAR | VAL) (both_declare_initiate_list | both_no_value_assign_declare_list) SEMICOLON;
 both_no_value_assign_declare_list: both_no_value_assign_declare both_no_value_assign_declare_list| both_no_value_assign_declare;
@@ -106,22 +99,9 @@ both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) 
 both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) both_type_and_assign expr COMMA
                         | COLON variable_type ASSIGNOP;
 
-
-
-
-
 // Function declaration
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
 // main_function_declaration: MAIN LB RB block_statements_in_main;
-
-
-
-
-
-
-
-// dot_doublesemicolon_and_name: (DOT (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) 
-//                                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS) ;
 
 call_func_statement: call_func_header call_func_attr_list call_func_end SEMICOLON;
 call_func: call_func_header call_func_attr_list call_func_end;
@@ -134,11 +114,6 @@ call_func_attr: DOT (VARIABLE_IN_FUNC_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS
 call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
 
 // Assignment statement
-// assignment_statements: (VARIABLE_IN_FUNC_IDENTIFIERS 
-//                         | DOLLAR_IDENTIFIERS 
-//                         | instance_attr_access
-//                         | static_attr_access) ASSIGNOP expr SEMICOLON;
-
 assignment_statements: lhs ASSIGNOP expr SEMICOLON;
 lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
         // | DOLLAR_IDENTIFIERS 
@@ -146,9 +121,6 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
         | static_attr_access 
         // | call_funcs (multiple_accesses| )
         ) (index_operators | );
-
-// multiple_accesses: dot_doublesemicolon_and_name multiple_accesses | dot_doublesemicolon_and_name;
-
 
 // If statements 
 if_statements: IF LB expr RB block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
@@ -211,16 +183,10 @@ statement: variable_declaration
             | return_statements ;
 
 // EXPRESSIONS ----------------------------------------------------------------------------------
-// EXPRESSIONS ----------------------------------------------------------------------------------
-// EXPRESSIONS ----------------------------------------------------------------------------------
-
 
 // a.b[1]              a.b()[1]           a.b[1]            a.b()[1].b()[1]
 // a::b[1]             a::b()[1]          a::b[1]           a::b()[1]::b()[1]  
 // Ưu tiên gọi access trước
-
-// Object creation
-// new_obj_creation: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB;
 
 expr: expr1 (STRCONCATOP | STREQUALOP) expr1 | expr1;
 expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
@@ -236,8 +202,6 @@ expr7: expr7 index_operators | expr8;
 expr8: expr8 instance_accesses | expr9;
 expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
 
-// expr10: NEW (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr11;
-// expr10: new_obj_creation (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_expr RB | expr10;
 expr10: NEW expr LB list_expr RB | expr11;
 expr11: literal 
         | VARIABLE_IN_FUNC_IDENTIFIERS 
@@ -263,6 +227,7 @@ static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
 
 // Expression list 
 list_expr: expr COMMA list_expr | expr | ;
+
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
@@ -302,15 +267,6 @@ primitive_type: BOOLEAN | INT | FLOAT | STRING;
 
 // Variable type
 variable_type: primitive_type | array_type | VARIABLE_IN_FUNC_IDENTIFIERS;
-
-
-
-
-
-
-
-
-
 
 
 
@@ -401,7 +357,6 @@ SEMICOLON: ';';
 // MAIN: 'main';
 VARIABLE_IN_FUNC_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
 DOLLAR_IDENTIFIERS:  DOLLAR [_a-zA-Z0-9]+; 
-// IDENTIFIERS: DOLLAR_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS;
 fragment DOLLAR: '$';
 
 // String literal 
@@ -472,7 +427,6 @@ ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 // String char except special character 
 fragment STRING_CHAR:  '\'"'| ESC_CHAR | ~[\\"];
 
-// fragment ESC_CHAR_OK: '\\' ['\\];
 fragment ESC_CHAR: '\\' [trnfb'\\];
 
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
