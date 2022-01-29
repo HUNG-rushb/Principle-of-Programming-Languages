@@ -1,13 +1,8 @@
 
-            Class class {
-                Var a, b, c: Int = 3, 4, 5;
-                $print() {
+            Class eerrerrert {
+                Var asdafd, bfasdf, cwefwefw: Float = 334, 4234, 54234;
+                $prifwwfwnt() {
                     Return Array(a,b,c);
-                }
-            }
-            Class Program {
-                main() {
-
                 }
             }
         

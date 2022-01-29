@@ -1,10 +1,10 @@
 
-            Class Program {
-                main() {
-                    Out.print("Hello From Main");
+            Class P423423ro2342gra234213m {
+                ma234729891in() {
+                    dasd.print("lo cc");
                 }
             }
-            Class iden {
+            Class iden31235351435 {
 
             }
         

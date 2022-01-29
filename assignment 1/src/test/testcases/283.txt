@@ -1,8 +1,8 @@
 
-            Class Soc {
+            Class awfefdsaf {
                 
-                function() {
-                    Return A::$name() + t();
+                awfdfasdf() {
+                    Return ewfawefefafA::$naawefawefadsme() + twefwecsdfas();
                 }
             }
         

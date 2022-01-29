@@ -1,7 +1,10 @@
 
-            Class myClass {
-                _method() {
-                    Name.a[1][2] = Self.get().set.get();
+            Class _97 {
+                _metht5y5464_____od() {
+                    Name.a[0x0][oxo] = Self.gefwaft().swe3et.gewfwt();
+                    Name.a[00][oo] = Self.gefwaft().swe3et.gewfwt();
+                    Name.a[asdfhwe.fwefew(wduwe)][sdfasj.ergrgaf(__________________________________)] = Self.gefwaft().swe3et.gewfwt();
+                    Name.a[uihwwef][0x0] = Self.gefwaft().swe3et.gewfwt();
                 }
             }
         

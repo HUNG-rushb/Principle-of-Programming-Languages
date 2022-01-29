@@ -1,12 +1,4 @@
-# 1913652
-# Trịnh Duy Hưng
-
-import unittest
-from TestUtils import TestParser
-
-class ParserSuite(unittest.TestCase):
-
-    def test_0(self):
+def test_0(self):
         input = """
             Class Doadag: Anidadsmal { }
             Class Snfffsdake: Dqwwde { }
@@ -1267,7 +1259,7 @@ class ParserSuite(unittest.TestCase):
             Class testing {
                 Var twe, FWE32y: Int = 1, 00;
                 method(a,b,c:Int; r:Func) {
-                    If (0x0 + 2_13_123.645 > 0xAAAAAAAAAAAAAAAAAAAAAAAAA) {
+                    If (0x0 + 2_13_123.645 > 0xAAAAAAAAAAAAAAAAAAAAAAAAAa) {
                         Foreach(index In 0x1 .. 12_3*45_35 By ug.gfsger(r)) {
                             If (wthtrb / rtrwtwer) {
                                 If (wefwe32 >= afnewaiufbwi) {
@@ -1426,8 +1418,8 @@ class ParserSuite(unittest.TestCase):
             }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,295))
-
+        self.assertTrue
+  
     def test_96(self):
         input = """
             
@@ -1454,7 +1446,7 @@ class ParserSuite(unittest.TestCase):
             Class Cfwefw {
                 Var ______________________b________________: _____________________A__________________________;
                 wfea__weuwufhw__________5235() {
-                    Return C::$fwefew + C.mcbnvb().aed[0xFECDA213];
+                    Return C::$fwefew + C.mcbnvb().aed[0xfacdb213];
                 }
             }
         """
@@ -1466,7 +1458,7 @@ class ParserSuite(unittest.TestCase):
             Class fewfasdf {
                 $methowqfewfuykyud() {
                     Foreach(i In -323432 .. -1.213e-313421 By -3432) {
-                        Foreach(j_______________________ In 00 .. -0xFF1235176 By 0b1101010101) {
+                        Foreach(j_______________________ In 00 .. -0xFFabcdef1235176 By 0b1101010101) {
                             Var fwewefa: String = 0.2e213;
                         }
                     }

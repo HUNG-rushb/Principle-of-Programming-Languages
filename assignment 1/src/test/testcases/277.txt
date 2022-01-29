@@ -1,5 +1,5 @@
 
-            Class myArray {
-                Var Arr: Array[Array[Int, 2], 0b0];
+            Class oweyfoadnak_____________ {
+                Var _______________d_______________: Array[Array[Int, 3242376], 0b0];
             }
         

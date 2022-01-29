@@ -260,6 +260,7 @@ value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
 // Array type
 array_type: ARRAY LSB array_element_type COMMA INTLIT_IN_ARRAY RSB;
 array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
+// array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING | VARIABLE_IN_FUNC_IDENTIFIERS;
 // array_size: INTLIT_IN_ARRAY;
 
 // Primitive type
@@ -388,15 +389,15 @@ FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replac
 // Interher literal
 fragment DEC: [1-9] (UNDERSCORE [0-9] | [0-9])*;
 // fragment HEX: '0' X (UNDERSCORE | [0-9a-fA-F]+) (UNDERSCORE [0-9a-fA-F]+)*;
-fragment HEX: '0' X ([1-9a-fA-F]+ ((UNDERSCORE [0-9a-fA-F]+)* | [0-9a-fA-F]*) | '0');
+fragment HEX: '0' X ([1-9A-F]+ ((UNDERSCORE [0-9A-F]+)* | [0-9A-F]*) | '0');
 // fragment OCT: '0' (UNDERSCORE | [0-7]+) (UNDERSCORE [0-7]+)*; 
 fragment OCT: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* ) | '0'); 
 // fragment BIN: '0' B (UNDERSCORE | [01]+) (UNDERSCORE [01]+)*;
 fragment BIN: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*)| '0');
 
 // fragment DEC_ARRAY_SIZE: [1-9] (UNDERSCORE [0-9] | [0-9])*;
-fragment HEX_ARRAY_SIZE: '0' X ([1-9a-fA-F]+ ((UNDERSCORE [0-9a-fA-F]+)* | [0-9a-fA-F]*));
-fragment OCT_ARRAY_SIZE: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]* )); 
+fragment HEX_ARRAY_SIZE: '0' X ([1-9A-F]+ ((UNDERSCORE [0-9A-F]+)* | [0-9A-F]*));
+fragment OCT_ARRAY_SIZE: '0' ([1-7]+ ((UNDERSCORE [0-7]+)* | [0-7]*)); 
 fragment BIN_ARRAY_SIZE: '0' B ('1'+ ((UNDERSCORE [01]+)* | [01]*));
 
 INTLIT_IN_ARRAY: (DEC

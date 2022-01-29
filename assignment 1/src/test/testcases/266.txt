@@ -1,7 +1,13 @@
 
-            Class Program {
-                Var b: Int = A::$f()[1] + a.g() * 4 + !y;
-                Var a: Stu = New Teach(New Stu());
-                Var d: Boolean = 4 >= f && t <= 2 || 7 == !b + 3;
+            Class wefewfwf {
+
+
+
+
+                Var ewfweb: Ifwefwent = wfweA::$f()[1] + afew3242_384728g * 446533 + !weqrwy;
+
+                Var wefwqea: Stuwefwqef34234 = New Teawfeach(New Stfwefwefdsu());
+
+                Var td: Boolean = 34 >= yf && ut <= 3242352 || 7453 == !bwef - 3324323525;
             }
         

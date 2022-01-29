@@ -1,11 +1,6 @@
 
-            Class Program {
-                main() {
-
-                }
-            }
-            Class B: A {
-                Var a, b: Float = 3.5, 5;
-                Return a;
+            Class asdsDB: WEFWFAA {
+                Var AWEFDa, FWEFWEFb: Float = 32312.5676, 2131235;
+                Return SDGSSFGERa;
             }
         

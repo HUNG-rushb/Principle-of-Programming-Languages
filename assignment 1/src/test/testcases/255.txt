@@ -4,6 +4,10 @@
 
                 }
             }
-            Class B {$method(){}}
-            Class C {$method(){}}
+            Class ___2342____dfasfokBdfsdfasdf {
+
+            }
+            Class ____Csadf {
+
+            }
         

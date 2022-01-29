@@ -1,8 +1,9 @@
 
-            Class Func {
-                Constructor(){Return name;}
+            Class fasdfasdf {
+                Constructor(){Return eeeeeeeeeeeeeeeeeeeeeeee;}
             }
-            Class B {
+            Class dsbisubviweuhfw {
+
                 Return statements;
             }
         

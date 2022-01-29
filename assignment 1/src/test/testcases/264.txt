@@ -1,7 +1,10 @@
 
-            Class C {
-                Var a: Int = func();
-                Val constVar: String = "Hello";
-                Val a,b,c: Int = 0.9, 1.0;
+            Class efwerweafdfewC {
+
+
+
+                Var a: Int = funewe44c();
+                Val ergserg: fgergsf = "Hewfwaefllo";
+                Val werqwea,b,c: Int = 0.433539, 1234.03432;
             }
         

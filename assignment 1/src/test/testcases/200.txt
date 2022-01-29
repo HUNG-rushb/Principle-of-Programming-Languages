@@ -1,10 +1,10 @@
 
-            Class Dog: Animal { }
-            Class Snake: De { }
-            Class butterfly {
-                __str__() {
-                    Var a, b, c, d, e: Int = 0,0,0,0,0;
-                    Val a,b,c,d,$e: Int;
+            Class Doadag: Anidadsmal { }
+            Class Snfffsdake: Dqwwde { }
+            Class bfwefeuttdqwerfqdqwly {
+                __swdqfqwdqwtr__() {
+                    Var a, b, c, d, e: Int = 1,2,4,5,6;
+                    Val $effffffffff: Int;
                 }
             }
             

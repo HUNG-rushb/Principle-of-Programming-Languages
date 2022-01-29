@@ -1,18 +1,18 @@
 
-            Class test {
-                Var t, y: Int = 1, 2;
+            Class testing {
+                Var twe, FWE32y: Int = 1, 00;
                 method(a,b,c:Int; r:Func) {
-                    If (a + b > 0) {
-                        Foreach(i In 1 .. 12 By r) {
-                            If (2 + 5) {
-                                If (f >= t) {
-                                    Continue;
+                    If (0x0 + 2_13_123.645 > 0xAAAAAAAAAAAAAAAAAAAAAAAAA) {
+                        Foreach(index In 0x1 .. 12_3*45_35 By ug.gfsger(r)) {
+                            If (wthtrb / rtrwtwer) {
+                                If (wefwe32 >= afnewaiufbwi) {
+                                    Break;
                                 }
                             }
                         }
                     }
-                    Elseif (t * 7) {
-                        If (34) { }
+                    Elseif (tWFWA / 7_423.3243e-1231) {
+                        If (!FAWEF) { }
                         Else { Return; }
                     }
                 }

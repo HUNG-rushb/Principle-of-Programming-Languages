@@ -1,12 +1,12 @@
 
-            Class Program {
-                main() {
+            Class aafefwea___34543faf {
+                mawefawfin() {
 
                 }
             }
             Class B {
-                Constructor(a,b,c: Int) {
-                    Return Self.a + b + 4;
+                Constructor(aewf32,b324ffw,dagsdfw4223c: Float) {
+                    Return Self.aewew + gbsgdfgb + 564564;
                 }
             }
         

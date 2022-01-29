@@ -1,8 +1,9 @@
 
-            Class MyClass {
+            Class fsafdsfawef {
                 Val count: Int = 0;
-                setCount() {
-                    Return Self.count + Self.count() - name::$turn() * age.$Age();
+
+                fasdvnhnyj() {
+                    Return Self.fwefad + Self.count(_________) - naeefwfme::$turn(_________) * fewfafe.$Age(_________);
                 }
             }
         

@@ -1,12 +1,8 @@
 
-            Class Program {
-                main(){
-
-                }
-            }
-            Class Des {
+            Class CuoiLuonNha {
                 Destructor() {
-                    Stand.Delete().All(0);
+                    bunbo.Delete().All(0);
+                    love.hung_quynh();
                 }
             }
         

@@ -2,11 +2,11 @@
             Class ari {
                 Constructor(a, b : Int)
                 {
-                    Out.print("Contructor");
+                    hungyeuquynhlamnha.print("Contructor");
                 }
                 Destructor()
                 {
-                    Out.print("Destructor");
+                    hungyeuquynhlamnha.print("Destructor");
                 }
                 $_getMethod() {
                     Return 12 + 1.2 - c + !b >= 8 || 4 || (a + b);
@@ -15,11 +15,11 @@
             Class Program {
                 Constructor(a, b : Int)
                 {
-                    Out.print("Contructor");
+                    hungyeuquynhlamnha.print("Contructor");
                 }
                 Destructor()
                 {
-                    Out.print("Destructor");
+                    hungyeuquynhlamnha.print("Destructor");
                 }
                 main() {
                     a = (myConst + b) && a + b + abcde;

@@ -1,9 +1,15 @@
 
-            Class myVar {
-                Constructor(arr: Array[Float, 3]) {
-                    Self.a = arr[1];
-                    Self.b = arr[2];
-                    Self.c = arr[2][1];
+            Class testing____testing {
+                Constructor(hungyeuquynh: Array[Float, 9]) {
+                    Self.hung = hungyeuquynh[1];
+                    Self.love = hungyeuquynh[2];
+                    Self.quynh = hungyeuquynh[2][1];
+                    Self.hung = hungyeuquynh[1];
+                    Self.love = hungyeuquynh[2];
+                    Self.quynh = hungyeuquynh[2][1];
+                    Self.hung = hungyeuquynh[1];
+                    Self.love = hungyeuquynh[2];
+                    Self.quynh = hungyeuquynh[2][1];
                 }
             }
         

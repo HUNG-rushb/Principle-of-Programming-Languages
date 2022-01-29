@@ -1,10 +1,5 @@
 
-            Class Program {
-                main() {
-
-                }
-            }
-            Class A {
-                Return New B(A);
+            Class FSDFAA {
+                Return New BRETWERT(SGER5462A);
             }
         

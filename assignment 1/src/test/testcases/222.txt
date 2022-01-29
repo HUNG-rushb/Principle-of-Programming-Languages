@@ -1,11 +1,11 @@
 
-            Class myFunc {
-                func(s: Int; r: String) {
-                    Return Stand.Str(s + r);
+            Class jztr {
+                func(s: Boolean; r: Float) {
+                    Return ojojojojojjoo.Str(s + r);
                 }
             }
             Class Program {
-                main() {
+                jztr() {
 
                 }
             }

@@ -1,7 +1,7 @@
 
-            Class Program {
-                main() {
-                    a[0] = "String 1" ==. "string \'";
+            Class Prwefawf3453___wekwe9932ogram {
+                maiawefawn() {
+                    a[0] = "Stri$@#^#&#%^ng 1" ==. "3425#@$strwfewang \'";
                 }
             }
         

@@ -1,12 +1,43 @@
 
                 Class MyClass {
-                    Var name: String;
-                    Var age: Int = 0;
-                    $printName() {
-                        Out.print(Self.name);
+                    Var beRot: NguoiYeu;
+
+                    Var maicuoiluonnha: Int = 0;
+
+                    $cuoiluonnha() {
+                        Out.print(Self.beRot);
                     }
-                    setAge(_age: Int) {
-                        Self.age = _age;
+
+                    adsad(_age: Int) {
+                        Self.maicuoiluonnha = _age;
+                    }
+                }
+
+                Class MyClass {
+                    Var beRot: NguoiYeu;
+
+                    Var maicuoiluonnha: Int = 0;
+
+                    $cuoiluonnha() {
+                        Out.print(Self.beRot);
+                    }
+
+                    adsad(_age: Int) {
+                        Self.maicuoiluonnha = _age;
+                    }
+                }
+
+                Class MyClass {
+                    Var beRot: NguoiYeu;
+
+                    Var maicuoiluonnha: Int = 0;
+
+                    $cuoiluonnha() {
+                        Out.print(Self.beRot);
+                    }
+
+                    adsad(_age: Int) {
+                        Self.maicuoiluonnha = _age;
                     }
                 }
             

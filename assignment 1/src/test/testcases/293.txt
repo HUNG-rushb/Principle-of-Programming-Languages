@@ -1,7 +1,7 @@
 
-            Class Program {
-                main() {
-                    Return ClassName::a::b::c.d;
+            Class dqwdqffr {
+                __________453453() {
+                    Return _____________::hufawe::$bafawef::$__________________________________.faw7efhw236182;
                 }
             }
         

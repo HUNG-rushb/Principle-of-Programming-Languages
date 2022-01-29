@@ -1,10 +1,10 @@
 
-            Class Program {
-                getName() {
-                    Var b: Float = 0.3;
+            Class dfasvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv {
+                getWife() {
+                    Var hung: Boolean = true;
                 }
                 main() {
-                    Var a: Int;
+                    Var quynh: Float;
                 }
             }
             

@@ -1,14 +1,9 @@
 
-            Class Program {
-                main() {
-
-                }
-            }
-            Class Par {
-                Var con: String;
-                Var me: Float = 0.2;
-                $get() {
-                    Local.Store.sieuthi();
+            Class sdfsaf {
+                Var we: sdfsdddddddd;
+                Var me: tyer43534terster = 0.2;
+                $gsdafqe3432t() {
+                    Losdfgfsdcal.St4234ore.sieu3342thi();
                 }
             }
         

@@ -1,6 +1,11 @@
 
-            Class Program {
-                main() {PPL() {}}
-                Var method(): Int;
+            Class Prog3432regwwer______________3498jsaa9ram {
+                madsfasdfqin() {PdsfasdfaPL() {}}
+
+
+
+
+
+                Var tu34_56h_(): Int;
             }
         

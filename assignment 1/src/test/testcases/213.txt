@@ -1,7 +1,7 @@
 
-            Class myDog {
-                method(a: Array[Int, 4]) {
-                    Return a[0]
+            Class myHippo {
+                cat(hung: Array[Int, 99]) {
+                    Return hung[0]
                 }
             }
         

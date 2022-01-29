@@ -1,12 +1,17 @@
 
-            Class Program {
+            Class aloaloalo {
                 main() {
-
+                    Var name: Int;
                 }
             }
-            Class Another {
+            Class wfsadfsdadf {
                 function() {
-                    A.Main()::$dollar();
+                    Var name: Int;
+
+
+
+
+                    Hung.Main()::$dollar();
                 }
             }
         

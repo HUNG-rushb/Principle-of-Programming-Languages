@@ -1,5 +1,5 @@
 
-            Class V {
-                Val arr = Array[Array[Int, 0b1], 0xAF];
+            Class Vwefwfds2213vsdvsf_____238dh823jksdaf {
+                Val arr = Array[Array[Boolean, Vwefwfds2213vsdvsf_____238dh823jksdaf], Vwefwfds2213vsdvsf_____238dh823jksdaf];
             }
         

@@ -1,8 +1,11 @@
 
-            Class Program {
-                main() {
-                    func_declare() {
-                        Return main().text();
+            Class Pwefwefasfrogram {
+                mawefwaefin() {
+                    func_decwew23423___________________lare() {
+
+
+
+                        Return maiwefwen().twfwefqwefqwfxt();
                     }
                 }
             }

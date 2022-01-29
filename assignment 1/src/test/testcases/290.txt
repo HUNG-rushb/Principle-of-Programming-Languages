@@ -1,9 +1,8 @@
 
-            Class Note {
-                m() {
-                    a = name[0].length;
-                    b = age.len[1][2];
-                    c = age::$Len().t()[2];
+            Class __________________________ {
+                ____________dhafiawhu32AFDSAFEAWF5342387______________() {
+                    dwqudhqidhf = name[fewijidwid].fdshfaoifpppp;
+
                 }
             }
         

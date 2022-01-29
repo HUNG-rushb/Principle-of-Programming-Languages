@@ -1,16 +1,8 @@
 
-            Class Program {
-                main() {
-
-                }
-            }
-            Class A: B {
-                Val c: C = New C();
-            }
-            Class C {
-                Var b: A;
-                c__ount__() {
-                    Return C::$name + C.getName().str[2];
+            Class Cfwefw {
+                Var ______________________b________________: _____________________A__________________________;
+                wfea__weuwufhw__________5235() {
+                    Return C::$fwefew + C.mcbnvb().aed[0xFECDA213];
                 }
             }
         

@@ -1,14 +1,7 @@
 
             Class Program {
-                main() {
-
-                }
-
                 func(){
-                    test();
-                    test().a().b().c().d();
-
-                    test()::a()::b()::c()::d();
+                    gjty4578_test();
                 } 
             }
             

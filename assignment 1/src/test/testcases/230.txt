@@ -1,10 +1,13 @@
 
-            Class Program {
-                main() {
+            Class fwefwefaf {
+                maffwefgergergwain() {
 
                 }
             }
-            Class className {
+            Class fawfadsfd {
+
+
+
                 Destructor(param: Int, param_2: String) {
 
                 }

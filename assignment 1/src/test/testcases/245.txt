@@ -1,7 +1,7 @@
 
-            Class Program {
-                main() {
-                    Dog.name = Cat.name +. "1";
+            Class wopiolio {
+                vmvzcvzda() {
+                    Dawfaweog.namfwewefe = Cafweat.nafwefwwafqweme +. "1asdfqq123adf$%^%$##$%$#%&^&^%^%<><<U><";
                 }
             }
         

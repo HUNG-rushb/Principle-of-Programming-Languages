@@ -1,8 +1,10 @@
 
-            Class Program {
-                main() {
-                    Out.ar() {
-                        Return New ClassName();
+
+            Class hungquynhnh {
+
+                fff342411() {
+
+                    tr65.fkdfjdsak() {
                     }
                 }
             }

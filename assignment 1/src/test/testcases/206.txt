@@ -1,7 +1,7 @@
 
-            Class Pro {
-                Main(a: Int; b: Int) {
-                    Return a || b < c.get(1,2) && 23 + 1.4;
+            Class Quynh {
+                fsadf(iuiwer884: Float; b3342: Float) {
+                    Return iuiwer884 || b3342 < cwef.refer(afwedew,sdv2) && 23324 + 134235.4;
                 }
             }
             

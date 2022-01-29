@@ -1,11 +1,11 @@
 
-            Class Program {
-                $method() {
-                    Foreach(i In -3 .. -1 By -100) {
-                        Foreach(j In 0 .. -0xFF By 0b1) {
-                            Var a: Float = 0.2;
+            Class fewfasdf {
+                $methowqfewfuykyud() {
+                    Foreach(i In -323432 .. -1.213e-313421 By -3432) {
+                        Foreach(j_______________________ In 00 .. -0xFF1235176 By 0b1101010101) {
+                            Var fwewefa: String = 0.2e213;
                         }
                     }
-            }
+                }
             }
         

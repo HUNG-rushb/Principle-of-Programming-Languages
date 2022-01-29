@@ -1,13 +1,15 @@
 
-            Class Meow {
-                returnMethod() {
+            Class gaugaugagua {
+                gotobed() {
 
                 }
+
                 Constructor() {
-                    Self.init = value;
+                    Self.create = okokok;
                 }
+
                 Destructor() {
-                    Mew.EraseAll();
+                    Mew.delete();
                 }
             }
         

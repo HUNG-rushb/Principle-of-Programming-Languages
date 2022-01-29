@@ -1,8 +1,8 @@
 
-            Class method {
-                $getName() {
-                    Out.print(B.$name);
-                    Return C.get;
+            Class metfwefwefwhod {
+
+                $getNwer2398239_______fwiui23ame() {
+                    quy.t1234(Bv.$t987);
                 }
             }
         

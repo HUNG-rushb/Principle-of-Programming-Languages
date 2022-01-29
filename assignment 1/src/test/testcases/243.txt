@@ -1,8 +1,9 @@
 
-            Class Program {
-                main() {
-
+            Class Progrdfdafdsfam {
+                msdfaain() {
                 }
             }
-            Out.print(a, b, 3);
+            Ofsadfdsut.prwefwint(adsfa, b, 3);
+            Out.prinsdfs(a, b, 3);
+            Out.prinsdfat(a, b, 3);
         

@@ -1,7 +1,7 @@
 
-            Class Program {
-                main() {
-                    Return New object();
+            Class Progfasdfram {
+                masafasdfin() {
+                    Return New objdsfasdfect();
                 }
             }
         

@@ -1,5 +1,4 @@
 
-            Class B: A, T {
-                Var b: Int = 0;
+            Class ER: Aw, Tfwefa_2387_______fwefu {
             }
         

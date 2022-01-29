@@ -1,1 +1,1 @@
-Var $husadhfosddiidid, hope1day: Boolean = 0b0123456789, 0x473738afbcdAFabcFEBED;
+Var $husadhfosddiidid, hope1day: Boolean = 0b0123456789, 0x473738FEBED;

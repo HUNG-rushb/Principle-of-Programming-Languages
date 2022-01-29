@@ -1,12 +1,12 @@
 
             Class Program {
                 main() {
-                    Var a,b: Array[Float, 4.5];
+                    Var a,b: Array[Float, 3.9];
                 }
             }
-            Class lop {
-                attr(a, b: Int) {
-                    Return a[4] != b[1].name;
+            Class nicebutt {
+                attr(wefwef, w234efwef: Int) {
+                    Return wefwef[4] != we343fwef[1].name;
                 }
             }
         

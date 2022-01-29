@@ -1,6 +1,9 @@
 
             Class Dog {
                 Var name: Int;
+
+
+
                 Var age: Int = 2, 6, 4;
             }
             Class Program {

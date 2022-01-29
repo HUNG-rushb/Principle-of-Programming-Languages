@@ -1,6 +1,6 @@
 
-            Class B {
-                Val b: Int = 0;
-                Val a: Float = Self.a.b.c().t[1];
+            Class wefwef33 {
+                Val bfwefassd: Int = 0x0;
+                Val awefasdfa: Float = Self.ayurty.brtytr.afe2131c().t[00];
             }
         

@@ -1,5 +1,7 @@
 
             Class parent {
+
+
                 Var lname, fname: String = "";
                 $getName() {
                     Return Self.name[2];

@@ -1,8 +1,8 @@
 
-            Class _R {
-                Val $y: Int = 12;
-                _F() {
-                    Val _, _, _: String = 3, 4, 5;
+            Class _Rqwdqweq {
+                Val $_____465y: Int = 12312412;
+                _Fr3fwa() {
+                    Val _, __, ___: Boolean = 3342, 44231, 35459789;
                 }
             }
         

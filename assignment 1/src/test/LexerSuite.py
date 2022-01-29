@@ -51,8 +51,8 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.test("$", "Error Token $", 113))
 
     def test_14(self):
-        self.assertTrue(TestLexer.test("Val $_fajfaksd_ASDFADS213134Asdvas, num____fasdfh__2136512_____dafds: Int = 0b0101110010101010100011111, 0xAFFabcdefABCDEF",
-                        "Val,$_fajfaksd_ASDFADS213134Asdvas,,,num____fasdfh__2136512_____dafds,:,Int,=,0b0,101110010101010100011111,,,0xAFFabcdefABCDEF,<EOF>", 114))
+        self.assertTrue(TestLexer.test("Val $_fajfaksd_ASDFADS213134Asdvas, num____fasdfh__2136512_____dafds: Int = 0b0101110010101010100011111, 0xAFABCDEF",
+                        "Val,$_fajfaksd_ASDFADS213134Asdvas,,,num____fasdfh__2136512_____dafds,:,Int,=,0b0,101110010101010100011111,,,0xAFABCDEF,<EOF>", 114))
 
     def test_15(self):
         self.assertTrue(TestLexer.test(
@@ -149,8 +149,8 @@ class LexerSuite(unittest.TestCase):
     
     def test_32(self):
             self.assertTrue(TestLexer.test("""
-                    0b111111111987 0B09998888 67.9898454600003443 34577777 0X2D3abcFfFfDdddDDD
-                    """, "0b111111111,987,0B0,9998888,67.9898454600003443,34577777,0X2D3abcFfFfDdddDDD,<EOF>", 132))
+                    0b111111111987 0B09998888 67.9898454600003443 34577777 0X2D3FFDDDD
+                    """, "0b111111111,987,0B0,9998888,67.9898454600003443,34577777,0X2D3FFDDDD,<EOF>", 132))
 
     def test_33(self):
         self.assertTrue(TestLexer.test("""
@@ -465,8 +465,8 @@ class LexerSuite(unittest.TestCase):
                                         "Val,$xdxxdxdXDXDXDXD,,,afhhhhhhhhh,,,$fwweieeeeeee,,,9,$gh,:,Array,=,5732828791111,,,6732828791111,,,7732828791111,;,<EOF>",197))
 
     def test_98(self):
-        self.assertTrue(TestLexer.test("Var $husadhfosddiidid, hope1day: Boolean = 0b0123456789, 0x473738afbcdAFabcFEBED;",
-                                        "Var,$husadhfosddiidid,,,hope1day,:,Boolean,=,0b0,123456789,,,0x473738afbcdAFabcFEBED,;,<EOF>",198))
+        self.assertTrue(TestLexer.test("Var $husadhfosddiidid, hope1day: Boolean = 0b0123456789, 0x473738FEBED;",
+                                        "Var,$husadhfosddiidid,,,hope1day,:,Boolean,=,0b0,123456789,,,0x473738FEBED,;,<EOF>",198))
 
     def test_99(self):
         self.assertTrue(TestLexer.test("""

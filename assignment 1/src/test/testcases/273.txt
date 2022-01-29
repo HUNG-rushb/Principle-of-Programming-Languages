@@ -1,7 +1,11 @@
 
-            Class A {
-                method() {
-                    Var a, b, $c: Float = 1.0, 2.3;
+            Class wefwef_q3d2p {
+                sexdfer() {
+                    Val _, _, _: String = 3, 4, 5;
+                    Val _, _, _: String = 3, 4, 5;
+                    Val _, _, _: String = 3, 4, 5;
+                    Val _, _, _: String = 3, 4, 5;
+                    Var aqwe, bewq, $i: Float = 1231.134120e+32178, 234.3E-123;
                 }
             }
         

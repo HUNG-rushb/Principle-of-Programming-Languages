@@ -1,8 +1,8 @@
 
-            Class Program {
+            Class eqwego678dhgf {
                 main() {
-                    Foreach (idx In 1 .. 100 + 5 By a[i] >= 9) {
-                        If (a[i][1] != b[1]) {
+                    Foreach (rtyre564tsg In 1 .. 111111110 + 5 By adfacv[i] >= 234) {
+                        If (a[ifaf][1123] != b[11]) {
                             Return;
                         }
                     }

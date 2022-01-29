@@ -1,12 +1,7 @@
 
-            Class Program {
-                main() {
-
-                }
-            }
-            Class Meo: Dog {
-                $get() {
-                    Self.name = Dog::name;
+            Class Madfasdfsadeo: Dsdafasdfog {
+                $gasdfasdfet() {
+                    Self.naasdfdsafme = Doasdfdsafg::nameasdfsdafsa;
                 }
             }
         

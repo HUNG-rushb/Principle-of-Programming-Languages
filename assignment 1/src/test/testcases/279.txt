@@ -1,7 +1,6 @@
 
-            Class Name {
+            Class efewfwefsdfadf {
                 Continue;
-                Break;
                 Return;
             }
         

@@ -1,12 +1,12 @@
 
-            Class Pro {
-                MainMenu(a: Int; b: Int) {
-                    Self.arr[4] = b.getName() + a.exp();
+            Class WestSide {
+                MainMenu(quynh: Boolean; hung: Int) {
+                    Self.arr[5784378] = hung.cubu() + quynh.dep();
                 }
             }
-            Class ProMax {
-                iPhone13(){
-                    Return 40000000;
+            Class DELLL {
+                Hybrid(){
+                    Return 61236712;
                 }
             }
             

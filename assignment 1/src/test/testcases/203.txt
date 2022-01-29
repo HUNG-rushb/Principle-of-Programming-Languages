@@ -1,9 +1,13 @@
 
-            Class A {
-                getName() {
+            Class calsclasclaslcascl {
+                getMoney() {
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
                     Var b: Float = 0.3;
                 }
-                func() {
+                funjccnskjddjskcsdcvc() {
                     If (a >= b) {
                         Var a: Int = 0;
                         a = a + 3;
@@ -14,14 +18,26 @@
                     Elseif (12 >= g) {
                         Self.insert("String");
                     }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
                     Else {
-                        GiaBao = Hieu;
+                        ___________________ = _______________________________________________________________________;
                         Hung = Vi;
                     }
                 }
 
-                setAge(age: Int) {
-                    Self.age = age;
+                setcvsdvdsvdvAge(okokokok: Boolean) {
+                    Self.agbseegree = agesrgsfdsde;
                 }
             }
             

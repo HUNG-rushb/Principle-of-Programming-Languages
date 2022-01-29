@@ -1,14 +1,28 @@
 
             Class Program {
                 main() {
-
                 }
             }
             Class newClass {
-                Val count: Int = 150;
-                Val sum, rate: Float = 10.2, 34.4;
-                PrintOut() {
-                    Return Self.count * Self.rate;
+                Val counqdqwdt: Int = 150324;
+                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
+                Pr234234intO32ut() {
+                    Return Self.cou123nt * Self.ra213124te;
+                }
+                Val counqdqwdt: Int = 150324;
+                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
+                Pr234234intO32ut() {
+                    Return Self.cou123nt * Self.ra213124te;
+                }
+                Val counqdqwdt: Int = 150324;
+                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
+                Pr234234intO32ut() {
+                    Return Self.cou123nt * Self.ra213124te;
+                }
+                Val counqdqwdt: Int = 150324;
+                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
+                Pr234234intO32ut() {
+                    Return Self.cou123nt * Self.ra213124te;
                 }
             }
         

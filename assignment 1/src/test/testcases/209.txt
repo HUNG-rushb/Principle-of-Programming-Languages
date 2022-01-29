@@ -1,14 +1,5 @@
 
-            Class $Dog {
-                Var $d: Int = 0x12345;
-                foo() {
-                    func(a,b,c);
-                    Return result;
-                }
+            Class $HungYeuQuynhlamnha {
             }
-            Class Program {
-                main(){
 
-                }
-            }
         

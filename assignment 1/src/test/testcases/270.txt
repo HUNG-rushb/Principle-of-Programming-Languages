@@ -1,7 +1,7 @@
 
-            Class E {
-                method() {
-                    Return a[1][2][3] + className.b()[4];
+            Class wqdqwdd234__________fwefE {
+                $weaffwe324asdfas() {
+                    Return aewrw67dfh___________________[123][332][453] + hmmmmmm.bdasf()[412];
                 }
             }
         

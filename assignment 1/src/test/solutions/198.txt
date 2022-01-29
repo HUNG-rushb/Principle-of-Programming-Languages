@@ -1,1 +1,1 @@
-Var,$husadhfosddiidid,,,hope1day,:,Boolean,=,0b0,123456789,,,0x473738afbcdAFabcFEBED,;,<EOF>
+Var,$husadhfosddiidid,,,hope1day,:,Boolean,=,0b0,123456789,,,0x473738FEBED,;,<EOF>

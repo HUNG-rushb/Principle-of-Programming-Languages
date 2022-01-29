@@ -1,8 +1,8 @@
 
-            Class mini {
-                loop(a: Int; b: Float) {
-                    Foreach (i In 0 .. 150 By i <= 8) {
-                        sum = sum + a[i];
+            Class fffffffsdfasfwwf {
+                wewgwfwef(awefwfs: Boolean; bwwebhbhds: Float) {
+                    Foreach (iokosofd In 846 .. 240000 By isdfav <= 9999) {
+                        sfsdfum = sudsfgwerm + rraya[isdafhsf];
                     }
                 }
             }

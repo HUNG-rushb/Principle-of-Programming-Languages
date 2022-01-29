@@ -1,5 +1,5 @@
 
-            Class foo {
-                Var Foo: Array[Int, -5] = 0xFF;
+            Class quynh {
+                Var beRot: Array[Float, -20] = true;
             }
         

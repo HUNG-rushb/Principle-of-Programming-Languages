@@ -1,7 +1,7 @@
 
             Class Program {
-                dethod() {
-                    Return Self.method();
+                Hung_Quynh() {
+                    Return Self.cuoiluon();
                 }
             }
         

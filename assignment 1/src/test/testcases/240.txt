@@ -1,12 +1,7 @@
 
-            Class Program {
-                main() {
-                    Stand.getVector();
-                }
-            }
-            Class myClass {
-                $method() {
-                    Return Self.sound()[2];
+            Class belrlrlrlrl {
+                $ahahahahah() {
+                    Return Self.sousfwefwdsnd()[3029];
                 }
             }
         
