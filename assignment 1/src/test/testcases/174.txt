@@ -1,6 +1,6 @@
 
-        function_test(a: Int) {
-            ## comment at here ##
-            getString("input");
+        funHungnection_test(aloaloo: String) {
+            ## alo alo alo alo phai Quynh hong da##
+            getTrinhDuyHungString("inHungneput");
         }
         

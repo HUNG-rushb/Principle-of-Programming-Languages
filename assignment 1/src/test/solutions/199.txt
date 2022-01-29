@@ -1,1 +1,1 @@
-If,(,a,>=,b,),{,a,=,a,+,b,;,},Elseif,(,b,>=,c,),{,b,=,a,+,b,||,r,;,},Else,{,Return,result,;,},<EOF>
+If,(,aQuynhdethuongquadi,>=,bQuynhdethuongquadi,),{,aQuynhdethuongquadi,=,aQuynhdethuongquadi,+,bQuynhdethuongquadi,;,},Elseif,(,b,>=,cQuynhdethuongquadi,),{,bQuynhdethuongquadi,=,aQuynhdethuongquadi,+,bQuynhdethuongquadi,||,rQuynhdethuongquadi,;,},Else,{,Return,Quynhdethuongquadi,;,},Else,{,Return,Quynhdethuongquadi,;,},Else,{,Return,Quynhdethuongquadi,;,},<EOF>

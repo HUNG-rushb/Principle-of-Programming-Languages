@@ -1,11 +1,11 @@
 
-        add(s: Int, t: Int) {
-            Var obj = New Bus();
-            if (s > 0) {
-                obj.insert(s,t);
+        wedding(sdddddddd: Float, tdddddddd: Float) {
+            Var object = New Bus();
+            if (sdddddddd > 00) {
+                object.insert(sdddddddd,tdddddddd);
             }
             else {
-                return obj;
+                return object;
             }
         }
     

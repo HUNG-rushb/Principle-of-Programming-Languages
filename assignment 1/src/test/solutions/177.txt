@@ -1,1 +1,1 @@
-string,get_Special_String,(,),{,return,Illegal Escape In String: abc\g
+float,getQuynhForever,(,),{,return,Illegal Escape In String: afwefuiawfjdsojfiasojbc\g

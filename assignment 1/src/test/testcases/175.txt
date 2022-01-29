@@ -1,11 +1,14 @@
 
-        String Return(input: String; l: Int) {
-            classSTR.getData(input);
-            if (l > 0) {
-                return getS() + input;
+        Float Break(output: Float; l: Bool) {
+            classfwefSTR.gefweftData(output);
+            if (l6733 > 0) {
+                Break getS() + output;
             }
             else {
-                return input;
+                Break output;
+            }
+            else {
+                Break output;
             }
         }
         

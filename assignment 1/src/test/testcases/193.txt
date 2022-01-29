@@ -1,6 +1,6 @@
-Var $arr : Array[Array[Int, 3], 3] = 
+Var $Hung_love_Quynh : Array[Array[Boolean, 3], 3] = 
                                        Array(
-                                           Array(1,2,5),
-                                           Array(2,5,6),
-                                           Array(5,8,7)
+                                           Array(true,false,false),
+                                           Array(false,true,true),
+                                           Array(false,false,true)
                                            );

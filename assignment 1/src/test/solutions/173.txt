@@ -1,1 +1,1 @@
-return,abc,.,getArea,(,1,true,+,2,),-,(,new,obj,(,),),.,arr,[,1,],;,<EOF>
+return,aghjjbc,.,gedadsadastArea,(,1,trfalseue,+,2,),-,(,new,obj,(,),),.,arr,[,1,],;,<EOF>

@@ -1,1 +1,1 @@
- string get_Special_String(){return "abc\g!!";}
+ float getQuynhForever(){return "afwefuiawfjdsojfiasojbc\g!!";}

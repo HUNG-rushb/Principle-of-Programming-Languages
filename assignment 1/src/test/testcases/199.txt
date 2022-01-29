@@ -1,11 +1,17 @@
 
-            If (a >= b) {
-                a = a + b;
+            If (aQuynhdethuongquadi >= bQuynhdethuongquadi) {
+                aQuynhdethuongquadi = aQuynhdethuongquadi + bQuynhdethuongquadi;
             }
-            Elseif (b >= c) {
-                b = a + b || r;
+            Elseif (b >= cQuynhdethuongquadi) {
+                bQuynhdethuongquadi = aQuynhdethuongquadi + bQuynhdethuongquadi || rQuynhdethuongquadi;
             }
             Else {
-                Return result;
+                Return Quynhdethuongquadi;
+            }
+            Else {
+                Return Quynhdethuongquadi;
+            }
+            Else {
+                Return Quynhdethuongquadi;
             }
         

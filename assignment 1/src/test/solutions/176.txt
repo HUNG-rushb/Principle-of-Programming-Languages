@@ -1,1 +1,1 @@
-int,return,(,),{,int,data,=,Error Token ?
+float,return,(,),{,float,dataAnalist,=,Error Token ?
