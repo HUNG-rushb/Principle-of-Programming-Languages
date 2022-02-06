@@ -1,4 +1,4 @@
-# Generated from c:\Users\DELL\Documents\GitHub\Principle-of-Programming-Languages\assignment 1\src\main\d96\parser\D96.g4 by ANTLR 4.8
+# Generated from c:\Users\DELL\Documents\GitHub\Principle-of-Programming-Languages\assignment 2\src\main\d96\parser\D96.g4 by ANTLR 4.8
 from antlr4 import *
 from io import StringIO
 from typing.io import TextIO

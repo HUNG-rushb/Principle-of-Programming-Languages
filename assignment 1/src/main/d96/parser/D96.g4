@@ -106,9 +106,14 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
         ) (index_operators | );
 
 // If statements 
-if_statements: IF LB expr RB block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
-elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement;
-elseif_statement: ELSEIF LB expr RB block_statements;
+if_condition: LB expr RB;
+// if_statements: IF if_condition block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
+if_statements: IF if_condition block_statements elseif_list_statements;
+
+// elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement;
+elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement | else_statement_or_none;
+elseif_statement: ELSEIF if_condition block_statements else_statement_or_none;
+else_statement_or_none: else_statement | ;
 else_statement: ELSE block_statements;
 
 // For In statement
@@ -143,7 +148,7 @@ return_statements: RETURN return_expr SEMICOLON;
 // program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
 block_class_statements: LCB statements_class RCB;
 block_statements: LCB statements RCB;
-block_statements_in_main: LCB statements RETURN SEMICOLON RCB;
+// block_statements_in_main: LCB statements RETURN SEMICOLON RCB;
 
 statements_class: statement_class statements_class | statement_class | ;
 statements: statement statements | statement | ;

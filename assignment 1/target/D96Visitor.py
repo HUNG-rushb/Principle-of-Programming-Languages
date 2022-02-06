@@ -139,6 +139,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#if_condition.
+    def visitIf_condition(self, ctx:D96Parser.If_conditionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#if_statements.
     def visitIf_statements(self, ctx:D96Parser.If_statementsContext):
         return self.visitChildren(ctx)
@@ -151,6 +156,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#elseif_statement.
     def visitElseif_statement(self, ctx:D96Parser.Elseif_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#else_statement_or_none.
+    def visitElse_statement_or_none(self, ctx:D96Parser.Else_statement_or_noneContext):
         return self.visitChildren(ctx)
 
 
@@ -226,11 +236,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#block_statements.
     def visitBlock_statements(self, ctx:D96Parser.Block_statementsContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#block_statements_in_main.
-    def visitBlock_statements_in_main(self, ctx:D96Parser.Block_statements_in_mainContext):
         return self.visitChildren(ctx)
 
 
