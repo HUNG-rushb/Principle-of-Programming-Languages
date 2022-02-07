@@ -1,0 +1,134 @@
+class ASTGenerator(CSELVisitor):
+    # program: decl+ EOF;
+    # Visit a parse tree produced by CSELParser#program.
+    def visitProgram(self, ctx:CSELParser.ProgramContext):
+        result = []
+        
+        for vd in ctx.decl():
+            result += self.visit(vd)
+            
+        return Program(result)
+
+    # cseltype: INT | FLOAT | BOOLEAN;
+    # Visit a parse tree produced by CSELParser#cseltype.
+    def visitCseltype(self, ctx:CSELParser.CseltypeContext):
+        if ctx.INT():
+            return IntType()
+        elif ctx.FLOAT():
+            return FloatType()
+        elif ctx.BOOLEAN():
+            return BooleanType()
+
+    # decl: vardecl decltail | constdecl decltail | funcdecl decltail;
+    # Visit a parse tree produced by CSELParser#decl.
+    def visitDecl(self, ctx:CSELParser.DeclContext):
+        if ctx.vardecl():
+            varDecl = self.visit(ctx.vardecl())
+            declTail = self.visit(ctx.decltail())
+            return varDecl + declTail
+        elif ctx.funcdecl():
+            funcDecl = self.visit(ctx.funcdecl())
+            declTail = self.visit(ctx.decltail())
+            return funcDecl + declTail
+        elif ctx.constdecl():
+            constDecl = self.visit(ctx.constdecl())
+            declTail = self.visit(ctx.decltail())
+            return constDecl + declTail
+            
+        
+
+    # decltail: vardecl decltail | constdecl decltail | funcdecl decltail | ; 
+    # Visit a parse tree produced by CSELParser#decltail.
+    def visitDecltail(self, ctx:CSELParser.DecltailContext):
+        if ctx.vardecl():
+            varDecl = self.visit(ctx.vardecl())
+            declTail = self.visit(ctx.decltail())
+            return varDecl + declTail
+        elif ctx.funcdecl():
+            funcDecl = self.visit(ctx.funcdecl())
+            declTail = self.visit(ctx.decltail())
+            return funcDecl + declTail
+        elif ctx.constdecl():
+            constDecl = self.visit(ctx.constdecl())
+            declTail = self.visit(ctx.decltail())
+            return constDecl + declTail
+        else:
+            return []
+
+    # vardecl: LET single_vardecls SEMI;
+    # Visit a parse tree produced by CSELParser#vardecl.
+    def visitVardecl(self, ctx:CSELParser.VardeclContext):
+        return self.visit(ctx.single_vardecls())
+
+    # single_vardecls: single_vardecl single_vardecltail;
+    # Visit a parse tree produced by CSELParser#single_vardecls.
+    def visitSingle_vardecls(self, ctx:CSELParser.Single_vardeclsContext):
+        singleVar = self.visit(ctx.single_vardecl())
+        singleVarTail = self.visit(ctx.single_vardecltail())
+        return singleVar + singleVarTail
+
+    # single_vardecl: ID COLON cseltype;
+    # Visit a parse tree produced by CSELParser#single_vardecl.
+    def visitSingle_vardecl(self, ctx:CSELParser.Single_vardeclContext):
+        ids = ctx.ID().getText()
+        typee = self.visit(ctx.cseltype())
+        result = []
+        
+        for a in ids:
+            result.append(VarDecl(Id(a), typee))
+            
+        return result
+
+    # single_vardecltail: COMMA single_vardecl single_vardecltail | ;
+    # Visit a parse tree produced by CSELParser#single_vardecltail.
+    def visitSingle_vardecltail(self, ctx:CSELParser.Single_vardecltailContext):
+        if ctx.getChildCount() == 3:
+            singleVar = self.visit(ctx.single_vardecl())
+            singleVarTail = self.visit(ctx.single_vardecltail())
+            return singleVar + singleVarTail
+        else: 
+            return []
+
+    # constdecl: CONST single_constdecl SEMI;
+    # Visit a parse tree produced by CSELParser#constdecl.
+    def visitConstdecl(self, ctx:CSELParser.ConstdeclContext):
+        return self.visit(ctx.single_constdecl())
+
+    # single_constdecl: ID COLON cseltype EQ expr;
+    # Visit a parse tree produced by CSELParser#single_constdecl.
+    def visitSingle_constdecl(self, ctx:CSELParser.Single_constdeclContext):
+        ids = ctx.ID().getText()
+        typee = self.visit(ctx.cseltype())
+        value = self.visit(ctx.expr())
+        result = []
+        
+        for a in ids:
+            result.append(ConstDecl(Id(a), typee, value))
+            
+        return result
+
+    # expr: INTLIT | FLOATLIT | BOOLEANLIT;
+    # Visit a parse tree produced by CSELParser#expr.
+    def visitExpr(self, ctx:CSELParser.ExprContext):
+        if ctx.INTLIT():
+            return IntLit(int(ctx.INTLIT().getText()))
+        elif ctx.FLOATLIT():
+            return FloatLit(float(ctx.FLOATLIT().getText()))
+        else:
+            return BooleanLit(ctx.BOOLEANLIT().getText() == 'True')
+
+    # funcdecl: FUNCTION ID LR paramlist RR SEMI;
+    # Visit a parse tree produced by CSELParser#funcdecl.
+    def visitFuncdecl(self, ctx:CSELParser.FuncdeclContext):
+        id = ctx.ID().getText()
+        paramList = self.visit(ctx.paramlist())
+        
+        return [FuncDecl(Id(id), paramList)]
+
+    # paramlist: single_vardecls | ;
+    # Visit a parse tree produced by CSELParser#paramlist.
+    def visitParamlist(self, ctx:CSELParser.ParamlistContext):
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.single_vardecls())
+        else:
+            return []
