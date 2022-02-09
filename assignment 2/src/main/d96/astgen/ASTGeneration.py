@@ -13,42 +13,76 @@ class ASTGeneration(D96Visitor):
     # class_declarations: class_declaration class_declarations | class_declaration ;
     def visitClassDeclartions(self, ctx: D96Parser.ProgramContext):
         if ctx.getChildCount() == 1:
-            return self.visit(ctx.class_declaration())
+            class_declaration = [self.visit(ctx.class_declaration())]
+            return class_declaration 
         else:
-            return self.visit(ctx.class_declaration()) + self.visit(ctx.class_declarations())
+            class_declaration = [self.visit(ctx.class_declaration())]
+            class_declarations = self.visit(ctx.class_declarations())
+            return [self.visit(ctx.class_declaration())] + class_declarations 
 
     # class_declaration: CLASS VARIABLE_IN_FUNC_IDENTIFIERS class_inheritance block_class_statements;
     def visitClassDeclartion(self, ctx: D96Parser.ProgramContext):
-        return
+        VARIABLE_IN_FUNC_IDENTIFIERS = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+        class_inheritance = self.visit(ctx.class_inheritance())
+        block_class_statements = self.visit(ctx.block_class_statements())
+
+        return ClassDecl(VARIABLE_IN_FUNC_IDENTIFIERS, block_class_statements, class_inheritance)
 
     # class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
     def visitClassInheritance(self, ctx: D96Parser.ProgramContext):
-        return
+        return Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
 
     # Constructor Destructor
     # constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
     def visitConstructorDeclaration(self, ctx: D96Parser.ProgramContext):
-        return
+        si = Instance() 
+        name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+        list_parameters = self.visit(ctx.list_parameters())
+        block_statements = self.visit(ctx.block_statements())
+
+        return MethodDecl(si, name, list_parameters, block_statements)
 
     # destructor_dclr: DESTRUCTOR LB RB block_statements;
     def visitDestructorDeclaration(self, ctx: D96Parser.ProgramContext):
-        return
+        si = Instance()
+        name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+        list_parameters = self.visit(ctx.list_parameters())
+        block_statements = self.visit(ctx.block_statements())
+        
+        return MethodDecl(si, name, list_parameters, block_statements)
 
     #  Method declaration
     # method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
     def visitMethodDeclaration(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+            name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+            si = Instance()
+        else:
+            name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
+            si = Static()
+
+        list_parameters = self.visit(ctx.list_parameters())
+        block_statements = self.visit(ctx.block_statements())
+       
+        return MethodDecl(si, name, list_parameters, block_statements)
 
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
 
-    # Variable declaration
+    # Variable declaration ****************************************************************************
     # variable_declaration: (VAR | VAL) (declare_initiate_list | no_value_assign_declare_list) SEMICOLON;
     def visitVariableDeclaration(self, ctx: D96Parser.ProgramContext):
-        return
+
+        return VarDecl()
 
     # no_value_assign_declare_list: no_value_assign_declare no_value_assign_declare_list| no_value_assign_declare;
     def visitNoValueAssignDeclareList(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            no_value_assign_declare = [self.visit(ctx.no_value_assign_declare())]
+            return no_value_assign_declare 
+        else:
+            no_value_assign_declare = [self.visit(ctx.no_value_assign_declare())]
+            no_value_assign_declare_list = self.visit(ctx.no_value_assign_declare_list())
+            return [self.visit(ctx.no_value_assign_declare())] + no_value_assign_declare_list 
 
     # no_value_assign_declare: VARIABLE_IN_FUNC_IDENTIFIERS COMMA | VARIABLE_IN_FUNC_IDENTIFIERS | COLON variable_type;
     def visitNoValueAssignDeclare(self, ctx: D96Parser.ProgramContext):
@@ -91,7 +125,37 @@ class ASTGeneration(D96Visitor):
     # Function declaration
     # function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
     def visitFunctionDeclaration(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+            name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+            si = Instance()
+        else:
+            name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
+            si = Static()
+
+        list_parameters = self.visit(ctx.list_parameters())
+        block_statements = self.visit(ctx.block_statements())
+       
+        return MethodDecl(si, name, list_parameters, block_statements)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # call_func_statement: call_func_header call_func_attr_list call_func_end SEMICOLON;
     def visitCallFuncStatement(self, ctx: D96Parser.ProgramContext):
@@ -99,7 +163,10 @@ class ASTGeneration(D96Visitor):
 
     # call_func: call_func_header call_func_attr_list call_func_end;
     def visitCallFunc(self, ctx: D96Parser.ProgramContext):
-        return
+        call_func_header = self.visit(ctx.call_func_header())
+        call_func_attr_list = self.visit(ctx.call_func_attr_list())
+        call_func_end = self.visit(ctx.call_func_end())
+        return CallStmt()
 
     # call_func_header: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (index_operators | ) (DOUBLECOLONOP DOLLAR_IDENTIFIERS | );
     def visitCallFuncHeader(self, ctx: D96Parser.ProgramContext):
@@ -115,14 +182,35 @@ class ASTGeneration(D96Visitor):
                    
     # call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
     def visitCallFuncEnd(self, ctx: D96Parser.ProgramContext):
-        return
+        VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
+        value_list = self.visit(ctx.value_list())
+        return VARIABLE_IN_FUNC_IDENTIFIERS + value_list
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     # Assignment statement
     # assignment_statements: lhs ASSIGNOP expr SEMICOLON;
     def visitAssignmentStatements(self, ctx: D96Parser.ProgramContext):
-        return
+        lhs = Expr(self.visit(ctx.lhs()))
+        expr = Expr(self.visit(ctx.expr()))
+
+        return  Assign(lhs, expr)
         
     # lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
     #         | instance_attr_access 
@@ -131,10 +219,26 @@ class ASTGeneration(D96Visitor):
     def visitLHS(self, ctx: D96Parser.ProgramContext):
         return
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # If statements 
     # if_condition: LB expr RB;
     def visitIfCondition(self, ctx: D96Parser.ProgramContext):
-        return
+        return self.visit(ctx.expr())
 
     # if_statements: IF LB expr RB block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
     def visitIfStatements(self, ctx: D96Parser.ProgramContext):
@@ -157,6 +261,38 @@ class ASTGeneration(D96Visitor):
         return
         
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # For In statement
     # by_expr: (BY expr) | ;
     def visitByExpr(self, ctx: D96Parser.ProgramContext):
@@ -166,7 +302,19 @@ class ASTGeneration(D96Visitor):
     #                     IN expr DOUBLEDOTOP expr by_expr RB block_statements;
     def visitForInStatement(self, ctx: D96Parser.ProgramContext):
         return
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
     # Member access
     # instance_attr_access: expr DOT VARIABLE_IN_FUNC_IDENTIFIERS;
     def visitInstanceAttrAccess(self, ctx: D96Parser.ProgramContext):
@@ -185,6 +333,13 @@ class ASTGeneration(D96Visitor):
         return
         
 
+
+
+
+
+
+
+
     # Method invocation statement
     # method_invocation: instance_method_access | static_method_access;
     def visitMethodInvocation(self, ctx: D96Parser.ProgramContext):
@@ -193,35 +348,56 @@ class ASTGeneration(D96Visitor):
     # method_invocation_statement: method_invocation SEMICOLON;
     def visitMethodInvocationStatement(self, ctx: D96Parser.ProgramContext):
         return
-        
+
+
+
+
+
+
+
+
+
     # Break statement
     # break_statements: BREAK SEMICOLON;
     def visitBreakStatement(self, ctx: D96Parser.ProgramContext):
-        return
+        return Break()
         
     # Continue statement
     # continue_statements: CONTINUE SEMICOLON;
     def visitContinueStatement(self, ctx: D96Parser.ProgramContext):
-        return
+        return Continue()
         
     # Return statement
     # return_expr: expr | ;
     def visitReturnExpr(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.expr())
+
+        else:
+            return [] 
         
     # return_statements: RETURN return_expr SEMICOLON;
     def visitReturnStatement(self, ctx: D96Parser.ProgramContext):
-        return
+        return_expr = Expr(self.visit(ctx.return_expr()))
+        return Return(return_expr)
         
+
+
+
+
+
+
+
+
 
     # Block statements ---------------------------------------------------------------------------------
     # block_class_statements: LCB statements_class RCB;
     def visitBlockClassStatements(self, ctx: D96Parser.ProgramContext):
-        return
+        return self.vist(ctx.statements_class())
         
     # block_statements: LCB statements RCB;
     def visitBlockStatements(self, ctx: D96Parser.ProgramContext):
-        return
+        return self.vist(ctx.statements())
         
     # statements_class: statement_class statements_class | statement_class | ;
     def visitStatemetsClass(self, ctx: D96Parser.ProgramContext):
@@ -252,6 +428,22 @@ class ASTGeneration(D96Visitor):
     def visitStatement(self, ctx: D96Parser.ProgramContext):
         return
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     # EXPRESSIONS ----------------------------------------------------------------------------------
@@ -331,26 +523,89 @@ class ASTGeneration(D96Visitor):
     # Instance, Static accesses
     # instance_accesses: instance_access instance_accesses | instance_access;
     def visitInstanceAccesses(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            instance_access = [self.visit(ctx.instance_access())]
+            return instance_access 
+        else:
+            instance_access = [self.visit(ctx.instance_access())]
+            instance_accesses = self.visit(ctx.instance_accesses())
+            return [self.visit(ctx.instance_access())] + instance_accesses
         
     # instance_access:  DOT VARIABLE_IN_FUNC_IDENTIFIERS
     #                 | DOT VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB;
     def visitInstanceAccess(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 2:
+            VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
+            return VARIABLE_IN_FUNC_IDENTIFIERS 
+            
+        else:
+            VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
+            list_expr = self.visit(ctx.list_expr())
+            return VARIABLE_IN_FUNC_IDENTIFIERS  + list_expr
         
     # static_accesses: static_access static_accesses | static_access;
     def visitStaticAccesses(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            static_access = [self.visit(ctx.static_access())]
+            return static_access 
+        else:
+            static_access = [self.visit(ctx.static_access())]
+            static_accesses = self.visit(ctx.static_accesses())
+            return [self.visit(ctx.static_access())] + static_accesses
         
     # static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
     #                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
     def visitStaticAccess(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 2:
+            DOLLAR_IDENTIFIERS = ctx.DOLLAR_IDENTIFIERS().getText()
+            return DOLLAR_IDENTIFIERS 
+            
+        else:
+            DOLLAR_IDENTIFIERS = ctx.DOLLAR_IDENTIFIERS().getText()
+            list_expr = self.visit(ctx.list_expr())
+            return DOLLAR_IDENTIFIERS  + list_expr 
+
+        
         
     # Expression list 
     # list_expr: expr COMMA list_expr | expr | ;
     def visitListExpr(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            expr = [self.visit(ctx.expr())]
+            return expr 
+
+        elif ctx.getChildCount() == 3:
+            expr = [self.visit(ctx.expr())]
+            list_expr = self.visit(ctx.list_expr())
+            return expr  + list_expr 
+
+        else: 
+            return []
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     # --------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------
@@ -359,48 +614,127 @@ class ASTGeneration(D96Visitor):
     # Array literal
     # array_lit: ARRAY LB array_val RB;
     def visitArrayLiteral(self, ctx: D96Parser.ProgramContext):
-        return
+        return self.visit(ctx.array_val())
         
     # array_val: expr COMMA array_val | expr | ;
     def visitArrayValue(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 3:
+            expr = self.visit(ctx.expr())
+            array_val = self.visit(ctx.array_val())
+
+            return expr + array_val
+
+        elif ctx.getChildCount() == 1:
+            expr = self.visit(ctx.expr())
+            return expr 
+
+        else: 
+            return []
         
     # Literals
-    # literal: INTLIT_IN_ARRAY | INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit;
+    # literal: INTLIT_IN_ARRAY | INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit; *********************************************************************************8
     def visitLiteral(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.INT():
+            return IntType()
+        elif ctx.FLOAT():
+            return FloatType()
+        elif ctx.BOOLEAN():
+            return BoolType()
+        elif ctx.STRING():
+            return StringType()
+        elif ctx.array_type():
+            return ArrayType()
         
     # List of parameters
     # list_parameters: param SEMICOLON list_parameters | param | ;
     def visitListParams(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.param())
+        elif ctx.getChildCount() == 2:
+            param = self.visit(ctx.param())
+            list_parameters = self.visit(ctx.list_parameters())
+            return param + list_parameters
+        else:
+            return []
+        
         
     # param: identifier_list COLON variable_type;
     def visitParam(self, ctx: D96Parser.ProgramContext):
-        return
-        
+        identifier_list = self.visit(ctx.identifier_list())
+        variable_type = self.visit(ctx.variable_type())
+        return identifier_list + variable_type
+
     # Identifiers list
     # identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list 
     #                 | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | ;
     def visitIDList(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 3:
+            if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+                a = self.visit(ctx.VARIABLE_IN_FUNC_IDENTIFIERS())
+            else:
+                a = self.visit(ctx.DOLLAR_IDENTIFIERS())
+
+            identifier_list = self.visit(ctx.identifier_list())
+
+            return a + identifier_list
+
+        elif ctx.getChildCount() == 1:
+            if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+                a = self.visit(ctx.VARIABLE_IN_FUNC_IDENTIFIERS())
+            else:
+                a = self.visit(ctx.DOLLAR_IDENTIFIERS())
+
+            return a 
+
+        else: 
+            return []
         
     # variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list 
     #                                         | VARIABLE_IN_FUNC_IDENTIFIERS | ;
     def visitVariableInFuncIDList(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 3:
+            VARIABLE_IN_FUNC_IDENTIFIERS = self.visit(ctx.VARIABLE_IN_FUNC_IDENTIFIERS())
+            variable_in_func_identifier_list = self.visit(ctx.variable_in_func_identifier_list())
+
+            return VARIABLE_IN_FUNC_IDENTIFIERS + variable_in_func_identifier_list
+
+        elif ctx.getChildCount() == 1:
+            VARIABLE_IN_FUNC_IDENTIFIERS = self.visit(ctx.VARIABLE_IN_FUNC_IDENTIFIERS())
+            return VARIABLE_IN_FUNC_IDENTIFIERS 
+
+        else: 
+            return []
         
 
     # Value list
     # value_list: (literal | expr) COMMA value_list | (literal | expr) | ;
     def visitValueList(self, ctx: D96Parser.ProgramContext):
-        return
+        if ctx.getChildCount() == 1:
+            if ctx.literal():
+                return self.visit(ctx.literal())
+            else:
+                return self.visit(ctx.expr())
+
+        elif ctx.getChildCount() == 2:
+            if ctx.literal():
+                a = self.visit(ctx.literal())
+            else:
+                a = self.visit(ctx.expr())
+
+            value_list = self.visit(ctx.value_list())
+
+            return a + value_list
+
+        else:
+            return []
         
 
     # Array type
     # array_type: ARRAY LSB array_element_type COMMA INTLIT_IN_ARRAY RSB;
     def visitArrayType(self, ctx: D96Parser.ProgramContext):
-        return
+        array_element_type = self.visit(ctx.identifier_list())
+        INTLIT_IN_ARRAY = self.visit(ctx.INTLIT_IN_ARRAY())
+        return array_element_type + INTLIT_IN_ARRAY
         
     # array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
     def visitArrayElementType(self, ctx: D96Parser.ProgramContext):
