@@ -63,11 +63,6 @@ class ASTGeneration(D96Visitor):
 
 
 
-
-
-
-
-
     #  Method declaration
     # method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
     def visitMethod_declaration(self, ctx: D96Parser.Method_declarationContext):
@@ -86,9 +81,6 @@ class ASTGeneration(D96Visitor):
 
 
 
-
-
-        
 
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
 
@@ -386,7 +378,6 @@ class ASTGeneration(D96Visitor):
     def visitReturn_expr(self, ctx: D96Parser.Return_exprContext):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.expr())
-
         else:
             return [] 
         
@@ -405,6 +396,8 @@ class ASTGeneration(D96Visitor):
 
 
     # Block statements ---------------------------------------------------------------------------------
+    
+    #*************************************************************************************
     # block_class_statements: LCB statements_class RCB;
     def visitBlock_class_statements(self, ctx: D96Parser.Block_class_statementsContext):
         return self.visit(ctx.statements_class())
@@ -413,17 +406,33 @@ class ASTGeneration(D96Visitor):
     def visitBlock_statements(self, ctx: D96Parser.Block_statementsContext):
         return self.visit(ctx.statements())
 
-
-
-
-
     # statements_class: statement_class statements_class | statement_class | ;
     def visitStatements_class(self, ctx: D96Parser.Statements_classContext):
-        return []
+        if ctx.getChildCount() == 1:
+            statement_class = [self.visit(ctx.statement_class())]
+            return Block([], statement_class) 
+
+        elif ctx.getChildCount() == 2:
+            statement_class = [self.visit(ctx.statement_class())]
+            statements_class = self.visit(ctx.statements_class())
+            return statement_class  + statements_class 
+
+        else: 
+            return Block([], [])
         
     # statements: statement statements | statement | ;
     def visitStatements(self, ctx: D96Parser.StatementsContext):
-        return
+        if ctx.getChildCount() == 1:
+            statement = [self.visit(ctx.statement())]
+            return Block([], statement) 
+
+        elif ctx.getChildCount() == 2:
+            statement = [self.visit(ctx.statement())]
+            statements = self.visit(ctx.statements())
+            return statement  + statements 
+
+        else: 
+            return Block([], [])
         
 
 
@@ -436,7 +445,18 @@ class ASTGeneration(D96Visitor):
     #                 | constructor_dclr
     #                 | destructor_dclr ;
     def visitStatement_class(self, ctx: D96Parser.Statement_classContext):
-        return
+        if ctx.EQUALOP():
+            operand = ctx.EQUALOP().getText()
+        elif ctx.NOTEQUALOP():
+            operand = ctx.NOTEQUALOP().getText()
+        elif ctx.LT():
+            operand = ctx.LT().getText()
+        elif ctx.GT():
+            operand = ctx.GT().getText()
+        elif ctx.LTE():
+            operand = ctx.LTE().getText()
+        else:
+            operand = ctx.GTE().getText()
         
     # no function declaration
     #  no $
@@ -450,7 +470,18 @@ class ASTGeneration(D96Visitor):
     #             | continue_statements
     #             | return_statements ;
     def visitStatement(self, ctx: D96Parser.StatementContext):
-        return
+        if ctx.EQUALOP():
+            operand = ctx.EQUALOP().getText()
+        elif ctx.NOTEQUALOP():
+            operand = ctx.NOTEQUALOP().getText()
+        elif ctx.LT():
+            operand = ctx.LT().getText()
+        elif ctx.GT():
+            operand = ctx.GT().getText()
+        elif ctx.LTE():
+            operand = ctx.LTE().getText()
+        else:
+            operand = ctx.GTE().getText()
         
 
 
@@ -749,6 +780,11 @@ class ASTGeneration(D96Visitor):
         elif ctx.array_type():
             return ArrayType()
         
+
+
+
+
+
     # List of parameters
     # list_parameters: param SEMICOLON list_parameters | param | ;
     def visitList_parameters(self, ctx: D96Parser.List_parametersContext):
@@ -767,6 +803,11 @@ class ASTGeneration(D96Visitor):
         identifier_list = self.visit(ctx.identifier_list())
         variable_type = self.visit(ctx.variable_type())
         return identifier_list + variable_type
+
+
+
+
+
 
     # Identifiers list
     # identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list 
@@ -836,9 +877,10 @@ class ASTGeneration(D96Visitor):
     # Array type
     # array_type: ARRAY LSB array_element_type COMMA INTLIT_IN_ARRAY RSB;
     def visitArray_type(self, ctx: D96Parser.Array_typeContext):
-        array_element_type = self.visit(ctx.identifier_list())
-        INTLIT_IN_ARRAY = self.visit(ctx.INTLIT_IN_ARRAY())
-        return array_element_type + INTLIT_IN_ARRAY
+        array_element_type = Type(self.visit(ctx.array_element_type()))
+        size = int(self.visit(ctx.INTLIT_IN_ARRAY().getText()))
+        return ArrayType(size, array_element_type)
+        
         
     # array_element_type: array_type | INT | FLOAT | BOOLEAN | STRING;
     def visitArray_element_type(self, ctx: D96Parser.Array_element_typeContext):
@@ -851,7 +893,7 @@ class ASTGeneration(D96Visitor):
         elif ctx.STRING():
             return StringType()
         elif ctx.array_type():
-            return ArrayType()
+            return self.visit(ctx.array_type())
         
 
     # Primitive type
@@ -872,8 +914,8 @@ class ASTGeneration(D96Visitor):
         if ctx.primitive_type():
             return self.visit(ctx.primitive_type())
         elif ctx.array_type():
-            return self.visit(ctx.array_type())
+            return self.visit(ctx.array_type())             
         elif ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
-            return ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
+            return ClassType(Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()))
 
         
