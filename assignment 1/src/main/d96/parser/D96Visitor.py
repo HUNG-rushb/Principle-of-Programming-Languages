@@ -44,53 +44,103 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#variable_declaration.
-    def visitVariable_declaration(self, ctx:D96Parser.Variable_declarationContext):
+    # Visit a parse tree produced by D96Parser#var_variable_declaration.
+    def visitVar_variable_declaration(self, ctx:D96Parser.Var_variable_declarationContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#no_value_assign_declare_list.
-    def visitNo_value_assign_declare_list(self, ctx:D96Parser.No_value_assign_declare_listContext):
+    # Visit a parse tree produced by D96Parser#var_no_value_assign_declare_list.
+    def visitVar_no_value_assign_declare_list(self, ctx:D96Parser.Var_no_value_assign_declare_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#no_value_assign_declare.
-    def visitNo_value_assign_declare(self, ctx:D96Parser.No_value_assign_declareContext):
+    # Visit a parse tree produced by D96Parser#var_no_value_assign_declare.
+    def visitVar_no_value_assign_declare(self, ctx:D96Parser.Var_no_value_assign_declareContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#declare_initiate_list.
-    def visitDeclare_initiate_list(self, ctx:D96Parser.Declare_initiate_listContext):
+    # Visit a parse tree produced by D96Parser#var_declare_initiate_list.
+    def visitVar_declare_initiate_list(self, ctx:D96Parser.Var_declare_initiate_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#type_and_assign.
-    def visitType_and_assign(self, ctx:D96Parser.Type_and_assignContext):
+    # Visit a parse tree produced by D96Parser#var_type_and_assign.
+    def visitVar_type_and_assign(self, ctx:D96Parser.Var_type_and_assignContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#both_variable_declaration.
-    def visitBoth_variable_declaration(self, ctx:D96Parser.Both_variable_declarationContext):
+    # Visit a parse tree produced by D96Parser#val_variable_declaration.
+    def visitVal_variable_declaration(self, ctx:D96Parser.Val_variable_declarationContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#both_no_value_assign_declare_list.
-    def visitBoth_no_value_assign_declare_list(self, ctx:D96Parser.Both_no_value_assign_declare_listContext):
+    # Visit a parse tree produced by D96Parser#val_no_value_assign_declare_list.
+    def visitVal_no_value_assign_declare_list(self, ctx:D96Parser.Val_no_value_assign_declare_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#both_no_value_assign_declare.
-    def visitBoth_no_value_assign_declare(self, ctx:D96Parser.Both_no_value_assign_declareContext):
+    # Visit a parse tree produced by D96Parser#val_no_value_assign_declare.
+    def visitVal_no_value_assign_declare(self, ctx:D96Parser.Val_no_value_assign_declareContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#both_declare_initiate_list.
-    def visitBoth_declare_initiate_list(self, ctx:D96Parser.Both_declare_initiate_listContext):
+    # Visit a parse tree produced by D96Parser#val_declare_initiate_list.
+    def visitVal_declare_initiate_list(self, ctx:D96Parser.Val_declare_initiate_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#both_type_and_assign.
-    def visitBoth_type_and_assign(self, ctx:D96Parser.Both_type_and_assignContext):
+    # Visit a parse tree produced by D96Parser#val_type_and_assign.
+    def visitVal_type_and_assign(self, ctx:D96Parser.Val_type_and_assignContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_variable_declaration.
+    def visitVar_both_variable_declaration(self, ctx:D96Parser.Var_both_variable_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_no_value_assign_declare_list.
+    def visitVar_both_no_value_assign_declare_list(self, ctx:D96Parser.Var_both_no_value_assign_declare_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_no_value_assign_declare.
+    def visitVar_both_no_value_assign_declare(self, ctx:D96Parser.Var_both_no_value_assign_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_declare_initiate_list.
+    def visitVar_both_declare_initiate_list(self, ctx:D96Parser.Var_both_declare_initiate_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_type_and_assign.
+    def visitVar_both_type_and_assign(self, ctx:D96Parser.Var_both_type_and_assignContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#val_both_variable_declaration.
+    def visitVal_both_variable_declaration(self, ctx:D96Parser.Val_both_variable_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#val_both_no_value_assign_declare_list.
+    def visitVal_both_no_value_assign_declare_list(self, ctx:D96Parser.Val_both_no_value_assign_declare_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#val_both_no_value_assign_declare.
+    def visitVal_both_no_value_assign_declare(self, ctx:D96Parser.Val_both_no_value_assign_declareContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#val_both_declare_initiate_list.
+    def visitVal_both_declare_initiate_list(self, ctx:D96Parser.Val_both_declare_initiate_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#val_both_type_and_assign.
+    def visitVal_both_type_and_assign(self, ctx:D96Parser.Val_both_type_and_assignContext):
         return self.visitChildren(ctx)
 
 

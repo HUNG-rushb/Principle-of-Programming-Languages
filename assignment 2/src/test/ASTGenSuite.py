@@ -9,26 +9,31 @@ class ASTGenSuite(unittest.TestCase):
         expect = """Program([ClassDecl(Id(Dog),[])])"""
         self.assertTrue(TestAST.test(input,expect,301))
 
-    # def test2(self):
-    #     input = """Class Dog : Animal { }"""
-    #     expect = """Program([ClassDecl(Id(Dog),Id(Animal),[])])"""
-    #     self.assertTrue(TestAST.test(input,expect,302))
+    def test2(self):
+        input = """Class Dog : Animal { }"""
+        expect = """Program([ClassDecl(Id(Dog),Id(Animal),[])])"""
+        self.assertTrue(TestAST.test(input,expect,302))
+
     # def test3(self):
     #     input = """Class Dog : Animal { main(){} }"""
     #     expect = """Program([ClassDecl(Id(Dog),Id(Animal),[MethodDecl(Id(main),Instance,[],Block([],[]))])])"""
     #     self.assertTrue(TestAST.test(input,expect,303))
+
     # def test4(self):
     #     input = """Class Dog : Animal { $test(){} main(){} }"""
     #     expect = """Program([ClassDecl(Id(Dog),Id(Animal),[MethodDecl(Id($test),Static,[],Block([],[])),MethodDecl(Id(main),Instance,[],Block([],[]))])])"""
     #     self.assertTrue(TestAST.test(input,expect,304))
+
     # def test5(self):
     #     input = """Class Dog : Animal { $test(a, b, c:Int){} }"""
     #     expect = """Program([ClassDecl(Id(Dog),Id(Animal),[MethodDecl(Id($test),Static,[param(Id(a),IntType),param(Id(b),IntType),param(Id(c),IntType)],Block([],[]))])])"""
     #     self.assertTrue(TestAST.test(input,expect,305))
+
     # def test6(self):
     #     input = """Class Dog : Animal { $test(a, b, c:Int){ Break; Continue; } }"""
     #     expect = """Program([ClassDecl(Id(Dog),Id(Animal),[MethodDecl(Id($test),Static,[param(Id(a),IntType),param(Id(b),IntType),param(Id(c),IntType)],Block([],[Break,Continue]))])])"""
     #     self.assertTrue(TestAST.test(input,expect,306))
+    
     # def test7(self):
     #     input = """
     #     Class Dog : Animal 

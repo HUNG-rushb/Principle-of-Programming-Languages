@@ -199,7 +199,7 @@ class For(Stmt):
     loop: Stmt
 
     def __str__(self):
-        return "For(" + str(self.id) + "," + str(self.expr1) + "," + str(self.expr2) + "," + str(self.up) + ',' + str(self.loop) + "])"
+        return "For(" + str(self.id) + "," + str(self.expr1) + "," + str(self.expr2) + "," + str(self.up) + ',' + str(self.loop) + ")"
 
 
 class Break(Stmt):
@@ -280,15 +280,11 @@ class SIKind(AST):
     __metaclass__ = ABCMeta
 
 # used for instance member
-
-
 class Instance(SIKind):
     def __str__(self):
         return "Instance"
 
 # used for static member
-
-
 class Static(SIKind):
     def __str__(self):
         return "Static"
