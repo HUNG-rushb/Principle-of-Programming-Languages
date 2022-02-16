@@ -65,7 +65,21 @@ class ASTGeneration(D96Visitor):
 
     #  Method declaration
     # method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
-    def visitMethod_declaration(self, ctx: D96Parser.Method_declarationContext):
+    # def visitMethod_declaration(self, ctx: D96Parser.Method_declarationContext):
+    #     if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+    #         name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+    #         si = Instance()
+    #     else:
+    #         name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
+    #         si = Static()
+
+    #     list_parameters = self.visit(ctx.list_parameters())
+    #     block_statements = self.visit(ctx.block_statements())
+       
+    #     return MethodDecl(si, name, list_parameters, block_statements)
+
+
+    def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
         if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
             name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
             si = Instance()
@@ -79,61 +93,75 @@ class ASTGeneration(D96Visitor):
         return MethodDecl(si, name, list_parameters, block_statements)
 
 
-
-
-
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
 
-    # Variable declaration ****************************************************************************
-    # variable_declaration: (VAR | VAL) (declare_initiate_list | no_value_assign_declare_list) SEMICOLON;
+    
+
+
+
+
+
+    
+
+    
+
+
+
+
+        
+
+    #! Variable declaration ****************************************************************************
+    #! Variable declaration ****************************************************************************
+    #! Variable declaration ****************************************************************************
+    #! Variable declaration ****************************************************************************
+
+    # var_variable_declaration_noinit: VAR variable_in_func_identifier_list COLON variable_type SEMICOLON;
+
+    # var_variable_declaration: VAR var_declare_initiate_list SEMICOLON;
+    # var_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr
+    #                                 | variable_in_func_identifier_list COLON variable_type;
+    # var_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr COMMA
+    #                         | COLON variable_type ASSIGNOP;
+    def visitVar_variable_declaration_noinit(self, ctx: D96Parser.Var_variable_declaration_noinitContext):
+        identifier_list = self.visit(ctx.variable_in_func_identifier_list())
+        variable_type = self.visit(ctx.variable_type())
+        result = []
+        
+        for i in identifier_list:
+            result += [VarDecl(i, variable_type, None)]
+
+        return result
+        
     def visitVar_variable_declaration(self, ctx: D96Parser.Var_variable_declarationContext):
-        if ctx.VAR():
-            variable = Id()
-            varType = Type()
-            
-            return VarDecl(variable, varType, )
-        else:
-            return ConstDecl()
+        return None
 
-    # no_value_assign_declare_list: no_value_assign_declare no_value_assign_declare_list| no_value_assign_declare;
-    def visitVar_no_value_assign_declare_list(self, ctx: D96Parser.Var_no_value_assign_declare_listContext):
-        if ctx.getChildCount() == 1:
-            no_value_assign_declare = [self.visit(ctx.no_value_assign_declare())]
-
-            return no_value_assign_declare 
-        else:
-            no_value_assign_declare = [self.visit(ctx.no_value_assign_declare())]
-            no_value_assign_declare_list = self.visit(ctx.no_value_assign_declare_list())
-
-            return [self.visit(ctx.no_value_assign_declare())] + no_value_assign_declare_list 
-
-    # no_value_assign_declare: VARIABLE_IN_FUNC_IDENTIFIERS COMMA | VARIABLE_IN_FUNC_IDENTIFIERS | COLON variable_type;
-    def visitVar_no_value_assign_declare(self, ctx: D96Parser.Var_no_value_assign_declareContext):
-        return
-
-    # declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign expr
-    #                             | variable_in_func_identifier_list COLON variable_type;
     def visitVar_declare_initiate_list(self, ctx: D96Parser.Var_declare_initiate_listContext):
-        return
+        return None
 
-    # type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS type_and_assign expr COMMA
-    #                     | COLON variable_type ASSIGNOP;
     def visitVar_type_and_assign(self, ctx: D96Parser.Var_type_and_assignContext):
-        return
+        return None
 
 
+    # val_variable_declaration_noinit: VAL variable_in_func_identifier_list COLON variable_type SEMICOLON;
 
+    # val_variable_declaration: VAL val_declare_initiate_list SEMICOLON;
+    # val_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr
+    #                                 | variable_in_func_identifier_list COLON variable_type;
+    # val_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr COMMA
+    #                         | COLON variable_type ASSIGNOP;
 
+    def visitVal_variable_declaration_noinit(self, ctx: D96Parser.Val_variable_declaration_noinitContext):
+        identifier_list = self.visit(ctx.variable_in_func_identifier_list())
+        variable_type = self.visit(ctx.variable_type())
+        result = []
+        
+        for i in identifier_list:
+            result += [ConstDecl(i, variable_type, None)]
 
+        return result
 
     def visitVal_variable_declaration(self, ctx: D96Parser.Val_variable_declarationContext):
-        return None
-
-    def visitVal_no_value_assign_declare_list(self, ctx: D96Parser.Val_no_value_assign_declare_listContext):
-        return None
-
-    def visitVal_no_value_assign_declare(self, ctx: D96Parser.Val_no_value_assign_declareContext):
-        return None
+        return None 
 
     def visitVal_declare_initiate_list(self, ctx: D96Parser.Val_declare_initiate_listContext):
         return None
@@ -143,6 +171,26 @@ class ASTGeneration(D96Visitor):
 
 
 
+    
+
+
+
+
+
+
+
+
+
+
+    def visitVar_both_variable_declaration_noinnit(self, ctx: D96Parser.Var_both_variable_declaration_noinnitContext):
+        identifier_list = self.visit(ctx.identifier_list())
+        variable_type = self.visit(ctx.variable_type())
+        result = []
+        
+        for i in identifier_list:
+            result += [VarDecl(i, variable_type, None)]
+
+        return result
 
     def visitVar_both_variable_declaration(self, ctx: D96Parser.Var_both_variable_declarationContext):
         return None
@@ -159,16 +207,17 @@ class ASTGeneration(D96Visitor):
     def visitVar_both_type_and_assign(self, ctx: D96Parser.Var_both_type_and_assignContext):
         return None
 
+    def visitVal_both_variable_declaration_noinnit(self, ctx: D96Parser.Val_both_variable_declaration_noinnitContext):
+        identifier_list = self.visit(ctx.identifier_list())
+        variable_type = self.visit(ctx.variable_type())
+        result = []
+        
+        for i in identifier_list:
+            result += [ConstDecl(i, variable_type, None)]
 
-
+        return result
 
     def visitVal_both_variable_declaration(self, ctx: D96Parser.Val_both_variable_declarationContext):
-        return None
-
-    def visitVal_both_no_value_assign_declare_list(self, ctx: D96Parser.Val_both_no_value_assign_declare_listContext):
-        return None
-
-    def visitVal_both_no_value_assign_declare(self, ctx: D96Parser.Val_both_no_value_assign_declareContext):
         return None
 
     def visitVal_both_declare_initiate_list(self, ctx: D96Parser.Val_both_declare_initiate_listContext):
@@ -176,16 +225,6 @@ class ASTGeneration(D96Visitor):
 
     def visitVal_both_type_and_assign(self, ctx: D96Parser.Val_both_type_and_assignContext):
         return None
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -256,7 +295,13 @@ class ASTGeneration(D96Visitor):
 
 
 
-    # Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
+    # ! Assignment statement
     # assignment_statements: lhs ASSIGNOP expr SEMICOLON;
     def visitAssignment_statements(self, ctx: D96Parser.Assignment_statementsContext):
         lhs = Expr(self.visit(ctx.lhs()))
@@ -279,7 +324,15 @@ class ASTGeneration(D96Visitor):
 
 
 
-    # If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
+    # ! If statements 
     # if_condition: LB expr RB;
     def visitIf_condition(self, ctx: D96Parser.If_conditionContext):
         return self.visit(ctx.expr())
@@ -310,7 +363,12 @@ class ASTGeneration(D96Visitor):
 
 
 
-    # For In statement
+    # ! For In statement
+    # ! For In statement
+    # ! For In statement
+    # ! For In statement
+    # ! For In statement
+    # ! For In statement
     # by_expr: (BY expr) | ;
     def visitBy_expr(self, ctx: D96Parser.By_exprContext):
         return
@@ -366,12 +424,12 @@ class ASTGeneration(D96Visitor):
     # Break statement
     # break_statements: BREAK SEMICOLON;
     def visitBreak_statements(self, ctx: D96Parser.Break_statementsContext):
-        return Break()
+        return [Break()]
         
     # Continue statement
     # continue_statements: CONTINUE SEMICOLON;
     def visitContinue_statements(self, ctx: D96Parser.Continue_statementsContext):
-        return Continue()
+        return [Continue()]
         
     # Return statement
     # return_expr: expr | ;
@@ -384,8 +442,31 @@ class ASTGeneration(D96Visitor):
     # return_statements: RETURN return_expr SEMICOLON;
     def visitReturn_statements(self, ctx: D96Parser.Return_statementsContext):
         return_expr = Expr(self.visit(ctx.return_expr()))
-        return Return(return_expr)
+        return [Return(return_expr)]
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -396,20 +477,16 @@ class ASTGeneration(D96Visitor):
 
 
     # Block statements ---------------------------------------------------------------------------------
-    
-    #*************************************************************************************
+    # Block statements ---------------------------------------------------------------------------------
+    # Block statements ---------------------------------------------------------------------------------
+
     # block_class_statements: LCB statements_class RCB;
     def visitBlock_class_statements(self, ctx: D96Parser.Block_class_statementsContext):
         return self.visit(ctx.statements_class())
         
     # block_statements: LCB statements RCB;
     def visitBlock_statements(self, ctx: D96Parser.Block_statementsContext):
-        return self.visit(ctx.statements())
-
-
-
-
-
+        return Block(self.visit(ctx.statements()))
 
 
     # statements_class: statement_class statements_class | statement_class | ;
@@ -431,32 +508,35 @@ class ASTGeneration(D96Visitor):
     def visitStatements(self, ctx: D96Parser.StatementsContext):
         if ctx.getChildCount() == 1:
             statement = [self.visit(ctx.statement())]
-            return [statement] 
+            return statement 
 
         elif ctx.getChildCount() == 2:
             statement = [self.visit(ctx.statement())]
             statements = self.visit(ctx.statements())
-            return [statement] + statements 
+            return statement + statements 
 
         else: 
-            return Block([])
+            return []
         
-
-
-
-
-
         
-    # statement_class: var_both_variable_declaration
-    #                 | val_both_variable_declaration
-    #                 | function_declaration
-    #                 | constructor_dclr
-    #                 | destructor_dclr ;
+#    statement_class: var_both_variable_declaration
+#                 | val_both_variable_declaration
+#                 | var_both_variable_declaration_noinnit
+#                 | val_both_variable_declaration_noinnit
+#                 | function_declaration
+#                 | constructor_dclr
+#                 | destructor_dclr ;
     def visitStatement_class(self, ctx: D96Parser.Statement_classContext):
         if ctx.var_both_variable_declaration():
             return self.visit(ctx.var_both_variable_declaration())
         elif ctx.val_both_variable_declaration():
             return self.visit(ctx.val_both_variable_declaration())
+
+        elif ctx.var_both_variable_declaration_noinnit():
+            return self.visit(ctx.var_both_variable_declaration_noinnit())
+        elif ctx.val_both_variable_declaration_noinnit():
+            return self.visit(ctx.val_both_variable_declaration_noinnit())
+
         elif ctx.function_declaration():
             return self.visit(ctx.function_declaration())
         elif ctx.constructor_dclr():
@@ -464,9 +544,13 @@ class ASTGeneration(D96Visitor):
         else:
             return self.visit(ctx.destructor_dclr())
         
-    # no function declaration
-    #  no $
+# no function declaration
+# no $
 # statement: var_variable_declaration 
+#             | val_variable_declaration 
+#             | var_variable_declaration_noinit 
+#             | val_variable_declaration_noinit 
+#             | assignment_statements 
 #             | val_variable_declaration 
 #             | assignment_statements 
 #             | if_statements 
@@ -478,25 +562,32 @@ class ASTGeneration(D96Visitor):
 #             | return_statements ;
     def visitStatement(self, ctx: D96Parser.StatementContext):
         if ctx.var_variable_declaration():
-            self.visit(ctx.var_variable_declaration())
+            return self.visit(ctx.var_variable_declaration())
         elif ctx.val_variable_declaration():
-            self.visit(ctx.val_variable_declaration())
+            return self.visit(ctx.val_variable_declaration())
+
+        elif ctx.var_variable_declaration_noinit():
+            return self.visit(ctx.var_variable_declaration_noinit())
+            
+        elif ctx.val_variable_declaration_noinit():
+            return self.visit(ctx.val_variable_declaration_noinit())
+
         elif ctx.assignment_statements():
-            self.visit(ctx.assignment_statements())
+            return self.visit(ctx.assignment_statements())
         elif ctx.if_statements():
-            self.visit(ctx.if_statements())
+            return self.visit(ctx.if_statements())
         elif ctx.forin_statements():
-            self.visit(ctx.forin_statements())
+            return self.visit(ctx.forin_statements())
         elif ctx.call_func_statement():
-            self.visit(ctx.call_func_statement())
+            return self.visit(ctx.call_func_statement())
         elif ctx.method_invocation_statement():
-            self.visit(ctx.method_invocation_statement())
+            return self.visit(ctx.method_invocation_statement())
         elif ctx.break_statements():
-            self.visit(ctx.break_statements())
+            return self.visit(ctx.break_statements())
         elif ctx.continue_statements():
-            self.visit(ctx.continue_statements())
+            return self.visit(ctx.continue_statements())
         else:
-            self.visit(ctx.return_statements())
+            return self.visit(ctx.return_statements())
         
 
 

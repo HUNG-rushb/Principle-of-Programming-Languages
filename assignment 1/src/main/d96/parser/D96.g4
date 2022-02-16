@@ -59,24 +59,18 @@ method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_
 
 // Variable declaration
 // Var
-var_variable_declaration: VAR (var_declare_initiate_list | var_no_value_assign_declare_list) SEMICOLON;
-var_no_value_assign_declare_list: var_no_value_assign_declare var_no_value_assign_declare_list| var_no_value_assign_declare;
-var_no_value_assign_declare: VARIABLE_IN_FUNC_IDENTIFIERS COMMA 
-                                | VARIABLE_IN_FUNC_IDENTIFIERS 
-                                | COLON variable_type;
+var_variable_declaration_noinit: VAR variable_in_func_identifier_list COLON variable_type SEMICOLON;
 
+var_variable_declaration: VAR var_declare_initiate_list SEMICOLON;
 var_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr
                                 | variable_in_func_identifier_list COLON variable_type;
 var_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr COMMA
                         | COLON variable_type ASSIGNOP;
 
 // Val
-val_variable_declaration: VAL (val_declare_initiate_list | val_no_value_assign_declare_list) SEMICOLON;
-val_no_value_assign_declare_list: val_no_value_assign_declare val_no_value_assign_declare_list| val_no_value_assign_declare;
-val_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS COMMA 
-                                        | VARIABLE_IN_FUNC_IDENTIFIERS 
-                                        | COLON variable_type);
+val_variable_declaration_noinit: VAL variable_in_func_identifier_list COLON variable_type SEMICOLON;
 
+val_variable_declaration: VAL val_declare_initiate_list SEMICOLON;
 val_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr
                                 | variable_in_func_identifier_list COLON variable_type;
 val_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr COMMA
@@ -91,7 +85,9 @@ val_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr
 
 // Both declaration
 // Var
-var_both_variable_declaration: VAR (var_both_declare_initiate_list | var_both_no_value_assign_declare_list) SEMICOLON;
+var_both_variable_declaration_noinnit: VAR identifier_list COLON variable_type SEMICOLON;
+
+var_both_variable_declaration: VAR var_both_declare_initiate_list SEMICOLON;
 var_both_no_value_assign_declare_list: var_both_no_value_assign_declare var_both_no_value_assign_declare_list| var_both_no_value_assign_declare;
 var_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
 
@@ -100,15 +96,30 @@ var_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIE
 var_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr COMMA
                         | COLON variable_type ASSIGNOP;
 
-// Val
-val_both_variable_declaration: VAL (val_both_declare_initiate_list | val_both_no_value_assign_declare_list) SEMICOLON;
-val_both_no_value_assign_declare_list: val_both_no_value_assign_declare val_both_no_value_assign_declare_list| val_both_no_value_assign_declare;
-val_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
+// var_both_no_value_assign_declare_list: var_both_no_value_assign_declare var_both_no_value_assign_declare_list| var_both_no_value_assign_declare;
+// var_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
 
+// var_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr
+//                                 | variable_in_func_identifier_list COLON variable_type;
+// var_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr COMMA
+//                         | COLON variable_type ASSIGNOP;
+
+// Val
+val_both_variable_declaration_noinnit: VAL identifier_list COLON variable_type SEMICOLON;
+
+val_both_variable_declaration: VAL val_both_declare_initiate_list SEMICOLON;
 val_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr
                                 | variable_in_func_identifier_list COLON variable_type;
 val_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr COMMA
                         | COLON variable_type ASSIGNOP;
+
+// val_both_no_value_assign_declare_list: val_both_no_value_assign_declare val_both_no_value_assign_declare_list| val_both_no_value_assign_declare;
+// val_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
+
+// val_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr
+//                                 | variable_in_func_identifier_list COLON variable_type;
+// val_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr COMMA
+//                         | COLON variable_type ASSIGNOP;
 
 
 
@@ -149,6 +160,11 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
         | static_attr_access 
         ) (index_operators | );
 
+
+
+
+
+
 // If statements 
 if_condition: LB expr RB;
 // if_statements: IF if_condition block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
@@ -159,6 +175,11 @@ elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statem
 elseif_statement: ELSEIF if_condition block_statements else_statement_or_none;
 else_statement_or_none: else_statement | ;
 else_statement: ELSE block_statements;
+
+
+
+
+
 
 // For In statement
 by_expr: (BY expr) | ;
@@ -199,6 +220,8 @@ statements: statement statements | statement | ;
 
 statement_class: var_both_variable_declaration
                 | val_both_variable_declaration
+                | var_both_variable_declaration_noinnit
+                | val_both_variable_declaration_noinnit
                 | function_declaration
                 | constructor_dclr
                 | destructor_dclr ;
@@ -206,6 +229,10 @@ statement_class: var_both_variable_declaration
 // no function declaration
 // no $
 statement: var_variable_declaration 
+            | val_variable_declaration 
+            | var_variable_declaration_noinit 
+            | val_variable_declaration_noinit 
+            | assignment_statements 
             | val_variable_declaration 
             | assignment_statements 
             | if_statements 

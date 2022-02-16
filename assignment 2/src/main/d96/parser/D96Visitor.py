@@ -39,23 +39,13 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#method_declaration.
-    def visitMethod_declaration(self, ctx:D96Parser.Method_declarationContext):
+    # Visit a parse tree produced by D96Parser#var_variable_declaration_noinit.
+    def visitVar_variable_declaration_noinit(self, ctx:D96Parser.Var_variable_declaration_noinitContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by D96Parser#var_variable_declaration.
     def visitVar_variable_declaration(self, ctx:D96Parser.Var_variable_declarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#var_no_value_assign_declare_list.
-    def visitVar_no_value_assign_declare_list(self, ctx:D96Parser.Var_no_value_assign_declare_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#var_no_value_assign_declare.
-    def visitVar_no_value_assign_declare(self, ctx:D96Parser.Var_no_value_assign_declareContext):
         return self.visitChildren(ctx)
 
 
@@ -69,18 +59,13 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#val_variable_declaration_noinit.
+    def visitVal_variable_declaration_noinit(self, ctx:D96Parser.Val_variable_declaration_noinitContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#val_variable_declaration.
     def visitVal_variable_declaration(self, ctx:D96Parser.Val_variable_declarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#val_no_value_assign_declare_list.
-    def visitVal_no_value_assign_declare_list(self, ctx:D96Parser.Val_no_value_assign_declare_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#val_no_value_assign_declare.
-    def visitVal_no_value_assign_declare(self, ctx:D96Parser.Val_no_value_assign_declareContext):
         return self.visitChildren(ctx)
 
 
@@ -91,6 +76,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#val_type_and_assign.
     def visitVal_type_and_assign(self, ctx:D96Parser.Val_type_and_assignContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#var_both_variable_declaration_noinnit.
+    def visitVar_both_variable_declaration_noinnit(self, ctx:D96Parser.Var_both_variable_declaration_noinnitContext):
         return self.visitChildren(ctx)
 
 
@@ -119,18 +109,13 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#val_both_variable_declaration_noinnit.
+    def visitVal_both_variable_declaration_noinnit(self, ctx:D96Parser.Val_both_variable_declaration_noinnitContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#val_both_variable_declaration.
     def visitVal_both_variable_declaration(self, ctx:D96Parser.Val_both_variable_declarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#val_both_no_value_assign_declare_list.
-    def visitVal_both_no_value_assign_declare_list(self, ctx:D96Parser.Val_both_no_value_assign_declare_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#val_both_no_value_assign_declare.
-    def visitVal_both_no_value_assign_declare(self, ctx:D96Parser.Val_both_no_value_assign_declareContext):
         return self.visitChildren(ctx)
 
 
