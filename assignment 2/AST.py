@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod, ABCMeta
-from stringprep import c22_specials
 from Visitor import Visitor
 from dataclasses import dataclass
 from typing import List, Tuple
@@ -104,7 +103,7 @@ class ArrayCell(LHS):
 @dataclass
 class FieldAccess(LHS):
     obj: Expr
-    fieldname: Id 
+    fieldname: Id
 
     def __str__(self):
         return "FieldAccess(" + str(self.obj) + "," + str(self.fieldname) + ")"
