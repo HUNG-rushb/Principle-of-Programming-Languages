@@ -20,9 +20,6 @@ class ASTGeneration(D96Visitor):
     def visitDestructor_dclr(self, ctx: D96Parser.Destructor_dclrContext):
         return None
 
-    def visitMethod_declaration(self, ctx: D96Parser.Method_declarationContext):
-        return None
-
     def visitVar_variable_declaration_noinit(self, ctx: D96Parser.Var_variable_declaration_noinitContext):
         return None
 
@@ -30,9 +27,6 @@ class ASTGeneration(D96Visitor):
         return None
 
     def visitVar_declare_initiate_list(self, ctx: D96Parser.Var_declare_initiate_listContext):
-        return None
-
-    def visitVar_type_and_assign(self, ctx: D96Parser.Var_type_and_assignContext):
         return None
 
     def visitVal_variable_declaration_noinit(self, ctx: D96Parser.Val_variable_declaration_noinitContext):
@@ -44,25 +38,13 @@ class ASTGeneration(D96Visitor):
     def visitVal_declare_initiate_list(self, ctx: D96Parser.Val_declare_initiate_listContext):
         return None
 
-    def visitVal_type_and_assign(self, ctx: D96Parser.Val_type_and_assignContext):
-        return None
-
     def visitVar_both_variable_declaration_noinnit(self, ctx: D96Parser.Var_both_variable_declaration_noinnitContext):
         return None
 
     def visitVar_both_variable_declaration(self, ctx: D96Parser.Var_both_variable_declarationContext):
         return None
 
-    def visitVar_both_no_value_assign_declare_list(self, ctx: D96Parser.Var_both_no_value_assign_declare_listContext):
-        return None
-
-    def visitVar_both_no_value_assign_declare(self, ctx: D96Parser.Var_both_no_value_assign_declareContext):
-        return None
-
     def visitVar_both_declare_initiate_list(self, ctx: D96Parser.Var_both_declare_initiate_listContext):
-        return None
-
-    def visitVar_both_type_and_assign(self, ctx: D96Parser.Var_both_type_and_assignContext):
         return None
 
     def visitVal_both_variable_declaration_noinnit(self, ctx: D96Parser.Val_both_variable_declaration_noinnitContext):
@@ -72,9 +54,6 @@ class ASTGeneration(D96Visitor):
         return None
 
     def visitVal_both_declare_initiate_list(self, ctx: D96Parser.Val_both_declare_initiate_listContext):
-        return None
-
-    def visitVal_both_type_and_assign(self, ctx: D96Parser.Val_both_type_and_assignContext):
         return None
 
     def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):

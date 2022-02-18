@@ -79,31 +79,24 @@ class ASTGeneration(D96Visitor):
     #     return MethodDecl(si, name, list_parameters, block_statements)
 
 
-    def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
-        if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
-            name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
-            si = Instance()
-        else:
-            name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
-            si = Static()
+    # def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
+    #     if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
+    #         name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+    #         si = Instance()
+    #     else:
+    #         name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
+    #         si = Static()
 
-        list_parameters = self.visit(ctx.list_parameters())
-        block_statements = self.visit(ctx.block_statements())
+    #     list_parameters = self.visit(ctx.list_parameters())
+    #     block_statements = self.visit(ctx.block_statements())
        
-        return MethodDecl(si, name, list_parameters, block_statements)
+    #     return MethodDecl(si, name, list_parameters, block_statements)
 
 
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
 
     
 
-
-
-
-
-    
-
-    
 
 
 
@@ -127,7 +120,9 @@ class ASTGeneration(D96Visitor):
         variable_type = self.visit(ctx.variable_type())
         result = []
         
+        # print(identifier_list)
         for i in identifier_list:
+            # print(i)
             result += [VarDecl(i, variable_type, None)]
 
         return result
@@ -136,9 +131,6 @@ class ASTGeneration(D96Visitor):
         return None
 
     def visitVar_declare_initiate_list(self, ctx: D96Parser.Var_declare_initiate_listContext):
-        return None
-
-    def visitVar_type_and_assign(self, ctx: D96Parser.Var_type_and_assignContext):
         return None
 
 
@@ -161,12 +153,9 @@ class ASTGeneration(D96Visitor):
         return result
 
     def visitVal_variable_declaration(self, ctx: D96Parser.Val_variable_declarationContext):
-        return None 
-
-    def visitVal_declare_initiate_list(self, ctx: D96Parser.Val_declare_initiate_listContext):
         return None
 
-    def visitVal_type_and_assign(self, ctx: D96Parser.Val_type_and_assignContext):
+    def visitVal_declare_initiate_list(self, ctx: D96Parser.Val_declare_initiate_listContext):
         return None
 
 
@@ -195,17 +184,10 @@ class ASTGeneration(D96Visitor):
     def visitVar_both_variable_declaration(self, ctx: D96Parser.Var_both_variable_declarationContext):
         return None
 
-    def visitVar_both_no_value_assign_declare_list(self, ctx: D96Parser.Var_both_no_value_assign_declare_listContext):
-        return None
-
-    def visitVar_both_no_value_assign_declare(self, ctx: D96Parser.Var_both_no_value_assign_declareContext):
-        return None
-
     def visitVar_both_declare_initiate_list(self, ctx: D96Parser.Var_both_declare_initiate_listContext):
         return None
 
-    def visitVar_both_type_and_assign(self, ctx: D96Parser.Var_both_type_and_assignContext):
-        return None
+
 
     def visitVal_both_variable_declaration_noinnit(self, ctx: D96Parser.Val_both_variable_declaration_noinnitContext):
         identifier_list = self.visit(ctx.identifier_list())
@@ -221,9 +203,6 @@ class ASTGeneration(D96Visitor):
         return None
 
     def visitVal_both_declare_initiate_list(self, ctx: D96Parser.Val_both_declare_initiate_listContext):
-        return None
-
-    def visitVal_both_type_and_assign(self, ctx: D96Parser.Val_both_type_and_assignContext):
         return None
 
 
@@ -507,11 +486,11 @@ class ASTGeneration(D96Visitor):
     # statements: statement statements | statement | ;
     def visitStatements(self, ctx: D96Parser.StatementsContext):
         if ctx.getChildCount() == 1:
-            statement = [self.visit(ctx.statement())]
+            statement = self.visit(ctx.statement())
             return statement 
 
         elif ctx.getChildCount() == 2:
-            statement = [self.visit(ctx.statement())]
+            statement = self.visit(ctx.statement())
             statements = self.visit(ctx.statements())
             return statement + statements 
 
@@ -562,31 +541,43 @@ class ASTGeneration(D96Visitor):
 #             | return_statements ;
     def visitStatement(self, ctx: D96Parser.StatementContext):
         if ctx.var_variable_declaration():
+            print('1')
             return self.visit(ctx.var_variable_declaration())
         elif ctx.val_variable_declaration():
+            print('2')
             return self.visit(ctx.val_variable_declaration())
 
         elif ctx.var_variable_declaration_noinit():
+            print('3')
             return self.visit(ctx.var_variable_declaration_noinit())
             
         elif ctx.val_variable_declaration_noinit():
+            print('4')
             return self.visit(ctx.val_variable_declaration_noinit())
 
         elif ctx.assignment_statements():
+            print('5')
             return self.visit(ctx.assignment_statements())
         elif ctx.if_statements():
+            print('6')
             return self.visit(ctx.if_statements())
         elif ctx.forin_statements():
+            print('7')
             return self.visit(ctx.forin_statements())
         elif ctx.call_func_statement():
+            print('8')
             return self.visit(ctx.call_func_statement())
         elif ctx.method_invocation_statement():
+            print('9')
             return self.visit(ctx.method_invocation_statement())
         elif ctx.break_statements():
+            print('10')
             return self.visit(ctx.break_statements())
         elif ctx.continue_statements():
+            print('11')
             return self.visit(ctx.continue_statements())
         else:
+            print('12')
             return self.visit(ctx.return_statements())
         
 
@@ -1038,15 +1029,14 @@ class ASTGeneration(D96Visitor):
     # variable_in_func_identifier_list: VARIABLE_IN_FUNC_IDENTIFIERS COMMA variable_in_func_identifier_list 
     #                                         | VARIABLE_IN_FUNC_IDENTIFIERS | ;
     def visitVariable_in_func_identifier_list(self, ctx: D96Parser.Variable_in_func_identifier_listContext):
-        if ctx.getChildCount() == 3:
-            VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
-            variable_in_func_identifier_list = self.visit(ctx.variable_in_func_identifier_list())
-
-            return VARIABLE_IN_FUNC_IDENTIFIERS + variable_in_func_identifier_list
+        if ctx.getChildCount() == 3:           
+            a = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+            identifier_list = self.visit(ctx.identifier_list())
+            return [a] + identifier_list
 
         elif ctx.getChildCount() == 1:
-            VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
-            return VARIABLE_IN_FUNC_IDENTIFIERS 
+            a = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+            return [a]
 
         else: 
             return []
