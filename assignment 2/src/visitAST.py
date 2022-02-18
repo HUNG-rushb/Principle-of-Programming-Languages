@@ -95,9 +95,6 @@ class ASTGeneration(D96Visitor):
     def visitElseif_statement(self, ctx: D96Parser.Elseif_statementContext):
         return None
 
-    def visitElse_statement_or_none(self, ctx: D96Parser.Else_statement_or_noneContext):
-        return None
-
     def visitElse_statement(self, ctx: D96Parser.Else_statementContext):
         return None
 

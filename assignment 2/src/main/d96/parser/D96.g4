@@ -118,19 +118,14 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
 
 
 // If statements 
-if_condition: LB expr RB;
-// if_statements: IF if_condition block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
-if_statements: IF if_condition block_statements elseif_list_statements;
+// if_condition: LB expr RB;
+if_statements: IF LB expr RB block_statements elseif_list_statements;
 
-// elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement;
-elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement | else_statement_or_none;
-elseif_statement: ELSEIF if_condition block_statements else_statement_or_none;
-else_statement_or_none: else_statement | ;
-else_statement: ELSE block_statements;
-
-
-
-
+elseif_list_statements: elseif_statement  
+                        | else_statement 
+                        | ;
+elseif_statement: ELSEIF LB expr RB block_statements elseif_list_statements;
+else_statement: ELSE block_statements | ;
 
 
 // For In statement
@@ -220,7 +215,8 @@ expr11: literal
 expr12: LB expr RB;
 
 // a[1][2]
-index_operators: index_operators LSB expr RSB  | LSB expr RSB ;
+// index_operators: index_operators LSB expr RSB  | LSB expr RSB ;
+index_operators: LSB expr RSB index_operators | LSB expr RSB ;
 index_expr: index | index index_operators;
 index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
         | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) | ;

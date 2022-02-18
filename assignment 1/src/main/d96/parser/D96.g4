@@ -64,11 +64,6 @@ var_variable_declaration_noinit: VAR variable_in_func_identifier_list COLON vari
 var_variable_declaration: VAR VARIABLE_IN_FUNC_IDENTIFIERS var_declare_initiate_list expr SEMICOLON;
 var_declare_initiate_list: COMMA VARIABLE_IN_FUNC_IDENTIFIERS var_declare_initiate_list expr COMMA
                                 | COLON variable_type ASSIGNOP;
-// var_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr;
-// var_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// var_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS var_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
 
 // Val
 val_variable_declaration_noinit: VAL variable_in_func_identifier_list COLON variable_type SEMICOLON;
@@ -76,34 +71,14 @@ val_variable_declaration_noinit: VAL variable_in_func_identifier_list COLON vari
 val_variable_declaration: VAL VARIABLE_IN_FUNC_IDENTIFIERS val_declare_initiate_list expr SEMICOLON;
 val_declare_initiate_list: COMMA VARIABLE_IN_FUNC_IDENTIFIERS val_declare_initiate_list expr COMMA
                                 | COLON variable_type ASSIGNOP;
-// val_declare_initiate_list: VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// val_type_and_assign: COMMA VARIABLE_IN_FUNC_IDENTIFIERS val_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
-
 
 // Both declaration
 // Var
 var_both_variable_declaration_noinnit: VAR identifier_list COLON variable_type SEMICOLON;
 
 var_both_variable_declaration: VAR (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_declare_initiate_list expr SEMICOLON;
-// var_both_no_value_assign_declare_list: var_both_no_value_assign_declare var_both_no_value_assign_declare_list| var_both_no_value_assign_declare;
-// var_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
-
 var_both_declare_initiate_list: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_declare_initiate_list expr COMMA
                                 | COLON variable_type ASSIGNOP;
-// var_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// var_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
-
-// var_both_no_value_assign_declare_list: var_both_no_value_assign_declare var_both_no_value_assign_declare_list| var_both_no_value_assign_declare;
-// var_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
-
-// var_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// var_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) var_both_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
 
 // Val
 val_both_variable_declaration_noinnit: VAL identifier_list COLON variable_type SEMICOLON;
@@ -111,32 +86,6 @@ val_both_variable_declaration_noinnit: VAL identifier_list COLON variable_type S
 val_both_variable_declaration: VAL (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_declare_initiate_list expr SEMICOLON;
 val_both_declare_initiate_list:  COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_declare_initiate_list expr COMMA
                                 | COLON variable_type ASSIGNOP;
-// val_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// val_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
-
-// val_both_no_value_assign_declare_list: val_both_no_value_assign_declare val_both_no_value_assign_declare_list| val_both_no_value_assign_declare;
-// val_both_no_value_assign_declare: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA | (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) | COLON variable_type;
-
-// val_both_declare_initiate_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr
-//                                 | variable_in_func_identifier_list COLON variable_type;
-// val_both_type_and_assign: COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) val_both_type_and_assign expr COMMA
-//                         | COLON variable_type ASSIGNOP;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -169,19 +118,14 @@ lhs: (VARIABLE_IN_FUNC_IDENTIFIERS
 
 
 // If statements 
-if_condition: LB expr RB;
-// if_statements: IF if_condition block_statements (elseif_list_statements else_statement | elseif_list_statements | else_statement | );
-if_statements: IF if_condition block_statements elseif_list_statements;
+// if_condition: LB expr RB;
+if_statements: IF LB expr RB block_statements elseif_list_statements;
 
-// elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement;
-elseif_list_statements: elseif_statement elseif_list_statements |  elseif_statement | else_statement_or_none;
-elseif_statement: ELSEIF if_condition block_statements else_statement_or_none;
-else_statement_or_none: else_statement | ;
-else_statement: ELSE block_statements;
-
-
-
-
+elseif_list_statements: elseif_statement  
+                        | else_statement 
+                        | ;
+elseif_statement: ELSEIF LB expr RB block_statements elseif_list_statements;
+else_statement: ELSE block_statements | ;
 
 
 // For In statement
