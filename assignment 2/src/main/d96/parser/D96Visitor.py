@@ -344,11 +344,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#static_accesses.
-    def visitStatic_accesses(self, ctx:D96Parser.Static_accessesContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#static_access.
     def visitStatic_access(self, ctx:D96Parser.Static_accessContext):
         return self.visitChildren(ctx)

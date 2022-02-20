@@ -205,9 +205,11 @@ expr5: NOTOP expr5 | expr6;
 expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
 expr8: expr8 instance_accesses | expr9;
-expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
+// expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
+expr9: static_access | expr10;
 
-expr10: NEW expr LB list_expr RB | expr11;
+// expr10: NEW expr LB list_expr RB | expr11;
+expr10: NEW VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB | expr11;
 expr11: literal 
         | VARIABLE_IN_FUNC_IDENTIFIERS 
         | SELF 
@@ -226,9 +228,11 @@ instance_accesses: instance_access instance_accesses | instance_access;
 instance_access:  DOT VARIABLE_IN_FUNC_IDENTIFIERS
                 | DOT VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB;
 
-static_accesses: static_access static_accesses | static_access;
-static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
-                | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
+// static_accesses: static_access static_accesses | static_access;
+// static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
+//                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
+static_access: VARIABLE_IN_FUNC_IDENTIFIERS (DOUBLECOLONOP DOLLAR_IDENTIFIERS
+                | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB);
 
 // Expression list 
 list_expr: expr COMMA list_expr | expr | ;
