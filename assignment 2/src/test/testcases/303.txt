@@ -1,3 +1,1 @@
-Class Dog : Animal { 
-            main(){} 
-            }
+Class Dog : Animal { main(){} }

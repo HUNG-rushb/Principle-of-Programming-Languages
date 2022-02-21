@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(check),[ConstDecl(Id(r),IntType,None),AttributeDecl(Instance,ConstDecl(Id(t),FloatType,FloatType)),ConstDecl(Id(r),BoolType,None),ConstDecl(Id(t),BoolType,None),ConstDecl(Id(e),BoolType,None),ConstDecl(Id(w),BoolType,None),VarDecl(Id(e),IntType)])])

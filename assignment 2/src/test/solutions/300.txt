@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List()))))
+Program([ClassDecl(Id(A),[]),ClassDecl(Id(B),[MethodDecl(Id(foo),Instance,[],Block([If(Id(a),Block([AssignStmt(Id(a),IntType)]),If(Id(b),Block([AssignStmt(Id(a),IntType),AssignStmt(Id(b),IntType),AssignStmt(Id(c),IntType)]),If(BinaryOp(==,IntType,IntType),Block([AssignStmt(Id(r),IntType),AssignStmt(Id(pi),FloatType)]),If(IntType,Block([AssignStmt(Id(r),IntType)])))))]))])])

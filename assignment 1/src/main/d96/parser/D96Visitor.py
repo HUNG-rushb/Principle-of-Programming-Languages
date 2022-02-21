@@ -144,6 +144,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#scalar_variable.
+    def visitScalar_variable(self, ctx:D96Parser.Scalar_variableContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#if_statements.
     def visitIf_statements(self, ctx:D96Parser.If_statementsContext):
         return self.visitChildren(ctx)
@@ -341,11 +346,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#instance_access.
     def visitInstance_access(self, ctx:D96Parser.Instance_accessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_accesses.
-    def visitStatic_accesses(self, ctx:D96Parser.Static_accessesContext):
         return self.visitChildren(ctx)
 
 

@@ -83,7 +83,7 @@ class ASTGeneration(D96Visitor):
     def visitLhs(self, ctx: D96Parser.LhsContext):
         return None
 
-    def visitIf_condition(self, ctx: D96Parser.If_conditionContext):
+    def visitScalar_variable(self, ctx: D96Parser.Scalar_variableContext):
         return None
 
     def visitIf_statements(self, ctx: D96Parser.If_statementsContext):
@@ -204,9 +204,6 @@ class ASTGeneration(D96Visitor):
         return None
 
     def visitInstance_access(self, ctx: D96Parser.Instance_accessContext):
-        return None
-
-    def visitStatic_accesses(self, ctx: D96Parser.Static_accessesContext):
         return None
 
     def visitStatic_access(self, ctx: D96Parser.Static_accessContext):

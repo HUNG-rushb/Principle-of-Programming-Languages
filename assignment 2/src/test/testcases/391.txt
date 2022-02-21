@@ -1,8 +1,7 @@
 
         Class A {
             foo() {
-                a = b;
+               Var a, ab: Boolean = True, True;
             }
         }
-            
             

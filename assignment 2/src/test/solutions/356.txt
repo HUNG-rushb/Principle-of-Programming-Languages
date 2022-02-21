@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(checkAttr),[AttributeDecl(Instance,ConstDecl(Id(a),FloatType,FloatType)),AttributeDecl(Instance,ConstDecl(Id(a),FloatType,FloatType)),VarDecl(Id(c),StringType),ConstDecl(Id($e),BoolType,None),ConstDecl(Id(t),BoolType,None),ConstDecl(Id($r),BoolType,None)])])

@@ -107,13 +107,15 @@ call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
 
 // Assignment statement
 assignment_statements: lhs ASSIGNOP expr SEMICOLON;
-lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
+// lhs: (VARIABLE_IN_FUNC_IDENTIFIERS 
+//         | instance_attr_access 
+//         | static_attr_access ) (index_operators | );
+
+// expr7 index operator
+lhs: scalar_variable | expr7; 
+scalar_variable: VARIABLE_IN_FUNC_IDENTIFIERS 
         | instance_attr_access 
-        | static_attr_access 
-        ) (index_operators | );
-
-
-
+        | static_attr_access;
 
 
 
