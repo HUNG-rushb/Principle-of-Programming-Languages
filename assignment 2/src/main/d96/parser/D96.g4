@@ -171,6 +171,7 @@ statement_class: var_both_variable_declaration
                 | val_both_variable_declaration
                 | var_both_variable_declaration_noinnit
                 | val_both_variable_declaration_noinnit
+
                 | function_declaration
                 | constructor_dclr
                 | destructor_dclr ;
@@ -181,8 +182,7 @@ statement: var_variable_declaration
             | val_variable_declaration 
             | var_variable_declaration_noinit 
             | val_variable_declaration_noinit 
-            | assignment_statements 
-            | val_variable_declaration 
+
             | assignment_statements 
             | if_statements 
             | forin_statements 

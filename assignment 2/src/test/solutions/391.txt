@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(A),[MethodDecl(Id(foo),Instance,[],Block([AttributeDecl(Instance,ConstDecl(Id(a),BoolType,BoolType)),AttributeDecl(Instance,ConstDecl(Id(a),BoolType,BoolType))]))])])
+Program([ClassDecl(Id(A),[MethodDecl(Id(foo),Instance,[],Block([AttributeDecl(Instance,VarDecl(Id(a),BoolType,BooleanLit(True))),AttributeDecl(Instance,VarDecl(Id(ab),BoolType,BooleanLit(True)))]))])])

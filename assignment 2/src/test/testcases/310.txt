@@ -3,6 +3,7 @@
         { 
             Val $a : String;
             Var b, $c: Int;
+            
             $test()
             { 
                 Var ast, bdafs, cdadsas: Int; 

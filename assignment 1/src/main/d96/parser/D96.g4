@@ -113,7 +113,7 @@ assignment_statements: lhs ASSIGNOP expr SEMICOLON;
 
 // expr7 index operator
 lhs: scalar_variable | expr7; 
-scalar_variable:VARIABLE_IN_FUNC_IDENTIFIERS 
+scalar_variable: VARIABLE_IN_FUNC_IDENTIFIERS 
         | instance_attr_access 
         | static_attr_access;
 
