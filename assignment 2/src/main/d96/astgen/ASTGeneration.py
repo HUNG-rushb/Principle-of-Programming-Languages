@@ -37,10 +37,6 @@ class ASTGeneration(D96Visitor):
 
         return ClassDecl(VARIABLE_IN_FUNC_IDENTIFIERS, block_class_statements, class_inheritance)
 
-    
-
-
-
     # Constructor Destructor
     # constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
     def visitConstructor_dclr(self, ctx: D96Parser.Constructor_dclrContext):
@@ -60,41 +56,7 @@ class ASTGeneration(D96Visitor):
         
         return [MethodDecl(si, name, list_parameters, block_statements)]
 
-
-
-
-    #  Method declaration
-    # method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
-    # def visitMethod_declaration(self, ctx: D96Parser.Method_declarationContext):
-    #     if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
-    #         name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
-    #         si = Instance()
-    #     else:
-    #         name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
-    #         si = Static()
-
-    #     list_parameters = self.visit(ctx.list_parameters())
-    #     block_statements = self.visit(ctx.block_statements())
-       
-    #     return MethodDecl(si, name, list_parameters, block_statements)
-
-
-    # def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
-    #     if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
-    #         name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
-    #         si = Instance()
-    #     else:
-    #         name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
-    #         si = Static()
-
-    #     list_parameters = self.visit(ctx.list_parameters())
-    #     block_statements = self.visit(ctx.block_statements())
-       
-    #     return MethodDecl(si, name, list_parameters, block_statements)
-
-
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
-
     #! Variable declaration ****************************************************************************
     #! Variable declaration ****************************************************************************
 
@@ -106,8 +68,12 @@ class ASTGeneration(D96Visitor):
         
         # print(identifier_list)
         for i in identifier_list:
-            # print(i)
-            result += [VarDecl(i, variable_type, None)]
+            if isinstance(variable_type, ClassType):
+                init =  NullLiteral()
+            else:
+                init = None
+
+            result += [VarDecl(i, variable_type, init)]
 
         return result
     
@@ -171,10 +137,18 @@ class ASTGeneration(D96Visitor):
     def visitVal_variable_declaration_noinit(self, ctx: D96Parser.Val_variable_declaration_noinitContext):
         identifier_list = self.visit(ctx.variable_in_func_identifier_list())
         variable_type = self.visit(ctx.variable_type())
+
         result = []
         
         for i in identifier_list:
-            result += [ConstDecl(i, variable_type, None)]
+            if isinstance(variable_type, ClassType):
+                
+                init =  NullLiteral()
+            else:
+                init = None
+
+            result += [ConstDecl(i, variable_type, init)]
+
 
         return result
 
@@ -240,10 +214,17 @@ class ASTGeneration(D96Visitor):
         
         for i in identifier_list:
             # result += [VarDecl(i, variable_type, None)]
-            if i.name[0] == '$':
-                result += [AttributeDecl(Static(), VarDecl(i, variable_type, None))]
+            if isinstance(variable_type, ClassType):
+                init =  NullLiteral()
             else:
-                result += [AttributeDecl(Instance(), VarDecl(i, variable_type, None))]
+                init = None
+
+            if i.name[0] == '$':
+                typee = Static()
+            else:
+                typee = Instance()
+            
+            result += [AttributeDecl(typee, VarDecl(i, variable_type, init))] 
 
         return result
 
@@ -311,10 +292,17 @@ class ASTGeneration(D96Visitor):
         
         for i in identifier_list:
             # result += [ConstDecl(i, variable_type, None)]
-            if i.name[0] == '$':
-                result += [AttributeDecl(Static(), ConstDecl(i, variable_type, None))]
+            if isinstance(variable_type, ClassType):
+                init =  NullLiteral()
             else:
-                result += [AttributeDecl(Instance(), ConstDecl(i, variable_type, None))]
+                init = None
+
+            if i.name[0] == '$':
+                typee = Static()
+            else:
+                typee = Instance()
+
+            result += [AttributeDecl(typee, ConstDecl(i, variable_type, init))]
 
 
         return result
@@ -385,16 +373,34 @@ class ASTGeneration(D96Visitor):
     # ! Function declaration
     # function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
     def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
+        # if ctx.list_parameters():
+        #     list_parameters = self.visit(ctx.list_parameters())
+        # else:
+        #     list_parameters == []
+        list_parameters = self.visit(ctx.list_parameters())
+        block_statements = self.visit(ctx.block_statements())
+
         if ctx.VARIABLE_IN_FUNC_IDENTIFIERS():
-            name = Id(ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText())
+            
+            name_id = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
+            name = Id(name_id)
+
+            if (name_id == 'main' and list_parameters == []):
+            # if (name_id == 'main' and ctx.getChildCount() == 4):
+                # print('ok')
+                parent = ctx.parentCtx
+
+                while (not isinstance(parent, D96Parser.Class_declarationContext)):
+                    parent = parent.parentCtx
+
+                if (parent.VARIABLE_IN_FUNC_IDENTIFIERS().getText() == 'Program'):
+                    return [MethodDecl(Static(), name, list_parameters, block_statements)]
+
             si = Instance()
         else:
             name = Id(ctx.DOLLAR_IDENTIFIERS().getText())
             si = Static()
 
-        list_parameters = self.visit(ctx.list_parameters())
-        block_statements = self.visit(ctx.block_statements())
-       
         return [MethodDecl(si, name, list_parameters, block_statements)]
 
 
@@ -516,7 +522,7 @@ class ASTGeneration(D96Visitor):
         if ctx.getChildCount() == 2:
             return self.visit(ctx.expr())
         else:
-            return None
+            return IntLiteral(int('1'))
         
     # forin_statements: FOREACH LB (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) 
     #                     IN expr DOUBLEDOTOP expr by_expr RB block_statements;
@@ -536,10 +542,6 @@ class ASTGeneration(D96Visitor):
             expr3 = self.visit(ctx.by_expr())
             return [For(id, expr1, expr2, loop, expr3)]
 
-
-    # ! Member access
-    # ! Member access
-    # ! Member access
     # ! Member access
     #***************************************************************************************
     # instance_attr_access: expr DOT VARIABLE_IN_FUNC_IDENTIFIERS;
@@ -619,37 +621,6 @@ class ASTGeneration(D96Visitor):
     def visitReturn_statements(self, ctx: D96Parser.Return_statementsContext):
         return_expr = self.visit(ctx.return_expr())
         return [Return(return_expr)]
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     # Block statements ---------------------------------------------------------------------------------
@@ -777,30 +748,6 @@ class ASTGeneration(D96Visitor):
         else:
             # print('12')
             return self.visit(ctx.return_statements())
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     # EXPRESSIONS ----------------------------------------------------------------------------------
     # Ưu tiên gọi access trước
@@ -957,8 +904,6 @@ class ASTGeneration(D96Visitor):
         else:  
             return self.visit(ctx.expr10())
     
-        
-
     # expr10: NEW VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB | expr11;
     def visitExpr10(self, ctx: D96Parser.Expr10Context):
         if ctx.getChildCount() == 5:
@@ -1004,22 +949,22 @@ class ASTGeneration(D96Visitor):
             return expr + index_operators 
         
         
-    # ! index_expr: index | index index_operators;
-    def visitIndex_expr(self, ctx: D96Parser.Index_exprContext):
-        if ctx.getChildCount() == 1:
-            index = [self.visit(ctx.index())]
-            return index 
+    # # ! index_expr: index | index index_operators;
+    # def visitIndex_expr(self, ctx: D96Parser.Index_exprContext):
+    #     if ctx.getChildCount() == 1:
+    #         index = [self.visit(ctx.index())]
+    #         return index 
 
-        else:
-            expr = [self.visit(ctx.expr())]
-            index_operators = self.visit(ctx.index_operators())
-            return expr + index_operators 
+    #     else:
+    #         expr = [self.visit(ctx.expr())]
+    #         index_operators = self.visit(ctx.index_operators())
+    #         return expr + index_operators 
         
-    # ! index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-    #         | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) 
-    #         | ;
-    def visitIndex(self, ctx: D96Parser.IndexContext):
-        return
+    # # ! index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
+    # #         | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) 
+    # #         | ;
+    # def visitIndex(self, ctx: D96Parser.IndexContext):
+    #     return
         
 
 
@@ -1100,27 +1045,6 @@ class ASTGeneration(D96Visitor):
 
         else: 
             return []
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
     # --------------------------------------------------------------------------------------------------
@@ -1148,8 +1072,6 @@ class ASTGeneration(D96Visitor):
         else: 
             return []
         
-    # !Literals
-    # !Literals
     # !Literals
     # literal: INTLIT_IN_ARRAY | INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit; 
     def visitLiteral(self, ctx: D96Parser.LiteralContext):
@@ -1194,8 +1116,14 @@ class ASTGeneration(D96Visitor):
             return FloatLiteral(float(a))
 
         elif ctx.BOOLLIT():
-            a = bool(ctx.BOOLLIT().getText())
-            return BooleanLiteral(a)
+            # a = ctx.BOOLLIT().getText()
+
+            # if a == 'True':
+            #     return BooleanLiteral(bool(a))
+            # else:
+            #     return BooleanLiteral(ctx.BOOLLIT().getText() == "True")
+            
+            return BooleanLiteral(ctx.BOOLLIT().getText() == "True")
         elif ctx.STRINGLIT():
             a = str(ctx.STRINGLIT().getText())
             return StringLiteral(a)
@@ -1208,15 +1136,13 @@ class ASTGeneration(D96Visitor):
     def visitList_parameters(self, ctx: D96Parser.List_parametersContext):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.param())
-        elif ctx.getChildCount() == 2:
+        elif ctx.getChildCount() == 3:
             param = self.visit(ctx.param())
             list_parameters = self.visit(ctx.list_parameters())
             return param + list_parameters
         else:
             return []
-        
-        
-        
+         
     # param: identifier_list COLON variable_type;
     def visitParam(self, ctx: D96Parser.ParamContext):
         identifier_list = self.visit(ctx.identifier_list())
@@ -1227,11 +1153,6 @@ class ASTGeneration(D96Visitor):
             result += [VarDecl(i, variable_type, None)]
 
         return result
-
-
-
-
-
 
     # Identifiers list
     # identifier_list: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) COMMA identifier_list 

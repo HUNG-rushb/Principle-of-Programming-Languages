@@ -93,6 +93,7 @@ val_both_declare_initiate_list:  COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_ID
 
 // Function declaration
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
+// function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB (list_parameters | ) RB block_statements;
 // main_function_declaration: MAIN LB RB block_statements_in_main;
 
 // call_func_statement: call_func_header call_func_attr_list call_func_end SEMICOLON;
@@ -232,9 +233,19 @@ expr12: LB expr RB;
 // a[1][2]
 // index_operators: index_operators LSB expr RSB  | LSB expr RSB ;
 index_operators: LSB expr RSB index_operators | LSB expr RSB ;
-index_expr: index | index index_operators;
-index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
-        | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) | ;
+
+
+
+// !!!!!!!
+// !!!!!!!
+// !!!!!!!
+// !!!!!!!
+// index_expr: index | index index_operators;
+// index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
+//         | (expr instance_attr_access (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)) | ;
+
+
+
 
 // Instance, Static accesses
 instance_accesses: instance_access instance_accesses | instance_access;
