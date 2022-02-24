@@ -50,7 +50,7 @@ class_inheritance: COLON VARIABLE_IN_FUNC_IDENTIFIERS | ;
 
 // Constructor Destructor
 constructor_dclr: CONSTRUCTOR LB list_parameters RB block_statements;
-destructor_dclr: DESTRUCTOR LB RB block_statements;
+destructor_dclr: DESTRUCTOR LB list_parameters RB block_statements;
 
 // Method declaration
 // method_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
@@ -95,15 +95,24 @@ val_both_declare_initiate_list:  COMMA (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_ID
 function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
 // main_function_declaration: MAIN LB RB block_statements_in_main;
 
-call_func_statement: call_func_header call_func_attr_list call_func_end SEMICOLON;
-call_func: call_func_header call_func_attr_list call_func_end;
+// call_func_statement: call_func_header call_func_attr_list call_func_end SEMICOLON;
 
-call_func_header: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (index_operators | ) (DOUBLECOLONOP DOLLAR_IDENTIFIERS | );
 
-call_func_attr_list: call_func_attr call_func_attr_list | call_func_attr | ;
-call_func_attr: DOT (VARIABLE_IN_FUNC_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB);                 
+// call_func_statement: call_func SEMICOLON;
+// call_func: call_func_header call_func_attr_list call_func_end;
+// call_func: call_func_header call_func_attr_list DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
+
+// // call_func_header: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) (index_operators | ) (DOUBLECOLONOP DOLLAR_IDENTIFIERS | );
+// call_func_header: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) 
+//                         (index_operators | ) 
+//                         (DOUBLECOLONOP DOLLAR_IDENTIFIERS | );
+
+// call_func_attr_list: call_func_attr call_func_attr_list 
+//                         | call_func_attr 
+//                         | ;
+// call_func_attr: DOT (VARIABLE_IN_FUNC_IDENTIFIERS | VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB);                 
              
-call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
+// call_func_end: DOT VARIABLE_IN_FUNC_IDENTIFIERS LB value_list RB;
 
 // Assignment statement
 assignment_statements: lhs ASSIGNOP expr SEMICOLON;
@@ -186,7 +195,7 @@ statement: var_variable_declaration
             | assignment_statements 
             | if_statements 
             | forin_statements 
-            | call_func_statement
+
             | method_invocation_statement
             | break_statements
             | continue_statements
@@ -206,11 +215,13 @@ expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
 expr5: NOTOP expr5 | expr6;
 expr6: MINUSOP expr6 | expr7;
 expr7: expr7 index_operators | expr8;
+
 expr8: expr8 instance_accesses | expr9;
-// expr9: VARIABLE_IN_FUNC_IDENTIFIERS static_accesses | expr10;
+// .a.s.c.wdq.sada().asd
+// expr8: instance_accesses | expr9;
+
 expr9: static_access | expr10;
 
-// expr10: NEW expr LB list_expr RB | expr11;
 expr10: NEW VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB | expr11;
 expr11: literal 
         | VARIABLE_IN_FUNC_IDENTIFIERS 
@@ -227,12 +238,10 @@ index: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS)
 
 // Instance, Static accesses
 instance_accesses: instance_access instance_accesses | instance_access;
+// instance_accesses: expr (instance_access instance_accesses | instance_access);
 instance_access:  DOT VARIABLE_IN_FUNC_IDENTIFIERS
                 | DOT VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB;
 
-// static_accesses: static_access static_accesses | static_access;
-// static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
-//                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
 static_access: VARIABLE_IN_FUNC_IDENTIFIERS (DOUBLECOLONOP DOLLAR_IDENTIFIERS
                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB);
 

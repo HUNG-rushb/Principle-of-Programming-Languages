@@ -129,11 +129,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#call_func_end.
-    def visitCall_func_end(self, ctx:D96Parser.Call_func_endContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#assignment_statements.
     def visitAssignment_statements(self, ctx:D96Parser.Assignment_statementsContext):
         return self.visitChildren(ctx)
