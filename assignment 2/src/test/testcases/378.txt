@@ -3,5 +3,11 @@
                 Destructor () {
                     Return Self.name || Self.age;
                 }
+                Destructor () {
+                    Return Self.name || Self.age;
+                }
+                Destructor () {
+                    Return Self.name || Self.age;
+                }
             }
             

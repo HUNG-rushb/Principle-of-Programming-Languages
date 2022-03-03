@@ -3,5 +3,16 @@
                 t() {
                     Self.a = Self.b + Self.c - Name::$method() * ((r >= 6) || e);
                 }
+                t() {
+                    Self.a = Self.b + Self.c - Name::$method() * ((r >= 6) || e);
+                }
+            }
+            Class expr {
+                t() {
+                    Self.a = Self.b + Self.c - Name::$method() * ((r >= 6) || e);
+                }
+                t() {
+                    Self.a = Self.b + Self.c - Name::$method() * ((r >= 6) || e);
+                }
             }
             

@@ -4,7 +4,7 @@
                     Val _, _, _: String = "3, 4, 5;" , "3, 4, 5;" , "3, 4, 5;" ;
                     Val _, _, _: String = 3, "4", a + 5;
 
-                   Var aqwe, hungi: Float = 1231.134120e+32178, 234.3E-123;
+                    Var aqwe, hungi: Float = 1231.134120e+32178, 234.3E-123;
 
                 }
             }
