@@ -57,7 +57,7 @@ class ASTGeneration(D96Visitor):
         return [MethodDecl(si, name, list_parameters, block_statements)]
 
     #  STATEMENTS ------------------------------------------------------------------------------------------------------
-    #! Variable declaration 
+    #!  Variable declaration
 
     # var_variable_declaration_noinit: VAR variable_in_func_identifier_list COLON variable_type SEMICOLON;
     def visitVar_variable_declaration_noinit(self, ctx: D96Parser.Var_variable_declaration_noinitContext):
@@ -196,12 +196,6 @@ class ASTGeneration(D96Visitor):
 
         else: 
             return [self.visit(ctx.variable_type())]
-
-
-
-
-
-
 
 
 
@@ -367,7 +361,6 @@ class ASTGeneration(D96Visitor):
             return [self.visit(ctx.variable_type())]
 
 
-
     # ! Function declaration
     # function_declaration: (VARIABLE_IN_FUNC_IDENTIFIERS | DOLLAR_IDENTIFIERS) LB list_parameters RB block_statements;
     def visitFunction_declaration(self, ctx: D96Parser.Function_declarationContext):
@@ -400,9 +393,6 @@ class ASTGeneration(D96Visitor):
             si = Static()
 
         return [MethodDecl(si, name, list_parameters, block_statements)]
-
-
-
 
 
     # # ! Call Func
@@ -441,8 +431,6 @@ class ASTGeneration(D96Visitor):
     # #     value_list = self.visit(ctx.value_list())
     # #     return VARIABLE_IN_FUNC_IDENTIFIERS + value_list
         
-
-
     # ! Assignment statement
     # assignment_statements: lhs ASSIGNOP expr SEMICOLON;
     def visitAssignment_statements(self, ctx: D96Parser.Assignment_statementsContext):
@@ -618,9 +606,6 @@ class ASTGeneration(D96Visitor):
 
 
     # Block statements ---------------------------------------------------------------------------------
-    # Block statements ---------------------------------------------------------------------------------
-    # Block statements ---------------------------------------------------------------------------------
-
     # block_class_statements: LCB statements_class RCB;
     def visitBlock_class_statements(self, ctx: D96Parser.Block_class_statementsContext):
         return self.visit(ctx.statements_class())
@@ -986,30 +971,7 @@ class ASTGeneration(D96Visitor):
             VARIABLE_IN_FUNC_IDENTIFIERS = ctx.VARIABLE_IN_FUNC_IDENTIFIERS().getText()
             list_expr = self.visit(ctx.list_expr())
             return (Id(VARIABLE_IN_FUNC_IDENTIFIERS), list_expr, 1)
-        
 
-
-    # static_accesses: static_access static_accesses | static_access;
-    # def visitStatic_accesses(self, ctx: D96Parser.Static_accessesContext):
-    #     if ctx.getChildCount() == 1:
-    #         static_access = [self.visit(ctx.static_access())]
-    #         return static_access 
-    #     else:
-    #         static_access = [self.visit(ctx.static_access())]
-    #         static_accesses = self.visit(ctx.static_accesses())
-    #         return static_access + static_accesses
-        
-    # static_access:  DOUBLECOLONOP DOLLAR_IDENTIFIERS
-    #                 | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB;
-    # def visitStatic_access(self, ctx: D96Parser.Static_accessContext):
-    #     if ctx.getChildCount() == 2:
-    #         DOLLAR_IDENTIFIERS = ctx.DOLLAR_IDENTIFIERS().getText()
-    #         return DOLLAR_IDENTIFIERS 
-            
-    #     else:
-    #         DOLLAR_IDENTIFIERS = ctx.DOLLAR_IDENTIFIERS().getText()
-    #         list_expr = self.visit(ctx.list_expr())
-    #         return DOLLAR_IDENTIFIERS + list_expr 
 
     # static_access: VARIABLE_IN_FUNC_IDENTIFIERS (DOUBLECOLONOP DOLLAR_IDENTIFIERS
     #             | DOUBLECOLONOP DOLLAR_IDENTIFIERS LB list_expr RB);
@@ -1041,8 +1003,6 @@ class ASTGeneration(D96Visitor):
             return []
 
         
-    # --------------------------------------------------------------------------------------------------
-    # --------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------
 
     # Array literal
