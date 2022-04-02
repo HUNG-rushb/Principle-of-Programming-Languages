@@ -1,0 +1,1 @@
+Program([VarDecl(a,False,IntType,VarDecl(b,True,IntType,VarDecl(d,False,IntType,VarDecl(e,False,IntType,)))),VarDecl(c,True,FloatType,VarDecl(d,False,FloatType,))])

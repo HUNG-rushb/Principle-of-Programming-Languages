@@ -1,0 +1,4 @@
+
+            a, static b, d, e @ int;
+            static c, d @ float;
+        

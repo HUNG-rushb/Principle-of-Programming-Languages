@@ -1,0 +1,14 @@
+INT=1
+FLOAT=2
+AT=3
+CM=4
+STATIC=5
+SM=6
+ID=7
+WS=8
+'int'=1
+'float'=2
+'@'=3
+','=4
+'static'=5
+';'=6
