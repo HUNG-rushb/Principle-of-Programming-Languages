@@ -1,6 +1,6 @@
-
 """
- * @author nhphung
+1913652
+Trịnh Duy Hưng
 """
 from AST import * 
 from Visitor import *
@@ -24,15 +24,14 @@ class StaticChecker(BaseVisitor,Utils):
     Symbol("getInt",MType([],IntType())),
     Symbol("putIntLn",MType([IntType()],VoidType()))
     ]
-            
-    
+
     def __init__(self,ast):
         self.ast = ast
-
- 
     
     def check(self):
         return self.visit(self.ast,StaticChecker.global_envi)
+
+
 
     def visitProgram(self,ast, c): 
         return [self.visit(x,c) for x in ast.decl]
@@ -57,5 +56,3 @@ class StaticChecker(BaseVisitor,Utils):
 
     def visitIntLiteral(self,ast, c): 
         return IntType()
-    
-
