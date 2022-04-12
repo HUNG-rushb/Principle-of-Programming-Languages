@@ -624,9 +624,14 @@ class GetTypeConst(BaseVisitor):
 
 class GetLHS(BaseVisitor):
     def getTypeDecl(self,name,o):
-        if not 'const' in o[name]: return 'method'
-        if o[name]['const'] == True: return 'const'
+        if not 'const' in o[name]: 
+            return 'method'
+
+        if o[name]['const'] == True: 
+            return 'const'
+
         return 'var'
+
     def matchType(self,lhs,rhs,o:object):
         # match type and class == nil
         if 'type' in rhs: rhs = rhs['type']
@@ -822,8 +827,10 @@ class StaticChecker(BaseVisitor):
     Symbol("getInt",MType([],IntType())),
     Symbol("putIntLn",MType([IntType()],VoidType()))
     ] 
+
     def __init__(self,ast):
         self.ast = ast
+
     def check(self):
         return self.ast.accept(self, StaticChecker.global_envi)
 
@@ -833,11 +840,14 @@ class StaticChecker(BaseVisitor):
     def visitFloatType(self, ast: FloatType, o: object): pass
     def visitBoolType(self, ast: BoolType, o: object): pass
     def visitStringType(self, ast: StringType, o: object): pass
+
     def visitArrayType(self, ast: ArrayType, o: object): ast.eleType.accept(self,o)
+
     def visitClassType(self, ast: ClassType, o: object):
         name = ast.classname.name
         if name not in o['global']:
             raise Undeclared(Class(),name)
+
     def visitVoidType(self, ast: VoidType, o: object): pass
     def visitProgram(self, ast: Program, o: object):
         o = GetEnvi().visitProgram(ast,o)
@@ -846,7 +856,8 @@ class StaticChecker(BaseVisitor):
         # return o
     def visitClassDecl(self, ast: ClassDecl, o: object):
         if ast.parentname:
-            if not ast.parentname.name in o: raise Undeclared(Class(), ast.parentname.name)
+            if not ast.parentname.name in o: 
+                raise Undeclared(Class(), ast.parentname.name)
         envi = {
             'global': o,
             'class' : o[ast.classname.name]
