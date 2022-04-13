@@ -56,3 +56,25 @@ class StaticChecker(BaseVisitor,Utils):
 
     def visitIntLiteral(self,ast, c): 
         return IntType()
+
+class GetLHS(BaseVisitor):
+    def getTypeDecl(self,name,o):
+        if not 'const' in o[name]: 
+            return 'method'
+
+        if o[name]['const'] == True: 
+            return 'const'
+
+        return 'var'
+    
+    def visitIntLiteral(self,ast, c): 
+        return IntType()
+
+    def visitIntLiteral(self,ast, c): 
+        return IntType()
+
+    def visitIntLiteral(self,ast, c): 
+        return IntType()
+        
+    def visitIntLiteral(self,ast, c): 
+        return IntType()
