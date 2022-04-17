@@ -19,7 +19,7 @@ class CheckerSuite(unittest.TestCase):
 
     def test_13(self):
         input = """
-            Class Program: Dog{
+            Class Program: Dog {
                 
             }
             

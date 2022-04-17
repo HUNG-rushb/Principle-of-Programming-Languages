@@ -77,7 +77,7 @@ class StaticChecker(BaseVisitor, Utils):
 #   decl: List[ClassDecl]
     def visitProgram(self, ast: Program, classStore):
         classStore = []
-        # print(ast.decl)
+        print(ast.decl)
 
         for decl in ast.decl:
             self.visit(decl, classStore)
@@ -98,17 +98,20 @@ class StaticChecker(BaseVisitor, Utils):
 
         if ast.parentname != None:
             parentName = self.visit(ast.parentname, classStore)
+            # print(parentName)
         else:
             parentName = None
         # -----------------------------------------------------------------
         # First ever class can not have inheritance
         if len(classStore) == 0 and parentName != None:
-            return Undeclared(Class(), parentName)
+            raise Undeclared(Class(), parentName["name"])
         
-        # Not the first ever class declared 
+        # Store not empty
         elif len(classStore) > 0:
+
+            # Loop through store and check name 
             for current_classDecl in classStore:
-                if current_classDecl['ClassName'] == className['name']:
+                if current_classDecl['ClassName'] == className["name"]:
                     raise Redeclared(Class(), className["name"])
             
 
