@@ -1,1 +1,9 @@
-int main() {foo();}
+
+        Class Dog : Animal {
+            Val $a : Int = 3.2;
+            $getDog() { }
+        }
+        Class Meow {
+            $set() { }
+        }
+        

@@ -3,13 +3,16 @@
 Trịnh Duy Hưng
 """
 from msilib.schema import Class
+from pydoc import classname
+
+from numpy import var
 from AST import *
 from Visitor import *
 from Utils import Utils
 from StaticError import *
+
+
 from enum import Enum
-
-
 class Type(Enum):
     UNDEFINE = 0
     INT = 1
@@ -20,6 +23,29 @@ class Type(Enum):
     CLASS = 6
     VOID = 7
 
+
+# [
+# 	{
+# 		"className": <classname>
+# 		"attributes": [
+# 			{"a": int}
+# 			{"b": float}
+# 			{"c": string}
+# 		]
+# 		"methods": [
+# 			{
+# 				"methodname": <methodName>
+# 				"type": Method || SpecialMethod
+# 				"params": [
+# 					{<paramName>: <type>}
+# 				]
+# 				"body": [
+# 					{<variableName>: <type>}
+# 				]
+# 			}
+# 		]
+# 	}
+# ]
 
 class MType:
     def __init__(self, partype, rettype):
@@ -49,129 +75,165 @@ class StaticChecker(BaseVisitor, Utils):
 
 
 #   decl: List[ClassDecl]
-    def visitProgram(self, ast: Program, varList):
-        # return  [self.visit(x,c) for x in ast.decl]
-        varList = [[{}], [{}]]
+    def visitProgram(self, ast: Program, classStore):
+        classStore = []
+        # print(ast.decl)
+
         for decl in ast.decl:
-            self.visit(decl, varList)
+            self.visit(decl, classStore)
 
 #     classname: Id
 #     memlist: List[MemDecl]
 #     parentname: Id = None
-    def visitClassDecl(self, ast: ClassDecl, varList):
-        className = ast.classname.name
-        parentName = ast.parentName.name
+    def visitClassDecl(self, ast: ClassDecl, classStore):
+        className = self.visit(ast.classname, classStore)
 
-        if className in varList:
-            raise Redeclared(Class(),)
+        # attrDecl = []
+        # methodDecl = []
+        # for mem in ast.memlist:
+        #     if isinstance(mem, AttributeDecl):
+        #         attrDecl.append(mem)
+        #     else:
+        #         methodDecl.append(mem)
 
-#     name: str
-    def visitId(self, ast: Id, varList):
+        if ast.parentname != None:
+            parentName = self.visit(ast.parentname, classStore)
+        else:
+            parentName = None
+        # -----------------------------------------------------------------
+        # First ever class can not have inheritance
+        if len(classStore) == 0 and parentName != None:
+            return Undeclared(Class(), parentName)
+        
+        # Not the first ever class declared 
+        elif len(classStore) > 0:
+            for current_classDecl in classStore:
+                if current_classDecl['ClassName'] == className['name']:
+                    raise Redeclared(Class(), className["name"])
+            
 
-        for index in varList:
-            if ast.Id in index:
-                return index[ast.Id]
+
+            
         
 
+      
+       
+        newClass = {}
+        newClass['ClassName'] = className['name']
+        newClass['Attributes'] = []
+        newClass['Methos'] = []
 
-    def visitClassType(self, ast: ClassType, varList):
+        classStore.insert(0, newClass)
+
+
+#     name: str
+    def visitId(self, ast: Id, classStore):
+         return {'name':ast.name, "type":Type.UNDEFINE}
+        
+        
+        
+
+       
+    def visitClassType(self, ast: ClassType, classStore):
         return None
 
-    def visitBinaryOp(self, ast: BinaryOp, varList):
+    def visitBinaryOp(self, ast: BinaryOp, classStore):
         return None
 
-    def visitUnaryOp(self, ast: UnaryOp, varList):
+    def visitUnaryOp(self, ast: UnaryOp, classStore):
         return None
 
-    def visitCallExpr(self, ast: CallExpr, varList):
+    def visitCallExpr(self, ast: CallExpr, classStore):
         return None
 
-    def visitNewExpr(self, ast: NewExpr, varList):
+    def visitNewExpr(self, ast: NewExpr, classStore):
         return None
 
-    def visitArrayCell(self, ast: ArrayCell, varList):
+    def visitArrayCell(self, ast: ArrayCell, classStore):
         return None
 
-    def visitFieldAccess(self, ast: FieldAccess, varList):
+    def visitFieldAccess(self, ast: FieldAccess, classStore):
         return None
 
-    def visitFloatLiteral(self, ast: FloatLiteral, varList):
+    def visitFloatLiteral(self, ast: FloatLiteral, classStore):
         return None
 
-    def visitStringLiteral(self, ast: StringLiteral, varList):
+    def visitStringLiteral(self, ast: StringLiteral, classStore):
         return None
 
-    def visitBooleanLiteral(self, ast: BooleanLiteral, varList):
+    def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
         return None
 
-    def visitSelfLiteral(self, ast: SelfLiteral, varList):
+    def visitSelfLiteral(self, ast: SelfLiteral, classStore):
         return None
 
-    def visitArrayLiteral(self, ast: ArrayLiteral, varList):
+    def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
         return None
 
-    def visitAssign(self, ast: Assign, varList):
+    def visitVarDecl(self, ast: VarDecl, classStore):
         return None
 
-    def visitIf(self, ast: If, varList):
+
+    def visitAssign(self, ast: Assign, classStore):
         return None
 
-    def visitFor(self, ast: For, varList):
+    def visitIf(self, ast: If, classStore):
         return None
 
-    def visitBreak(self, ast: Break, varList):
+    def visitFor(self, ast: For, classStore):
         return None
 
-    def visitContinue(self, ast: Continue, varList):
+    def visitBreak(self, ast: Break, classStore):
         return None
 
-    def visitReturn(self, ast: Return, varList):
+    def visitContinue(self, ast: Continue, classStore):
         return None
 
-    def visitCallStmt(self, ast: CallStmt, varList):
+    def visitReturn(self, ast: Return, classStore):
         return None
 
-    def visitVarDecl(self, ast: VarDecl, varList):
+    def visitCallStmt(self, ast: CallStmt, classStore):
         return None
 
-    def visitBlock(self, ast: Block, varList):
+
+    def visitBlock(self, ast: Block, classStore):
         return None
 
-    def visitConstDecl(self, ast: ConstDecl, varList):
+    def visitConstDecl(self, ast: ConstDecl, classStore):
         return None
 
-    def visitInstance(self, ast: Instance, varList):
+    def visitInstance(self, ast: Instance, classStore):
         return None
 
-    def visitBlock(self, ast: Block, varList):
+    def visitBlock(self, ast: Block, classStore):
         return None
 
-    def visitStatic(self, ast: Static, varList):
+    def visitStatic(self, ast: Static, classStore):
         return None
 
-    def visitMethodDecl(self, ast: MethodDecl, varList):
+    def visitMethodDecl(self, ast: MethodDecl, classStore):
         return None
 
-    def visitAttributeDecl(self, ast: AttributeDecl, varList):
+    def visitAttributeDecl(self, ast: AttributeDecl, classStore):
         return None
 
     # Primitive Type 
-    def visitIntType(self, ast: IntType, varList):
+    def visitIntType(self, ast: IntType, classStore):
         return Type.INT
 
-    def visitFloatType(self, ast: FloatType, varList):
+    def visitFloatType(self, ast: FloatType, classStore):
         return Type.FLOAT
 
-    def visitBoolType(self, ast: BoolType, varList):
+    def visitBoolType(self, ast: BoolType, classStore):
         return Type.BOOLEAN
 
-    def visitStringType(self, ast: StringType, varList):
+    def visitStringType(self, ast: StringType, classStore):
         return Type.STRING
 
-    def visitArrayType(self, ast: ArrayType, varList):
+    def visitArrayType(self, ast: ArrayType, classStore):
         return Type.ARRAY
 
-    def visitVoidType(self, ast: VoidType, varList):
+    def visitVoidType(self, ast: VoidType, classStore):
         return Type.VOID
 
 #     def visitFuncDecl(self, ast, c):
@@ -193,3 +255,14 @@ class StaticChecker(BaseVisitor, Utils):
 #
 #     def visitIntLiteral(self, ast, c):
 #         return None IntType()
+
+
+# if ast.parentname == None:
+#             self.visit(ast.classname, classStore)
+#             for memdecl in ast.memlist:
+#                 self.visit(memdecl, classStore)
+#         else:
+#             if parentName == classname:
+#                 raise Redeclared(Class(), classname)
+#             else:
+#                 print('...')

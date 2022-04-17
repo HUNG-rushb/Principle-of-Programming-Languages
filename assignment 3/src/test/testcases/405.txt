@@ -1,1 +1,6 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List(CallExpr(Id(putIntLn),List()))))))
+
+        Class B: A {
+            Var t: Float = 1.4 % 3; 
+            setA(a: Int) { }
+        }
+        

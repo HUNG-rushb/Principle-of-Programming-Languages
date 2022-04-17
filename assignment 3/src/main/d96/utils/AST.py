@@ -321,6 +321,11 @@ class AttributeDecl(MemDecl):
         return "AttributeDecl(" + str(self.kind) + ',' + str(self.decl) + ")"
 
 
+
+
+
+
+
 class IntType(Type):
     def __str__(self):
         return "IntType"

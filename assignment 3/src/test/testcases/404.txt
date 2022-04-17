@@ -1,1 +1,7 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List(CallExpr(Id(putIntLn),List(CallExpr(Id(getInt),List(IntLiteral(4))))))))))
+
+        Class B: A {
+            Val $r :Int = 2 + 2 * 2.5;
+            Var a: Boolean = True;
+            setA(a: Int) { }
+        }
+        
