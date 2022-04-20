@@ -1,0 +1,35 @@
+{
+    "A": {
+        "parent": "",
+        "attributes": {
+            "$a": {
+                "type": "<3...INT",
+                "value": null,
+                "const": false,
+                "kind": "<3...STATIC"
+            }
+        },
+        "methods": {}
+    },
+    "B": {
+        "parent": "G",
+        "attributes": {
+            "$a": {
+                "type": "<3...INT",
+                "value": null,
+                "const": false,
+                "kind": "<3...STATIC"
+            }
+        },
+        "methods": {
+            "$getDog": {
+                "type": "<3...VOID",
+                "kind": null,
+                "body": [
+                    {}
+                ],
+                "params": {}
+            }
+        }
+    }
+}

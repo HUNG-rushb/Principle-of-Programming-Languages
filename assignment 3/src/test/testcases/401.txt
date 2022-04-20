@@ -2,7 +2,10 @@
         Class A {
             Var $a: Int;
         }
-        Class A {
-            Val $b: Float;
+        
+        Class B: G {
+            Var $a: Int;
+             $getDog() { Var assdasd: Int; }
         }
+        
         

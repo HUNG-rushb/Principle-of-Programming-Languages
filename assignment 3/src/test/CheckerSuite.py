@@ -5,27 +5,27 @@ from AST import *
 class CheckerSuite(unittest.TestCase):
     
 
-    def test_12(self):
-        input = """
-            Class Program {
+    # def test_12(self):
+    #     input = """
+    #         Class Program {
                 
-            }
-            Class Program {
+    #         }
+    #         Class Program {
                 
-            }
-        """
-        expect = "Redeclared Class: Program"
-        self.assertTrue(TestChecker.test(input,expect,412))
+    #         }
+    #     """
+    #     expect = "Redeclared Class: Program"
+    #     self.assertTrue(TestChecker.test(input,expect,412))
 
-    def test_13(self):
-        input = """
-            Class Program: Dog {
+    # def test_13(self):
+    #     input = """
+    #         Class Program: Dog {
                 
-            }
+    #         }
             
-        """
-        expect = "Undeclared Class: Dog"
-        self.assertTrue(TestChecker.test(input,expect,413))
+    #     """
+    #     expect = "Undeclared Class: Dog"
+    #     self.assertTrue(TestChecker.test(input,expect,413))
 
     # def test0(self):
     #     input = """
@@ -39,17 +39,20 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "Type Mismatch In Statement: ConstDecl(Id($a),IntType,FloatLit(3.2))"
     #     self.assertTrue(TestChecker.test(input,expect,400))
-    # def test1(self):
-    #     input = """
-    #     Class A {
-    #         Var $a: Int;
-    #     }
-    #     Class A {
-    #         Val $b: Float;
-    #     }
-    #     """
-    #     expect = "Redeclared Class: A"
-    #     self.assertTrue(TestChecker.test(input,expect,401))
+    def test1(self):
+        input = """
+        Class A {
+            Var $a: Int;
+        }
+        
+        Class B: G {
+            Var $a: Int;
+             $getDog() { Var assdasd: Int; }
+        }
+        
+        """
+        expect = "Redeclared Class: A"
+        self.assertTrue(TestChecker.test(input,expect,401))
 
     # def test2(self):
     #     input = """
