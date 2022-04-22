@@ -1,11 +1,17 @@
 
         Class A {
             Var $a: Int;
+
+
+            Var bbb: Lmao;
+
+            Hung (a:Int;b:Float)
+            {
+
+            }
         }
         
-        Class B: G {
-            Var $a: Int;
-             $getDog() { Var assdasd: Int; }
-        }
         
+       
+         
         
