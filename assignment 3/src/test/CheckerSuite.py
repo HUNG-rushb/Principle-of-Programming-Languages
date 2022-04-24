@@ -15,29 +15,31 @@ class CheckerSuite(unittest.TestCase):
     #         }
     #     """
     #     expect = "Redeclared Class: Program"
-    #     self.assertTrue(TestChecker.test(input,expect,412))
-
-    def test_13(self):
-        input = """
-            Class Program {
-                 Val a: Int = 1; 
-                 Val a: Float = 2; 
-                 
-            }
-            
-        """
-        expect = "Redeclared Constant: a"
-        self.assertTrue(TestChecker.test(input,expect,413))
+    #     self.assertTrue(TestChecker.test(input,expect,412))  Val $adwqdqw: Float = 1; 
 
     # def test_13(self):
     #     input = """
-    #         Class Program: Dog {
-    #              Var a: Array[Int, 2] ;
+    #         Class Program : Hung{
+               
+                
+                 
+                
     #         }
             
     #     """
-    #     expect = "Undeclared Class: Dog"
+    #     expect = "[]"
     #     self.assertTrue(TestChecker.test(input,expect,413))
+
+    def test_13(self):
+        
+        input = """
+            Class Program {
+                
+            }
+            
+        """
+        expect = "No Entry Point"
+        self.assertTrue(TestChecker.test(input,expect,413))
 
     # def test0(self):
     #     input = """

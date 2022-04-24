@@ -86,81 +86,15 @@ class Symbol:
         self.value = value
 
 
-# {
-#     "super": {
-#         "parent": "",
-#         "attribute": {
-#             "$s": {
-#                 "type": "<FLOAT>",
-#                 "init": null,
-#                 "const": false,
-#                 "kind": "<STATIC>"
-#             }
-#         },
-#         "method": {}
-#     },
-#     "A": {
-#         "parent": "",
-#         "attribute": {
-#             "z": {
-#                 "type": "<INT>",
-#                 "init": "<INT>",
-#                 "const": false,
-#                 "kind": "<INSTANCE>"
-#             }
-#         },
-#         "method": {
-#             "getA": {
-#                 "type": "<VOID>",
-#                 "kind": "<INSTANCE>",
-#                 "body": [
-#                     {
-#                         "a": {
-#                             "type": "<INT>",
-#                             "kind": "<INSTANCE>",
-#                             "init": null,
-#                             "const": false
-#                         },
-#                         "t": {
-#                             "type": "<CLASS>(super)",
-#                             "kind": "<INSTANCE>",
-#                             "const": false,
-#                             "init": "<NULL>"
-#                         },
-#                         "b": {
-#                             "type": "<FLOAT>",
-#                             "kind": "<INSTANCE>",
-#                             "const": false,
-#                             "init": "<FLOAT>"
-#                         }
-#                     }
-#                 ],
-#                 "param": {
-#                     "a": {
-#                         "type": "<INT>",
-#                         "kind": "<INSTANCE>",
-#                         "init": null,
-#                         "const": false
-#                     },
-#                     "b": {
-#                         "type": "<INT>",
-#                         "kind": "<INSTANCE>",
-#                         "init": null,
-#                         "const": false
-#                     }
-#                 }
-#             }
-#         }
-#     }
-# }
 
 
 
-#  ██████  ██       ██████  ██████   █████  ██      
-# ██       ██      ██    ██ ██   ██ ██   ██ ██      
-# ██   ███ ██      ██    ██ ██████  ███████ ██      
-# ██    ██ ██      ██    ██ ██   ██ ██   ██ ██      
-#  ██████  ███████  ██████  ██████  ██   ██ ███████
+
+#  ! ██████  ██       ██████  ██████   █████  ██      
+# ! ██       ██      ██    ██ ██   ██ ██   ██ ██      
+# ! ██   ███ ██      ██    ██ ██████  ███████ ██      
+# ! ██    ██ ██      ██    ██ ██   ██ ██   ██ ██      
+# !  ██████  ███████  ██████  ██████  ██   ██ ███████
 class GlobalScope(BaseVisitor, Utils):
     def visitProgram(self, ast: Program, classStore):
         for decl in ast.decl:
@@ -189,6 +123,12 @@ class GlobalScope(BaseVisitor, Utils):
 
         for mem in memList:
             self.visit(mem, classStore[className])
+        
+        # 2.11 No entry point
+        if ('Program' not in classStore) or ('main' not in classStore['Program']):
+            raise NoEntryPoint()
+        # elif :
+
 
   
 
@@ -199,7 +139,7 @@ class GlobalScope(BaseVisitor, Utils):
         varName = ast.variable.name
 
         if varName in classStore:
-            raise Redeclared(Variable(), varName)
+            raise Redeclared(Attribute(), varName)
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
@@ -229,14 +169,17 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind,
         }
 
-
+    # kind: SIKind
+    # name: Id
+    # param: List[VarDecl]
+    # body: Block
     def visitMethodDecl(self, ast: MethodDecl, classStore):
         methodName = ast.name.name
 
         if methodName in classStore:
             raise Redeclared(Method(), methodName)
 
-        methodKind = self.visit(ast.kind, classStore)
+        methodKind = Kind().STATIC() if methodName[0] == '$' else Kind().INSTANCE()
         methodParams = ast.param
 
         classStore['methods'][methodName] = {
@@ -282,11 +225,11 @@ class GlobalScope(BaseVisitor, Utils):
     def visitVoidType(self, ast: VoidType, classStore):
         return Type().VOID()
 
-# ██ ███    ██ ██ ████████ 
-# ██ ████   ██ ██    ██    
-# ██ ██ ██  ██ ██    ██    
-# ██ ██  ██ ██ ██    ██    
-# ██ ██   ████ ██    ██   
+# ! ██ ███    ██ ██ ████████ 
+# ! ██ ████   ██ ██    ██    
+# ! ██ ██ ██  ██ ██    ██    
+# ! ██ ██  ██ ██ ██    ██    
+# ! ██ ██   ████ ██    ██   
 class ValidateInit(BaseVisitor, Utils):
     def visitProgram(self, ast: Program, classStore):
         for decl in ast.decl:
@@ -300,6 +243,15 @@ class ValidateInit(BaseVisitor, Utils):
     def visitClassDecl(self, ast: ClassDecl, classStore):
         className = ast.classname.name
         memList = ast.memlist
+
+        if ast.parentname != None:
+            parentName = ast.parentname.name
+        else:
+            parentName = ''
+
+        if parentName not in classStore:
+            raise Undeclared(Class(), parentName)
+        
         for mem in memList:
             self.visit(mem, classStore[className])
 
@@ -325,7 +277,6 @@ class ValidateInit(BaseVisitor, Utils):
     # constType: Type
     # value: Expr = None # None if there is no initial
     def visitConstDecl(self, ast: ConstDecl, classStore):
-        print(10)
         constName = ast.constant.name
 
         if ast.value == None:
@@ -344,9 +295,14 @@ class ValidateInit(BaseVisitor, Utils):
     #     return None
 
 
+    # op: str
+    # left: Expr
+    # right: Expr
     def visitBinaryOp(self, ast: BinaryOp, classStore):
         return None
 
+    # op: str
+    # body: Expr
     def visitUnaryOp(self, ast: UnaryOp, classStore):
         return None
 
@@ -356,11 +312,19 @@ class ValidateInit(BaseVisitor, Utils):
     def visitNewExpr(self, ast: NewExpr, classStore):
         return None
 
+
+
+
+
     def visitArrayCell(self, ast: ArrayCell, classStore):
         return None
 
     def visitFieldAccess(self, ast: FieldAccess, classStore):
         return None
+
+
+
+
 
     def visitIntLiteral(self, ast: IntLiteral, classStore):
         return Type().INT()
@@ -442,11 +406,11 @@ class ValidateInit(BaseVisitor, Utils):
     def visitVoidType(self, ast: VoidType, classStore):
         return Type().VOID()
 
-#  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
-# ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
-# ██      ███████ █████   ██      █████   █████   ██████  
-# ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
-#  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██   ██ 
+# !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
+# ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
+# ! ██      ███████ █████   ██      █████   █████   ██████  
+# ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
+# !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██   ██ 
 class StaticChecker(BaseVisitor, Utils):
 
     global_envi = [
