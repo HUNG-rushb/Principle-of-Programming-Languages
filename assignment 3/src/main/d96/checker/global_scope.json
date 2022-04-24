@@ -1,16 +1,15 @@
 {
     "Program": {
         "parent": "",
-        "attributes": {},
-        "methods": {
-            "wqdwqdqw": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {}
+        "attributes": {
+            "hung": {
+                "type": "<3...INT",
+                "value": null,
+                "init": null,
+                "const": false,
+                "kind": "<3...INSTANCE"
             }
-        }
+        },
+        "methods": {}
     }
 }

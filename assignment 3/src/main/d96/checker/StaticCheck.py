@@ -125,8 +125,8 @@ class GlobalScope(BaseVisitor, Utils):
             self.visit(mem, classStore[className])
         
         # 2.11 No entry point
-        if ('Program' not in classStore) or ('main' not in classStore['Program']):
-            raise NoEntryPoint()
+        # if ('Program' not in classStore) or ('main' not in classStore['Program']):
+        #     raise NoEntryPoint()
         # elif :
 
 
@@ -299,11 +299,21 @@ class ValidateInit(BaseVisitor, Utils):
     # left: Expr
     # right: Expr
     def visitBinaryOp(self, ast: BinaryOp, classStore):
-        return None
+        # operand = ast.op
+        left = self.visit(ast.left, classStore)
+        right = self.visit(ast.right, classStore)
+
+        if left == Type.INT() and right == Type.INT():
+            print(123)
+            return Type.INT()
+        
 
     # op: str
     # body: Expr
     def visitUnaryOp(self, ast: UnaryOp, classStore):
+        operand = ast.op
+        body = self.visit(ast.body, classStore)
+
         return None
 
     def visitCallExpr(self, ast: CallExpr, classStore):

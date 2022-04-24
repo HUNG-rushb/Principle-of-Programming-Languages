@@ -1,6 +1,6 @@
 
             Class Program {
-                
+                Var hung: Int = 1 + 1; 
             }
             
         
