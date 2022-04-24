@@ -5,7 +5,7 @@
             "a": {
                 "type": "<3...FLOAT",
                 "value": null,
-                "init": null,
+                "init": "<3...INT",
                 "const": true,
                 "kind": "<3...INSTANCE"
             }

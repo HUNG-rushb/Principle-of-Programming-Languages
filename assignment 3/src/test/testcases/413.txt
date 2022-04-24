@@ -1,6 +1,8 @@
 
-            Class Program: Dog {
-                
+            Class Program {
+                 Val a: Int = 1; 
+                 Val a: Float = 2; 
+                 
             }
             
         

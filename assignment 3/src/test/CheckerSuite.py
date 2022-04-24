@@ -19,13 +19,25 @@ class CheckerSuite(unittest.TestCase):
 
     def test_13(self):
         input = """
-            Class Program: Dog {
-                
+            Class Program {
+                 Val a: Int = 1; 
+                 Val a: Float = 2; 
+                 
             }
             
         """
-        expect = "Undeclared Class: Dog"
+        expect = "Redeclared Constant: a"
         self.assertTrue(TestChecker.test(input,expect,413))
+
+    # def test_13(self):
+    #     input = """
+    #         Class Program: Dog {
+    #              Var a: Array[Int, 2] ;
+    #         }
+            
+    #     """
+    #     expect = "Undeclared Class: Dog"
+    #     self.assertTrue(TestChecker.test(input,expect,413))
 
     # def test0(self):
     #     input = """
