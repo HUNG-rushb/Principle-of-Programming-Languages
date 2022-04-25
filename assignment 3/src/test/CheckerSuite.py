@@ -34,7 +34,8 @@ class CheckerSuite(unittest.TestCase):
         
         input = """
             Class Program {
-                Var hung: Int = 1 + 1; 
+                
+                Var a: Array[Array[Int, 2], 2];
             }
             
         """

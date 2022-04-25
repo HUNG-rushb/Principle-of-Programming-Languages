@@ -42,7 +42,7 @@ class Type:
 
     def BOOLEAN(self): return "<3...BOOLEAN"
 
-    def ARRAY(self): return "<3...ARRAY"
+    def ARRAY(self, type, size): return "<3...ARRAY" + type + " " + size
 
     def CLASS(self, name): return "<3...CLASS " + name
 
@@ -139,11 +139,11 @@ class GlobalScope(BaseVisitor, Utils):
     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
         self.visit(ast.decl, classStore['attributes'], "attr")
 
-    def visitVarDecl(self, ast: VarDecl, classStore, type):
+    def visitVarDecl(self, ast: VarDecl, classStore, typeP):
         varName = ast.variable.name
 
         if varName in classStore:
-            raise Redeclared(Attribute(), varName) if type == "attr" else Redeclared(Variable(), varName)
+            raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
@@ -156,9 +156,11 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind,
         }
 
-    def visitConstDecl(self, ast: ConstDecl, classStore):
+    def visitConstDecl(self, ast: ConstDecl, classStore, typeP):
+        a = typeP;
+        
         varName = ast.constant.name
-
+        
         if varName in classStore:
             raise Redeclared(Constant(), varName)
 
@@ -227,7 +229,9 @@ class GlobalScope(BaseVisitor, Utils):
     # eleType: Type
     def visitArrayType(self, ast: ArrayType, classStore):
         arrayType = self.visit(ast.eleType, classStore)
-        return Type().ARRAY()
+        arraySize = ast.size
+
+        return Type().ARRAY(arrayType, arraySize)
 
     def visitVoidType(self, ast: VoidType, classStore):
         return Type().VOID()
