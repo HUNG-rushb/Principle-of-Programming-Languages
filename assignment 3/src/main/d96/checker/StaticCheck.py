@@ -107,11 +107,15 @@ class GlobalScope(BaseVisitor, Utils):
 
         if className in classStore:
             raise Redeclared(Class(), className)
+        
 
         memList = ast.memlist
         
         if ast.parentname != None:
             parentName = ast.parentname.name
+
+            if parentName not in classStore:
+                raise Undeclared(Class(), parentName)
         else:
             parentName = ''
 
@@ -133,13 +137,13 @@ class GlobalScope(BaseVisitor, Utils):
   
 
     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
-        self.visit(ast.decl, classStore['attributes'])
+        self.visit(ast.decl, classStore['attributes'], "attr")
 
-    def visitVarDecl(self, ast: VarDecl, classStore):
+    def visitVarDecl(self, ast: VarDecl, classStore, type):
         varName = ast.variable.name
 
         if varName in classStore:
-            raise Redeclared(Attribute(), varName)
+            raise Redeclared(Attribute(), varName) if type == "attr" else Redeclared(Variable(), varName)
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
@@ -219,7 +223,10 @@ class GlobalScope(BaseVisitor, Utils):
     def visitStringType(self, ast: StringType, classStore):
         return Type().STRING()
 
+    # size: int
+    # eleType: Type
     def visitArrayType(self, ast: ArrayType, classStore):
+        arrayType = self.visit(ast.eleType, classStore)
         return Type().ARRAY()
 
     def visitVoidType(self, ast: VoidType, classStore):
@@ -444,8 +451,8 @@ class StaticChecker(BaseVisitor, Utils):
         classStore = GlobalScope().visitProgram(ast, classStore)
         toJSON(classStore, 'global_scope')
 
-        classStore = ValidateInit().visitProgram(ast, classStore)
-        toJSON(classStore, 'validate_init')
+        # classStore = ValidateInit().visitProgram(ast, classStore)
+        # toJSON(classStore, 'validate_init')
         # return []
 
         # for decl in ast.decl:
