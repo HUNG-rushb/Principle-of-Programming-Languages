@@ -42,7 +42,7 @@ class Type:
 
     def BOOLEAN(self): return "<3...BOOLEAN"
 
-    def ARRAY(self, type, size): return "<3...ARRAY" + type + " " + size
+    def ARRAY(self, type, size): return "<3...ARRAY" + " " + type + " " + str(size)
 
     def CLASS(self, name): return "<3...CLASS " + name
 
@@ -137,28 +137,40 @@ class GlobalScope(BaseVisitor, Utils):
   
 
     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
-        self.visit(ast.decl, classStore['attributes'], "attr")
+        # self.visit(ast.decl, classStore['attributes'], "attr")
+        self.visit(ast.decl, classStore['attributes'])
 
-    def visitVarDecl(self, ast: VarDecl, classStore, typeP):
+    # variable: Id
+    # varType: Type
+    # varInit: Expr = None  # None if there is no initial
+    # def visitVarDecl(self, ast: VarDecl, classStore, typeP):
+    def visitVarDecl(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
         if varName in classStore:
-            raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
+            # raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
+            raise Redeclared(Attribute(), varName) 
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
+        if ast.varInit == None:
+            varInit = None
+        else:
+            varInit = self.visit(ast.varInit, classStore)
+
         classStore[varName] = {
             'type': varType,
             'value': None,
-            'init': None,
+            'init': varInit,
             'const': False,
             'kind': varKind,
         }
 
-    def visitConstDecl(self, ast: ConstDecl, classStore, typeP):
-        a = typeP;
-        
+    # constant: Id
+    # constType: Type
+    # value: Expr = None # None if there is no initial
+    def visitConstDecl(self, ast: ConstDecl, classStore):
         varName = ast.constant.name
         
         if varName in classStore:
@@ -167,10 +179,15 @@ class GlobalScope(BaseVisitor, Utils):
         varType = self.visit(ast.constType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
+        if ast.value == None:
+            constInit = None
+        else:
+            constInit = self.visit(ast.value, classStore)
+
         classStore[varName] = {
             'type': varType,
             'value': None,
-            'init': None,
+            'init': constInit,
             'const': True,
             'kind': varKind,
         }
@@ -209,6 +226,35 @@ class GlobalScope(BaseVisitor, Utils):
             'const': False,
             'kind': varKind
         }
+
+
+    # op: str
+    # left: Expr
+    # right: Expr
+    def visitBinaryOp(self, ast: BinaryOp, classStore):
+        # operand = ast.op
+        print("\n", 123, "\n")
+        left = self.visit(ast.left, classStore)
+        right = self.visit(ast.right, classStore)
+
+        if left == Type().INT() and right == Type().INT():
+            print("\n", 123, "\n")
+            return Type().INT()
+        
+
+    # op: str
+    # body: Expr
+    def visitUnaryOp(self, ast: UnaryOp, classStore):
+        operand = ast.op
+        body = self.visit(ast.body, classStore)
+
+        return None
+
+
+
+
+
+
 
     def visitClassType(self, ast: ClassType, classStore):
         return Type().CLASS(ast.classname.name)
@@ -254,14 +300,6 @@ class ValidateInit(BaseVisitor, Utils):
     def visitClassDecl(self, ast: ClassDecl, classStore):
         className = ast.classname.name
         memList = ast.memlist
-
-        if ast.parentname != None:
-            parentName = ast.parentname.name
-        else:
-            parentName = ''
-
-        if parentName not in classStore:
-            raise Undeclared(Class(), parentName)
         
         for mem in memList:
             self.visit(mem, classStore[className])

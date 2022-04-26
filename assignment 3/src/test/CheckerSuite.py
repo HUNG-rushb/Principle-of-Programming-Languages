@@ -35,7 +35,7 @@ class CheckerSuite(unittest.TestCase):
         input = """
             Class Program {
                 
-                Var a: Array[Array[Int, 2], 2];
+                Var adwqdqwd: Int = 1 + 2;
             }
             
         """
