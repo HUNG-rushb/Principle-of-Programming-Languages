@@ -2,12 +2,12 @@
     "Program": {
         "parent": "",
         "attributes": {
-            "adwqdqwd": {
-                "type": "<3...INT",
+            "$aewdwedwe": {
+                "type": "<3...FLOAT",
                 "value": null,
-                "init": null,
-                "const": false,
-                "kind": "<3...INSTANCE"
+                "init": "<3...FLOAT",
+                "const": true,
+                "kind": "<3...STATIC"
             }
         },
         "methods": {}

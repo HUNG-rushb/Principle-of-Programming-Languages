@@ -180,14 +180,14 @@ class GlobalScope(BaseVisitor, Utils):
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
         if ast.value == None:
-            constInit = None
+            varInit = None
         else:
-            constInit = self.visit(ast.value, classStore)
+            varInit = self.visit(ast.value, classStore)
 
         classStore[varName] = {
             'type': varType,
             'value': None,
-            'init': constInit,
+            'init': varInit,
             'const': True,
             'kind': varKind,
         }
@@ -233,28 +233,46 @@ class GlobalScope(BaseVisitor, Utils):
     # right: Expr
     def visitBinaryOp(self, ast: BinaryOp, classStore):
         # operand = ast.op
-        print("\n", 123, "\n")
         left = self.visit(ast.left, classStore)
         right = self.visit(ast.right, classStore)
 
         if left == Type().INT() and right == Type().INT():
-            print("\n", 123, "\n")
             return Type().INT()
+        elif left == Type().FLOAT() and right == Type().FLOAT():
+            return Type().FLOAT()
         
 
     # op: str
     # body: Expr
     def visitUnaryOp(self, ast: UnaryOp, classStore):
-        operand = ast.op
+        # operand = ast.op
         body = self.visit(ast.body, classStore)
 
-        return None
+        if body == Type().INT():
+            return Type().INT()
+        elif body == Type().FLOAT():
+            return Type().FLOAT()
 
 
+    def visitIntLiteral(self, ast: IntLiteral, classStore):
+        return Type().INT()
 
+    def visitFloatLiteral(self, ast: FloatLiteral, classStore):
+        return Type().FLOAT()
 
+    def visitStringLiteral(self, ast: StringLiteral, classStore):
+        return Type().STRING()
 
+    def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
+        return Type().BOOLEAN()
 
+    def visitSelfLiteral(self, ast: SelfLiteral, classStore):
+        return Type().SELF()
+
+    def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
+        return Type().ARRAY()
+
+    
 
     def visitClassType(self, ast: ClassType, classStore):
         return Type().CLASS(ast.classname.name)
@@ -386,6 +404,7 @@ class ValidateInit(BaseVisitor, Utils):
 
 
     def visitIntLiteral(self, ast: IntLiteral, classStore):
+        print("\n", 123, "\n")
         return Type().INT()
 
     def visitFloatLiteral(self, ast: FloatLiteral, classStore):

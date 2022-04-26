@@ -35,11 +35,11 @@ class CheckerSuite(unittest.TestCase):
         input = """
             Class Program {
                 
-                Var adwqdqwd: Int = 1 + 2;
+                Val $aewdwedwe : Float = 3.2 + 3.2;
             }
             
         """
-        expect = "No Entry Point"
+        expect = "[]"
         self.assertTrue(TestChecker.test(input,expect,413))
 
     # def test0(self):
