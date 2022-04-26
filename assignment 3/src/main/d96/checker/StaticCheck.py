@@ -3,10 +3,12 @@
 Trịnh Duy Hưng
 """
 
+from lib2to3.pgen2.grammar import opmap_raw
 from msilib.schema import Class
 from pydoc import classname
+from xml.dom.expatbuilder import parseString
 
-from numpy import var
+
 from AST import *
 from Visitor import *
 from Utils import Utils
@@ -159,6 +161,13 @@ class GlobalScope(BaseVisitor, Utils):
         else:
             varInit = self.visit(ast.varInit, classStore)
 
+            if varInit != varType:
+                if varType == Type().FLOAT() and varInit == Type().INT():
+                    # print("\n", 123, "\n")
+                    varInit = Type().FLOAT()
+                else:
+                    raise TypeMismatchInStatement(ast)
+
         classStore[varName] = {
             'type': varType,
             'value': None,
@@ -183,6 +192,13 @@ class GlobalScope(BaseVisitor, Utils):
             varInit = None
         else:
             varInit = self.visit(ast.value, classStore)
+
+            if varInit != varType:
+                if varType == Type().FLOAT() and varInit == Type().INT():
+                    # print("\n", 123, "\n")
+                    varInit = Type().FLOAT()
+                else:
+                    raise TypeMismatchInConstant(ast) 
 
         classStore[varName] = {
             'type': varType,
@@ -232,26 +248,78 @@ class GlobalScope(BaseVisitor, Utils):
     # left: Expr
     # right: Expr
     def visitBinaryOp(self, ast: BinaryOp, classStore):
-        # operand = ast.op
+        operand = ast.op
         left = self.visit(ast.left, classStore)
         right = self.visit(ast.right, classStore)
 
-        if left == Type().INT() and right == Type().INT():
-            return Type().INT()
-        elif left == Type().FLOAT() and right == Type().FLOAT():
-            return Type().FLOAT()
-        
+        if operand in ["+", "-", "*", "/", "%"]:
+            if left == Type().INT() and right == Type().INT():
+                return Type().INT()
+            elif left == Type().FLOAT() and right == Type().FLOAT():
+                return Type().FLOAT()
+        # 5.2 và 5.3
+        elif operand in ["&&", "||", "==.", "+."]: 
+            return None
+        elif operand in ["==", "!=", ">", "<", "<=", ">="]:
+            return None
+
 
     # op: str
     # body: Expr
     def visitUnaryOp(self, ast: UnaryOp, classStore):
-        # operand = ast.op
+        operand = ast.op
         body = self.visit(ast.body, classStore)
 
-        if body == Type().INT():
-            return Type().INT()
-        elif body == Type().FLOAT():
-            return Type().FLOAT()
+        if operand == "New":
+            return None
+        elif operand == '!':
+            return None
+        elif operand == '-':
+            return body
+        # elif operand == '!':
+        #     return None
+       
+
+    
+    # lhs: Expr
+    # exp: Expr
+    def visitAssign(self, ast: Assign, classStore):
+        LHS = self.visit(ast.lhs, classStore)
+        expr = self.visit(ast.exp, classStore)
+        return None
+
+    # expr: Expr
+    # thenStmt: Stmt
+    # elseStmt: Stmt = None  # None if there is no else branch
+    def visitIf(self, ast: If, classStore):
+        return None
+
+    # id: Id
+    # expr1: Expr
+    # expr2: Expr 
+    # loop: Stmt
+    # expr3: Expr = None
+    def visitFor(self, ast: For, classStore):
+        return None
+
+    def visitBreak(self, ast: Break, classStore):
+        return Break()
+
+    def visitContinue(self, ast: Continue, classStore):
+        return Continue()
+
+    # expr: Expr = None
+    def visitReturn(self, ast: Return, classStore):
+        expression = self.visit(ast.expr, classStore)
+        return expression
+
+    def visitCallStmt(self, ast: CallStmt, classStore):
+        return None
+
+
+    def visitBlock(self, ast: Block, classStore):
+        return None
+
 
 
     def visitIntLiteral(self, ast: IntLiteral, classStore):

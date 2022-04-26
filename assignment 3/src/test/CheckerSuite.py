@@ -35,7 +35,7 @@ class CheckerSuite(unittest.TestCase):
         input = """
             Class Program {
                 
-                Val $aewdwedwe : Float = 3.2 + 3.2;
+                Var quynh : Int = 1.3;
             }
             
         """
