@@ -4,6 +4,18 @@ from AST import *
 
 class CheckerSuite(unittest.TestCase):
     
+    def test7(self):
+        input = """
+        Class Program {main(){}}
+        Class A {
+            Var a: Int = 120;
+            Val $a: C = New C();
+            Constructor () { }
+            Destructor () { }
+        }
+        """
+        expect = "Undeclared Class: C"
+        self.assertTrue(TestChecker.test(input,expect,407))
 
     # def test_12(self):
     #     input = """
@@ -30,17 +42,17 @@ class CheckerSuite(unittest.TestCase):
     #     expect = "[]"
     #     self.assertTrue(TestChecker.test(input,expect,413))
 
-    def test_13(self):
+    # def test_13(self):
         
-        input = """
-            Class Program {
+    #     input = """
+    #         Class Program {
                 
-                Var quynh : Int = 1.3;
-            }
+    #             Var quynh : Int = 1.3;
+    #         }
             
-        """
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,413))
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,413))
 
     # def test0(self):
     #     input = """
