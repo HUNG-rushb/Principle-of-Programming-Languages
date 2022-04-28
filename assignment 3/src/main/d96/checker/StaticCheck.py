@@ -50,6 +50,11 @@ class Type:
 
     def VOID(self): return "<3...VOID"
 
+    def NULL(self): return "<3...NULL"
+
+    # def NEW(self, type): return "<3...NEW" + " " + type
+    def NEW(self): return "<3...NEW" 
+
     def SELF(self): return "<3...SELF"
 
 
@@ -104,18 +109,24 @@ class GlobalScope(BaseVisitor, Utils):
         
         return classStore
 
+    # newEnviroment = {
+    #     'overall' : classStore,
+    #     'class' : classStore[className]
+    # }
     def visitClassDecl(self, ast: ClassDecl, classStore):
         className = ast.classname.name
 
         if className in classStore:
             raise Redeclared(Class(), className)
         
-
         memList = ast.memlist
         
         if ast.parentname != None:
             parentName = ast.parentname.name
 
+            # 'overall': {'A': {'parent': '', 
+            # 'attributes': {'a': {'type': '<3...INT', 'value': None, 'init': '<3...INT', 'const': False, 'kind': '<3...INSTANCE'}}, 
+            # 'methods': {}}}
             if parentName not in classStore:
                 raise Undeclared(Class(), parentName)
         else:
@@ -127,8 +138,13 @@ class GlobalScope(BaseVisitor, Utils):
             'methods': {}
         }
 
+        newEnviroment = {
+            'overall' : classStore,
+            'class' : classStore[className]
+        }
+
         for mem in memList:
-            self.visit(mem, classStore[className])
+            self.visit(mem, newEnviroment)
         
         # 2.11 No entry point
         # if ('Program' not in classStore) or ('main' not in classStore['Program']):
@@ -139,36 +155,33 @@ class GlobalScope(BaseVisitor, Utils):
   
 
     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
-        # self.visit(ast.decl, classStore['attributes'], "attr")
-        self.visit(ast.decl, classStore['attributes'])
+        self.visit(ast.decl, classStore)
 
     # variable: Id
     # varType: Type
     # varInit: Expr = None  # None if there is no initial
-    # def visitVarDecl(self, ast: VarDecl, classStore, typeP):
     def visitVarDecl(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
-        if varName in classStore:
+        if varName in classStore['class']["attributes"]:
             # raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
             raise Redeclared(Attribute(), varName) 
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
-        if ast.varInit == None:
+        if ast.varInit is None:
             varInit = None
         else:
             varInit = self.visit(ast.varInit, classStore)
 
-            if varInit != varType:
+            if varInit != varType and varInit != Type().NEW():
                 if varType == Type().FLOAT() and varInit == Type().INT():
-                    # print("\n", 123, "\n")
                     varInit = Type().FLOAT()
                 else:
                     raise TypeMismatchInStatement(ast)
 
-        classStore[varName] = {
+        classStore['class']["attributes"][varName] = {
             'type': varType,
             'value': None,
             'init': varInit,
@@ -176,13 +189,15 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind,
         }
 
+        # print(classStore)
+
     # constant: Id
     # constType: Type
     # value: Expr = None # None if there is no initial
     def visitConstDecl(self, ast: ConstDecl, classStore):
         varName = ast.constant.name
         
-        if varName in classStore:
+        if varName in classStore['class']["attributes"]:
             raise Redeclared(Constant(), varName)
 
         varType = self.visit(ast.constType, classStore)
@@ -193,14 +208,14 @@ class GlobalScope(BaseVisitor, Utils):
         else:
             varInit = self.visit(ast.value, classStore)
 
-            if varInit != varType:
+            if varInit != varType and varInit != Type().NEW():
                 if varType == Type().FLOAT() and varInit == Type().INT():
                     # print("\n", 123, "\n")
                     varInit = Type().FLOAT()
                 else:
                     raise TypeMismatchInConstant(ast) 
 
-        classStore[varName] = {
+        classStore['class']["attributes"][varName] = {
             'type': varType,
             'value': None,
             'init': varInit,
@@ -271,7 +286,7 @@ class GlobalScope(BaseVisitor, Utils):
         body = self.visit(ast.body, classStore)
 
         if operand == "New":
-            return None
+            return body
         elif operand == '!':
             return None
         elif operand == '-':
@@ -313,6 +328,15 @@ class GlobalScope(BaseVisitor, Utils):
         expression = self.visit(ast.expr, classStore)
         return expression
 
+    # classname: Id
+    # param: List[Expr]
+    def visitNewExpr(self, ast: NewExpr, classStore):
+        className = ast.classname.name
+        methodParams = ast.param
+
+        return Type().NEW()
+
+
     def visitCallStmt(self, ast: CallStmt, classStore):
         return None
 
@@ -334,6 +358,9 @@ class GlobalScope(BaseVisitor, Utils):
     def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
         return Type().BOOLEAN()
 
+    def visitNullLiteral(self, ast: NullLiteral, classStore):
+        return Type().NULL()
+        
     def visitSelfLiteral(self, ast: SelfLiteral, classStore):
         return Type().SELF()
 
@@ -343,7 +370,12 @@ class GlobalScope(BaseVisitor, Utils):
     
 
     def visitClassType(self, ast: ClassType, classStore):
-        return Type().CLASS(ast.classname.name)
+        className = ast.classname.name
+
+        if className not in classStore['overall']:
+            raise Undeclared(Class(), className)
+        
+        return Type().CLASS(className)
         
     def visitIntType(self, ast: IntType, classStore):
         return Type().INT()
@@ -373,184 +405,187 @@ class GlobalScope(BaseVisitor, Utils):
 # ! ██ ██ ██  ██ ██    ██    
 # ! ██ ██  ██ ██ ██    ██    
 # ! ██ ██   ████ ██    ██   
-class ValidateInit(BaseVisitor, Utils):
-    def visitProgram(self, ast: Program, classStore):
-        for decl in ast.decl:
-            self.visit(decl, classStore)
+# class ValidateInit(BaseVisitor, Utils):
+#     def visitProgram(self, ast: Program, classStore):
+#         for decl in ast.decl:
+#             self.visit(decl, classStore)
         
-        return classStore
+#         return classStore
 
-    # classname: Id
-    # memlist: List[MemDecl]
-    # parentname: Id = None  # None if there is no parent
-    def visitClassDecl(self, ast: ClassDecl, classStore):
-        className = ast.classname.name
-        memList = ast.memlist
+#     # classname: Id
+#     # memlist: List[MemDecl]
+#     # parentname: Id = None  # None if there is no parent
+#     def visitClassDecl(self, ast: ClassDecl, classStore):
+#         className = ast.classname.name
+#         memList = ast.memlist
         
-        for mem in memList:
-            self.visit(mem, classStore[className])
+#         for mem in memList:
+#             self.visit(mem, classStore[className])
 
-    def visitAttributeDecl(self, ast: AttributeDecl, classStore):
-        self.visit(ast.decl, classStore['attributes'])
+#     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
+#         self.visit(ast.decl, classStore['attributes'])
 
-    # variable: Id
-    # varType: Type
-    # varInit: Expr = None  # None if there is no initial
-    def visitVarDecl(self, ast: VarDecl, classStore):
-        varName = ast.variable.name
+#     # variable: Id
+#     # varType: Type
+#     # varInit: Expr = None  # None if there is no initial
+#     def visitVarDecl(self, ast: VarDecl, classStore):
+#         varName = ast.variable.name
 
-        if ast.varInit == None:
-            return
-        else:
-            varInit = self.visit(ast.varInit, classStore)
+#         if ast.varInit == None:
+#             return
+#         else:
+#             varInit = self.visit(ast.varInit, classStore)
 
-        classStore[varName].update({
-            'init': varInit
-        })
+#         classStore[varName].update({
+#             'init': varInit
+#         })
 
-    # constant: Id
-    # constType: Type
-    # value: Expr = None # None if there is no initial
-    def visitConstDecl(self, ast: ConstDecl, classStore):
-        constName = ast.constant.name
+#     # constant: Id
+#     # constType: Type
+#     # value: Expr = None # None if there is no initial
+#     def visitConstDecl(self, ast: ConstDecl, classStore):
+#         constName = ast.constant.name
 
-        if ast.value == None:
-            return
-        else:
-            constInit = self.visit(ast.value, classStore)
+#         if ast.value == None:
+#             return
+#         else:
+#             constInit = self.visit(ast.value, classStore)
 
-        classStore[constName].update({
-            'init': constInit
-        })
+#         classStore[constName].update({
+#             'init': constInit
+#         })
 
-    # def visitMethodDecl(self, ast: MethodDecl, classStore):
-    #     return None
+#     # def visitMethodDecl(self, ast: MethodDecl, classStore):
+#     #     return None
 
-    # def visitParam(self, ast: VarDecl, classStore):
-    #     return None
+#     # def visitParam(self, ast: VarDecl, classStore):
+#     #     return None
 
 
-    # op: str
-    # left: Expr
-    # right: Expr
-    def visitBinaryOp(self, ast: BinaryOp, classStore):
-        # operand = ast.op
-        left = self.visit(ast.left, classStore)
-        right = self.visit(ast.right, classStore)
+#     # op: str
+#     # left: Expr
+#     # right: Expr
+#     def visitBinaryOp(self, ast: BinaryOp, classStore):
+#         # operand = ast.op
+#         left = self.visit(ast.left, classStore)
+#         right = self.visit(ast.right, classStore)
 
-        if left == Type.INT() and right == Type.INT():
-            print(123)
-            return Type.INT()
+#         if left == Type.INT() and right == Type.INT():
+#             print(123)
+#             return Type.INT()
         
 
-    # op: str
-    # body: Expr
-    def visitUnaryOp(self, ast: UnaryOp, classStore):
-        operand = ast.op
-        body = self.visit(ast.body, classStore)
+#     # op: str
+#     # body: Expr
+#     def visitUnaryOp(self, ast: UnaryOp, classStore):
+#         operand = ast.op
+#         body = self.visit(ast.body, classStore)
 
-        return None
+#         return None
 
-    def visitCallExpr(self, ast: CallExpr, classStore):
-        return None
+#     def visitCallExpr(self, ast: CallExpr, classStore):
+#         return None
 
-    def visitNewExpr(self, ast: NewExpr, classStore):
-        return None
-
-
-
-
-
-    def visitArrayCell(self, ast: ArrayCell, classStore):
-        return None
-
-    def visitFieldAccess(self, ast: FieldAccess, classStore):
-        return None
+#     def visitNewExpr(self, ast: NewExpr, classStore):
+#         return None
 
 
 
 
 
-    def visitIntLiteral(self, ast: IntLiteral, classStore):
-        print("\n", 123, "\n")
-        return Type().INT()
+#     def visitArrayCell(self, ast: ArrayCell, classStore):
+#         return None
 
-    def visitFloatLiteral(self, ast: FloatLiteral, classStore):
-        return Type().FLOAT()
+#     def visitFieldAccess(self, ast: FieldAccess, classStore):
+#         return None
 
-    def visitStringLiteral(self, ast: StringLiteral, classStore):
-        return Type().STRING()
 
-    def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
-        return Type().BOOLEAN()
 
-    def visitSelfLiteral(self, ast: SelfLiteral, classStore):
-        return Type().SELF()
 
-    def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
-        return Type().ARRAY()
+
+#     def visitIntLiteral(self, ast: IntLiteral, classStore):
+#         print("\n", 123, "\n")
+#         return Type().INT()
+
+#     def visitFloatLiteral(self, ast: FloatLiteral, classStore):
+#         return Type().FLOAT()
+
+#     def visitStringLiteral(self, ast: StringLiteral, classStore):
+#         return Type().STRING()
+
+#     def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
+#         return Type().BOOLEAN()
+    
+#     def visitNullLiteral(self, ast: NullLiteral, classStore):
+#         return Type().NULL()
+
+#     def visitSelfLiteral(self, ast: SelfLiteral, classStore):
+#         return Type().SELF()
+
+#     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
+#         return Type().ARRAY()
 
     
 
 
-    def visitAssign(self, ast: Assign, classStore):
-        return None
+#     def visitAssign(self, ast: Assign, classStore):
+#         return None
 
-    def visitIf(self, ast: If, classStore):
-        return None
+#     def visitIf(self, ast: If, classStore):
+#         return None
 
-    def visitFor(self, ast: For, classStore):
-        return None
+#     def visitFor(self, ast: For, classStore):
+#         return None
 
-    def visitBreak(self, ast: Break, classStore):
-        return None
+#     def visitBreak(self, ast: Break, classStore):
+#         return None
 
-    def visitContinue(self, ast: Continue, classStore):
-        return None
+#     def visitContinue(self, ast: Continue, classStore):
+#         return None
 
-    def visitReturn(self, ast: Return, classStore):
-        return None
+#     def visitReturn(self, ast: Return, classStore):
+#         return None
 
-    def visitCallStmt(self, ast: CallStmt, classStore):
-        return None
+#     def visitCallStmt(self, ast: CallStmt, classStore):
+#         return None
 
 
-    def visitBlock(self, ast: Block, classStore):
-        return None
+#     def visitBlock(self, ast: Block, classStore):
+#         return None
 
    
 
-    def visitInstance(self, ast: Instance, classStore):
-        return None
+#     def visitInstance(self, ast: Instance, classStore):
+#         return None
 
-    def visitBlock(self, ast: Block, classStore):
-        return None
+#     def visitBlock(self, ast: Block, classStore):
+#         return None
 
-    def visitStatic(self, ast: Static, classStore):
-        return None
+#     def visitStatic(self, ast: Static, classStore):
+#         return None
 
 
-    def visitClassType(self, ast: ClassType, classStore):
-        return Type().CLASS(ast.classname.name)
+#     def visitClassType(self, ast: ClassType, classStore):
+#         return Type().CLASS(ast.classname.name)
 
-    # Primitive Type 
-    def visitIntType(self, ast: IntType, classStore):
-        return Type().INT()
+#     # Primitive Type 
+#     def visitIntType(self, ast: IntType, classStore):
+#         return Type().INT()
 
-    def visitFloatType(self, ast: FloatType, classStore):
-        return Type().FLOAT()
+#     def visitFloatType(self, ast: FloatType, classStore):
+#         return Type().FLOAT()
 
-    def visitBoolType(self, ast: BoolType, classStore):
-        return Type().BOOLEAN()
+#     def visitBoolType(self, ast: BoolType, classStore):
+#         return Type().BOOLEAN()
 
-    def visitStringType(self, ast: StringType, classStore):
-        return Type().STRING()
+#     def visitStringType(self, ast: StringType, classStore):
+#         return Type().STRING()
 
-    def visitArrayType(self, ast: ArrayType, classStore):
-        return Type().ARRAY()
+#     def visitArrayType(self, ast: ArrayType, classStore):
+#         return Type().ARRAY()
 
-    def visitVoidType(self, ast: VoidType, classStore):
-        return Type().VOID()
+#     def visitVoidType(self, ast: VoidType, classStore):
+#         return Type().VOID()
 
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
 # ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
@@ -664,6 +699,9 @@ class StaticChecker(BaseVisitor, Utils):
         return None
 
     def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
+        return None
+
+    def visitNullLiteral(self, ast: NullLiteral, classStore):
         return None
 
     def visitSelfLiteral(self, ast: SelfLiteral, classStore):

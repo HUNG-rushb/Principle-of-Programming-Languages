@@ -1,12 +1,25 @@
 {
-    "Program": {
+    "C": {
         "parent": "",
         "attributes": {
-            "quynh": {
-                "type": "<3...FLOAT",
+            "b": {
+                "type": "<3...INT",
                 "value": null,
-                "init": "<3...FLOAT",
-                "const": true,
+                "init": "<3...INT",
+                "const": false,
+                "kind": "<3...INSTANCE"
+            }
+        },
+        "methods": {}
+    },
+    "A": {
+        "parent": "",
+        "attributes": {
+            "a": {
+                "type": "<3...CLASS C",
+                "value": null,
+                "init": "<3...NEW",
+                "const": false,
                 "kind": "<3...INSTANCE"
             }
         },

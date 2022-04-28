@@ -6,16 +6,32 @@ class CheckerSuite(unittest.TestCase):
     
     def test7(self):
         input = """
-        Class Program {main(){}}
+        
         Class A {
-            Var a: Int = 120;
-            Val $a: C = New C();
-            Constructor () { }
-            Destructor () { }
+            Var a: C = New C() ;
+            
         }
+
+        Class C {
+            Var b: Int = 12;
+        }
+
         """
         expect = "Undeclared Class: C"
         self.assertTrue(TestChecker.test(input,expect,407))
+
+    # def test7(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Var a: Int = 120;
+    #         Val $a: C = New C();
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Undeclared Class: C"
+    #     self.assertTrue(TestChecker.test(input,expect,407))
 
     # def test_12(self):
     #     input = """

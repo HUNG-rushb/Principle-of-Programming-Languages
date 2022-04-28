@@ -1,6 +1,12 @@
 
+        
         Class A {
-            Var a: Int = 120;
-            Val $a: C = New C();
+            Var a: C = New C() ;
+            
         }
+
+        Class C {
+            Var b: Int = 12;
+        }
+
         
