@@ -138,13 +138,13 @@ class GlobalScope(BaseVisitor, Utils):
             'methods': {}
         }
 
-        newEnviroment = {
+        newClassEnviroment = {
             'overall' : classStore,
             'class' : classStore[className]
         }
 
         for mem in memList:
-            self.visit(mem, newEnviroment)
+            self.visit(mem, newClassEnviroment)
         
         # 2.11 No entry point
         # if ('Program' not in classStore) or ('main' not in classStore['Program']):
@@ -163,7 +163,7 @@ class GlobalScope(BaseVisitor, Utils):
     def visitVarDecl(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
-        if varName in classStore['class']["attributes"]:
+        if varName in classStore['class']["attributes"] or varName in classStore['class']["methods"]:
             # raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
             raise Redeclared(Attribute(), varName) 
 
@@ -189,15 +189,13 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind,
         }
 
-        # print(classStore)
-
     # constant: Id
     # constType: Type
     # value: Expr = None # None if there is no initial
     def visitConstDecl(self, ast: ConstDecl, classStore):
         varName = ast.constant.name
         
-        if varName in classStore['class']["attributes"]:
+        if varName in classStore['class']["attributes"] or varName in classStore['class']["methods"]:
             raise Redeclared(Constant(), varName)
 
         varType = self.visit(ast.constType, classStore)
@@ -230,24 +228,40 @@ class GlobalScope(BaseVisitor, Utils):
     def visitMethodDecl(self, ast: MethodDecl, classStore):
         methodName = ast.name.name
 
-        if methodName in classStore:
+        if methodName in classStore['class']["methods"] or methodName in classStore['class']["attributes"]:
             raise Redeclared(Method(), methodName)
 
         methodKind = Kind().STATIC() if methodName[0] == '$' else Kind().INSTANCE()
         methodParams = ast.param
 
-        classStore['methods'][methodName] = {
+        classStore['class']['methods'][methodName] = {
             'type': Type().VOID(),
             'kind': methodKind,
             'body': [{}],
             'params': {}
         }
 
-        for param in methodParams:
-            self.visitParam(param, classStore['methods'][methodName]['params'])
+        newMethodEnviroment = {
+            'overall' : classStore['overall'],
+            'class' : classStore['class'],
+            'method': classStore['class']['methods'][methodName]['params']
+        }
 
+        for param in methodParams:
+            self.visitParam(param, newMethodEnviroment)
+
+    # param: List[VarDecl]
+
+    # variable: Id
+    # varType: Type
+    # varInit: Expr = None  # None if there is no initial
     def visitParam(self, ast: VarDecl, classStore):
         varName = ast.variable.name
+
+        if  varName in classStore['overall'] or varName in classStore['class'] or varName in classStore['class']["methods"] or varName in classStore['class']["attributes"]:
+            raise Redeclared(Variable(), varName)
+
+
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().INSTANCE()
 

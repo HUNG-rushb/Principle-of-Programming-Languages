@@ -7,14 +7,13 @@ class CheckerSuite(unittest.TestCase):
     def test7(self):
         input = """
         
-        Class A {
-            Var a: C = New C() ;
+        Class JJ {
+            b(JJ: Int){}
+            
             
         }
 
-        Class C {
-            Var b: Int = 12;
-        }
+        
 
         """
         expect = "Undeclared Class: C"

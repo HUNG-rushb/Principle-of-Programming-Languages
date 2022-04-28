@@ -1,8 +1,8 @@
 {
-    "C": {
+    "A": {
         "parent": "",
         "attributes": {
-            "b": {
+            "a": {
                 "type": "<3...INT",
                 "value": null,
                 "init": "<3...INT",
@@ -10,19 +10,15 @@
                 "kind": "<3...INSTANCE"
             }
         },
-        "methods": {}
-    },
-    "A": {
-        "parent": "",
-        "attributes": {
-            "a": {
-                "type": "<3...CLASS C",
-                "value": null,
-                "init": "<3...NEW",
-                "const": false,
-                "kind": "<3...INSTANCE"
+        "methods": {
+            "b": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": [
+                    {}
+                ],
+                "params": {}
             }
-        },
-        "methods": {}
+        }
     }
 }
