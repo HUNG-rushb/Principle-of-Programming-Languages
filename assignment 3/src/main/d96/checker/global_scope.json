@@ -1,29 +1,14 @@
 {
-    "JJ": {
+    "B": {
         "parent": "",
-        "attributes": {},
-        "methods": {
-            "Hung": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {
-                    "a": {
-                        "type": "<3...INT",
-                        "value": null,
-                        "const": false,
-                        "kind": "<3...INSTANCE"
-                    },
-                    "c": {
-                        "type": "<3...FLOAT",
-                        "value": null,
-                        "const": false,
-                        "kind": "<3...INSTANCE"
-                    }
-                }
+        "attributes": {
+            "afs": {
+                "type": "<3...BOOLEAN",
+                "init": "<3...BOOLEAN",
+                "const": false,
+                "kind": "<3...INSTANCE"
             }
-        }
+        },
+        "methods": {}
     }
 }

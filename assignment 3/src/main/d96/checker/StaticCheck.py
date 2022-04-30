@@ -174,7 +174,7 @@ class GlobalScope(BaseVisitor, Utils):
             varInit = None
         else:
             varInit = self.visit(ast.varInit, classStore)
-
+            
             if varInit != varType and varInit != Type().NEW():
                 if varType == Type().FLOAT() and varInit == Type().INT():
                     varInit = Type().FLOAT()
@@ -183,7 +183,7 @@ class GlobalScope(BaseVisitor, Utils):
 
         classStore['class']["attributes"][varName] = {
             'type': varType,
-            'value': None,
+            # 'value': None,
             'init': varInit,
             'const': False,
             'kind': varKind,
@@ -215,7 +215,7 @@ class GlobalScope(BaseVisitor, Utils):
 
         classStore['class']["attributes"][varName] = {
             'type': varType,
-            'value': None,
+            # 'value': None,
             'init': varInit,
             'const': True,
             'kind': varKind,
@@ -271,6 +271,7 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind
         }
 
+    
 
     # op: str
     # left: Expr
@@ -283,13 +284,27 @@ class GlobalScope(BaseVisitor, Utils):
         if operand in ["+", "-", "*", "/", "%"]:
             if left == Type().INT() and right == Type().INT():
                 return Type().INT()
-            elif left == Type().FLOAT() and right == Type().FLOAT():
+            elif left == Type().FLOAT() and right == Type().FLOAT() and operand != "%":
                 return Type().FLOAT()
+            else:
+                raise TypeMismatchInExpression(ast)
+
         # 5.2 và 5.3
-        elif operand in ["&&", "||", "==.", "+."]: 
-            return None
+        elif operand in ["!", "&&", "||", "==.", "+."]: 
+            if (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["!", "&&", "||"]) \
+                    or (left == Type().STRING() and right == Type().STRING() and operand in ["==.", "+."]):
+                print(1234)
+                return Type().BOOLEAN()
+            else:
+                raise TypeMismatchInExpression(ast)
+                
         elif operand in ["==", "!=", ">", "<", "<=", ">="]:
-            return None
+            if (left == Type().INT() and right == Type().INT()) \
+                or (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["==", "!="]) \
+                or (left == Type().FLOAT() and right == Type().FLOAT() and operand in [">", "<", "<=", ">="]):
+                return Type().BOOLEAN()
+            else:
+                raise TypeMismatchInExpression(ast)
 
 
     # op: str
@@ -307,14 +322,14 @@ class GlobalScope(BaseVisitor, Utils):
         # elif operand == '!':
         #     return None
        
-
-    
     # lhs: Expr
     # exp: Expr
     def visitAssign(self, ast: Assign, classStore):
         LHS = self.visit(ast.lhs, classStore)
         expr = self.visit(ast.exp, classStore)
         return None
+    
+    
 
     # expr: Expr
     # thenStmt: Stmt

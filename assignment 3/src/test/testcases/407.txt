@@ -1,11 +1,6 @@
 
-        
-        Class JJ {
-            Hung(a:Int;c:Float){
-
-            }
+        Class B {
+            Var afs : Boolean = 100 < True;
+            
         }
-
-        
-
         

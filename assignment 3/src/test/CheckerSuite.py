@@ -4,27 +4,26 @@ from AST import *
 
 class CheckerSuite(unittest.TestCase):
     
-    def test7(self):
-        input = """
+    # def test7(self):
+    #     input = """
+    #     Class JJ {
+    #         Hung (a:Int; c:Float) {
+
+    #         }
+    #     }
+
         
-        Class JJ {
-            Hung(a:Int;c:Float){
 
-            }
-        }
-
-        
-
-        """
-        expect = "Undeclared Class: C"
-        self.assertTrue(TestChecker.test(input,expect,407))
+    #     """
+    #     expect = "Undeclared Class: C"
+    #     self.assertTrue(TestChecker.test(input,expect,407))
 
     # def test7(self):
     #     input = """
     #     Class Program {main(){}}
     #     Class A {
     #         Var a: Int = 120;
-    #         Val $a: C = New C();
+           
     #         Constructor () { }
     #         Destructor () { }
     #     }
@@ -42,7 +41,7 @@ class CheckerSuite(unittest.TestCase):
     #         }
     #     """
     #     expect = "Redeclared Class: Program"
-    #     self.assertTrue(TestChecker.test(input,expect,412))  Val $adwqdqw: Float = 1; 
+    #     self.assertTrue(TestChecker.test(input,expect,412))  
 
     # def test_13(self):
     #     input = """
@@ -132,15 +131,15 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "Type Mismatch In Statement: ConstDecl(Id($r),IntType,BinaryOp(+,IntLit(2),BinaryOp(*,IntLit(2),FloatLit(2.5))))"
     #     self.assertTrue(TestChecker.test(input,expect,404))
-    # def test5(self):
-    #     input = """
-    #     Class B: A {
-    #         Var t: Float = 1.4 % 3; 
-    #         setA(a: Int) { }
-    #     }
-    #     """
-    #     expect = "Type Mismatch In Expression: BinaryOp(%,FloatLit(1.4),IntLit(3))"
-    #     self.assertTrue(TestChecker.test(input,expect,405))
+    def test5(self):
+        input = """
+        Class B {
+            Var afs : Boolean = 100 < True;
+            
+        }
+        """
+        expect = "[]"
+        self.assertTrue(TestChecker.test(input,expect,407))
     # def test6(self):
     #     input = """
     #     Class A {
