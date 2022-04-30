@@ -163,7 +163,7 @@ class GlobalScope(BaseVisitor, Utils):
     def visitVarDecl(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
-        if varName in classStore['class']["attributes"] or varName in classStore['class']["methods"]:
+        if varName in classStore['class']["attributes"]:
             # raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
             raise Redeclared(Attribute(), varName) 
 
@@ -228,7 +228,7 @@ class GlobalScope(BaseVisitor, Utils):
     def visitMethodDecl(self, ast: MethodDecl, classStore):
         methodName = ast.name.name
 
-        if methodName in classStore['class']["methods"] or methodName in classStore['class']["attributes"]:
+        if methodName in classStore['class']["methods"]:
             raise Redeclared(Method(), methodName)
 
         methodKind = Kind().STATIC() if methodName[0] == '$' else Kind().INSTANCE()
@@ -258,9 +258,8 @@ class GlobalScope(BaseVisitor, Utils):
     def visitParam(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
-        if  varName in classStore['overall'] or varName in classStore['class'] or varName in classStore['class']["methods"] or varName in classStore['class']["attributes"]:
+        if varName in classStore["methods"] :
             raise Redeclared(Variable(), varName)
-
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().INSTANCE()
