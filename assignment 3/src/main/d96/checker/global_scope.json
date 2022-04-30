@@ -1,23 +1,28 @@
 {
-    "A": {
+    "JJ": {
         "parent": "",
-        "attributes": {
-            "a": {
-                "type": "<3...INT",
-                "value": null,
-                "init": "<3...INT",
-                "const": false,
-                "kind": "<3...INSTANCE"
-            }
-        },
+        "attributes": {},
         "methods": {
-            "b": {
+            "Hung": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
                 "body": [
                     {}
                 ],
-                "params": {}
+                "params": {
+                    "a": {
+                        "type": "<3...INT",
+                        "value": null,
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    },
+                    "c": {
+                        "type": "<3...FLOAT",
+                        "value": null,
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    }
+                }
             }
         }
     }

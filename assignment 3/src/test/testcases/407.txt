@@ -1,9 +1,9 @@
 
         
         Class JJ {
-            b(JJ: Int){}
-            
-            
+            Hung(a:Int;c:Float){
+
+            }
         }
 
         

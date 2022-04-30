@@ -258,13 +258,13 @@ class GlobalScope(BaseVisitor, Utils):
     def visitParam(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
-        if varName in classStore["methods"] :
+        if varName in classStore["method"]:
             raise Redeclared(Variable(), varName)
 
         varType = self.visit(ast.varType, classStore)
         varKind = Kind().INSTANCE()
 
-        classStore[varName] = {
+        classStore['method'][varName] = {
             'type': varType,
             'value': None,
             'const': False,

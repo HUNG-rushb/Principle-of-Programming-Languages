@@ -8,9 +8,9 @@ class CheckerSuite(unittest.TestCase):
         input = """
         
         Class JJ {
-            b(JJ: Int){}
-            
-            
+            Hung(a:Int;c:Float){
+
+            }
         }
 
         
