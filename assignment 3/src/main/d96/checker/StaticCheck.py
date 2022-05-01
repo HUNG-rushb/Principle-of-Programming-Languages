@@ -9,6 +9,7 @@ from pydoc import classname
 from xml.dom.expatbuilder import parseString
 
 from attr import astuple
+from matplotlib.pyplot import vlines
 
 
 from AST import *
@@ -165,33 +166,38 @@ class GlobalScope(BaseVisitor, Utils):
     # varInit: Expr = None  # None if there is no initial
     def visitVarDecl(self, ast: VarDecl, classStore):
         varName = ast.variable.name
-
-        if varName in classStore['class']["attributes"]:
-            # raise Redeclared(Attribute(), varName) if typeP == "attr" else Redeclared(Variable(), varName)
-            raise Redeclared(Attribute(), varName) 
-
-        varType = self.visit(ast.varType, classStore)
-        varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
-
-        if ast.varInit is None:
-            varInit = None
-        else:
-            varInit = self.visit(ast.varInit, classStore)
+        
+        # Attribute of Class's scope
+        if classStore["class"] is not None and len(classStore) == 2:
+            if varName in classStore['class']["attributes"]:
+                raise Redeclared(Attribute(), varName) 
             
-            # if varInit != varType and varInit != Type().NEW():
-            if varInit != varType:
-                if varType == Type().FLOAT() and varInit == Type().INT():
-                    varInit = Type().FLOAT()
-                else:
-                    raise TypeMismatchInStatement(ast)
+            varType = self.visit(ast.varType, classStore)
+            varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
-        classStore['class']["attributes"][varName] = {
-            'type': varType,
-            # 'value': None,
-            'init': varInit,
-            'const': False,
-            'kind': varKind,
-        }
+            if ast.varInit is None:
+                varInit = None
+            else:
+                varInit = self.visit(ast.varInit, classStore)
+                
+                # if varInit != varType and varInit != Type().NEW():
+                if varInit != varType:
+                    if varType == Type().FLOAT() and varInit == Type().INT():
+                        varInit = Type().FLOAT()
+                    else:
+                        raise TypeMismatchInStatement(ast)
+
+            classStore['class']["attributes"][varName] = {
+                'type': varType,
+                # 'value': None,
+                'init': varInit,
+                'const': False,
+                'kind': varKind,
+            }
+        # Variable in method's scope
+        elif classStore["method"] is not None and len(classStore) == 4:
+            print(236193729187)
+            return
 
     # constant: Id
     # constType: Type
@@ -239,6 +245,7 @@ class GlobalScope(BaseVisitor, Utils):
 
         methodKind = Kind().STATIC() if methodName[0] == '$' else Kind().INSTANCE()
         methodParams = ast.param
+        # methodBody = ast.body
 
         classStore['class']['methods'][methodName] = {
             'type': Type().VOID(),
@@ -247,6 +254,7 @@ class GlobalScope(BaseVisitor, Utils):
             'params': {}
         }
 
+        # Visit Params 
         newMethodEnviroment = {
             'overall' : classStore['overall'],
             'class' : classStore['class'],
@@ -255,6 +263,16 @@ class GlobalScope(BaseVisitor, Utils):
 
         for param in methodParams:
             self.visitParam(param, newMethodEnviroment)
+
+        # Visit Block 
+        newMethodEnviromentBlock = {
+            'overall' : classStore['overall'],
+            'class' : classStore['class'],
+            'method': classStore['class']['methods'][methodName]['params'],
+            'body': classStore['class']['methods'][methodName]['body']
+        }
+
+        self.visit(ast.body, newMethodEnviromentBlock)
 
     # param: List[VarDecl]
 
@@ -277,6 +295,17 @@ class GlobalScope(BaseVisitor, Utils):
             'kind': varKind
         }
 
+
+    # ! inst: List[Inst]
+    # ! inst: List[Inst]
+    # ! inst: List[Inst]
+    # ! inst: List[Inst]
+    # ! inst: List[Inst]
+    def visitBlock(self, ast: Block, classStore):
+        blockInst = ast.inst
+
+        print(12312)
+        return None
     
 
     # op: str
@@ -335,6 +364,10 @@ class GlobalScope(BaseVisitor, Utils):
     def visitAssign(self, ast: Assign, classStore):
         LHS = self.visit(ast.lhs, classStore)
         expr = self.visit(ast.exp, classStore)
+
+        if LHS != expr:
+            raise TypeMismatchInStatement(ast)
+
         return None
     
     
@@ -388,7 +421,6 @@ class GlobalScope(BaseVisitor, Utils):
         listCopyConstrutorParams =  list(classStore['overall'][className]["methods"]["Constructor"]["params"])
 
         if len(methodParams) != len(listCopyConstrutorParams):
-            # print("ok")
             raise TypeMismatchInExpression(ast)
 
         i = 0
@@ -407,9 +439,7 @@ class GlobalScope(BaseVisitor, Utils):
     def visitCallStmt(self, ast: CallStmt, classStore):
         return None
 
-
-    def visitBlock(self, ast: Block, classStore):
-        return None
+    
 
 
     #     name: str
@@ -420,8 +450,8 @@ class GlobalScope(BaseVisitor, Utils):
             if name not in classStore["class"]["attributes"]:
                 raise Undeclared(Variable(), name)
 
+            return classStore["class"]["attributes"][name]["type"]
 
-        print(classStore)
         return name
          
     def visitIntLiteral(self, ast: IntLiteral, classStore):
@@ -442,8 +472,14 @@ class GlobalScope(BaseVisitor, Utils):
     def visitSelfLiteral(self, ast: SelfLiteral, classStore):
         return Type().SELF()
 
+    # ! value: List[Expr]
+    # ! value: List[Expr]
+    # ! value: List[Expr]
     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
-        return Type().ARRAY()
+        arrayValue = ast.value
+        print(classStore)
+        for value in arrayValue:
+            self.visit(value, classStore)
 
     
 
@@ -454,6 +490,8 @@ class GlobalScope(BaseVisitor, Utils):
             raise Undeclared(Class(), className)
         
         return Type().CLASS(className)
+        
+
         
     def visitIntType(self, ast: IntType, classStore):
         return Type().INT()

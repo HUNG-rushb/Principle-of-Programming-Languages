@@ -7,7 +7,9 @@ class CheckerSuite(unittest.TestCase):
     # def test7(self):
     #     input = """
     #     Class JJ {
-            
+    #         test() {
+    #             Var a: Int;
+    #         }
     #     }
 
         
@@ -103,7 +105,7 @@ class CheckerSuite(unittest.TestCase):
         #     """
         #     expect = "Type Mismatch In Expression: BinaryOp(%,FloatLit(1.4),IntLit(3))"
         #     self.assertTrue(TestChecker.test(input,expect,405))
-        # ! def test6(self):
+        #  def test6(self):
         #     input = """
         #     Class Program {main(){}}
         #     Class A {
@@ -116,7 +118,19 @@ class CheckerSuite(unittest.TestCase):
         #     }
         #     """
         #     expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
-        #     self.assertTrue(TestChecker.test(input,expect,406))
+        #     self.assertTrue(TestChecker.test(input,expect,406)) Var a : Array[Int, 6] = Array(1, 2, 3, 4, 5, 6);
+        def test6(self):
+            input = """
+            Class A {
+                Var a : Int = 1;
+
+                hung () {
+                    Var b : Int = 1;
+                }
+            }
+            """
+            expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
+            self.assertTrue(TestChecker.test(input,expect,410))
         # def test7(self):
         #     input = """
         #     Class Program {main(){}}
@@ -151,18 +165,19 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "Illegal Constant Expression: None"
     #     self.assertTrue(TestChecker.test(input,expect,409))
-    def test10(self):
-        input = """
-        Class A {
-            Constructor(a: Float; b: Int) { }
+    # def test10(self):
+    #     input = """
+    #     Class A {
+    #         Constructor(a: Float; b: Int) { }
 
-        }
-        Class B {
-            Val $b: Int = !3;
-        }
-        """
-        expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
-        self.assertTrue(TestChecker.test(input,expect,410))
+    #     }
+    #     Class B {
+    #         Val b: Int = 3;
+    #         Var c: A = New A(1.5, b);
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
+    #     self.assertTrue(TestChecker.test(input,expect,410))
     
     # def test11(self):
     #     input = """
