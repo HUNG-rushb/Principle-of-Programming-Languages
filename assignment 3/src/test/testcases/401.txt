@@ -1,17 +1,13 @@
 
         Class A {
             Var $a: Int;
-
-
-            Var bbb: Lmao;
-
-            Hung (a:Int;b:Float)
-            {
-
-            }
+            Constructor () { }
+            Destructor () { }
         }
-        
-        
-       
-         
+        Class A {
+            Val $b: Float;
+            Constructor () { }
+            Destructor () { }
+        }
+        Class Program {main(){}}
         

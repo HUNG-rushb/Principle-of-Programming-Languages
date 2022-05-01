@@ -1,0 +1,1 @@
+Type Mismatch In Statement: VarDecl(Id(next),ClassType(Id(Node)),NullLiteral())

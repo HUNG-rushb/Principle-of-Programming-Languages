@@ -1,1 +1,1 @@
-Type Mismatch In Statement: VarDecl(Id(quynh),IntType,FloatLit(1.3))
+[]

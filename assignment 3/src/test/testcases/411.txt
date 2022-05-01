@@ -1,0 +1,14 @@
+
+        Class Program {main(){}}
+        Class A {
+            Var z: Int;
+            getA(a: Int) {
+                Var b: Int;
+                Foreach (b In 1 .. 10) { 
+                    If (b > 4) { Var c: Float = 2; }
+                }
+            }
+            Constructor () { }
+            Destructor () { }
+        }
+        

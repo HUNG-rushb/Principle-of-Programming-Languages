@@ -1,0 +1,12 @@
+
+        Class sieuSuper {
+            Var s: Float = 2;
+        }
+        Class super : sieuSuper {
+            Var a: sieuSuper;
+            Var $a: Int = 4;
+            getSuper() {
+                Self.a.s = 5.6;
+            }
+        }
+        

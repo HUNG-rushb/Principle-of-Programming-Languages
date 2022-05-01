@@ -1,0 +1,1 @@
+Type Mismatch In Statement: VarDecl(Id(d),StringType,BinaryOp(+.,StringLit(Hello),StringLit( World)))

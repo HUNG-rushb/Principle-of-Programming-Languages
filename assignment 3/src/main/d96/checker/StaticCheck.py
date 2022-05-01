@@ -8,6 +8,8 @@ from msilib.schema import Class
 from pydoc import classname
 from xml.dom.expatbuilder import parseString
 
+from attr import astuple
+
 
 from AST import *
 from Visitor import *
@@ -107,7 +109,7 @@ class GlobalScope(BaseVisitor, Utils):
         for decl in ast.decl:
             self.visit(decl, classStore)
         
-        return classStore
+        # return classStore
 
     # newEnviroment = {
     #     'overall' : classStore,
@@ -153,7 +155,8 @@ class GlobalScope(BaseVisitor, Utils):
 
 
   
-
+    # kind: SIKind  # Instance or Static
+    # decl: StoreDecl  # VarDecl for mutable or ConstDecl for immutable
     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
         self.visit(ast.decl, classStore)
 
@@ -175,7 +178,8 @@ class GlobalScope(BaseVisitor, Utils):
         else:
             varInit = self.visit(ast.varInit, classStore)
             
-            if varInit != varType and varInit != Type().NEW():
+            # if varInit != varType and varInit != Type().NEW():
+            if varInit != varType:
                 if varType == Type().FLOAT() and varInit == Type().INT():
                     varInit = Type().FLOAT()
                 else:
@@ -202,11 +206,13 @@ class GlobalScope(BaseVisitor, Utils):
         varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
         if ast.value == None:
-            varInit = None
+            # varInit = None
+            raise IllegalConstantExpression(ast.value)
         else:
             varInit = self.visit(ast.value, classStore)
 
-            if varInit != varType and varInit != Type().NEW():
+            # if varInit != varType and varInit != Type().NEW():
+            if varInit != varType:
                 if varType == Type().FLOAT() and varInit == Type().INT():
                     # print("\n", 123, "\n")
                     varInit = Type().FLOAT()
@@ -266,7 +272,7 @@ class GlobalScope(BaseVisitor, Utils):
 
         classStore['method'][varName] = {
             'type': varType,
-            'value': None,
+            # 'value': None,
             'const': False,
             'kind': varKind
         }
@@ -284,14 +290,15 @@ class GlobalScope(BaseVisitor, Utils):
         if operand in ["+", "-", "*", "/", "%"]:
             if left == Type().INT() and right == Type().INT():
                 return Type().INT()
-            elif left == Type().FLOAT() and right == Type().FLOAT() and operand != "%":
+            elif left == Type().FLOAT() or left == Type().INT() and right == Type().FLOAT() or right == Type().INT()  \
+                and operand != "%":
                 return Type().FLOAT()
             else:
                 raise TypeMismatchInExpression(ast)
 
         # 5.2 và 5.3
-        elif operand in ["!", "&&", "||", "==.", "+."]: 
-            if (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["!", "&&", "||"]) \
+        elif operand in ["&&", "||", "==.", "+."]: 
+            if (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["&&", "||"]) \
                     or (left == Type().STRING() and right == Type().STRING() and operand in ["==.", "+."]):
                 print(1234)
                 return Type().BOOLEAN()
@@ -313,14 +320,15 @@ class GlobalScope(BaseVisitor, Utils):
         operand = ast.op
         body = self.visit(ast.body, classStore)
 
-        if operand == "New":
-            return body
-        elif operand == '!':
-            return None
-        elif operand == '-':
-            return body
-        # elif operand == '!':
-        #     return None
+        if operand == '!' and body == Type().BOOLEAN():
+            return Type().BOOLEAN()
+        elif operand == '-' and body != Type().INT() and body != Type().FLOAT():
+            if body == Type().INT():
+                return Type().INT()
+            else:
+                return Type().FLOAT()
+        else:
+            raise TypeMismatchInExpression(ast)
        
     # lhs: Expr
     # exp: Expr
@@ -345,6 +353,15 @@ class GlobalScope(BaseVisitor, Utils):
     def visitFor(self, ast: For, classStore):
         return None
 
+
+
+
+
+
+
+
+
+
     def visitBreak(self, ast: Break, classStore):
         return Break()
 
@@ -360,9 +377,31 @@ class GlobalScope(BaseVisitor, Utils):
     # param: List[Expr]
     def visitNewExpr(self, ast: NewExpr, classStore):
         className = ast.classname.name
-        methodParams = ast.param
 
-        return Type().NEW()
+        if className not in classStore['overall']:
+            raise Undeclared(Class(), className)
+
+        if "Constructor" not in classStore['overall'][className]["methods"]:
+            raise Undeclared(SpecialMethod(), "Constructor")
+
+        methodParams = ast.param
+        listCopyConstrutorParams =  list(classStore['overall'][className]["methods"]["Constructor"]["params"])
+
+        if len(methodParams) != len(listCopyConstrutorParams):
+            # print("ok")
+            raise TypeMismatchInExpression(ast)
+
+        i = 0
+        for param in methodParams:
+            current = listCopyConstrutorParams[i]
+
+            if self.visit(param, classStore) != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
+                raise TypeMismatchInExpression(ast)
+
+            i += 1
+
+        # return Type().NEW()
+        return Type().CLASS(className)
 
 
     def visitCallStmt(self, ast: CallStmt, classStore):
@@ -373,7 +412,18 @@ class GlobalScope(BaseVisitor, Utils):
         return None
 
 
+    #     name: str
+    def visitId(self, ast: Id, classStore):
+        name = ast.name
 
+        if classStore["class"] is not None:
+            if name not in classStore["class"]["attributes"]:
+                raise Undeclared(Variable(), name)
+
+
+        print(classStore)
+        return name
+         
     def visitIntLiteral(self, ast: IntLiteral, classStore):
         return Type().INT()
 
@@ -640,7 +690,8 @@ class StaticChecker(BaseVisitor, Utils):
         # classStore2 = {}
         # print(ast.decl)
 
-        classStore = GlobalScope().visitProgram(ast, classStore)
+        # classStore = GlobalScope().visitProgram(ast, classStore)
+        GlobalScope().visitProgram(ast, classStore)
         toJSON(classStore, 'global_scope')
 
         # classStore = ValidateInit().visitProgram(ast, classStore)
@@ -649,6 +700,7 @@ class StaticChecker(BaseVisitor, Utils):
 
         # for decl in ast.decl:
         #     self.visit(decl, classStore)
+        return []
 
 #     classname: Id
 #     memlist: List[MemDecl]

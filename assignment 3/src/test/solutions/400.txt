@@ -1,1 +1,1 @@
-Undeclared Class: Animal
+Type Mismatch In Constant Declaration: ConstDecl(Id($a),IntType,FloatLit(3.2))

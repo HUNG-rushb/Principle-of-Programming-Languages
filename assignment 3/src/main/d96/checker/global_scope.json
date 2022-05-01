@@ -1,12 +1,37 @@
 {
+    "A": {
+        "parent": "",
+        "attributes": {},
+        "methods": {
+            "Constructor": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": [
+                    {}
+                ],
+                "params": {
+                    "a": {
+                        "type": "<3...FLOAT",
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    },
+                    "b": {
+                        "type": "<3...INT",
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    }
+                }
+            }
+        }
+    },
     "B": {
         "parent": "",
         "attributes": {
-            "afs": {
-                "type": "<3...BOOLEAN",
-                "init": "<3...BOOLEAN",
-                "const": false,
-                "kind": "<3...INSTANCE"
+            "$b": {
+                "type": "<3...CLASS A",
+                "init": "<3...CLASS A",
+                "const": true,
+                "kind": "<3...STATIC"
             }
         },
         "methods": {}

@@ -1,1 +1,1 @@
-Type Mismatch In Expression: BinaryOp(<,IntLit(100),BooleanLit(True))
+Undeclared Class: C
