@@ -1,10 +1,13 @@
 
             Class A {
-                Var a : Int = 1;
+                
+                ## Var a : Array[Int, 3] = Array(1, 2, 3); ##
 
                 hung () {
-                    Var b : Int = 1;
-                    Val efb : Int = 1;
-                }
+                    
+
+                    
+                    Foreach (b In 1 .. 10) { Break;}
+                } 
             }
             

@@ -3,6 +3,7 @@
 Trịnh Duy Hưng
 """
 
+from ast import Expression
 from lib2to3.pgen2.grammar import opmap_raw
 from msilib.schema import Class
 from pydoc import classname
@@ -16,27 +17,9 @@ from AST import *
 from Visitor import *
 from Utils import Utils
 from StaticError import *
-
-
-# from enum import Enum
 import json
 
-# class Type(Enum):
-#     UNDEFINE = 0
-#     INT = 1
-#     FLOAT = 2
-#     BOOLEAN = 3
-#     STRING = 4
-#     ARRAY = 5
-#     CLASS = 6
-#     VOID = 7
-
-# class Kind(Enum):
-#     STATIC = 0
-#     INSTANCE = 1
-
 class Type:
-
     def NONE(self): return "<3...None"
 
     def INT(self): return "<3...INT"
@@ -95,11 +78,6 @@ class Symbol:
         self.mtype = mtype
         self.value = value
 
-
-
-
-
-
 #  ! ██████  ██       ██████  ██████   █████  ██      
 # ! ██       ██      ██    ██ ██   ██ ██   ██ ██      
 # ! ██   ███ ██      ██    ██ ██████  ███████ ██      
@@ -116,6 +94,7 @@ class GlobalScope(BaseVisitor, Utils):
     #     'overall' : classStore,
     #     'class' : classStore[className]
     # }
+
     def visitClassDecl(self, ast: ClassDecl, classStore):
         className = ast.classname.name
 
@@ -168,6 +147,7 @@ class GlobalScope(BaseVisitor, Utils):
         varName = ast.variable.name
         
         # Attribute of Class's scope
+        # if "class" in classStore[]:
         if classStore["class"] is not None and len(classStore) == 2:
             if varName in classStore['class']["attributes"]:
                 raise Redeclared(Attribute(), varName) 
@@ -195,6 +175,7 @@ class GlobalScope(BaseVisitor, Utils):
             }
 
         # Variable in method's scope
+        # elif "method" in classStore:
         elif classStore["method"] is not None and len(classStore) == 4:
             if varName in classStore['body']['variables']:
                 raise Redeclared(Variable(), varName)
@@ -229,6 +210,7 @@ class GlobalScope(BaseVisitor, Utils):
         varName = ast.constant.name
         
         # Attribute of Class's scope
+        # if "class" in classStore[]:
         if classStore["class"] is not None and len(classStore) == 2:
             if varName in classStore['class']["attributes"]:
                 raise Redeclared(Constant(), varName)
@@ -256,6 +238,7 @@ class GlobalScope(BaseVisitor, Utils):
             }
         
          # Variable in method's scope
+         # elif "method" in classStore:
         elif classStore["method"] is not None and len(classStore) == 4:
             if varName in classStore['body']['variables']:
                 raise Redeclared(Constant(), varName)
@@ -349,7 +332,7 @@ class GlobalScope(BaseVisitor, Utils):
         }
 
 
-    # ! inst: List[Inst]
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     # ! inst: List[Inst]
     def visitBlock(self, ast: Block, classStore):
         blockInst = ast.inst
@@ -408,69 +391,127 @@ class GlobalScope(BaseVisitor, Utils):
                 return Type().FLOAT()
         else:
             raise TypeMismatchInExpression(ast)
+
+    
+
+
+    #     name: str
+    def visitId(self, ast: Id, classStore):
+        name = ast.name
+
+        # if "class" in classStore[]:
+        if classStore["class"] is not None and len(classStore) == 2:
+            # print(12340000)
+            if name not in classStore["class"]["attributes"]:
+                raise Undeclared(Attribute(), name)
+
+            return (classStore["class"]["attributes"][name]["type"], classStore["class"]["attributes"][name]["const"])
+
+        # elif "method" in classStore:
+        elif classStore["method"] is not None and len(classStore) == 4:
+            # print(1234)
+            if name in classStore["class"]["attributes"]:
+                # print(12312000)
+                return (classStore["class"]["attributes"][name]["type"], classStore["class"]["attributes"][name]["const"])
+            elif name in classStore["body"]["variables"]:
+                # print(12312)
+                return (classStore["body"]["variables"][name]["type"], classStore["body"]["variables"][name]["const"])
+            else:
+                raise Undeclared(Variable(), name)
+
+
+
+
+
        
     # lhs: Expr
     # exp: Expr
     def visitAssign(self, ast: Assign, classStore):
+        print(123123)
         LHS = self.visit(ast.lhs, classStore)
+
+        # LHS is const 
+        if hasattr(ast.lhs, 'name') and LHS[1] == True:
+            raise CannotAssignToConstant(ast)
+
         expr = self.visit(ast.exp, classStore)
 
         if LHS != expr:
             raise TypeMismatchInStatement(ast)
 
-
+    # !!!!!!!!!!!!!!!!!!!!!!!!!
     # expr: Expr
     # thenStmt: Stmt
     # elseStmt: Stmt = None  # None if there is no else branch
     def visitIf(self, ast: If, classStore):
+        classStore['if'] = classStore["body"]
 
-        newMethodEnviromentBlock = {
-            'overall' : classStore['overall'],
-            'class' : classStore['class'],
-            'method': classStore['class']['methods'][methodName]['params'],
-            'body': classStore['class']['methods'][methodName]['body']
-        }
-        return None
+        ifExpr = ast.expr
 
+        ifThen = self.visit(ast.thenStmt, classStore)
+        ifElse = self.visit(ast.elseStmt, classStore)
+
+        
+        
+
+    # !!!!!!!!!!!!!!!!!!!!!!!!!
     # id: Id
     # expr1: Expr
     # expr2: Expr 
     # loop: Stmt
     # expr3: Expr = None
     def visitFor(self, ast: For, classStore):
-        newMethodEnviromentBlock = {
-            'overall' : classStore['overall'],
-            'class' : classStore['class'],
-            'method': classStore['class']['methods'][methodName]['params'],
-            'body': classStore['class']['methods'][methodName]['body']
-        }   
-        return None
+        # print(12334413)
+        classStore['for'] = classStore["body"]
+        
+        iterName = ast.id.name
+        expression_1 = self.visit(ast.expr1, classStore)
+        expression_2 = self.visit(ast.expr2, classStore)
+        expression_3 = self.visit(ast.expr3, classStore)
 
-
-
-
-
+        
+        loopStm = self.visit(ast.loop, classStore)
+        
 
 
 
 
 
     def visitBreak(self, ast: Break, classStore):
-        return Break()
+        print(classStore)
+        if 'for' in classStore:
+            print(12313)
+        else:
+            raise MustInLoop(ast)
 
     def visitContinue(self, ast: Continue, classStore):
-        return Continue()
+        if 'for' in classStore:
+            print(12334413)
+        else:
+            raise MustInLoop(ast)
 
     # expr: Expr = None
     def visitReturn(self, ast: Return, classStore):
         expression = self.visit(ast.expr, classStore)
         return expression
 
-
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # obj: Expr
+    # method: Id
+    # param: List[Expr]
+    # dog.bark()
     def visitCallStmt(self, ast: CallStmt, classStore):
-        return None
+        objCall = self.visit(ast.obj, classStore)
+        methodCall = self.visit(ast.method, classStore)
+        paramCall = self.visit(ast.param, classStore)
+        print(12313)
 
-
+    # obj: Expr
+    # method: Id
+    # param: List[Expr]
+    def visitCallExpr(self, ast: CallExpr, classStore):
+        print(33428)
+        
 
 
 
@@ -506,9 +547,14 @@ class GlobalScope(BaseVisitor, Utils):
         for param in methodParams:
             current = listCopyConstrutorParams[i]
 
-            if self.visit(param, classStore) != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
-                raise TypeMismatchInExpression(ast)
-
+            # Param is ID 
+            if hasattr(param, "name"):
+                if self.visit(param, classStore)[0] != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
+                    # print(797889)
+                    raise TypeMismatchInExpression(ast)
+            # Param is literal 
+            elif self.visit(param, classStore) != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
+                    raise TypeMismatchInExpression(ast)
             i += 1
 
         # return Type().NEW()
@@ -520,23 +566,7 @@ class GlobalScope(BaseVisitor, Utils):
     
 
 
-    #     name: str
-    def visitId(self, ast: Id, classStore):
-        name = ast.name
-
-        if classStore["class"] is not None and len(classStore) == 2:
-            if name not in classStore["class"]["attributes"]:
-                raise Undeclared(Attribute(), name)
-
-            return classStore["class"]["attributes"][name]["type"]
-
-        elif classStore["method"] is not None and len(classStore) == 4:
-            if name in classStore["class"]["attributes"]:
-                return classStore["class"]["attributes"][name]["type"]
-            elif name in classStore["body"]["variables"]:
-                return classStore["body"]["variables"][name]["type"]
-            else:
-                raise Undeclared(Variable(), name)
+    
 
             
          
@@ -564,6 +594,7 @@ class GlobalScope(BaseVisitor, Utils):
     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
         arrayValue = ast.value
         print(classStore)
+        
         for value in arrayValue:
             self.visit(value, classStore)
 

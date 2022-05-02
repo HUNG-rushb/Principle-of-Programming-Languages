@@ -105,33 +105,38 @@ class CheckerSuite(unittest.TestCase):
         #     """
         #     expect = "Type Mismatch In Expression: BinaryOp(%,FloatLit(1.4),IntLit(3))"
         #     self.assertTrue(TestChecker.test(input,expect,405))
-        #  def test6(self):
-        #     input = """
-        #     Class Program {main(){}}
-        #     Class A {
-        #         Var a: Array[Array[Int, 2], 2] = Array(
-        #                                             Array(3,6),
-        #                                             Array(8,9.2)
-        #         );
-        #         Constructor () { }
-        #         Destructor () { }
-        #     }
-        #     """
-        #     expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
-        #     self.assertTrue(TestChecker.test(input,expect,406)) Var a : Array[Int, 6] = Array(1, 2, 3, 4, 5, 6);
-        def test6(self):
+         def test6(self):
             input = """
+            Class Program {main(){}}
             Class A {
-                Var a : Int = 1;
-
-                hung () {
-                    Var b : Int = 1;
-                    Val efb : Int = 1;
-                }
+                Var a: Array[Array[Int, 2], 2] = Array(
+                                                    Array(3,6),
+                                                    Array(8,9.2)
+                );
+                Constructor () { }
+                Destructor () { }
             }
             """
             expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
-            self.assertTrue(TestChecker.test(input,expect,410))
+            self.assertTrue(TestChecker.test(input,expect,406)) Var a : Array[Int, 6] = Array(1, 2, 3, 4, 5, 6);
+
+        # def test6(self):
+        #     input = """
+        #     Class A {
+                
+        #         ## Var a : Array[Int, 3] = Array(1, 2, 3); ##
+
+        #         hung () {
+                    
+
+                    
+        #             Foreach (b In 1 .. 10) { Break;}
+        #         } 
+        #     }
+        #     """
+        #     expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
+        #     self.assertTrue(TestChecker.test(input,expect,410))
+
         # def test7(self):
         #     input = """
         #     Class Program {main(){}}
@@ -173,8 +178,8 @@ class CheckerSuite(unittest.TestCase):
 
     #     }
     #     Class B {
-    #         Val b: Int = 3;
-    #         Var c: A = New A(1.5, b);
+    #         Var a: Float = 1.5;
+    #         Var c: A = New A(a , 1);
     #     }
     #     """
     #     expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
