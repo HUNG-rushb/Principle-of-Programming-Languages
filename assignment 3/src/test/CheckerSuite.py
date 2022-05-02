@@ -107,20 +107,21 @@ class CheckerSuite(unittest.TestCase):
         #     self.assertTrue(TestChecker.test(input,expect,405))
          def test6(self):
             input = """
-            Class Program {main(){}}
+
             Class A {
-                Var a: Array[Array[Int, 2], 2] = Array(
-                                                    Array(3,6),
-                                                    Array(8,9.2)
-                );
-                Constructor () { }
-                Destructor () { }
+                Var a : Array[Int, 3] ;
+
+                ## Var a: Array[Array[Int, 2], 2] = Array(
+                                                    Array(3, 6),
+                                                    Array(8, 9.2)
+                                                ); ##
+               
             }
             """
             expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
-            self.assertTrue(TestChecker.test(input,expect,406)) Var a : Array[Int, 6] = Array(1, 2, 3, 4, 5, 6);
+            self.assertTrue(TestChecker.test(input,expect,406))
 
-        # def test6(self):
+        # def test6(self): = Array(1, 2, 3);
         #     input = """
         #     Class A {
                 

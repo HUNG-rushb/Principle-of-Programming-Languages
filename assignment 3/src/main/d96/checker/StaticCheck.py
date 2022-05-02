@@ -480,13 +480,13 @@ class GlobalScope(BaseVisitor, Utils):
     def visitBreak(self, ast: Break, classStore):
         print(classStore)
         if 'for' in classStore:
-            print(12313)
+            pass
         else:
             raise MustInLoop(ast)
 
     def visitContinue(self, ast: Continue, classStore):
         if 'for' in classStore:
-            print(12334413)
+            pass
         else:
             raise MustInLoop(ast)
 
@@ -506,6 +506,7 @@ class GlobalScope(BaseVisitor, Utils):
         paramCall = self.visit(ast.param, classStore)
         print(12313)
 
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # obj: Expr
     # method: Id
     # param: List[Expr]

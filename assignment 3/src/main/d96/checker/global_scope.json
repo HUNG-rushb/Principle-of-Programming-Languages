@@ -1,16 +1,14 @@
 {
     "A": {
         "parent": "",
-        "attributes": {},
-        "methods": {
-            "hung": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": {
-                    "variables": {}
-                },
-                "params": {}
+        "attributes": {
+            "a": {
+                "type": "<3...ARRAY <3...INT 3",
+                "init": null,
+                "const": false,
+                "kind": "<3...INSTANCE"
             }
-        }
+        },
+        "methods": {}
     }
 }

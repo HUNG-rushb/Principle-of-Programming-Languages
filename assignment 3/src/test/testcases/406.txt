@@ -1,6 +1,12 @@
 
-            Class A {
-                Var a : Array[Int, 6] = Array(1, 2, 3, 4, 5, 6);
 
+            Class A {
+                Var a : Array[Int, 3] ;
+
+                ## Var a: Array[Array[Int, 2], 2] = Array(
+                                                    Array(3, 6),
+                                                    Array(8, 9.2)
+                                                ); ##
+               
             }
             
