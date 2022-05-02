@@ -13,9 +13,22 @@
             "hung": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
+                "body": {
+                    "variables": {
+                        "b": {
+                            "type": "<3...INT",
+                            "init": "<3...INT",
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        },
+                        "efb": {
+                            "type": "<3...INT",
+                            "init": "<3...INT",
+                            "const": true,
+                            "kind": "<3...INSTANCE"
+                        }
+                    }
+                },
                 "params": {}
             }
         }

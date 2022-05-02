@@ -126,6 +126,7 @@ class CheckerSuite(unittest.TestCase):
 
                 hung () {
                     Var b : Int = 1;
+                    Val efb : Int = 1;
                 }
             }
             """
