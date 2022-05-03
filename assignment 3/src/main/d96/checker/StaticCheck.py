@@ -30,7 +30,7 @@ class Type:
 
     def BOOLEAN(self): return "<3...BOOLEAN"
 
-    def ARRAY(self, type, size): return "<3...ARRAY" + " " + type + " " + str(size)
+    def ARRAY(self, type, size): return "<3...ARRAY" + "**" + type + "**" + str(size)
 
     def CLASS(self, name): return "<3...CLASS " + name
 
@@ -594,10 +594,20 @@ class GlobalScope(BaseVisitor, Utils):
     # ! value: List[Expr]
     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
         arrayValue = ast.value
-        print(classStore)
-        
-        for value in arrayValue:
-            self.visit(value, classStore)
+        arraySize = len(arrayValue)
+ 
+        if arraySize == 0:
+            return "<3...ARRAY"
+
+        elif arraySize > 0:
+            temp = self.visit(arrayValue[0], classStore)
+            for value in arrayValue:
+                current = self.visit(value, classStore)
+
+                if temp != current:
+                    raise IllegalArrayLiteral(ast)
+            
+            return Type().ARRAY(temp, arraySize)
 
     
 

@@ -1,14 +1,64 @@
 {
+    "Program": {
+        "parent": "",
+        "attributes": {},
+        "methods": {
+            "main": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": {
+                    "variables": {}
+                },
+                "params": {}
+            }
+        }
+    },
     "A": {
         "parent": "",
+        "attributes": {},
+        "methods": {}
+    },
+    "B": {
+        "parent": "A",
         "attributes": {
-            "a": {
-                "type": "<3...ARRAY <3...INT 3",
-                "init": null,
+            "t": {
+                "type": "<3...FLOAT",
+                "init": "<3...FLOAT",
                 "const": false,
                 "kind": "<3...INSTANCE"
             }
         },
-        "methods": {}
+        "methods": {
+            "setA": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": {
+                    "variables": {}
+                },
+                "params": {
+                    "a": {
+                        "type": "<3...INT",
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    }
+                }
+            },
+            "Constructor": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": {
+                    "variables": {}
+                },
+                "params": {}
+            },
+            "Destructor": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": {
+                    "variables": {}
+                },
+                "params": {}
+            }
+        }
     }
 }

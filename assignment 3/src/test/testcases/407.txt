@@ -1,10 +1,9 @@
 
-        Class JJ {
-            test() {
-                Var a: Int;
-            }
+        Class Program {main(){}}
+        Class A {
+            Var a: Int = 120;
+            Val $a: C = New C();
+            Constructor () { }
+            Destructor () { }
         }
-
-        
-
         

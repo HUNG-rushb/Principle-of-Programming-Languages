@@ -1,13 +1,10 @@
 
-            Class A {
-                
-                ## Var a : Array[Int, 3] = Array(1, 2, 3); ##
+        Class A {
+            Constructor(a: Float; b: Int) { }
 
-                hung () {
-                    
-
-                    
-                    Foreach (b In 1 .. 10) { Break;}
-                } 
-            }
-            
+        }
+        Class B {
+            Var a: Float = 1.5;
+            Var c: A = New A(a , 1);
+        }
+        
