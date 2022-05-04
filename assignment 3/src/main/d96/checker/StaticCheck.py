@@ -3,7 +3,7 @@
 Trịnh Duy Hưng
 """
 
-from ast import Expression
+from ast import Expression, Raise
 from lib2to3.pgen2.grammar import opmap_raw
 from msilib.schema import Class
 from pydoc import classname
@@ -177,7 +177,8 @@ class GlobalScope(BaseVisitor, Utils):
         # Variable in method's scope
         # elif "method" in classStore:
         elif classStore["method"] is not None and len(classStore) == 4:
-            if varName in classStore['body']['variables']:
+            # if varName in classStore['body']['variables']:
+            if varName in classStore['body'][0]:
                 raise Redeclared(Variable(), varName)
 
             varType = self.visit(ast.varType, classStore)
@@ -194,7 +195,8 @@ class GlobalScope(BaseVisitor, Utils):
                     else:
                         raise TypeMismatchInStatement(ast)
 
-            classStore['body']['variables'][varName] = {
+            # classStore['body']['variables'][varName] = {
+            classStore['body'][0][varName] = {
                 'type': varType,
                 # 'value': None,
                 'init': varInit,
@@ -240,7 +242,8 @@ class GlobalScope(BaseVisitor, Utils):
          # Variable in method's scope
          # elif "method" in classStore:
         elif classStore["method"] is not None and len(classStore) == 4:
-            if varName in classStore['body']['variables']:
+            # if varName in classStore['body']['variables']:
+            if varName in classStore['body'][0]:
                 raise Redeclared(Constant(), varName)
 
             varType = self.visit(ast.constType, classStore)
@@ -257,7 +260,8 @@ class GlobalScope(BaseVisitor, Utils):
                     else:
                         raise TypeMismatchInConstant(ast) 
 
-            classStore['body']['variables'][varName] = {
+            # classStore['body']['variables'][varName] = {
+            classStore['body'][0][varName] = {
                 'type': varType,
                 # 'value': None,
                 'init': varInit,
@@ -284,9 +288,10 @@ class GlobalScope(BaseVisitor, Utils):
         classStore['class']['methods'][methodName] = {
             'type': Type().VOID(),
             'kind': methodKind,
-            'body': {
-                "variables": {}
-            },
+            # 'body': {
+            #     "variables": {}
+            # },
+            'body': [],
             'params': {}
         }
 
@@ -337,6 +342,8 @@ class GlobalScope(BaseVisitor, Utils):
     def visitBlock(self, ast: Block, classStore):
         blockInst = ast.inst
         
+        classStore["body"].insert(0, {})
+
         for inst in blockInst:
             self.visit(inst, classStore)
     
@@ -350,27 +357,33 @@ class GlobalScope(BaseVisitor, Utils):
         right = self.visit(ast.right, classStore)
 
         if operand in ["+", "-", "*", "/", "%"]:
-            if left == Type().INT() and right == Type().INT():
+            if (left == Type().INT() or left[0] == Type().INT()) \
+                and (right == Type().INT() or right[0] == Type().INT()):
                 return Type().INT()
-            elif left == Type().FLOAT() or left == Type().INT() and right == Type().FLOAT() or right == Type().INT()  \
-                and operand != "%":
-                return Type().FLOAT()
+            elif left == Type().FLOAT() or left == Type().INT() or left[0] == Type().FLOAT() or left[0] == Type().INT() \
+                and right == Type().FLOAT() or right == Type().INT() or right[0] == Type().FLOAT() or right[0] == Type().INT():
+                if operand == "%" and (left == Type().FLOAT() or right == Type().FLOAT() or left[0] == Type().FLOAT() or right[0] == Type().FLOAT()):
+                    raise TypeMismatchInExpression(ast)
+                else:
+                    return Type().FLOAT()
             else:
                 raise TypeMismatchInExpression(ast)
 
         # 5.2 và 5.3
         elif operand in ["&&", "||", "==.", "+."]: 
-            if (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["&&", "||"]) \
-                    or (left == Type().STRING() and right == Type().STRING() and operand in ["==.", "+."]):
+            if ((left == Type().BOOLEAN() or left[0] == Type().BOOLEAN())\
+                 and (right == Type().BOOLEAN() or right[0] == Type().BOOLEAN()) and operand in ["&&", "||"]) \
+                    or ((left == Type().STRING() or left == Type().STRING()) \
+                        and (right == Type().STRING() or right[0] == Type().STRING()) and operand in ["==.", "+."]):
                 print(1234)
                 return Type().BOOLEAN()
             else:
                 raise TypeMismatchInExpression(ast)
                 
         elif operand in ["==", "!=", ">", "<", "<=", ">="]:
-            if (left == Type().INT() and right == Type().INT()) \
-                or (left == Type().BOOLEAN() and right == Type().BOOLEAN() and operand in ["==", "!="]) \
-                or (left == Type().FLOAT() and right == Type().FLOAT() and operand in [">", "<", "<=", ">="]):
+            if ((left == Type().INT() or left[0] == Type().INT()) and (right == Type().INT() or right[0] == Type().INT())) \
+                or ((left == Type().BOOLEAN() or left[0] == Type().BOOLEAN()) and (right == Type().BOOLEAN() or right[0] == Type().BOOLEAN()) and operand in ["==", "!="]) \
+                or ((left == Type().FLOAT() or left[0] == Type().FLOAT()) and (right == Type().FLOAT() or right[0] == Type().FLOAT()) and operand in [">", "<", "<=", ">="]):
                 return Type().BOOLEAN()
             else:
                 raise TypeMismatchInExpression(ast)
@@ -382,9 +395,10 @@ class GlobalScope(BaseVisitor, Utils):
         operand = ast.op
         body = self.visit(ast.body, classStore)
 
-        if operand == '!' and body == Type().BOOLEAN():
+        if operand == '!' and (body == Type().BOOLEAN() or body[0] == Type().BOOLEAN()):
             return Type().BOOLEAN()
-        elif operand == '-' and body != Type().INT() and body != Type().FLOAT():
+        elif operand == '-' and (body != Type().INT() or body[0] != Type().INT()) \
+            and (body != Type().FLOAT() or body[0] != Type().FLOAT()):
             if body == Type().INT():
                 return Type().INT()
             else:
@@ -413,13 +427,24 @@ class GlobalScope(BaseVisitor, Utils):
             if name in classStore["class"]["attributes"]:
                 # print(12312000)
                 return (classStore["class"]["attributes"][name]["type"], classStore["class"]["attributes"][name]["const"])
-            elif name in classStore["body"]["variables"]:
-                # print(12312)
-                return (classStore["body"]["variables"][name]["type"], classStore["body"]["variables"][name]["const"])
+            # elif name in classStore["body"]["variables"]:
             else:
-                raise Undeclared(Variable(), name)
+                found = False
+                for scope in classStore["body"]:
+                    if name in scope:
+                        found = True
+                        return (scope[name]["type"], scope[name]["const"])
 
+                if found == False:
+                    raise Undeclared(Variable(), name)
 
+        # elif "method" in classStore:
+        # elif classStore["for_***"] is not None and len(classStore) > 4:
+        # # elif "for_***" in classStore:
+        #     print(123987981473198)
+        elif classStore["if_***"] is not None and len(classStore) > 4:
+        # elif "for_***" in classStore:
+            print(123987981473198)
 
 
 
@@ -444,12 +469,18 @@ class GlobalScope(BaseVisitor, Utils):
     # thenStmt: Stmt
     # elseStmt: Stmt = None  # None if there is no else branch
     def visitIf(self, ast: If, classStore):
-        classStore['if'] = classStore["body"]
+        # classStore['if_***'] = classStore["body"]
 
         ifExpr = ast.expr
 
-        ifThen = self.visit(ast.thenStmt, classStore)
-        ifElse = self.visit(ast.elseStmt, classStore)
+        # if ifExpr != Type().BOOLEAN() or ifExpr[0] != Type().BOOLEAN():
+        #     raise TypeMismatchInExpression(ast.expr)
+
+        # ifThen = self.visit(ast.thenStmt, classStore)
+        self.visit(ast.thenStmt, classStore)
+
+        if ast.elseStmt is not None:
+            self.visit(ast.elseStmt, classStore)
 
         
         
@@ -461,18 +492,47 @@ class GlobalScope(BaseVisitor, Utils):
     # loop: Stmt
     # expr3: Expr = None
     def visitFor(self, ast: For, classStore):
-        # print(12334413)
-        classStore['for'] = classStore["body"]
-        
+        # print(classStore)
         iterName = ast.id.name
+
+        found = False
+        for scope in classStore["body"]:
+            if iterName in scope:
+                found = True
+        if found == False:
+            raise Undeclared(Variable(), iterName)
+
         expression_1 = self.visit(ast.expr1, classStore)
         expression_2 = self.visit(ast.expr2, classStore)
-        expression_3 = self.visit(ast.expr3, classStore)
+        expression_3 = Type().INT() if ast.expr3 == None else self.visit(ast.expr3, classStore)
 
-        
-        loopStm = self.visit(ast.loop, classStore)
-        
+        if hasattr(ast.expr1, "name"):
+            if expression_1[0] != Type().INT():
+                print(213123)
+                raise TypeMismatchInExpression(ast.expr1)
+        else:
+            if expression_1 != Type().INT():
+                print(11111)
+                raise TypeMismatchInExpression(ast.expr1)
 
+        if hasattr(ast.expr2, "name"):
+            if expression_2[0] != Type().INT():
+                print(3)
+                raise TypeMismatchInExpression(ast.expr2)
+        else:
+            if expression_2 != Type().INT():
+                print(4)
+                raise TypeMismatchInExpression(ast.expr2)
+
+        if hasattr(ast.expr3, "name") and ast.expr3 != None:
+            if expression_3[0] != Type().INT():
+                raise TypeMismatchInExpression(ast.expr3)
+        else:
+            if expression_3 != Type().INT():
+                raise TypeMismatchInExpression(ast.expr3)
+
+        loopStmt = self.visit(ast.loop, classStore)
+        
 
 
 

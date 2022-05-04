@@ -1,4 +1,33 @@
 {
+    "A": {
+        "parent": "",
+        "attributes": {
+            "$a": {
+                "type": "<3...INT",
+                "init": "<3...INT",
+                "const": true,
+                "kind": "<3...STATIC"
+            }
+        },
+        "methods": {
+            "Constructor": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": [
+                    {}
+                ],
+                "params": {}
+            },
+            "Destructor": {
+                "type": "<3...VOID",
+                "kind": "<3...INSTANCE",
+                "body": [
+                    {}
+                ],
+                "params": {}
+            }
+        }
+    },
     "Program": {
         "parent": "",
         "attributes": {},
@@ -6,57 +35,38 @@
             "main": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
-                "body": {
-                    "variables": {}
-                },
+                "body": [
+                    {}
+                ],
                 "params": {}
             }
         }
     },
-    "A": {
-        "parent": "",
-        "attributes": {},
-        "methods": {}
-    },
     "B": {
-        "parent": "A",
+        "parent": "",
         "attributes": {
-            "t": {
-                "type": "<3...FLOAT",
-                "init": "<3...FLOAT",
-                "const": false,
-                "kind": "<3...INSTANCE"
+            "$b": {
+                "type": "<3...CLASS A",
+                "init": "<3...CLASS A",
+                "const": true,
+                "kind": "<3...STATIC"
             }
         },
         "methods": {
-            "setA": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": {
-                    "variables": {}
-                },
-                "params": {
-                    "a": {
-                        "type": "<3...INT",
-                        "const": false,
-                        "kind": "<3...INSTANCE"
-                    }
-                }
-            },
             "Constructor": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
-                "body": {
-                    "variables": {}
-                },
+                "body": [
+                    {}
+                ],
                 "params": {}
             },
             "Destructor": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
-                "body": {
-                    "variables": {}
-                },
+                "body": [
+                    {}
+                ],
                 "params": {}
             }
         }

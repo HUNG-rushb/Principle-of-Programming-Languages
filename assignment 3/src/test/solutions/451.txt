@@ -1,0 +1,1 @@
+Type Mismatch In Statement: VarDecl(Id(name),ClassType(Id(Dog)),NullLiteral())

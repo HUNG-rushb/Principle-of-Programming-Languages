@@ -1,12 +1,11 @@
 
-
-            Class A {
-                Var a : Array[Int, 3] = Array(1,2,3);
-
-                Var g: Array[Array[Int, 2], 2] = Array(
-                                                    Array(3, 6),
-                                                    Array(8, 9.2)
-                                                ); 
-               
-            }
-            
+        Class Program {main(){}}
+        Class A {
+            Var a: Array[Array[Int, 2], 2] = Array(
+                                                Array(3,6),
+                                                Array(8,9.2)
+            );
+            Constructor () { }
+            Destructor () { }
+        }
+        
