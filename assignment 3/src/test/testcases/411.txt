@@ -1,28 +1,12 @@
 
-       
-        Class A {
+        Class JJ {
 
-            getA(a: Int) {
-                Var b: Int;
-                Var c: Int;
-                
-                
-                    Foreach (b In c .. c By c) { 
-                         Var a: Int;
-
-                          Foreach (a In a .. a By a) { 
-                                Var OOO: Boolean = True;
-
-                                If (OOO) 
-                                { 
-                                    Var gggg: Float = 2; 
-                                } 
-                            }
-                    }   
-
-                
-            }
-
+                test () {
+                    Var a : Int = a.f;
+                }
 
         }
+
+        
+
         

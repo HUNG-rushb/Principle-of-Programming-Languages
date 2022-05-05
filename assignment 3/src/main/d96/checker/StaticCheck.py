@@ -109,8 +109,9 @@ class GlobalScope(BaseVisitor, Utils):
             # 'overall': {'A': {'parent': '', 
             # 'attributes': {'a': {'type': '<3...INT', 'value': None, 'init': '<3...INT', 'const': False, 'kind': '<3...INSTANCE'}}, 
             # 'methods': {}}}
-            if parentName not in classStore:
-                raise Undeclared(Class(), parentName)
+
+            # if parentName not in classStore:
+            #     raise Undeclared(Class(), parentName)
         else:
             parentName = ''
 
@@ -431,22 +432,18 @@ class GlobalScope(BaseVisitor, Utils):
                 return (classStore["class"]["attributes"][name]["type"], classStore["class"]["attributes"][name]["const"])
             # elif name in classStore["body"]["variables"]:
             else:
-                found = False
+                # found = False
                 for scope in classStore["body"]:
                     if name in scope:
-                        found = True
+                        # found = True
                         return (scope[name]["type"], scope[name]["const"])
 
-                if found == False:
-                    raise Undeclared(Variable(), name)
+                if name in classStore["method"]:
+                    # found = True
+                    return (classStore["method"][name]["type"], classStore["method"][name]["const"])
 
-        # elif "method" in classStore:
-        # elif classStore["for_***"] is not None and len(classStore) > 4:
-        # # elif "for_***" in classStore:
-        #     print(123987981473198)
-        elif classStore["if_***"] is not None and len(classStore) > 4:
-        # elif "for_***" in classStore:
-            print(123987981473198)
+                # if found == False:
+                raise Undeclared(Variable(), name)
 
 
 
@@ -477,10 +474,10 @@ class GlobalScope(BaseVisitor, Utils):
         
         if hasattr(ast.expr, 'name'): 
             if ifExpr[0] != Type().BOOLEAN():
-                raise TypeMismatchInExpression(ast.expr)
+                raise TypeMismatchInStatement(ast)
         else:
             if ifExpr != Type().BOOLEAN():
-                raise TypeMismatchInExpression(ast.expr)
+                raise TypeMismatchInStatement(ast)
 
         # if ifExpr != Type().BOOLEAN() or ifExpr[0] != Type().BOOLEAN():
         #     raise TypeMismatchInExpression(ast.expr)
@@ -559,10 +556,43 @@ class GlobalScope(BaseVisitor, Utils):
         else:
             raise MustInLoop(ast)
 
+
+
+
+
+
+
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # expr: Expr = None
     def visitReturn(self, ast: Return, classStore):
         expression = self.visit(ast.expr, classStore)
         return expression
+
+
+
+
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # obj: Expr
+    # fieldname: Id
+    def visitFieldAccess(self, ast: FieldAccess, classStore):
+        print(2131989)
+        
+        objCall = self.visit(ast.obj, classStore)
+
+        
+        fieldCall = self.visit(ast.fieldname, classStore)
+        
+        
+
+
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # obj: Expr
@@ -580,6 +610,10 @@ class GlobalScope(BaseVisitor, Utils):
     # method: Id
     # param: List[Expr]
     def visitCallExpr(self, ast: CallExpr, classStore):
+        objCall = self.visit(ast.obj, classStore)
+        methodCall = self.visit(ast.method, classStore)
+        paramCall = self.visit(ast.param, classStore)
+
         print(33428)
         
 

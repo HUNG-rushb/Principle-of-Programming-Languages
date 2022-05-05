@@ -4,22 +4,25 @@ from AST import *
 
 class CheckerSuite(unittest.TestCase):
     
-    # def test7(self):
-    #     input = """
-    #     Class JJ {
-    #         test() {
-    #             Var a: Int = 5;
-    #             Var b: Boolean = a > 4;
+    def test7(self):
+        input = """
+        Class JJ {
+                
+                test () {
 
-    #             Val c: Float = 2 + True;
-    #         }
-    #     }
+                    Var b : Int;
+
+
+                    Var a : Int = b.f;
+                }
+
+        }
 
         
 
-    #     """
-    #     expect = "[]"
-    #     self.assertTrue(TestChecker.test(input,expect,411))
+        """
+        expect = "[]"
+        self.assertTrue(TestChecker.test(input,expect,416))
 
     # def test0(self):
     #     input = """
@@ -175,84 +178,72 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
     #     self.assertTrue(TestChecker.test(input,expect,410))
-    def test11(self):
-        input = """
+    # def test11(self):
+    #     input = """
        
-        Class A {
+    #     Class A {
 
-            getA(a: Int) {
-                Var b: Int;
-                Var c: Int;
+    #         getA(a: Int) {
+    #             Var b: Int;
+    #             Var c: Int;
                 
                 
-                    Foreach (b In c .. c By c) { 
-                         Var a: Int;
+    #                 Foreach (b In c .. c By c) { 
+    #                      Var a: Int;
 
-                          Foreach (a In a .. a By a) { 
-                                Var OOO: Boolean = True;
+    #                       Foreach (a In a .. a By a) { 
+    #                             Var OOO: Boolean = True;
 
-                                If (OOO) 
-                                { 
-                                    Var gggg: Float = 2; 
-                                } 
-                            }
-                    }   
+    #                             If (OOO) 
+    #                             { 
+    #                                 Var gggg: Float = 2; 
+    #                             } 
+    #                         }
+    #                 }   
+    #         }
+    #     }
+    #     """
+    #         # Var b: Int = A.c.a;
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,411))
 
-                
-            }
-
-
-        }
-        """
-            # Var b: Int = A.c.a;
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,411))
-
-
-
-        
-
-
-
-
-
-
-    def test12(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Var z: Int;
-            getA(a: Int) {
-                Foreach (b In 1 .. 10) { }
-            }
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-            # Var b: Int = A.c.a;
-        expect = "Undeclared Variable: b"
-        self.assertTrue(TestChecker.test(input,expect,412))
-    def test13(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Var z: Int;
-            getA(a: Int) {
-                Var b: Int;
-                Foreach (b In 1.2 .. 10.5) { }
-            }
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-            # Var b: Int = A.c.a;
-        expect = "Type Mismatch In Statement: For(Id(b),FloatLit(1.2),FloatLit(10.5),IntLit(1),Block([])])"
-        self.assertTrue(TestChecker.test(input,expect,413))
-    # def test14(self):
+    # def test12(self):
     #     input = """
     #     Class Program {main(){}}
     #     Class A {
     #         Var z: Int;
+    #         getA(a: Int) {
+    #             Foreach (b In 1 .. 10) { }
+    #         }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #         # Var b: Int = A.c.a;
+    #     expect = "Undeclared Variable: b"
+    #     self.assertTrue(TestChecker.test(input,expect,412))
+    # def test13(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Var z: Int;
+    #         getA(a: Int) {
+    #             Var b: Int;
+    #             Foreach (b In 1.2 .. 10.5) { }
+    #         }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #         # Var b: Int = A.c.a;
+    #     expect = "Type Mismatch In Statement: For(Id(b),FloatLit(1.2),FloatLit(10.5),IntLit(1),Block([])])"
+    #     self.assertTrue(TestChecker.test(input,expect,413))
+
+    # def test14(self):
+    #     input = """
+    #     Class A {
+    #         Var z: Int;
+
     #         getA(a: Int) {
     #             Var b: Int;
     #             Foreach (b In 1 .. 100) {
@@ -260,13 +251,13 @@ class CheckerSuite(unittest.TestCase):
     #                 Else { Var e: String; }
     #             }
     #         }
-    #         Constructor () { }
-    #         Destructor () { }
+           
     #     }
     #     """
     #         # Var b: Int = A.c.a;
     #     expect = "Type Mismatch In Statement: If(BinaryOp(+,Id(b),IntLit(4)),Block([]),Block([VarDecl(Id(e),StringType)]))"
     #     self.assertTrue(TestChecker.test(input,expect,414))
+
     # def test15(self):
     #     input = """
     #     Class Program {main(){}}
@@ -290,6 +281,7 @@ class CheckerSuite(unittest.TestCase):
     #         # Var b: Int = A.c.a;
     #     expect = "Type Mismatch In Statement: If(BinaryOp(*,Id(a),IntLit(10)),Block([]))"
     #     self.assertTrue(TestChecker.test(input,expect,415))
+
     # def test16(self):
     #     input = """
     #     Class Program {main(){}}
@@ -314,6 +306,7 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "Illegal Member Access: FieldAccess(Id(A),Id(s))"
     #     self.assertTrue(TestChecker.test(input,expect,416))
+
     # def test17(self):
     #     input = """
     #     Class D {

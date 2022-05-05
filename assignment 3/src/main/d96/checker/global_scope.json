@@ -2,57 +2,26 @@
     "A": {
         "parent": "",
         "attributes": {},
+        "methods": {}
+    },
+    "Program": {
+        "parent": "",
+        "attributes": {},
         "methods": {
-            "getA": {
+            "main": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
                 "body": [
                     {
-                        "gggg": {
-                            "type": "<3...FLOAT",
-                            "init": "<3...FLOAT",
-                            "const": false,
-                            "kind": "<3...INSTANCE"
-                        }
-                    },
-                    {
-                        "OOO": {
-                            "type": "<3...BOOLEAN",
-                            "init": "<3...BOOLEAN",
-                            "const": false,
-                            "kind": "<3...INSTANCE"
-                        }
-                    },
-                    {
                         "a": {
-                            "type": "<3...INT",
-                            "init": null,
-                            "const": false,
-                            "kind": "<3...INSTANCE"
-                        }
-                    },
-                    {
-                        "b": {
-                            "type": "<3...INT",
-                            "init": null,
-                            "const": false,
-                            "kind": "<3...INSTANCE"
-                        },
-                        "c": {
-                            "type": "<3...INT",
-                            "init": null,
-                            "const": false,
+                            "type": "<3...ARRAY**<3...ARRAY**<3...ARRAY**<3...INT**2**2**2",
+                            "init": "<3...ARRAY**<3...ARRAY**<3...ARRAY**<3...INT**2**2**2",
+                            "const": true,
                             "kind": "<3...INSTANCE"
                         }
                     }
                 ],
-                "params": {
-                    "a": {
-                        "type": "<3...INT",
-                        "const": false,
-                        "kind": "<3...INSTANCE"
-                    }
-                }
+                "params": {}
             }
         }
     }

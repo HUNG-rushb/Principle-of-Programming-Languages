@@ -1,21 +1,16 @@
 
-        Class Program {main(){}}
-        Class supsuper {
-            Var ss: Int = 2;
-            Constructor () { }
-            Destructor () { }
+        Class JJ {
+                
+                test () {
+
+                    Var b : Int;
+
+
+                    Var a : Int = b.f;
+                }
+
         }
-        Class super : supsuper {
-            Var s: supsuper;
-            Constructor () { }
-            Destructor () { }
-        }
-        Class A : super {
-            Var z: Int = 2;
-            getA(a: Int) {
-                Var b: Int = 2 + A.s.ss;
-            }
-            Constructor () { }
-            Destructor () { }
-        }
+
+        
+
         
