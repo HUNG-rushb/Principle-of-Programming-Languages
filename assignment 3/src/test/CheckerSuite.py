@@ -10,6 +10,8 @@ class CheckerSuite(unittest.TestCase):
     #         test() {
     #             Var a: Int = 5;
     #             Var b: Boolean = a > 4;
+
+    #             Val c: Float = 2 + True;
     #         }
     #     }
 
@@ -19,160 +21,160 @@ class CheckerSuite(unittest.TestCase):
     #     expect = "[]"
     #     self.assertTrue(TestChecker.test(input,expect,411))
 
-    def test0(self):
-        input = """
-        Class Dog {
-            Val $a : Int = 3.2;
-            $getDog() { }
-            Constructor () { }
-            Destructor () { }
-        }
-        Class Meow {
-            $set() { }
-            Constructor () { }
-            Destructor () { }
-        }
-        Class Program {main(){}}
-        """
-        expect = "Type Mismatch In Constant Declaration: ConstDecl(Id($a),IntType,FloatLit(3.2))"
-        self.assertTrue(TestChecker.test(input,expect,400))
-    def test1(self):
-        input = """
-        Class A {
-            Var $a: Int;
-            Constructor () { }
-            Destructor () { }
-        }
-        Class A {
-            Val $b: Float;
-            Constructor () { }
-            Destructor () { }
-        }
-        Class Program {main(){}}
-        """
-        expect = "Redeclared Class: A"
-        self.assertTrue(TestChecker.test(input,expect,401))
+    # def test0(self):
+    #     input = """
+    #     Class Dog {
+    #         Val $a : Int = 3.2;
+    #         $getDog() { }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     Class Meow {
+    #         $set() { }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     Class Program {main(){}}
+    #     """
+    #     expect = "Type Mismatch In Constant Declaration: ConstDecl(Id($a),IntType,FloatLit(3.2))"
+    #     self.assertTrue(TestChecker.test(input,expect,400))
+    # def test1(self):
+    #     input = """
+    #     Class A {
+    #         Var $a: Int;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     Class A {
+    #         Val $b: Float;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     Class Program {main(){}}
+    #     """
+    #     expect = "Redeclared Class: A"
+    #     self.assertTrue(TestChecker.test(input,expect,401))
 
-    def test2(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Val $a: Int = 2 + True;
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Type Mismatch In Expression: BinaryOp(+,IntLit(2),BooleanLit(True))"
-        self.assertTrue(TestChecker.test(input,expect,402))
-    def test3(self):
-        input = """
-        Class A {
-            Val $a: Int = 3;
-            Constructor () { }
-            Destructor () { }
-        }
-        Class Program {main(){}}
-        Class B {
-            Val $b: A = New A();
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,403))
+    # def test2(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Val $a: Int = 2 + True;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Expression: BinaryOp(+,IntLit(2),BooleanLit(True))"
+    #     self.assertTrue(TestChecker.test(input,expect,402))
+    # def test3(self):
+    #     input = """
+    #     Class A {
+    #         Val $a: Int = 3;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     Class Program {main(){}}
+    #     Class B {
+    #         Val $b: A = New A();
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,403))
 
-    def test4(self):
-        input = """
-        Class Program {main(){}}
-        Class A { }
-        Class B: A {
-            Val $r :Int = 2 + 2 * 2.5;
-            Var a: Boolean = True;
-            setA(a: Int) { }
-            Constructor () { }
-            Destructor () { }
-        }
-        """
+    # def test4(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A { }
+    #     Class B: A {
+    #         Val $r :Int = 2 + 2 * 2.5;
+    #         Var a: Boolean = True;
+    #         setA(a: Int) { }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
         
-        expect = "Type Mismatch In Constant Declaration: ConstDecl(Id($r),IntType,BinaryOp(+,IntLit(2),BinaryOp(*,IntLit(2),FloatLit(2.5))))"
-        self.assertTrue(TestChecker.test(input,expect,404))
-    def test5(self):
-        input = """
-        Class Program {main(){}}
-        Class A { }
-        Class B: A {
-            Var t: Float = 1.4 % 3; 
-            setA(a: Int) { }
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Type Mismatch In Expression: BinaryOp(%,FloatLit(1.4),IntLit(3))"
-        self.assertTrue(TestChecker.test(input,expect,405))
-    def test6(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Var a: Array[Array[Int, 2], 2] = Array(
-                                                Array(3,6),
-                                                Array(8,9.2)
-            );
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
-        self.assertTrue(TestChecker.test(input,expect,406))
-    def test7(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Var a: Int = 120;
-            Val $a: C = New C();
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Undeclared Class: C"
-        self.assertTrue(TestChecker.test(input,expect,407))
-    def test8(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Var a, t, r: Int = 120, 12 * 60 - 9, 1e4;
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Type Mismatch In Statement: VarDecl(Id(r),IntType,FloatLit(10000.0))"
-        self.assertTrue(TestChecker.test(input,expect,408))
-    def test9(self):
-        input = """
-        Class Program {main(){}}
-        Class B {
-            Val C: String;
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Illegal Constant Expression: None"
-        self.assertTrue(TestChecker.test(input,expect,409))
-    def test10(self):
-        input = """
-        Class Program {main(){}}
-        Class A {
-            Val $a: Int = 3;
-            Constructor(a: Float; b: Int) { }
-            Destructor () { }
-        }
-        Class B {
-            Val $b: A = New A(1, 3.2);
-            Constructor () { }
-            Destructor () { }
-        }
-        """
-        expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
-        self.assertTrue(TestChecker.test(input,expect,410))
+    #     expect = "Type Mismatch In Constant Declaration: ConstDecl(Id($r),IntType,BinaryOp(+,IntLit(2),BinaryOp(*,IntLit(2),FloatLit(2.5))))"
+    #     self.assertTrue(TestChecker.test(input,expect,404))
+    # def test5(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A { }
+    #     Class B: A {
+    #         Var t: Float = 1.4 % 3; 
+    #         setA(a: Int) { }
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Expression: BinaryOp(%,FloatLit(1.4),IntLit(3))"
+    #     self.assertTrue(TestChecker.test(input,expect,405))
+    # def test6(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Var a: Array[Array[Int, 2], 2] = Array(
+    #                                             Array(3,6),
+    #                                             Array(8,9.2)
+    #         );
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Illegal Array Literal: [IntLit(8),FloatLit(9.2)]"
+    #     self.assertTrue(TestChecker.test(input,expect,406))
+    # def test7(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Var a: Int = 120;
+    #         Val $a: C = New C();
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Undeclared Class: C"
+    #     self.assertTrue(TestChecker.test(input,expect,407))
+    # def test8(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Var a, t, r: Int = 120, 12 * 60 - 9, 1e4;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Statement: VarDecl(Id(r),IntType,FloatLit(10000.0))"
+    #     self.assertTrue(TestChecker.test(input,expect,408))
+    # def test9(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class B {
+    #         Val C: String;
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Illegal Constant Expression: None"
+    #     self.assertTrue(TestChecker.test(input,expect,409))
+    # def test10(self):
+    #     input = """
+    #     Class Program {main(){}}
+    #     Class A {
+    #         Val $a: Int = 3;
+    #         Constructor(a: Float; b: Int) { }
+    #         Destructor () { }
+    #     }
+    #     Class B {
+    #         Val $b: A = New A(1, 3.2);
+    #         Constructor () { }
+    #         Destructor () { }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),FloatLit(3.2)])"
+    #     self.assertTrue(TestChecker.test(input,expect,410))
     def test11(self):
         input = """
        
@@ -210,51 +212,42 @@ class CheckerSuite(unittest.TestCase):
 
         
 
-        #         Foreach (asd In 1 .. 10) { 
-        #            Var C:  Int;
-        #         }
-                
-        #         Foreach (asd In 1 .. 10) { 
-        #             ## If (b > 4) 
-        #             { 
-        #                 Var c: Float = 2; 
-        #             } ##
-        #         }
 
 
 
 
-    # def test12(self):
-    #     input = """
-    #     Class Program {main(){}}
-    #     Class A {
-    #         Var z: Int;
-    #         getA(a: Int) {
-    #             Foreach (b In 1 .. 10) { }
-    #         }
-    #         Constructor () { }
-    #         Destructor () { }
-    #     }
-    #     """
-    #         # Var b: Int = A.c.a;
-    #     expect = "Undeclared Variable: b"
-    #     self.assertTrue(TestChecker.test(input,expect,412))
-    # def test13(self):
-    #     input = """
-    #     Class Program {main(){}}
-    #     Class A {
-    #         Var z: Int;
-    #         getA(a: Int) {
-    #             Var b: Int;
-    #             Foreach (b In 1.2 .. 10.5) { }
-    #         }
-    #         Constructor () { }
-    #         Destructor () { }
-    #     }
-    #     """
-    #         # Var b: Int = A.c.a;
-    #     expect = "Type Mismatch In Statement: For(Id(b),FloatLit(1.2),FloatLit(10.5),IntLit(1),Block([])])"
-    #     self.assertTrue(TestChecker.test(input,expect,413))
+
+    def test12(self):
+        input = """
+        Class Program {main(){}}
+        Class A {
+            Var z: Int;
+            getA(a: Int) {
+                Foreach (b In 1 .. 10) { }
+            }
+            Constructor () { }
+            Destructor () { }
+        }
+        """
+            # Var b: Int = A.c.a;
+        expect = "Undeclared Variable: b"
+        self.assertTrue(TestChecker.test(input,expect,412))
+    def test13(self):
+        input = """
+        Class Program {main(){}}
+        Class A {
+            Var z: Int;
+            getA(a: Int) {
+                Var b: Int;
+                Foreach (b In 1.2 .. 10.5) { }
+            }
+            Constructor () { }
+            Destructor () { }
+        }
+        """
+            # Var b: Int = A.c.a;
+        expect = "Type Mismatch In Statement: For(Id(b),FloatLit(1.2),FloatLit(10.5),IntLit(1),Block([])])"
+        self.assertTrue(TestChecker.test(input,expect,413))
     # def test14(self):
     #     input = """
     #     Class Program {main(){}}

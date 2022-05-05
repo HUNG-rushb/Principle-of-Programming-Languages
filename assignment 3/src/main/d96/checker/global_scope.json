@@ -1,73 +1,58 @@
 {
     "A": {
         "parent": "",
-        "attributes": {
-            "$a": {
-                "type": "<3...INT",
-                "init": "<3...INT",
-                "const": true,
-                "kind": "<3...STATIC"
-            }
-        },
-        "methods": {
-            "Constructor": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {}
-            },
-            "Destructor": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {}
-            }
-        }
-    },
-    "Program": {
-        "parent": "",
         "attributes": {},
         "methods": {
-            "main": {
+            "getA": {
                 "type": "<3...VOID",
                 "kind": "<3...INSTANCE",
                 "body": [
-                    {}
+                    {
+                        "gggg": {
+                            "type": "<3...FLOAT",
+                            "init": "<3...FLOAT",
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        }
+                    },
+                    {
+                        "OOO": {
+                            "type": "<3...BOOLEAN",
+                            "init": "<3...BOOLEAN",
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        }
+                    },
+                    {
+                        "a": {
+                            "type": "<3...INT",
+                            "init": null,
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        }
+                    },
+                    {
+                        "b": {
+                            "type": "<3...INT",
+                            "init": null,
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        },
+                        "c": {
+                            "type": "<3...INT",
+                            "init": null,
+                            "const": false,
+                            "kind": "<3...INSTANCE"
+                        }
+                    }
                 ],
-                "params": {}
-            }
-        }
-    },
-    "B": {
-        "parent": "",
-        "attributes": {
-            "$b": {
-                "type": "<3...CLASS A",
-                "init": "<3...CLASS A",
-                "const": true,
-                "kind": "<3...STATIC"
-            }
-        },
-        "methods": {
-            "Constructor": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {}
-            },
-            "Destructor": {
-                "type": "<3...VOID",
-                "kind": "<3...INSTANCE",
-                "body": [
-                    {}
-                ],
-                "params": {}
+                "params": {
+                    "a": {
+                        "type": "<3...INT",
+                        "const": false,
+                        "kind": "<3...INSTANCE"
+                    }
+                }
             }
         }
     }

@@ -360,9 +360,11 @@ class GlobalScope(BaseVisitor, Utils):
             if (left == Type().INT() or left[0] == Type().INT()) \
                 and (right == Type().INT() or right[0] == Type().INT()):
                 return Type().INT()
-            elif left == Type().FLOAT() or left == Type().INT() or left[0] == Type().FLOAT() or left[0] == Type().INT() \
-                and right == Type().FLOAT() or right == Type().INT() or right[0] == Type().FLOAT() or right[0] == Type().INT():
-                if operand == "%" and (left == Type().FLOAT() or right == Type().FLOAT() or left[0] == Type().FLOAT() or right[0] == Type().FLOAT()):
+            elif (left == Type().FLOAT() or left == Type().INT() or left[0] == Type().FLOAT() or left[0] == Type().INT()) \
+                and (right == Type().FLOAT() or right == Type().INT() or right[0] == Type().FLOAT() or right[0] == Type().INT()):
+
+                if operand == "%" and (left == Type().FLOAT() or right == Type().FLOAT() \
+                     or left[0] == Type().FLOAT() or right[0] == Type().FLOAT()):
                     raise TypeMismatchInExpression(ast)
                 else:
                     return Type().FLOAT()
@@ -471,7 +473,14 @@ class GlobalScope(BaseVisitor, Utils):
     def visitIf(self, ast: If, classStore):
         # classStore['if_***'] = classStore["body"]
 
-        ifExpr = ast.expr
+        ifExpr = self.visit(ast.expr, classStore)
+        
+        if hasattr(ast.expr, 'name'): 
+            if ifExpr[0] != Type().BOOLEAN():
+                raise TypeMismatchInExpression(ast.expr)
+        else:
+            if ifExpr != Type().BOOLEAN():
+                raise TypeMismatchInExpression(ast.expr)
 
         # if ifExpr != Type().BOOLEAN() or ifExpr[0] != Type().BOOLEAN():
         #     raise TypeMismatchInExpression(ast.expr)
@@ -509,27 +518,27 @@ class GlobalScope(BaseVisitor, Utils):
         if hasattr(ast.expr1, "name"):
             if expression_1[0] != Type().INT():
                 print(213123)
-                raise TypeMismatchInExpression(ast.expr1)
+                raise TypeMismatchInStatement(ast)
         else:
             if expression_1 != Type().INT():
                 print(11111)
-                raise TypeMismatchInExpression(ast.expr1)
+                raise TypeMismatchInStatement(ast)
 
         if hasattr(ast.expr2, "name"):
             if expression_2[0] != Type().INT():
                 print(3)
-                raise TypeMismatchInExpression(ast.expr2)
+                raise TypeMismatchInStatement(ast)
         else:
             if expression_2 != Type().INT():
                 print(4)
-                raise TypeMismatchInExpression(ast.expr2)
+                raise TypeMismatchInStatement(ast)
 
         if hasattr(ast.expr3, "name") and ast.expr3 != None:
             if expression_3[0] != Type().INT():
-                raise TypeMismatchInExpression(ast.expr3)
+                raise TypeMismatchInStatement(ast)
         else:
             if expression_3 != Type().INT():
-                raise TypeMismatchInExpression(ast.expr3)
+                raise TypeMismatchInStatement(ast)
 
         loopStmt = self.visit(ast.loop, classStore)
         
