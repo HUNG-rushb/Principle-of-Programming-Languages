@@ -10,10 +10,12 @@ class CheckerSuite(unittest.TestCase):
                 
                 test () {
 
-                    Var b : Int;
+                    ## Var b : Int;
+                    Var a : Int = b.f; ##
 
+                    ## a.test(); ##
 
-                    Var a : Int = b.f;
+                    Var c : Int = a.int();
                 }
 
         }
