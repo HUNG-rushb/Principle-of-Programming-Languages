@@ -10,12 +10,8 @@ class CheckerSuite(unittest.TestCase):
                 
                 test () {
 
-                    ## Var b : Int;
-                    Var a : Int = b.f; ##
-
-                    ## a.test(); ##
-
-                    Var c : Int = a.int();
+                    Val a : Int = 10;
+                    a = 5;
                 }
 
         }
@@ -25,6 +21,27 @@ class CheckerSuite(unittest.TestCase):
         """
         expect = "[]"
         self.assertTrue(TestChecker.test(input,expect,416))
+    # def test7(self):
+    #     input = """
+    #     Class JJ {
+                
+    #             test () {
+
+    #                 ## Var b : Int;
+    #                 Var a : Int = b.f; ##
+
+    #                 ## a.test(); ##
+
+    #                 Var c : Int = a.int();
+    #             }
+
+    #     }
+
+        
+
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,416))
 
     # def test0(self):
     #     input = """

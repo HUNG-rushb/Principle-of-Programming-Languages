@@ -2,22 +2,10 @@
 1913652
 Trịnh Duy Hưng
 """
-
-from ast import Expression, Raise
-from lib2to3.pgen2.grammar import opmap_raw
-from msilib.schema import Class
-from pydoc import classname
-from xml.dom.expatbuilder import parseString
-
-from attr import astuple
-from matplotlib.pyplot import vlines
-
-
 from AST import *
 from Visitor import *
-from Utils import Utils
 from StaticError import *
-import json
+# import json
 
 class Type:
     def NONE(self): return "<3...None"
@@ -38,7 +26,6 @@ class Type:
 
     def NULL(self): return "<3...NULL"
 
-    # def NEW(self, type): return "<3...NEW" + " " + type
     def NEW(self): return "<3...NEW" 
 
     def SELF(self): return "<3...SELF"
@@ -51,20 +38,20 @@ class Kind:
     def INSTANCE(self): return "<3...INSTANCE"
 
 
-def toJSON(data, place, typ = None) :
-    if typ == 't':
-        try:
-            print(json.dumps(data, sort_keys=False, indent=4))
-        except Exception as e:
-            print(e)
-    else:
-        f = open('./main/d96/checker/' + place + '.json', 'w', encoding='utf-8')
-        try:
-            f.write(json.dumps(data, sort_keys=False, indent=4))
-        except Exception as e:
-            f.write(e)
-        finally:
-            f.close()
+# def toJSON(data, place, typ = None) :
+#     if typ == 't':
+#         try:
+#             print(json.dumps(data, sort_keys=False, indent=4))
+#         except Exception as e:
+#             print(e)
+#     else:
+#         f = open('./main/d96/checker/' + place + '.json', 'w', encoding='utf-8')
+#         try:
+#             f.write(json.dumps(data, sort_keys=False, indent=4))
+#         except Exception as e:
+#             f.write(e)
+#         finally:
+#             f.close()
 
 class MType:
     def __init__(self, partype, rettype):
@@ -83,7 +70,7 @@ class Symbol:
 # ! ██   ███ ██      ██    ██ ██████  ███████ ██      
 # ! ██    ██ ██      ██    ██ ██   ██ ██   ██ ██      
 # !  ██████  ███████  ██████  ██████  ██   ██ ███████
-class GlobalScope(BaseVisitor, Utils):
+class GlobalScope(BaseVisitor):
     def visitProgram(self, ast: Program, classStore):
         for decl in ast.decl:
             self.visit(decl, classStore)
@@ -130,8 +117,8 @@ class GlobalScope(BaseVisitor, Utils):
             self.visit(mem, newClassEnviroment)
         
         # 2.11 No entry point
-        # if ('Program' not in classStore) or ('main' not in classStore['Program']):
-        #     raise NoEntryPoint()
+        if ('Program' not in classStore) or ('main' not in classStore['Program']):
+            raise NoEntryPoint()
         # elif :
 
 
@@ -221,8 +208,8 @@ class GlobalScope(BaseVisitor, Utils):
             varType = self.visit(ast.constType, classStore)
             varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
-            if ast.value == None:
-                raise IllegalConstantExpression(ast.value)
+            if ast.value is None:
+                raise IllegalConstantExpression(None)
             else:
                 varInit = self.visit(ast.value, classStore)
 
@@ -250,8 +237,8 @@ class GlobalScope(BaseVisitor, Utils):
             varType = self.visit(ast.constType, classStore)
             varKind = Kind().STATIC() if varName[0] == '$' else Kind().INSTANCE()
 
-            if ast.value == None:
-                raise IllegalConstantExpression(ast.value)
+            if ast.value is None:
+                raise IllegalConstantExpression(None)
             else:
                 varInit = self.visit(ast.value, classStore)
 
@@ -443,7 +430,7 @@ class GlobalScope(BaseVisitor, Utils):
                     return (classStore["method"][name]["type"], classStore["method"][name]["const"])
 
                 # if found == False:
-                raise Undeclared(Variable(), name)
+                raise Undeclared(Identifier(), name)
 
 
 
@@ -451,7 +438,7 @@ class GlobalScope(BaseVisitor, Utils):
     # lhs: Expr
     # exp: Expr
     def visitAssign(self, ast: Assign, classStore):
-        print(123123)
+        # print(123123)
         LHS = self.visit(ast.lhs, classStore)
 
         # LHS is const 
@@ -544,7 +531,7 @@ class GlobalScope(BaseVisitor, Utils):
 
 
     def visitBreak(self, ast: Break, classStore):
-        print(classStore)
+        # print(classStore)
         if 'for' in classStore:
             pass
         else:
@@ -587,6 +574,8 @@ class GlobalScope(BaseVisitor, Utils):
         
         objCall = self.visit(ast.obj, classStore)
 
+        # if objCall != Type().CLASS()
+
         # if objCall not in classStore['overall']:
         #     raise Undeclared(Class(), objCall)
 
@@ -603,7 +592,7 @@ class GlobalScope(BaseVisitor, Utils):
     # param: List[Expr]
     # dog.bark()
     def visitCallStmt(self, ast: CallStmt, classStore):
-        print(12313)
+        # print(12313)
 
         objCall = self.visit(ast.obj, classStore)
         methodCall = self.visit(ast.method, classStore)
@@ -759,7 +748,7 @@ class GlobalScope(BaseVisitor, Utils):
 # ! ██      ███████ █████   ██      █████   █████   ██████  
 # ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██   ██ 
-class StaticChecker(BaseVisitor, Utils):
+class StaticChecker(BaseVisitor):
 
     global_envi = [
         Symbol("getInt", MType([], IntType())),
@@ -776,137 +765,7 @@ class StaticChecker(BaseVisitor, Utils):
 #   decl: List[ClassDecl]
     def visitProgram(self, ast: Program, classStore):
         classStore = {}
-        # classStore2 = {}
-        # print(ast.decl)
-
-        # classStore = GlobalScope().visitProgram(ast, classStore)
         GlobalScope().visitProgram(ast, classStore)
-        toJSON(classStore, 'global_scope')
+        # toJSON(classStore, 'global_scope')
 
-        # classStore = ValidateInit().visitProgram(ast, classStore)
-        # toJSON(classStore, 'validate_init')
-        # return []
-
-        # for decl in ast.decl:
-        #     self.visit(decl, classStore)
         return []
-
-#     classname: Id
-#     memlist: List[MemDecl]
-#     parentname: Id = None
-#     def visitClassDecl(self, ast: ClassDecl, classStore):
-#         className = self.visit(ast.classname, classStore)
-
-        
-
-
-# #     name: str
-#     def visitId(self, ast: Id, classStore):
-#         #  return {'name':ast.name, "type":Type.UNDEFINE}
-#          return 
-
-#     def visitBinaryOp(self, ast: BinaryOp, classStore):
-#         return None
-
-#     def visitUnaryOp(self, ast: UnaryOp, classStore):
-#         return None
-
-#     def visitCallExpr(self, ast: CallExpr, classStore):
-#         return None
-
-#     def visitNewExpr(self, ast: NewExpr, classStore):
-#         return None
-
-#     def visitArrayCell(self, ast: ArrayCell, classStore):
-#         return None
-
-#     def visitFieldAccess(self, ast: FieldAccess, classStore):
-#         return None
-
-#     def visitFloatLiteral(self, ast: FloatLiteral, classStore):
-#         return None
-
-#     def visitStringLiteral(self, ast: StringLiteral, classStore):
-#         return None
-
-#     def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
-#         return None
-
-#     def visitNullLiteral(self, ast: NullLiteral, classStore):
-#         return None
-
-#     def visitSelfLiteral(self, ast: SelfLiteral, classStore):
-#         return None
-
-#     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
-#         return None
-
-#     def visitVarDecl(self, ast: VarDecl, classStore):
-#         return None
-
-
-#     def visitAssign(self, ast: Assign, classStore):
-#         return None
-
-#     def visitIf(self, ast: If, classStore):
-#         return None
-
-#     def visitFor(self, ast: For, classStore):
-#         return None
-
-#     def visitBreak(self, ast: Break, classStore):
-#         return None
-
-#     def visitContinue(self, ast: Continue, classStore):
-#         return None
-
-#     def visitReturn(self, ast: Return, classStore):
-#         return None
-
-#     def visitCallStmt(self, ast: CallStmt, classStore):
-#         return None
-
-
-#     def visitBlock(self, ast: Block, classStore):
-#         return None
-
-#     def visitConstDecl(self, ast: ConstDecl, classStore):
-#         return None
-
-#     def visitInstance(self, ast: Instance, classStore):
-#         return None
-
-#     def visitBlock(self, ast: Block, classStore):
-#         return None
-
-#     def visitStatic(self, ast: Static, classStore):
-#         return None
-
-#     def visitMethodDecl(self, ast: MethodDecl, classStore):
-#         return None
-
-#     def visitAttributeDecl(self, ast: AttributeDecl, classStore):
-#         return None
-
-#     def visitClassType(self, ast: ClassType, classStore):
-#         return None
-        
-#     # Primitive Type 
-#     def visitIntType(self, ast: IntType, classStore):
-#         return Type.INT
-
-#     def visitFloatType(self, ast: FloatType, classStore):
-#         return Type.FLOAT
-
-#     def visitBoolType(self, ast: BoolType, classStore):
-#         return Type.BOOLEAN
-
-#     def visitStringType(self, ast: StringType, classStore):
-#         return Type.STRING
-
-#     def visitArrayType(self, ast: ArrayType, classStore):
-#         return Type.ARRAY
-
-#     def visitVoidType(self, ast: VoidType, classStore):
-#         return Type.VOID
-
