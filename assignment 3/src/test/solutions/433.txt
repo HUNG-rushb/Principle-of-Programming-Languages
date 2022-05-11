@@ -1,1 +1,1 @@
-Type Mismatch In Statement: VarDecl(Id(b),IntType,CallExpr(Self(),Id(getD),[]))
+Undeclared Attribute: getD

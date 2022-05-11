@@ -1,0 +1,44 @@
+        obj = self.visit(ast.obj, c)
+        fieldname = ast.fieldname.name
+        if obj is None:
+            raise Undeclared(Class(), ast.obj.name)
+        if hasattr(ast.obj, 'name'):
+            for key in c['class']['attribute']:
+                if key == ast.obj.name:
+                    raise Undeclared(Class(), ast.obj.name)
+        if obj in c['global']:
+            if fieldname in c['global'][obj]['attribute']:
+                return c['global'][obj]['attribute'][fieldname]['type']
+            else:
+                raise Undeclared(Attribute(), fieldname)
+        else:
+            if obj.find('CLASS') != -1:
+                classname = obj[obj.find('CLASS')+7: -1]
+                if fieldname.find('$') != -1:
+                    if classname in c['global']:
+                        if fieldname in c['global'][classname]['attribute']:
+                            return c['global'][classname]['attribute'][fieldname]['type']
+                    elif fieldname in c['class']['attribute']:
+                        return c['class']['attribute'][fieldname]['type']
+                    else:
+                        raise Undeclared(Attribute(), fieldname)
+                if hasattr(ast.obj, 'name'):
+                    if ast.obj.name in c[-1]['global']:
+                        raise IllegalMemberAccess(ast)
+                if fieldname in c['class']['attribute']:
+                    if fieldname in c['class']['attribute']:
+                        return c['class']['attribute'][fieldname]['type']
+                    raise IllegalMemberAccess(ast)
+                if classname in c['global']:
+                    if fieldname in c['global'][classname]['attribute']:
+                        return c['global'][classname]['attribute'][fieldname]['type']
+                    elif c['global'][classname]['parent'] == '':
+                        raise Undeclared(Attribute(), fieldname)
+
+                    raise Undeclared(Attribute(), fieldname)
+                elif classname == c['class']['name']:
+                    if fieldname in c['class']['attribute']:
+                        return c['class']['attribute'][fieldname]['type']
+                    raise Undeclared(Attribute(), fieldname)
+                else:
+                    raise Undeclared(Class(), classname)

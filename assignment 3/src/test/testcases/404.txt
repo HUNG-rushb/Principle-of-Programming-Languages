@@ -1,5 +1,5 @@
 
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class A { }
         Class B: A {
             Val $r :Int = 2 + 2 * 2.5;

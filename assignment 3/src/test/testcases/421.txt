@@ -12,5 +12,5 @@
             Constructor () { }
             Destructor () { }
         }
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         

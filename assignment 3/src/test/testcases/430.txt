@@ -26,6 +26,7 @@
             Val $b : Character = New Character();
             Var player :Player  = New Health();
             main () { }
+            mqwdqfain(){}
             Destructor(){}
         }
         

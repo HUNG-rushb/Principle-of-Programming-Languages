@@ -74,8 +74,14 @@ class GlobalScope(BaseVisitor):
     def visitProgram(self, ast: Program, classStore):
         for decl in ast.decl:
             self.visit(decl, classStore)
-        
-        # return classStore
+
+        # if ('Program' not in classStore) or ('main' not in classStore['Program']):
+        if 'Program' not in classStore:
+            raise NoEntryPoint()
+        elif 'main' not in classStore['Program']["methods"]:
+            raise NoEntryPoint()
+
+
 
     # newEnviroment = {
     #     'overall' : classStore,
@@ -92,10 +98,6 @@ class GlobalScope(BaseVisitor):
         
         if ast.parentname != None:
             parentName = ast.parentname.name
-
-            # 'overall': {'A': {'parent': '', 
-            # 'attributes': {'a': {'type': '<3...INT', 'value': None, 'init': '<3...INT', 'const': False, 'kind': '<3...INSTANCE'}}, 
-            # 'methods': {}}}
 
             # if parentName not in classStore:
             #     raise Undeclared(Class(), parentName)
@@ -115,12 +117,6 @@ class GlobalScope(BaseVisitor):
 
         for mem in memList:
             self.visit(mem, newClassEnviroment)
-        
-        # 2.11 No entry point
-        if ('Program' not in classStore) or ('main' not in classStore['Program']):
-            raise NoEntryPoint()
-        # elif :
-
 
   
     # kind: SIKind  # Instance or Static
@@ -192,7 +188,6 @@ class GlobalScope(BaseVisitor):
                 'kind': varKind,
             }
 
-
     # constant: Id
     # constType: Type
     # value: Expr = None # None if there is no initial
@@ -257,8 +252,6 @@ class GlobalScope(BaseVisitor):
                 'kind': varKind,
             }
 
-
-
     # kind: SIKind
     # name: Id
     # param: List[VarDecl]
@@ -271,7 +264,6 @@ class GlobalScope(BaseVisitor):
 
         methodKind = Kind().STATIC() if methodName[0] == '$' else Kind().INSTANCE()
         methodParams = ast.param
-        # methodBody = ast.body
 
         classStore['class']['methods'][methodName] = {
             'type': Type().VOID(),
@@ -304,10 +296,6 @@ class GlobalScope(BaseVisitor):
         self.visit(ast.body, newMethodEnviromentBlock)
 
     # param: List[VarDecl]
-
-    # variable: Id
-    # varType: Type
-    # varInit: Expr = None  # None if there is no initial
     def visitParam(self, ast: VarDecl, classStore):
         varName = ast.variable.name
 
@@ -325,7 +313,6 @@ class GlobalScope(BaseVisitor):
         }
 
 
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     # ! inst: List[Inst]
     def visitBlock(self, ast: Block, classStore):
         blockInst = ast.inst
@@ -335,7 +322,6 @@ class GlobalScope(BaseVisitor):
         for inst in blockInst:
             self.visit(inst, classStore)
     
-
     # op: str
     # left: Expr
     # right: Expr
@@ -365,7 +351,6 @@ class GlobalScope(BaseVisitor):
                  and (right == Type().BOOLEAN() or right[0] == Type().BOOLEAN()) and operand in ["&&", "||"]) \
                     or ((left == Type().STRING() or left == Type().STRING()) \
                         and (right == Type().STRING() or right[0] == Type().STRING()) and operand in ["==.", "+."]):
-                print(1234)
                 return Type().BOOLEAN()
             else:
                 raise TypeMismatchInExpression(ast)
@@ -396,16 +381,12 @@ class GlobalScope(BaseVisitor):
         else:
             raise TypeMismatchInExpression(ast)
 
-    
-
-
     #     name: str
     def visitId(self, ast: Id, classStore):
         name = ast.name
 
         # if "class" in classStore[]:
         if classStore["class"] is not None and len(classStore) == 2:
-            # print(12340000)
             if name not in classStore["class"]["attributes"]:
                 raise Undeclared(Attribute(), name)
 
@@ -413,9 +394,8 @@ class GlobalScope(BaseVisitor):
 
         # elif "method" in classStore:
         elif classStore["method"] is not None and len(classStore) == 4:
-            # print(1234)
+
             if name in classStore["class"]["attributes"]:
-                # print(12312000)
                 return (classStore["class"]["attributes"][name]["type"], classStore["class"]["attributes"][name]["const"])
             # elif name in classStore["body"]["variables"]:
             else:
@@ -438,7 +418,6 @@ class GlobalScope(BaseVisitor):
     # lhs: Expr
     # exp: Expr
     def visitAssign(self, ast: Assign, classStore):
-        # print(123123)
         LHS = self.visit(ast.lhs, classStore)
 
         # LHS is const 
@@ -450,7 +429,6 @@ class GlobalScope(BaseVisitor):
         if LHS != expr:
             raise TypeMismatchInStatement(ast)
 
-    # !!!!!!!!!!!!!!!!!!!!!!!!!
     # expr: Expr
     # thenStmt: Stmt
     # elseStmt: Stmt = None  # None if there is no else branch
@@ -475,17 +453,13 @@ class GlobalScope(BaseVisitor):
         if ast.elseStmt is not None:
             self.visit(ast.elseStmt, classStore)
 
-        
-        
 
-    # !!!!!!!!!!!!!!!!!!!!!!!!!
     # id: Id
     # expr1: Expr
     # expr2: Expr 
     # loop: Stmt
     # expr3: Expr = None
     def visitFor(self, ast: For, classStore):
-        # print(classStore)
         iterName = ast.id.name
 
         found = False
@@ -501,20 +475,16 @@ class GlobalScope(BaseVisitor):
 
         if hasattr(ast.expr1, "name"):
             if expression_1[0] != Type().INT():
-                print(213123)
                 raise TypeMismatchInStatement(ast)
         else:
             if expression_1 != Type().INT():
-                print(11111)
                 raise TypeMismatchInStatement(ast)
 
         if hasattr(ast.expr2, "name"):
             if expression_2[0] != Type().INT():
-                print(3)
                 raise TypeMismatchInStatement(ast)
         else:
             if expression_2 != Type().INT():
-                print(4)
                 raise TypeMismatchInStatement(ast)
 
         if hasattr(ast.expr3, "name") and ast.expr3 != None:
@@ -527,11 +497,7 @@ class GlobalScope(BaseVisitor):
         loopStmt = self.visit(ast.loop, classStore)
         
 
-
-
-
     def visitBreak(self, ast: Break, classStore):
-        # print(classStore)
         if 'for' in classStore:
             pass
         else:
@@ -544,17 +510,6 @@ class GlobalScope(BaseVisitor):
             raise MustInLoop(ast)
 
 
-
-
-
-
-
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # expr: Expr = None
     def visitReturn(self, ast: Return, classStore):
         expression = self.visit(ast.expr, classStore)
@@ -562,28 +517,19 @@ class GlobalScope(BaseVisitor):
 
 
 
-
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # obj: Expr
     # fieldname: Id
     def visitFieldAccess(self, ast: FieldAccess, classStore):
-        print(2131989)
-        
         objCall = self.visit(ast.obj, classStore)
-
-        # if objCall != Type().CLASS()
-
-        # if objCall not in classStore['overall']:
-        #     raise Undeclared(Class(), objCall)
-
-        
         fieldCall = self.visit(ast.fieldname, classStore)
-        
-        
 
+        if objCall not in classStore['overall']:
+            raise Undeclared(Class(), objCall)
+        elif objCall in classStore['overall']:
+            if fieldCall in classStore["overall"][objCall]["attributes"]:
+                return classStore["overall"][objCall]["attributes"][fieldCall]["type"]
+            else:
+                raise Undeclared(Attribute(), fieldCall)
 
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -592,8 +538,6 @@ class GlobalScope(BaseVisitor):
     # param: List[Expr]
     # dog.bark()
     def visitCallStmt(self, ast: CallStmt, classStore):
-        # print(12313)
-
         objCall = self.visit(ast.obj, classStore)
         methodCall = self.visit(ast.method, classStore)
         paramCall = self.visit(ast.param, classStore)
@@ -604,8 +548,6 @@ class GlobalScope(BaseVisitor):
     # method: Id
     # param: List[Expr]
     def visitCallExpr(self, ast: CallExpr, classStore):
-        print(33428)
-
         objCall = self.visit(ast.obj, classStore)
 
         # if objCall not in classStore['overall']:
@@ -656,7 +598,6 @@ class GlobalScope(BaseVisitor):
             # Param is ID 
             if hasattr(param, "name"):
                 if self.visit(param, classStore)[0] != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
-                    # print(797889)
                     raise TypeMismatchInExpression(ast)
             # Param is literal 
             elif self.visit(param, classStore) != classStore['overall'][className]["methods"]["Constructor"]["params"][current]["type"]:
@@ -689,8 +630,6 @@ class GlobalScope(BaseVisitor):
     def visitSelfLiteral(self, ast: SelfLiteral, classStore):
         return Type().SELF()
 
-    # ! value: List[Expr]
-    # ! value: List[Expr]
     # ! value: List[Expr]
     def visitArrayLiteral(self, ast: ArrayLiteral, classStore):
         arrayValue = ast.value
@@ -761,8 +700,6 @@ class StaticChecker(BaseVisitor):
     def check(self):
         return self.visit(self.ast, StaticChecker.global_envi)
 
-
-#   decl: List[ClassDecl]
     def visitProgram(self, ast: Program, classStore):
         classStore = {}
         GlobalScope().visitProgram(ast, classStore)

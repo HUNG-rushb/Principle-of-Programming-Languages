@@ -32,5 +32,6 @@
         
         Class Program {
             main () { }
+            mqwdqfain(){}
         }
         

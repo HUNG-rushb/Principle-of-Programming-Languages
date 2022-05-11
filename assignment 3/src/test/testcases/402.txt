@@ -1,5 +1,5 @@
 
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class A {
             Val $a: Int = 2 + True;
             Constructor () { }

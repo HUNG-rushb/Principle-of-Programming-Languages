@@ -1,5 +1,5 @@
 
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class B {
             Val C: String;
             Constructor () { }

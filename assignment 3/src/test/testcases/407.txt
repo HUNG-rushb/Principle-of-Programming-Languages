@@ -1,5 +1,5 @@
 
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class A {
             Var a: Int = 120;
             Val $a: C = New C();

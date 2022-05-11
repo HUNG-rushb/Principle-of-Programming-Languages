@@ -1,5 +1,5 @@
 
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class A {
             Var z: Int;
             getA(a: Int) {

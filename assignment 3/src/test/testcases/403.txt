@@ -4,7 +4,7 @@
             Constructor () { }
             Destructor () { }
         }
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class B {
             Val $b: A = New A();
             Constructor () { }

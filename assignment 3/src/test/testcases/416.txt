@@ -1,14 +1,21 @@
 
-        Class JJ {
-                
-                test () {
-
-                    Val a : Int = 10;
-                    a = 5;
-                }
-
+        Class Program {main(){}  mqwdqfain(){}}
+        Class supsuper {
+            Var ss: Int = 2;
+            Constructor () { }
+            Destructor () { }
         }
-
-        
-
+        Class super : supsuper {
+            Var s: supsuper;
+            Constructor () { }
+            Destructor () { }
+        }
+        Class A : super {
+            Var z: Int = 2;
+            getA(a: Int) {
+                Var b: Int = 2 + A.s.ss;
+            }
+            Constructor () { }
+            Destructor () { }
+        }
         

@@ -3,6 +3,6 @@
             
         }
         Class Program{
-            
+            mqwdqfain(){}
         }
         

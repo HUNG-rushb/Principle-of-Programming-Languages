@@ -6,5 +6,6 @@
         Class Program : Animal{
             Var a : Program = New Animal(Array(Array(1, 2), Array(3, 4)));
             main () { }
+            mqwdqfain(){}
         }
         

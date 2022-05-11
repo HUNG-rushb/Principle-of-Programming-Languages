@@ -4,7 +4,7 @@
             Constructor () { }
             Destructor () { }
         }
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class C {
             Var c: Float = 5.2;
             Constructor(t: Float; c: String) {}

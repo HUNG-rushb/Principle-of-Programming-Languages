@@ -5,7 +5,7 @@
             Destructor () { }
             Constructor(a: Float; b: String) { }
         }
-        Class Program {main(){}}
+        Class Program {main(){} mqwdqfain(){}}
         Class A {
             Var b: Array[Int, 3];
             getA(b: Float) {

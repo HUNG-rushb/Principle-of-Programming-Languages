@@ -1,7 +1,7 @@
 
+        Class Program {main(){} mqwdqfain(){}}
         Class A {
             Var z: Int;
-
             getA(a: Int) {
                 Var b: Int;
                 Foreach (b In 1 .. 100) {
@@ -9,6 +9,7 @@
                     Else { Var e: String; }
                 }
             }
-           
+            Constructor () { }
+            Destructor () { }
         }
         
