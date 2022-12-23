@@ -1,8 +1,0 @@
-{
-  "python.analysis.extraPaths": [
-    "./assignment 2/target/main/d96/parser",
-    "./assignment 2/target/main/d96/parser",
-    "./assignment 2/src/main/d96/utils",
-    "./assignment 2/src/main/d96/parser"
-  ]
-}
