@@ -462,7 +462,7 @@ fragment ESC_CHAR: '\\' [trnfb'\\];
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
 
 // Skip comments
-BLOCK_COMMENT: '##' .*? '##' -> skip;
+BLOCK_COMMENT: '/*' .*? '*/' -> skip;
 
 // Skip spaces, tabs, newlines
 WS : [ \t\r\n\f\b]+ -> skip; 

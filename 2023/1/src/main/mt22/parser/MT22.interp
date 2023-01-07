@@ -7,10 +7,10 @@ null
 
 token symbolic names:
 null
-UNCLOSE_STRING
-ILLEGAL_ESCAPE
 WS
 ERROR_CHAR
+UNCLOSE_STRING
+ILLEGAL_ESCAPE
 
 rule names:
 program

@@ -1,8 +1,11 @@
-# Generated from c:\Users\DELL\Documents\GitHub\Principle-of-Programming-Languages\assignment 3\src\main\d96\parser\D96.g4 by ANTLR 4.8
+# Generated from d:\Github\Principle-of-Programming-Languages\2022\assignment 3\src\main\d96\parser\D96.g4 by ANTLR 4.9.2
 from antlr4 import *
 from io import StringIO
-from typing.io import TextIO
 import sys
+if sys.version_info[1] > 5:
+    from typing import TextIO
+else:
+    from typing.io import TextIO
 
 
 from lexererr import *
@@ -332,26 +335,26 @@ def serializedATN():
         buf.write("\u02b2\u02b3\t\f\2\2\u02b3\u0098\3\2\2\2\u02b4\u02b5\7")
         buf.write("^\2\2\u02b5\u02b8\n\f\2\2\u02b6\u02b8\7^\2\2\u02b7\u02b4")
         buf.write("\3\2\2\2\u02b7\u02b6\3\2\2\2\u02b8\u009a\3\2\2\2\u02b9")
-        buf.write("\u02ba\7%\2\2\u02ba\u02bb\7%\2\2\u02bb\u02bf\3\2\2\2\u02bc")
-        buf.write("\u02be\13\2\2\2\u02bd\u02bc\3\2\2\2\u02be\u02c1\3\2\2")
-        buf.write("\2\u02bf\u02c0\3\2\2\2\u02bf\u02bd\3\2\2\2\u02c0\u02c2")
-        buf.write("\3\2\2\2\u02c1\u02bf\3\2\2\2\u02c2\u02c3\7%\2\2\u02c3")
-        buf.write("\u02c4\7%\2\2\u02c4\u02c5\3\2\2\2\u02c5\u02c6\bN\f\2\u02c6")
-        buf.write("\u009c\3\2\2\2\u02c7\u02c9\t\r\2\2\u02c8\u02c7\3\2\2\2")
-        buf.write("\u02c9\u02ca\3\2\2\2\u02ca\u02c8\3\2\2\2\u02ca\u02cb\3")
-        buf.write("\2\2\2\u02cb\u02cc\3\2\2\2\u02cc\u02cd\bO\f\2\u02cd\u009e")
-        buf.write("\3\2\2\2\u02ce\u02cf\13\2\2\2\u02cf\u02d0\bP\r\2\u02d0")
-        buf.write("\u00a0\3\2\2\2\u02d1\u02d2\t\16\2\2\u02d2\u00a2\3\2\2")
-        buf.write("\2\u02d3\u02d4\t\17\2\2\u02d4\u00a4\3\2\2\2\u02d5\u02d6")
-        buf.write("\t\20\2\2\u02d6\u00a6\3\2\2\2<\2\u00cf\u0186\u018d\u0195")
-        buf.write("\u019f\u01a5\u01aa\u01b1\u01b7\u01b9\u01bd\u01c6\u01ce")
-        buf.write("\u01d9\u01e2\u01e4\u01ec\u01f2\u01f6\u01fc\u01ff\u0202")
-        buf.write("\u0208\u020e\u0212\u0218\u021b\u021e\u0225\u022b\u022f")
-        buf.write("\u0235\u0238\u023b\u0242\u0248\u024c\u0252\u0255\u025b")
-        buf.write("\u0261\u0265\u0269\u0270\u0276\u027a\u0280\u0283\u0289")
-        buf.write("\u0291\u0296\u029c\u02a5\u02af\u02b7\u02bf\u02ca\16\3")
-        buf.write("<\2\3?\3\3?\4\3?\5\3?\6\3?\7\3G\b\3H\t\3I\n\3J\13\b\2")
-        buf.write("\2\3P\f")
+        buf.write("\u02ba\7\61\2\2\u02ba\u02bb\7,\2\2\u02bb\u02bf\3\2\2\2")
+        buf.write("\u02bc\u02be\13\2\2\2\u02bd\u02bc\3\2\2\2\u02be\u02c1")
+        buf.write("\3\2\2\2\u02bf\u02c0\3\2\2\2\u02bf\u02bd\3\2\2\2\u02c0")
+        buf.write("\u02c2\3\2\2\2\u02c1\u02bf\3\2\2\2\u02c2\u02c3\7,\2\2")
+        buf.write("\u02c3\u02c4\7\61\2\2\u02c4\u02c5\3\2\2\2\u02c5\u02c6")
+        buf.write("\bN\f\2\u02c6\u009c\3\2\2\2\u02c7\u02c9\t\r\2\2\u02c8")
+        buf.write("\u02c7\3\2\2\2\u02c9\u02ca\3\2\2\2\u02ca\u02c8\3\2\2\2")
+        buf.write("\u02ca\u02cb\3\2\2\2\u02cb\u02cc\3\2\2\2\u02cc\u02cd\b")
+        buf.write("O\f\2\u02cd\u009e\3\2\2\2\u02ce\u02cf\13\2\2\2\u02cf\u02d0")
+        buf.write("\bP\r\2\u02d0\u00a0\3\2\2\2\u02d1\u02d2\t\16\2\2\u02d2")
+        buf.write("\u00a2\3\2\2\2\u02d3\u02d4\t\17\2\2\u02d4\u00a4\3\2\2")
+        buf.write("\2\u02d5\u02d6\t\20\2\2\u02d6\u00a6\3\2\2\2<\2\u00cf\u0186")
+        buf.write("\u018d\u0195\u019f\u01a5\u01aa\u01b1\u01b7\u01b9\u01bd")
+        buf.write("\u01c6\u01ce\u01d9\u01e2\u01e4\u01ec\u01f2\u01f6\u01fc")
+        buf.write("\u01ff\u0202\u0208\u020e\u0212\u0218\u021b\u021e\u0225")
+        buf.write("\u022b\u022f\u0235\u0238\u023b\u0242\u0248\u024c\u0252")
+        buf.write("\u0255\u025b\u0261\u0265\u0269\u0270\u0276\u027a\u0280")
+        buf.write("\u0283\u0289\u0291\u0296\u029c\u02a5\u02af\u02b7\u02bf")
+        buf.write("\u02ca\16\3<\2\3?\3\3?\4\3?\5\3?\6\3?\7\3G\b\3H\t\3I\n")
+        buf.write("\3J\13\b\2\2\3P\f")
         return buf.getvalue()
 
 
@@ -475,7 +478,7 @@ class D96Lexer(Lexer):
 
     def __init__(self, input=None, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.8")
+        self.checkVersion("4.9.2")
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
         self._actions = None
         self._predicates = None

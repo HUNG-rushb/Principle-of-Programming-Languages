@@ -1,4 +1,4 @@
-# Generated from d:\Github\Principle-of-Programming-Languages\2023\1\src\main\mt22\parser\MT22.g4 by ANTLR 4.9.2
+# Generated from main/mt22/parser/MT22.g4 by ANTLR 4.9.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\2")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6")
         buf.write("\7\4\2\t\2\3\2\3\2\3\2\2\2\3\2\2\2\2\5\2\4\3\2\2\2\4\5")
         buf.write("\7\2\2\3\5\3\3\2\2\2\2")
         return buf.getvalue()
@@ -29,13 +29,19 @@ class MT22Parser ( Parser ):
 
     literalNames = [  ]
 
-    symbolicNames = [  ]
+    symbolicNames = [ "<INVALID>", "WS", "ERROR_CHAR", "UNCLOSE_STRING", 
+                      "ILLEGAL_ESCAPE" ]
 
     RULE_program = 0
 
     ruleNames =  [ "program" ]
 
     EOF = Token.EOF
+    WS=1
+    ERROR_CHAR=2
+    UNCLOSE_STRING=3
+    ILLEGAL_ESCAPE=4
+
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.9.2")
@@ -57,6 +63,12 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_program
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProgram" ):
+                return visitor.visitProgram(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
