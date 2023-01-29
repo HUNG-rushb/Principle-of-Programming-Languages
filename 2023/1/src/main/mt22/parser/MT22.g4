@@ -10,7 +10,7 @@ options{
 	language=Python3;
 }
 
-program:  EOF ;
+program: literal  EOF ;
 
 //   _____        _____   _____ ______ _____  
 //  |  __ \ /\   |  __ \ / ____|  ____|  __ \ 
@@ -122,14 +122,16 @@ INTLIT: DEC;
 // '" -> "
 STRINGLIT: ('"') STRING_CHAR* ('"') 
 {
-        if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
-            if not str(self.text)[-3] == '\\':
-                raise UncloseString(str(self.text)[1:])
-        
-        current = self.text.find('\n')
-        if current != -1: 
-            raise UncloseString(str(self.text[:current - 1]))
-        self.text = str(self.text)[1:-1]
+	if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
+		if not str(self.text)[-3] == '\\':
+			raise UncloseString(str(self.text)[1:])
+	
+	current = self.text.find('\n')
+	
+	if current != -1: 
+		raise UncloseString(str(self.text[:current - 1]))
+
+	self.text = str(self.text)[1:-1]
 };
 
 UNCLOSE_STRING: '"' STRING_CHAR* 
@@ -150,8 +152,6 @@ fragment STRING_CHAR:  '\'"'| ESC_CHAR | ~[\\"];
 fragment ESC_CHAR: '\\' [trnfb'\\];
 
 fragment ESC_UNAVAILABLE: '\\' ~[trnfb'\\] | '\\';
-
-
 
 // Skip spaces, tabs, newlines
 WS : [ \t\r\n\f\b]+ -> skip; 

@@ -382,14 +382,16 @@ class MT22Lexer(Lexer):
     def STRINGLIT_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 5:
 
-                    if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
-                        if not str(self.text)[-3] == '\\':
-                            raise UncloseString(str(self.text)[1:])
-                    
-                    current = self.text.find('\n')
-                    if current != -1: 
-                        raise UncloseString(str(self.text[:current - 1]))
-                    self.text = str(self.text)[1:-1]
+            	if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
+            		if not str(self.text)[-3] == '\\':
+            			raise UncloseString(str(self.text)[1:])
+            	
+            	current = self.text.find('\n')
+            	
+            	if current != -1: 
+            		raise UncloseString(str(self.text[:current - 1]))
+
+            	self.text = str(self.text)[1:-1]
 
      
 

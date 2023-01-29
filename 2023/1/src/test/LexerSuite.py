@@ -15,8 +15,8 @@ class LexerSuite(unittest.TestCase):
     #     self.assertTrue(TestLexer.test("           + - * / % ! <= >= < > && ||  == !=  ::                ",
     #     "+,-,*,/,%,!,<=,>=,<,>,&&,||,==,!=,::,<EOF>",101))
 
-    def test_2(self):
-        self.assertTrue(TestLexer.test("/* wefwfwe */", "<EOF>", 102))
+    # def test_2(self):
+    #     self.assertTrue(TestLexer.test("/* wefwfwe */", "<EOF>", 102))
 
     # def test_3(self):
     #     self.assertTrue(TestLexer.test("23427b5", "23427,b5,<EOF>", 103))
@@ -24,11 +24,14 @@ class LexerSuite(unittest.TestCase):
     # def test_4(self):
     #     self.assertTrue(TestLexer.test("_duyhung135", "_duyhung135,<EOF>", 104))
 
-    def test_5(self):
-        self.assertTrue(TestLexer.test("""
-        // quhiuhefw
-
-        """, "<EOF>", 105))
+    # def test_5(self):
+    #     self.assertTrue(TestLexer.test("""
+    #     // quhiuhef
+    #     // quhiuhef
+    #     // quhiuhef
+    #     // quhiuhef
+        
+    #     """, "<EOF>", 105))
 
     # def test_6(self):
     #     self.assertTrue(TestLexer.test("$_dollarstatic", "$_dollarstatic,<EOF>", 106))
@@ -65,7 +68,7 @@ class LexerSuite(unittest.TestCase):
 
     # def test_16(self):
     #     self.assertTrue(TestLexer.test(
-    #         "1_2_3_4321479326523469234 39237247362177374 12039434778957392_5_6_2_3_4 01812374738946466", "1234321479326523469234,39237247362177374,1203943477895739256234,01,812374738946466,<EOF>", 116))
+    #         "1_2_3_4321479326523469234 39237247362177374 12039434778957392_5_6_2_3_4 1812374738946466", "1_2_3_4321479326523469234,39237247362177374,12039434778957392_5_6_2_3_4,1812374738946466,<EOF>", 116))
 
     # def test_17(self):
     #     self.assertTrue(TestLexer.test("""
@@ -408,30 +411,30 @@ class LexerSuite(unittest.TestCase):
     #     output = "nevergiveup,(,sdddddddd,:,Float,,,tdddddddd,:,Float,,,object,:,Boolean,),{,object,.,removeBus,(,t,),;,},hunglovequynh,(,),{,return,truelove,;,},<EOF>"
     #     self.assertTrue(TestLexer.test(input, output, 186))
 
-    # def test_87(self):
-    #     self.assertTrue(TestLexer.test("\"met youin the back during twelve o fivedd \\\" \n dd \" ",
-    #                                     "Illegal Escape In String: met youin the back during twelve o fivedd \\\"",187))
+    def test_87(self):
+        self.assertTrue(TestLexer.test("\"met youin the back during twelve o fivedd \\\" \n dd \" ",
+                                        "Illegal Escape In String: met youin the back during twelve o fivedd \\\"",187))
 
-    # def test_88(self):
-    #     self.assertTrue(TestLexer.test("\"happy 10 years anniversary","""Unclosed String: happy 10 years anniversary""",188))
+    def test_88(self):
+        self.assertTrue(TestLexer.test("\"happy 10 years anniversary","""Unclosed String: happy 10 years anniversary""",188))
 
-    # def test_89(self):
-    #     self.assertTrue(TestLexer.test("\"wfiwuefwifjlsadfsdhfhfhfhfhhfhfhf1\\ \"",
-    #                                     "Illegal Escape In String: wfiwuefwifjlsadfsdhfhfhfhfhhfhfhf1\\ ",189))
+    def test_89(self):
+        self.assertTrue(TestLexer.test("\"wfiwuefwifjlsadfsdhfhfhfhfhhfhfhf1\\ \"",
+                                        "Illegal Escape In String: wfiwuefwifjlsadfsdhfhfhfhfhhfhfhf1\\ ",189))
 
-    # def test_90(self):
-    #     self.assertTrue(TestLexer.test("\"Hung thich Quynh lam do ahihi\'\" ahihi ",
-    #                                             "Unclosed String: Hung thich Quynh lam do ahihi\'\" ahihi ",190))
+    def test_90(self):
+        self.assertTrue(TestLexer.test("\"Hung thich Quynh lam do ahihi\'\" ahihi ",
+                                                "Unclosed String: Hung thich Quynh lam do ahihi\'\" ahihi ",190))
 
-    # def test_91(self):
-    #         """test identifiers"""
-    #         self.assertTrue(TestLexer.test("\"WebDev\\dclub \\dBKU\";",
-    #                                         "Illegal Escape In String: WebDev\\d", 191))
+    def test_91(self):
+            """test identifiers"""
+            self.assertTrue(TestLexer.test("\"WebDev\\dclub \\dBKU\";",
+                                            "Illegal Escape In String: WebDev\\d", 191))
                             
-    # def test_92(self):
-    #     """test identifiers"""
-    #     self.assertTrue(TestLexer.test("\"Quynhdethuongahihi\\nfkkkkkkoekofkw \\niwillmarryou\";",
-    #                                     """Quynhdethuongahihi\\nfkkkkkkoekofkw \\niwillmarryou,;,<EOF>""",192))
+    def test_92(self):
+        """test identifiers"""
+        self.assertTrue(TestLexer.test("\"Quynhdethuongahihi\\nfkkkkkkoekofkw \\niwillmarryou\";",
+                                        """Quynhdethuongahihi\\nfkkkkkkoekofkw \\niwillmarryou,;,<EOF>""",192))
     
     # def test_93(self):
     #     """test identifiers"""
@@ -460,9 +463,9 @@ class LexerSuite(unittest.TestCase):
     #         }
     #         """, "Foreach,(,$i,In,1,..,100,By,1,),{,e,=,e,+,$i,;,k,[,$i,],=,k,[,$i,+,1,],;,Foreach,(,$j,In,1,..,100,By,1,),{,e,=,e,-,$j,;,l,[,$i,],=,l,[,$j,],+,e,;,},},<EOF>", 195))
 
-    # def test_96(self):
-    #     self.assertTrue(TestLexer.test("\"##Nguyen Thach Ngoc Quynh##\"", 
-    #                                         "##Nguyen Thach Ngoc Quynh##,<EOF>", 196))
+    def test_96(self):
+        self.assertTrue(TestLexer.test("\"##Nguyen Thach Ngoc Quynh##\"", 
+                                            "##Nguyen Thach Ngoc Quynh##,<EOF>", 196))
     
     # def test_97(self):
     #     self.assertTrue(TestLexer.test("Val $xdxxdxdXDXDXDXD, afhhhhhhhhh, $fwweieeeeeee, 9$gh : Array = 5732828791111, 6732828791111, 7732828791111;",

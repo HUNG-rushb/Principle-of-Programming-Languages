@@ -12,9 +12,9 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3;")
-        buf.write("\13\4\2\t\2\4\3\t\3\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2\3")
-        buf.write("\3\2\62\65\2\b\2\6\3\2\2\2\4\b\3\2\2\2\6\7\7\2\2\3\7\3")
-        buf.write("\3\2\2\2\b\t\t\2\2\2\t\5\3\2\2\2\2")
+        buf.write("\f\4\2\t\2\4\3\t\3\3\2\3\2\3\2\3\3\3\3\3\3\2\2\4\2\4\2")
+        buf.write("\3\3\2\62\65\2\t\2\6\3\2\2\2\4\t\3\2\2\2\6\7\5\4\3\2\7")
+        buf.write("\b\7\2\2\3\b\3\3\2\2\2\t\n\t\2\2\2\n\5\3\2\2\2\2")
         return buf.getvalue()
 
 
@@ -129,6 +129,10 @@ class MT22Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def literal(self):
+            return self.getTypedRuleContext(MT22Parser.LiteralContext,0)
+
+
         def EOF(self):
             return self.getToken(MT22Parser.EOF, 0)
 
@@ -151,6 +155,8 @@ class MT22Parser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 4
+            self.literal()
+            self.state = 5
             self.match(MT22Parser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -199,7 +205,7 @@ class MT22Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 6
+            self.state = 7
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MT22Parser.BOOLLIT) | (1 << MT22Parser.FLOATLIT) | (1 << MT22Parser.INTLIT) | (1 << MT22Parser.STRINGLIT))) != 0)):
                 self._errHandler.recoverInline(self)
