@@ -1,0 +1,7 @@
+
+            Class giraffe {
+                giraffe() {
+                    Return New giraffe().giraffe();
+                }
+            }
+        

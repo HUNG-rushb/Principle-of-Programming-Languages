@@ -1,0 +1,7 @@
+
+            Class Program {
+                Hung_Quynh() {
+                    Return Self.cuoiluon();
+                }
+            }
+        

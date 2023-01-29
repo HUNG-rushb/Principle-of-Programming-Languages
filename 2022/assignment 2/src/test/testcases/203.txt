@@ -1,1 +1,43 @@
-int main( {}
+
+            Class calsclasclaslcascl {
+                getMoney() {
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                    Var b: Float = 0.3;
+                }
+                funjccnskjddjskcsdcvc() {
+                    If (a >= b) {
+                        Var a: Int = 0;
+                        a = a + 3;
+                    }
+                    Elseif (b >= c) {
+                        Self.getName(a >= b);
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Elseif (12 >= g) {
+                        Self.insert("String");
+                    }
+                    Else {
+                        ___________________ = _______________________________________________________________________;
+                        Hung = Vi;
+                    }
+                }
+
+                setcvsdvdsvdvAge(okokokok: Boolean) {
+                    Self.agbseegree = agesrgsfdsde;
+                }
+            }
+            

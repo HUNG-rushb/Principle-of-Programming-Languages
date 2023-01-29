@@ -1,0 +1,13 @@
+
+            Class Shen {
+                $_____twilieye() {
+                    Return false;
+                }
+            }
+
+            Class Program {
+                main_main() {
+                    agfASFFFFFFEERSWQf = (myConst + okokokoko) && (x + y + z);
+                }
+            }
+        

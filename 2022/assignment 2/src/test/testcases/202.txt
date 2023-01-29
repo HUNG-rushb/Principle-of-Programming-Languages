@@ -1,3 +1,10 @@
-int main () {
-            putIntLn(4);
-        }
+
+            Class dfasvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv {
+                getWife() {
+                    Var hung: Boolean = true;
+                }
+                main() {
+                    Var quynh: Float;
+                }
+            }
+            

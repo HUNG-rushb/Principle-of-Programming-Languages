@@ -1,0 +1,7 @@
+
+            Class myHippo {
+                cat(hung: Array[Int, 99]) {
+                    Return hung[0]
+                }
+            }
+        

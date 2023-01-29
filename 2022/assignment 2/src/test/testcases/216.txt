@@ -1,0 +1,8 @@
+
+            Class wedding {
+                anni() {
+                    t = Rhungquynh::$cuoiluonnha()[57] >= 78;
+                    Return Self.love;
+                }
+            }
+        

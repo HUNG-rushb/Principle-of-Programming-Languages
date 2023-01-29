@@ -1,0 +1,5 @@
+
+            Class quynh {
+                Var beRot: Array[Float, -20] = true;
+            }
+        

@@ -510,6 +510,7 @@ class D96Lexer(Lexer):
                             raise UncloseString(str(self.text)[1:])
                     
                     current = self.text.find('\n')
+                    
                     if current != -1: 
                         raise UncloseString(str(self.text[:current - 1]))
                     self.text = str(self.text)[1:-1]

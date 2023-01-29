@@ -1,0 +1,9 @@
+
+            Class Progrdfdafdsfam {
+                msdfaain() {
+                }
+            }
+            Ofsadfdsut.prwefwint(adsfa, b, 3);
+            Out.prinsdfs(a, b, 3);
+            Out.prinsdfat(a, b, 3);
+        
