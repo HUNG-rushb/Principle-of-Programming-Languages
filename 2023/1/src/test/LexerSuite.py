@@ -33,8 +33,10 @@ class LexerSuite(unittest.TestCase):
         
     #     """, "<EOF>", 105))
 
-    # def test_6(self):
-    #     self.assertTrue(TestLexer.test("$_dollarstatic", "$_dollarstatic,<EOF>", 106))
+    def test_6(self):
+        self.assertTrue(TestLexer.test("""
+        "He asked me:\"Where is John?\""
+        """, "$_dollarstatic,<EOF>", 106))
 
     # def test_7(self):
     #     self.assertTrue(TestLexer.test("   $duy     hung", "$duy,hung,<EOF>", 107))
