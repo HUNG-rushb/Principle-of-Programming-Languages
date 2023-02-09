@@ -19,10 +19,65 @@ program: literal  EOF ;
 //  | |  / ____ \| | \ \ ____) | |____| | \ \ 
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
-// Literals
-literal:  INTLIT | FLOATLIT | BOOLLIT | STRINGLIT ;
-//  array_lit;
 
+
+
+
+
+
+// EXPRESSIONS ----------------------------------------------------------------------------------
+expr: expr1 DOUBLECOLONOP expr1 | expr1;
+expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
+expr2: expr2 (ANDOP | OROP) expr3 | expr3;
+expr3: expr3 (PLUSOP | MINUSOP) expr4 | expr4;
+expr4: expr4 (MULTIPLYOP | DIVIDEOP | MODULOOP) expr5 | expr5;
+expr5: NOTOP expr5 | expr6;
+expr6: MINUSOP expr6 | expr7;
+expr7: expr7 index_operators | expr8;
+expr8: LB expr RB;
+
+// expr8: expr8 instance_accesses | expr9;
+// .a.s.c.wdq.sada().asd
+// expr8: instance_accesses | expr9;
+
+// expr9: static_access | expr10;
+
+// expr10: NEW VARIABLE_IN_FUNC_IDENTIFIERS LB list_expr RB | expr11;
+// expr11: literal 
+//         | VARIABLE_IN_FUNC_IDENTIFIERS 
+//         | SELF 
+//         | expr12; 
+// expr12: LB expr RB;
+
+
+// a[1][2]
+// index_operators: index_operators LSB expr RSB  | LSB expr RSB ;
+index_operators: LSB expr RSB index_operators | LSB expr RSB ;
+
+
+
+
+
+
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
+
+// Array literal
+array_lit: ARRAY LSB array_val RSB ;
+array_val: expr COMMA array_val | expr | ;
+
+
+// Literals
+literal:  INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit ;
+
+
+// Array type
+array_type: ARRAY LSB array_dimension RSB OF atomic_types;
+array_dimension:  INTLIT COMMA array_dimension | INTLIT | ;
+
+// Atomic types
+atomic_types: BOOLEAN | INTEGER | FLOAT | STRING;
 
 //   _      ________   ________ _____  
 //  | |    |  ____\ \ / /  ____|  __ \ 
@@ -45,6 +100,7 @@ OUT: 'out';
 CONTINUE: 'continue';
 OF: 'of';
 INHERIT: 'inherit';
+ARRAY:'array';
 
 // Boolean
 TRUE: 'true';
