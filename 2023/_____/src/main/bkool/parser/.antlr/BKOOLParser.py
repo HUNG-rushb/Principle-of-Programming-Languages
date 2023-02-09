@@ -1,4 +1,4 @@
-# Generated from main/bkool/parser/BKOOL.g4 by ANTLR 4.9.2
+# Generated from d:\Github\Principle-of-Programming-Languages\2023\_____\src\main\bkool\parser\BKOOL.g4 by ANTLR 4.9.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -81,12 +81,6 @@ class BKOOLParser ( Parser ):
 
         def getRuleIndex(self):
             return BKOOLParser.RULE_program
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitProgram" ):
-                return visitor.visitProgram(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 

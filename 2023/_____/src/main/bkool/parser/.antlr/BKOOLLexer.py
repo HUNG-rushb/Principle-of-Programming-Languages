@@ -1,4 +1,4 @@
-# Generated from main/bkool/parser/BKOOL.g4 by ANTLR 4.9.2
+# Generated from d:\Github\Principle-of-Programming-Languages\2023\_____\src\main\bkool\parser\BKOOL.g4 by ANTLR 4.9.2
 from antlr4 import *
 from io import StringIO
 import sys
