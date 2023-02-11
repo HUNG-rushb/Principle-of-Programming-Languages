@@ -20,10 +20,89 @@ program: literal  EOF ;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 
+// Variable declaration
+variable_declaration: variable_id_list COLON atomic_types;
+variable_id_list: VARIABLE_IDENTIFIERS COMMA variable_id_list | VARIABLE_IDENTIFIERS;
 
 
+// Assignment statement
+assignment_statements: lhs EQUAL expr SEMICOLON;
+lhs: VARIABLE_IDENTIFIERS; 
+//         | instance_attr_access 
+//         | static_attr_access ) (index_operators | );
+
+// expr7 index operator
+// lhs: scalar_variable | expr7; ;
+// scalar_variable: VARIABLE_IN_FUNC_IDENTIFIERS 
+//         | instance_attr_access 
+//         | static_attr_access;
 
 
+// If statements 
+// if_condition: LB expr RB;
+if_statements: IF LB expr RB block_statements elseif_list_statements;
+
+elseif_list_statements: elseif_statement  
+                        | else_statement 
+                        | ;
+elseif_statement: ELSE IF LB expr RB block_statements elseif_list_statements;
+else_statement: ELSE block_statements | ;
+
+// For In statement
+// forin_statements: FOR LB VARIABLE_IDENTIFIERS
+//                     IN expr DOUBLEDOTOP expr by_expr RB block_statements;
+
+
+// While statement
+while_statements: WHILE LB expr RB while_behavior;
+while_behavior: statement | block_statements;
+
+
+// Break statement
+break_statements: BREAK SEMICOLON;
+
+// Continue statement
+continue_statements: CONTINUE SEMICOLON;
+
+// Return statement
+return_expr: expr | ;
+return_statements: RETURN return_expr SEMICOLON;
+
+
+// Block statements ---------------------------------------------------------------------------------
+
+// program_block_class_statements: LCB statements_class main_function_declaration statements_class RCB;
+// block_class_statements: LCB statements_class RCB;
+block_statements: LCB statements RCB;
+// block_statements_in_main: LCB statements RETURN SEMICOLON RCB;
+
+// statements_class: statement_class statements_class | statement_class | ;
+statements: statement statements | statement | ;
+
+// statement_class: var_both_variable_declaration
+//                 | val_both_variable_declaration
+//                 | var_both_variable_declaration_noinnit
+//                 | val_both_variable_declaration_noinnit
+
+//                 | function_declaration
+//                 | constructor_dclr
+//                 | destructor_dclr ;
+
+// no function declaration
+// no $
+statement: var_variable_declaration 
+            | val_variable_declaration 
+            | var_variable_declaration_noinit 
+            | val_variable_declaration_noinit 
+
+            | assignment_statements 
+            | if_statements 
+            | forin_statements 
+
+            | method_invocation_statement
+            | break_statements
+            | continue_statements
+            | return_statements ;
 
 // EXPRESSIONS ----------------------------------------------------------------------------------
 expr: expr1 DOUBLECOLONOP expr1 | expr1;
