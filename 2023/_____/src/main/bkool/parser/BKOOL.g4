@@ -24,23 +24,41 @@ options{
 	language=Python3;
 }
 
-program  : VAR COLON ID SEMI EOF ;
+program: (vardecl | funcdecl)+ EOF;
 
-// ID: [a-z][a-z\d]* ;
+vardecl: 'vardecl' ;
 
-// fragment COM: [0-9] | [1-9][0-9] | [1-9][0-9][0-9];
-// ID:  COM'.'COM'.'COM'.'COM;
+funcdecl: 'funcdecl' ;
 
-fragment DIGIT: [0-9];
-ID: [0-9]+(('.'DIGIT+)|'e'('+'|'-'|)DIGIT+|'.'DIGIT+'e'('+'|'-'|)DIGIT+);
+WS: [ \t\r\n] -> skip;
+
+mptype: INTTYPE | VOIDTYPE ;
+
+body: funcall SEMI;
+
+exp: funcall | INTLIT ;
+
+funcall: ID LB exp? RB ;
+
+INTTYPE: 'int' ;
+
+VOIDTYPE: 'void'  ;
+
+ID: [a-zA-Z]+ ;
+
+INTLIT: [0-9]+;
+
+LB: '(' ;
+
+RB: ')' ;
+
+LP: '{';
+
+RP: '}';
 
 SEMI: ';' ;
 
-COLON: ':' ;
-
-VAR: 'Var' ;
-
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+// WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
 
 

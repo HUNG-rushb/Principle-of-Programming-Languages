@@ -1,1 +1,1 @@
-He asked me:,Where,is,John,Error Token ?
+auto,break,boolean,do,else,false,float,for,function,if,integer,return,string,true,while,void,out,continue,of,inherit,array,<EOF>
