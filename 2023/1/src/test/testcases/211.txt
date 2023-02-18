@@ -1,0 +1,11 @@
+
+            Class hungyeuquynh {
+                cuoi() {
+                    Foreach (i In 0 .. 999 By pi <= i) {
+                        gf.bf();
+                    }
+
+                    Return true;
+                }
+            }
+        

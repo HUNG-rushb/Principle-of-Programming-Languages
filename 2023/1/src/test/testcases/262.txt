@@ -1,0 +1,8 @@
+
+            Class Progrwefwafadaam {
+                Constructor(afawf, vdfvgeb: Boolean; c: Boolean) {
+                    awfwe = cafwef + 1234.234234;
+                    Return;
+                }
+            }
+        

@@ -1,0 +1,7 @@
+
+            Class Progfasdfram {
+                masafasdfin() {
+                    Return New objdsfasdfect();
+                }
+            }
+        

@@ -1,0 +1,12 @@
+
+            Class father {
+                get(){
+
+                }
+            }
+            Class son: father {
+                ok() {
+                    Return super::laugh();
+                }
+            }
+        

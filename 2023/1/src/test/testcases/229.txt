@@ -1,0 +1,9 @@
+
+            Class fasdfasdf {
+                Constructor(){Return eeeeeeeeeeeeeeeeeeeeeeee;}
+            }
+            Class dsbisubviweuhfw {
+
+                Return statements;
+            }
+        

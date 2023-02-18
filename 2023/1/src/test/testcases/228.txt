@@ -1,0 +1,7 @@
+
+            Class twitter {
+                main(a: Boolean; b: Boolean) {
+                    Return New Bull().dsaf().Cicke();
+                }
+            }
+        

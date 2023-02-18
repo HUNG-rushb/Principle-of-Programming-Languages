@@ -1,0 +1,17 @@
+
+            Class aloaloalo {
+                main() {
+                    Var name: Int;
+                }
+            }
+            Class wfsadfsdadf {
+                function() {
+                    Var name: Int;
+
+
+
+
+                    Hung.Main()::$dollar();
+                }
+            }
+        

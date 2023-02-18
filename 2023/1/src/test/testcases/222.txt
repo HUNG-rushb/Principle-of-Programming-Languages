@@ -1,0 +1,12 @@
+
+            Class jztr {
+                func(s: Boolean; r: Float) {
+                    Return ojojojojojjoo.Str(s + r);
+                }
+            }
+            Class Program {
+                jztr() {
+
+                }
+            }
+        

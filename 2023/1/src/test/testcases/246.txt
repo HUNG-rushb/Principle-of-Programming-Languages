@@ -1,0 +1,7 @@
+
+            Class Madfasdfsadeo: Dsdafasdfog {
+                $gasdfasdfet() {
+                    Self.naasdfdsafme = Doasdfdsafg::nameasdfsdafsa;
+                }
+            }
+        

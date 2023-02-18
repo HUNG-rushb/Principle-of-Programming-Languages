@@ -264,16 +264,17 @@ BOOLLIT: TRUE | FALSE;
 
 
 // Float literal 
-fragment DECIMALPART: '.' [0-9]*;
+fragment DECIMALPART: '.' [0-9]+;
 fragment EXPONENTPART: E (MINUSOP | PLUSOP)? ('0'* [1-9] [0-9]* | '0'+); 
 
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")}
             | ((DEC | '0') DECIMALPART) {self.text = self.text.replace("_", "")}
             | ((DEC | '0') EXPONENTPART) {self.text = self.text.replace("_", "")}
-            | (DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")}) {self.text = self.text.replace("_", "")}; 
+            | (DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")}
+			) {self.text = self.text.replace("_", "")}; 
 
 // Integer literal
-fragment DEC: [1-9] (UNDERSCORE [0-9] | [0-9])* ;
+fragment DEC: [1-9] (UNDERSCORE* [0-9] | [0-9])* ;
 
 INTLIT: (DEC) {self.text = self.text.replace("_", "")} | '0';
 
@@ -312,7 +313,8 @@ ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 };
 
 // String char except special character 
-fragment STRING_CHAR:  '\\"'| ESC_CHAR | ~[\\"];
+fragment STRING_CHAR:  '\\"'| ESC_CHAR | ~[\\"\n];
+
 
 fragment ESC_CHAR: '\\' [trnfb'\\];
 
@@ -323,7 +325,7 @@ WS : [ \t\r\n\f\b]+ -> skip;
 
 // Skip comments
 BLOCK_CMT: '/*' .*? '*/' -> skip;
-LINE_CMT : '//' .*? [\n] -> skip;
+LINE_CMT: '//' ~[\r\n]* -> skip;
 
 ERROR_CHAR: . { raise ErrorToken(self.text) };
 

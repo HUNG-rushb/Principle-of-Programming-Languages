@@ -1,0 +1,9 @@
+
+            Class fwafdfew {
+                fwefadfadf() {
+                    Foreach(a[0] In 00+04/0b0 .. b <= !c By get().count) {
+                        Continue;
+                    }
+                }
+            }
+        

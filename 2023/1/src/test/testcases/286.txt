@@ -1,0 +1,15 @@
+
+            Class zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz {
+                Var $_123a: Int = 00; 
+
+                Mefwefwsdfthod () {
+                    Self.des(a,b,c);
+
+                    hung.dqw();
+
+                    If (asdf[213]) {
+                        Return qwdqd.fafewfawf(t); 
+                    }
+                }
+            }
+        

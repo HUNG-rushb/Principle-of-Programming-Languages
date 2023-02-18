@@ -1,0 +1,15 @@
+
+            Class gaugaugagua {
+                gotobed() {
+
+                }
+
+                Constructor() {
+                    Self.create = okokok;
+                }
+
+                Destructor() {
+                    Mew.delete();
+                }
+            }
+        

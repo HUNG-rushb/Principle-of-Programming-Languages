@@ -1,0 +1,7 @@
+
+            Class Method {
+                newMethod(a: String) {
+                    Return "This is a \nstring"[1].getText();
+                }
+            }
+        
