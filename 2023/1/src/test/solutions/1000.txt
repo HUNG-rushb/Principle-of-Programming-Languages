@@ -1,1 +1,1 @@
- Print integer number by ,printInt,(,anArg,:,int,),,<EOF>
+He said: "He said:"I saw him."",<EOF>

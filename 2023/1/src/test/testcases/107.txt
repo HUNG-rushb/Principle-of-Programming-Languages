@@ -1,2 +1,6 @@
-/* This is a block comment 
-with multiple lines */
+
+            + - * / %
+            ! && || ==
+            != < <= > >=
+            ::
+            

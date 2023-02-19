@@ -489,7 +489,7 @@ class MT22Lexer(Lexer):
         if actionIndex == 7:
 
             	current = str(self.text)
-            	raise UncloseString(current[1:])
+            	raise UncloseString(current[0:])
 
      
 
@@ -497,7 +497,7 @@ class MT22Lexer(Lexer):
         if actionIndex == 8:
 
             	current = str(self.text)
-            	raise IllegalEscape(current[1:])
+            	raise IllegalEscape(current[0:])
 
      
 

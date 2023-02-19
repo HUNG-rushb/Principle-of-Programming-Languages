@@ -1,2 +1,5 @@
-/* This is a block comment 
-//Inline Comment */
+
+            //abc
+            /* commemts */
+            // eof
+            

@@ -303,13 +303,13 @@ STRINGLIT: ('"') STRING_CHAR* ('"')
 UNCLOSE_STRING: '"' STRING_CHAR* 
 {
 	current = str(self.text)
-	raise UncloseString(current[1:])
+	raise UncloseString(current[0:])
 };
 
 ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 {
 	current = str(self.text)
-	raise IllegalEscape(current[1:])
+	raise IllegalEscape(current[0:])
 };
 
 // String char except special character 
