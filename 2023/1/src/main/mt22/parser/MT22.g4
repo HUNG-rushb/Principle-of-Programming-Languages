@@ -286,35 +286,42 @@ INTLIT: (DEC) {self.text = self.text.replace("_", "")} | '0';
 // self.text = str(self.text)[1:-1].replace('\\"','"')
 //  self.text = str(self.text)[1:-1]
 STRINGLIT: ('"') STRING_CHAR* ('"') 
-{
-	if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
-		if not str(self.text)[-3] == '\\':
-			raise UncloseString(str(self.text)[1:])
+{	
+	self.text = str(self.text)[1:-1].replace('\"','"')
+}
+// if str(self.text)[-1] == '"' and str(self.text)[-2] == '\'': 
+// 		if not str(self.text)[-3] == '\\':
+// 			raise UncloseString(str(self.text)[1:])
 	
-	
-	current = self.text.find('\n')
-	if current != -1: 
-		raise UncloseString(str(self.text[:current - 1]))
+// 	current = self.text.find('\n')
+// 	if current != -1: 
+// 		raise UncloseString(str(self.text[:current - 1]))
 
 	
-	self.text = str(self.text)[1:-1].replace('\\"','"')
-};
+
+// 	if str(self.text)[-1] == '"':
+// 		self.text = str(self.text)[0:-1].replace(str(self.text)[-1],'',1)
+
+// 	if str(self.text)[0] == '"':
+// 		self.text = str(self.text)[0:-1].replace(str(self.text)[0],'',1)
+
+
+;
 
 UNCLOSE_STRING: '"' STRING_CHAR* 
 {
 	current = str(self.text)
-	raise UncloseString(current[0:])
+	raise UncloseString(current[1:])
 };
 
 ILLEGAL_ESCAPE: '"' STRING_CHAR* ESC_UNAVAILABLE
 {
 	current = str(self.text)
-	raise IllegalEscape(current[0:])
+	raise IllegalEscape(current[1:])
 };
 
 // String char except special character 
 fragment STRING_CHAR:  '\\"'| ESC_CHAR | ~[\\"\n];
-
 
 fragment ESC_CHAR: '\\' [trnfb'\\];
 

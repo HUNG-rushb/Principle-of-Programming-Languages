@@ -1476,665 +1476,499 @@
 #         expect = "successful"
 #         self.assertTrue(TestParser.test(input, expect,299))
 
-
 import unittest
-from TestUtils import TestParser
+from TestUtils import TestLexer
 
 
-class ParserSuite(unittest.TestCase):
-    ## test function prototype
-    #  test simple program
-    def test_simple_program(self):
-        input = """main: function void() {}"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 203))
-    def test_simple_program2(self):
-        input = """main: function int() {}"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
+class LexerSuite(unittest.TestCase):
+    def test_string_escape3(self):
+        self.assertTrue(TestLexer.test(""" "This sentence contains new line\n." """, """Unclosed String: This sentence contains new line\n""", 1007))
+    # def test_unclosed_string13(self):
+    #     self.assertTrue(TestLexer.test(""" " " "" " """,""" ,,Unclosed String:  """,101))
+    # def test_unclosed_string14(self):
+    #     self.assertTrue(TestLexer.test("""  "Test \n Unclosed String"  ""","""Unclosed String: Test \n""",101))
+    # def test_unclosed_string15(self):
+    #     self.assertTrue(TestLexer.test(""" "Test Unclosed String\\" \n" ""","""Unclosed String: Test Unclosed String\\" \n""",101))
+    # def test_unclosed_string16(self):
+    #     self.assertTrue(TestLexer.test(""" "line 1\\n line 2\n" ""","""Unclosed String: line 1\\n line 2\n""",101))
+    # def test_unclosed_string17(self):
+    #     self.assertTrue(TestLexer.test(""" "\\"" "'ab'c ""","""\\",Unclosed String: 'ab'c """,101))
+    # def test_unclosed_string18(self):
+    #     self.assertTrue(TestLexer.test(""" "%^&*(\n"|"|b6783\\")&* ""","""Unclosed String: %^&*(\n""",101))
+    # def test_unclosed_string19(self):
+    #     self.assertTrue(TestLexer.test(""""\\"Open string""", """Unclosed String: \\"Open string""", 101))
+    # def test_unclosed_string20(self):
+    #     self.assertTrue(TestLexer.test(""" "Open string \n.\\" """, """Unclosed String: Open string \n""", 303))
+    # def test_unclosed_string18(self):
+    #     self.assertTrue(TestLexer.test(""" "%^&*(\n"|"|b6783\\")&* ""","""Unclosed String: %^&*(\n""",101))
+    # def test_float11(self):
+    #     self.assertTrue(TestLexer.test(" .2e-3 .E2 .e-22 10.0e-2.2e-3 1. 1.e2 1.2E+10 2.45e-333 0.22 0.e2 23e8 4E 9e-10.34 ",".2e-3,.E2,.e-22,10.0e-2,.2e-3,1.,1.e2,1.2E+10,2.45e-333,0.22,0.e2,23e8,4,E,9e-10,.,34,<EOF>",101))
+#     def test_integer3(self):
+#         self.assertTrue(TestLexer.test("123 _123 1_23 123 __123", "123,_123,123,123,__123,<EOF>", 101))
+#     def test_block_comment7(self):
+#         self.assertTrue(TestLexer.test("/* This is another block comment / */", "<EOF>", 101))
+
+#     def test_1(self):
+#         """test identifiers"""
+#         self.assertTrue(TestLexer.test("abc", "abc,<EOF>", 101))
     
-    def test_simple_program3(self):
-        input = """toString: function string(n: integer) {}"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_2(self):
+#         """test comment"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             //abc
+#             /* comment */ */            
+#             """
+#             , "*,/,<EOF>", 102))
+
+#     def test_3(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             1234 123
+#             1_72
+#             1_234_567
+#             1.234 1.2e3 7E-10
+#             1_234.567
+#             e-10
+#             """
+#             , "1234,123,172,1234567,1.234,1.2e3,7E-10,1234.567,e,-,10,<EOF>", 103))
+
+#     def test_5(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             "This is a string containing tab \t"
+#             "He asked me: \\"Where is John?\\""
+#             """
+#             , """This is a string containing tab \t,He asked me: \\"Where is John?\\",<EOF>""", 105))
+
+#     def test_6(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             auto break boolean do else
+#             false float for function if
+#             integer return string true while
+#             void out continue of inherit
+#             array
+#             """
+#             , """auto,break,boolean,do,else,false,float,for,function,if,integer,return,string,true,while,void,out,continue,of,inherit,array,<EOF>""", 106))
+
+#     def test_7(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             + - * / %
+#             ! && || ==
+#             != < <= > >=
+#             ::
+#             """
+#             , """+,-,*,/,%,!,&&,||,==,!=,<,<=,>,>=,::,<EOF>""", 107))
+
+#     def test_8(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             ( ) [ ] . , ; : { } =
+#             """
+#             , """(,),[,],.,,,;,:,{,},=,<EOF>""", 108))
+
+#     def test_9(self):
+#         """intlit floatlit"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             x : integer = 65;
+#             fact : function integer (n : integer ) {
+#                 if (n == 0) return 1 ;
+#                 else return n * fact (n - 1 ) ;
+#             }
+#             inc : function void (out n : integer , delta : integer ) {
+#                 n = n + delta ;
+#             }
+#             main : function void () {
+#                 delta : integer = fact (3) ;
+#                 inc(x,delta) ;
+#                 printInteger(x) ;
+#             }
+#             """
+#             , """x,:,integer,=,65,;,fact,:,function,integer,(,n,:,integer,),{,if,(,n,==,0,),return,1,;,else,return,n,*,fact,(,n,-,1,),;,},inc,:,function,void,(,out,n,:,integer,,,delta,:,integer,),{,n,=,n,+,delta,;,},main,:,function,void,(,),{,delta,:,integer,=,fact,(,3,),;,inc,(,x,,,delta,),;,printInteger,(,x,),;,},<EOF>""", 109))
+
+#     def test_10(self):
+#         """test comment"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             //abc
+#             /* commemts */
+#             // eof
+#             """
+#             , "<EOF>", 110))
     
-    def test_simple_program4(self):
-        input = """Foo121: function string( out a : integer, b: string) {}"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_11(self):
+#         """test comment"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             {1, 5, 7, 12} {"Kangxi", "Yongzheng", "Qianlong"}
+#             """
+#             , "{,1,,,5,,,7,,,12,},{,Kangxi,,,Yongzheng,,,Qianlong,},<EOF>", 111))
+
+#     def test_12(self):
+#         """test comment"""
+#         self.assertTrue(TestLexer.test(
+#             """
+#             x : array [2, 3] of integer;
+#             fact : function integer (n : integer ) {
+#                 for (i = 1, i < 10, i + 1) {
+#                     writeInt(i);
+#                 }
+#             }
+#             main : function void () {
+#                 r, s: integer;
+#                 r = 2.0;
+#                 a, b: array [5] of integer;
+#                 s = r * r * myPI;
+#                 a[0] = s;
+#             }
+#             """
+#             , "x,:,array,[,2,,,3,],of,integer,;,fact,:,function,integer,(,n,:,integer,),{,for,(,i,=,1,,,i,<,10,,,i,+,1,),{,writeInt,(,i,),;,},},main,:,function,void,(,),{,r,,,s,:,integer,;,r,=,2.0,;,a,,,b,:,array,[,5,],of,integer,;,s,=,r,*,r,*,myPI,;,a,[,0,],=,s,;,},<EOF>", 112))
+
+#     def test_inline_comment(self):
+#         self.assertTrue(TestLexer.test("// This is a comment", "<EOF>", 101))
+#     def test_inline_comment2(self):
+#         self.assertTrue(TestLexer.test("// This is a comment \n", "<EOF>", 101))
+#     def test_inline_comment3(self):
+#         self.assertTrue(TestLexer.test("// This is a comment with \"\\\" inside.", "<EOF>", 101))
+#     def test_inline_comment4(self):
+#         self.assertTrue(TestLexer.test("//*This is still a inline comment", "<EOF>", 101))
+#     def test_inline_comment5(self):
+#         self.assertTrue(TestLexer.test("//*This is still a inline comment*/", "<EOF>", 101))
+#     def test_block_comment1(self):
+#         self.assertTrue(TestLexer.test("/* This is a block comment */", "<EOF>", 102))
+#     def test_block_comment2(self):
+#         self.assertTrue(TestLexer.test("/* This is a block comment \nwith multiple lines */", "<EOF>", 102))
+#     def test_block_comment3(self):
+#         self.assertTrue(TestLexer.test("/* This is a block //comment */", "<EOF>", 102))
+#     def test_block_comment4(self):
+#         self.assertTrue(TestLexer.test("/* This is a block comment end with \"* /\" */", "<EOF>", 102))
+#     def test_block_comment5(self):
+#         self.assertTrue(TestLexer.test("/* This is a block comment \n//Inline Comment */", "<EOF>", 102))
+#     def test_block_comment6(self):
+#         self.assertTrue(TestLexer.test("/* This is a unclose block comment ", "/,*,This,is,a,unclose,block,comment,<EOF>", 102))
+#     def test_block_comment7(self):
+#         self.assertTrue(TestLexer.test("/* This is another block comment */ */", "*,/,<EOF>", 101))
+#     def test_nested_comment1(self):
+#         self.assertTrue(TestLexer.test("// A line comment // contains another line comment . ", "<EOF>", 101))
+#     def test_nested_comment2(self):
+#         self.assertTrue(TestLexer.test("/*a block cmt /*cover a block cmt*/ */ ", "*,/,<EOF>", 101))
+#     def test_nested_comment3(self):
+#         self.assertTrue(TestLexer.test("/*block comment 1*/\n/*block comment2*///inline comment", "<EOF>", 101))
     
-    def test_null_program(self):
-        input = """ """
-        expect = "Error on line 1 col 1: <EOF>"
-        self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_identifier(self):
+#         self.assertTrue(TestLexer.test("my name is Hoa", "my,name,is,Hoa,<EOF>", 101))
+#     def test_identifier2(self):
+#         self.assertTrue(TestLexer.test("__", "__,<EOF>", 101))
+#     def test_identifier3(self):
+#         self.assertTrue(TestLexer.test("Ident 1 id1", "Ident,1,id1,<EOF>", 101))
+#     # def test_identifier4(self):
+#     #     self.assertTrue(TestLexer.test("1Cat+2_Dogs", "1,Cat,+,2,_Dogs,<EOF>", 101))
+#     def test_identifier4(self):
+#         self.assertTrue(TestLexer.test("X/123", "X,/,123,<EOF>", 101))
+#     def test_identifier5(self):
+#         self.assertTrue(TestLexer.test("_count 123number||sum", "_count,123,number,||,sum,<EOF>", 101))
+#     def test_identifier6(self):
+#         self.assertTrue(TestLexer.test("1day, I go to _school123_.;", "1,day,,,I,go,to,_school123_,.,;,<EOF>", 101))
+     
+#     def test_keyword1(self):
+#         self.assertTrue(TestLexer.test("autobreakboolean", "autobreakboolean,<EOF>", 101))
+#     def test_keyword2(self):
+#         self.assertTrue(TestLexer.test("integer function void", "integer,function,void,<EOF>", 101))
         
-    #  test simple error of function declaration
-    def test_wrong_miss_close1(self):
-        input = """func: function void ( {}"""
-        expect = "Error on line 1 col 22: {"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    # def test_wrong_miss_close2(self):
-        input = """func: function int() }"""
-        expect = "Error on line 1 col 21: }"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_wrong_miss_functype(self):
-        input = """func: function auto ( a: float) {}"""
-        expect = "Error on line 1 col 15: auto"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_wrong_funcname(self):
-        input = """2string: function string (n : integer) {}"""
-        expect = "Error on line 1 col 0: 2"
-        self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_integer1(self):
+#         self.assertTrue(TestLexer.test("0090", "0,0,90,<EOF>", 101))
+#     def test_integer2(self):
+#         self.assertTrue(TestLexer.test("-090x90", "-,0,90,x90,<EOF>", 101))
+#     def test_integer3(self):
+#         self.assertTrue(TestLexer.test("123 _123 1_23 123_ __123", "123,_123,123,123,__123,<EOF>", 101))
+#     def test_integer4(self):
+#         self.assertTrue(TestLexer.test("123*901/10", "123,*,901,/,10,<EOF>", 101))
+#     def test_integer5(self):
+#         self.assertTrue(TestLexer.test("1_23__456_", "123456,<EOF>", 101))
+#     def test_integer6(self):
+#         self.assertTrue(TestLexer.test("5 + 100/20", "5,+,100,/,20,<EOF>", 101))
+#     def test_integer7(self):
+#         self.assertTrue(TestLexer.test("-1000-10+-100/1", "-,1000,-,10,+,-,100,/,1,<EOF>", 101))
+#     def test_integer8(self):
+#         self.assertTrue(TestLexer.test("80 < 120 && (3-7) >= 7", "80,<,120,&&,(,3,-,7,),>=,7,<EOF>", 101))
+#     def test_integer9(self):
+#         self.assertTrue(TestLexer.test("5!=8 || 12%4 == 0", "5,!=,8,||,12,%,4,==,0,<EOF>", 101))
+#     def test_integer10(self):
+#         self.assertTrue(TestLexer.test("x00_0 010 1000x", "x00_0,0,10,1000,x,<EOF>", 101))
     
-    def test_simple_program5(self):
-        input = """
-        inc : function integer (_n:integer) {}
-        delta : function float (out a:string) {}
-        main: function void() {}
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_float1(self):
+#         self.assertTrue(TestLexer.test("1.2e10", "1.2e10,<EOF>", 101))
+#     def test_float2(self):
+#         self.assertTrue(TestLexer.test(" 7.5 0.6 ", "7.5,0.6,<EOF>", 101))
+#     def test_float3(self):
+#         self.assertTrue(TestLexer.test(" 5.1+1e5 ","5.1,+,1e5,<EOF>",101))
+#     def test_float4(self):
+#         self.assertTrue(TestLexer.test(" 6.8+9.2 ","6.8,+,9.2,<EOF>",101))
+#     def test_float5(self):
+#         self.assertTrue(TestLexer.test(" -1.3+1e3 ","-,1.3,+,1e3,<EOF>",101))
+#     def test_float6(self):
+#         self.assertTrue(TestLexer.test(" .6 ",".,6,<EOF>",101))
+#     def test_float7(self):
+#         self.assertTrue(TestLexer.test(" 7E15 ","7E15,<EOF>",101))
+#     def test_float8(self):
+#         self.assertTrue(TestLexer.test(" 1.0e ","1.0,e,<EOF>",101))
+#     def test_float9(self):
+#         self.assertTrue(TestLexer.test("4.1e3 ","4.1e3,<EOF>",101))
+#     def test_float10(self):
+#         self.assertTrue(TestLexer.test(" 5e-8+6 ","5e-8,+,6,<EOF>",101))
+#     def test_float11(self):
+#         self.assertTrue(TestLexer.test(" 10.0e-2.2e-3 ","10.0e-2,.2e-3,<EOF>",101))
+   
+#     def test_string(self):
+#         self.assertTrue(TestLexer.test(""""Hello World !" ""","""Hello World !,<EOF>""",101))
+#     def test_string2(self):
+#         self.assertTrue(TestLexer.test(""""1 Cat + 2 Dogs :: 12 Birds, 3 Spiders in the picture." ""","""1 Cat + 2 Dogs :: 12 Birds, 3 Spiders in the picture.,<EOF>""",101))
+#     def test_string3(self):
+#         self.assertTrue(TestLexer.test(""""Hello World !\"\n\"The result is: \"2 ""","""Hello World !,The result is: ,2,<EOF>""",101))
+#     # def test_string4(self):
+#     #     self.assertTrue(TestLexer.test(""""abc" ""","""abc,<EOF>""",101))
+#     def test_string9(self):
+#         self.assertTrue(TestLexer.test(""" "%^&*(\t"|"|b6783\\")&* ""","""%^&*(	,Error Token |""",101))
     
-    def test_simple_program5(self):
-        input = """
-        inc : function integer (_n:integer) {}
-        delta : function float (out a:string) {}
-        main: function void() {}
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_simple_program6(self):
-        input = """
-        multiply : function integer (a:integer, b: integer) {}
-        main: function void() {}
-        """
-        expect = "Error on line 2 col 28: integer"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_simple_program7(self):
-        input = """
-        _Square_Area  : function float (r: float) inherit Rectangle_Area {}
-        main: function void() {}
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    ## test vardecl
-    def test_vardecl_(self):
-        input = """x : integer = 65 ;"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_vardecl_2(self):
-        input = """x,y,z : integer = 65, 12, 30;"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_vardecl_3(self):
-        input = """x,y,z : integer = 65, 12, 30, 40;"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_vardecl_4(self):
-        input = """True : string = "It's true!" 
-        false : string = "it's not true..." """ 
-        expect = "Error on line 2 col 8: false"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_vardecl_5(self):
-        input = """x , y : boolean = true , false ;
-                    a1, a2 : integer = b1, b2 ;""" 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    # def test_vardecl_4(self):
-    #     input = """a, b, c, d: auto = 3, 4, 6;""" 
-    #     expect = "Error on line 1 col 29: ;"
-    #     self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_string_comment(self):
+#         self.assertTrue(TestLexer.test(""" "Hello /*My*/ World" ""","""Hello /*My*/ World,<EOF>""",101))
+#     ## chỗ này có lỗi ko? nếu có là unclosed string hay error token # 
+#     # def test_string_comment2(self):
+#     #     self.assertTrue(TestLexer.test(""" "Hello World/* " */  ""","""Hello World/* ,*,/,<EOF>""",101))
+#     def test_string_comment3(self):
+#         self.assertTrue(TestLexer.test(""" "Hello //My World" ""","""Hello //My World,<EOF>""",101))
     
-    ## undone
+#     def test_string_escape(self):
+#         self.assertTrue(TestLexer.test(""""This is a string containing tab \t." """, """This is a string containing tab \t.,<EOF>""", 101))
+#     def test_string_escape2(self):
+#         self.assertTrue(TestLexer.test(""""He asked me: \"Where is John?\"" """, """He asked me: \"Where is John?\",<EOF>""", 101))
+#     ## He asked me: "Where is John?" lồng string trong string
+#     def test_string_escape3(self):
+#         self.assertTrue(TestLexer.test(""""This sentence contains new line\n." """, """Unclosed String: \"This sentence contains new line\n""", 101))
+#     def test_string_escape4(self):
+#         self.assertTrue(TestLexer.test(""""Print it ( a line char \\n )" """, """Print it ( a line char \\n ),<EOF>""", 101))
+#     def test_string_escape5(self):
+#         self.assertTrue(TestLexer.test(""""There is a backspace \b. before here." """, """There is a backspace \b. before here.,<EOF>""", 101))
+#     def test_string_escape6(self):
+#         self.assertTrue(TestLexer.test(""""Multiple chars \\\\" """, """Multiple chars \\\\,<EOF>""", 101))
+#     def test_string_escape7(self):
+#         self.assertTrue(TestLexer.test(""""He asked me: \\"Where is John?\\"" """, """He asked me: \\"Where is John?\\",<EOF>""", 101))
+#     def test_string_escape8(self):
+#         self.assertTrue(TestLexer.test("""" Print integer number by \"printInt(anArg: int)\"" """, """ Print integer number by ,printInt,(,anArg,:,int,),,<EOF>""", 1001))
+#     def test_string_escape9(self):
+#         self.assertTrue(TestLexer.test(""""We combine \' \f. \t. \'" """, """We combine \' \f. \t. \',<EOF>""", 101))
+#     def test_string_escape10(self):
+#         self.assertTrue(TestLexer.test(""""This is a string containing /*comment*/" """, """This is a string containing /*comment*/,<EOF>""", 101))
+#     def test_string_escape11(self):
+#         self.assertTrue(TestLexer.test(""""He said: \'He said:\'I saw him.\'\'" """, """He said: \'He said:\'I saw him.\'\',<EOF>""", 101))
+#     def test_string_escape12(self):
+#         self.assertTrue(TestLexer.test(""""He said: \\"He said:\\"I saw him.\\"\\"" """, """He said: \\"He said:\\"I saw him.\\"\\",<EOF>""", 1000))
+#     def test_unclosed_string13(self):
+#         self.assertTrue(TestLexer.test(""" " " "" " """,""" ,,Unclosed String:  """,101))
+#     def test_unclosed_string14(self):
+#         self.assertTrue(TestLexer.test("""  "Test \n Unclosed String"  ""","""Unclosed String: Test \n""",101))
+#     def test_unclosed_string15(self):
+#         self.assertTrue(TestLexer.test(""" "Test Unclosed String\\" \n" ""","""Unclosed String: Test Unclosed String\\" \n""",101))
+#     def test_unclosed_string16(self):
+#         self.assertTrue(TestLexer.test(""" "line 1\\n line 2\n" ""","""Unclosed String: line 1\\n line 2\n""",101))
+#     def test_unclosed_string17(self):
+#         self.assertTrue(TestLexer.test(""" "\\"" "'ab'c ""","""\\",Unclosed String: 'ab'c """,101))
+#     def test_unclosed_string18(self):
+#         self.assertTrue(TestLexer.test(""" "%^&*(\n"|"|b6783\\")&* ""","""Unclosed String: %^&*(\n""",101))
+#     def test_unclosed_string19(self):
+#         self.assertTrue(TestLexer.test(""""\\"Open string""", """Unclosed String: \\"Open string""", 101))
+#     def test_unclosed_string20(self):
+#         self.assertTrue(TestLexer.test(""" "Open string \n.\\" """, """Unclosed String: Open string \n""", 303))
     
-    
-    
-    ## expression
-    def test_expr_1(self):
-        input = """a, b, c, a1: integer = 0;
-            main: function void () {
-                a1 : integer = a + 1 ;
-                b = a + a1;
-                c = b-a-10;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_2(self):
-        input = """main: function void () {
-                b = a + a1;
-                c = b*a/2.0;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_3(self):
-        input = """
-            round : function int(n: float, i: integer){}
-            main: function void () {
-                a : integer = round(1.23-1.496, b) ;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_4(self):
-        input = """
-            main: function void () {
-                a = 2 + 2%2/2*-2 ;
-                b = 1*1--1+1/1 ;
-                c = a + b / (2*1.0+1) ;                
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_5(self):
-        input = """
-            main: function void () {
-                a = true ;
-                b = !a && false || (false && true || true) ;  
-                c = !!b || false ;             
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_6(self):
-        input = """
-            main: function void () {
-                a = b&& c || () ;             
-            } """ 
-        expect = "Error on line 3 col 30: )"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_7(self):
-        input = """
-            main: function void () {
-                a = b&& c || ;             
-            } """ 
-        expect = "Error on line 3 col 29: ;"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_8(self):
-        input = """
-            main: function void () {
-                a1, a2 : string = "Hello ", "World!" ;
-                a = a1 :: a2 ;            
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_9(self):
-        input = """
-            main: function void () {
-                str : string = "My name ";
-                str = str :: "is" :: "Hoa" ;            
-            } """ 
-        expect = "Error on line 4 col 34: ::"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_5(self):
-        input = """
-            main: function void () {
-                a : boolean ;
-                a = (3 > 2 ) || (7/2 <= 4+3) && !(1.0e1+1 >= 0) ;     
-                b = 1!= 2 || 0==0.1 ;
-            } """ 
-        expect = "Error on line 5 col 30: =="
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_expr_6(self):
-        input = """
-            main: function void () {
-                b = 1!= 2 || (0==0.1) ;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    
-    #-test array type
-    def test_array_1(self):
-        input = """
-            arr : array [2,3] of integer;
-            arr_b : array[5] of boolean = {true, true, false, false, true};
-        """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_array_2(self):
-        input = """
-            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
-            S : array[0] of string = {};
-        """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    # def test_array_3(self):
-    #     input = """
-    #             printArr: function void(arr:array[0] of string) { return ;}
-    #             myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;
-    #             main : function void(){
-    #                 printAll(myPets);
-    #             }
-    #         """ 
-    #     expect = "successful"
-    #     self.assertTrue(TestParser.test(input, expect, 201))
-    def test_array_4(self):
-        input = """
-                myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;
-                main : function void(){
-                    myPets [1+1] = myPets [arr[0, nArr[a,c]]-1];
-                    myPets[last] = "";
-                    printAll(myPets) ;
-                }
-            """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    
-    
-    
-    ## statement
-    def test_stmt_assign_1(self):
-        input = """main: function void () {
-                r : float = 3.0e4;
-                r = 3.01e4 ;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    
-    def test_stmt_assign_2(self):
-        input = """
-            r : float = 3.0e4;
-            r = 3.01e4 ;
-            """ 
-        expect = "Error on line 3 col 14: ="
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_assign_3(self):
-        input = """pi : float = 3.14;
-            main: function void () {
-                area = 123 ;
-                length, width = 3.0, 2;
-            } """ 
-        expect = "Error on line 4 col 22: ,"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_assign_4(self):
-        input = """
-            main: function void () {
-                area = 123 ;
-                length = 3.0, 2;
-            } """ 
-        expect = "Error on line 4 col 28: ,"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_assign_4(self):
-        input = """
-            main: function void () {
-                area = 123 ;
-                length = 3.0, 2;
-            } """ 
-        expect = "Error on line 4 col 28: ,"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    
-    def test_stmt_if_1(self):
-        input = """main: function void () {
-                if (a>b) printInteger(a);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_if_2(self):
-        input = """main: function void () {
-                if (a>b) printInteger(a);
-                else printInteger(b);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_if_3(self):
-        input = """main: function void () {
-                if (a>b) 
-                {
-                    temp : integer = a;
-                    a = b;
-                    b = temp ;
-                }
-                else printInteger(b);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_if_3(self):
-        input = """main: function void () {
-                if (a>b) 
-                else printInteger(b);
-            } """ 
-        expect = "Error on line 3 col 16: else"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_if_4(self):
-        input = """main: function void () {
-                if (a>b) printInteger(b)
-                
-            } """ 
-        expect = "Error on line 4 col 12: }"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_if_5(self):
-        input = """main: function void () {
-                if (a>b) if (true) printString("TRUE"); else printString("FALSE");
-                else printInteger(b);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))        
-    def test_stmt_if_6(self):
-        input = """main: function void () {
-                if (a>b) {
-                    if (true) printString("TRUE"); 
-                }
-                else if (a <= 0) printBoolean(value);
-                else a = -a;
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    
-    def test_stmt_for_1(self):
-        input = """main: function void () {
-                for (i = 1, i <10, i+1) {
-                    printInteger(i);
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_for_2(self):
-        input = """main: function void () {
-                for (i = 100, i > 2, i/2) {
-                    printFloat(1.0e2);
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_3(self):
-        input = """main: function void () {
-                for (i = n-1, i > 0, i-1) {
-                    r : float = a[i] ;                    
-                    s = r * r * myPI;
-                    printFloat(s);
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_4(self):
-        input = """main: function void () {
-                for (i = n, i != 0, i%2) ;
-            } """ 
-        expect = "Error on line 2 col 41: ;"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_5(self):
-        input = """main: function void () {
-                for (i = n, i != 0, i%2) printString("Computer is working...");
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_6(self):
-        input = """main: function void () {
-                for ( i != 0, i%2) printString("Computer is working...");
-            } """ 
-        expect = "Error on line 2 col 24: !="
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_7(self):
-        input = """main: function void () {
-                for (i = n, , i%2) printString("Computer is working...");
-            } """ 
-        expect = "Error on line 2 col 28: ,"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_8(self):
-        input = """main: function void () {
-                for (i = n, i != 0, ) printString("Computer is working...");
-            } """ 
-        expect = "Error on line 2 col 36: )"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_for_9(self):
-        input = """main: function void () {
-                for (i = n, i != 0, i%2) 
-                    a : integer = 0 ;
-                    for(j = 0, i < 100, j+a) {
-                        a = a + n ;    
-                    }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    
-    def test_stmt_while_1(self):
-        input = """main: function void () {
-                while (false) {
-                    s = add(2,3,4,5);
-                    print(s);
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_2(self):
-        input = """main: function void () {
-                while (a > 0 || (b -c < 1)) {
-                    printString("printing...");
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_3(self):
-        input = """main: function void () {
-                while () {
-                    printString("printing...");
-                }
-            } """ 
-        expect = "Error on line 2 col 23: )"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_4(self):
-        input = """main: function void () {
-                while (false) {
-                }
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_5(self):
-        input = """main: function void () {
-                do {
-                    a = a - 1; 
-                    printInteger(a);
-                }
-                while(a > 0);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_6(self):
-        input = """main: function void () {
-                do a = a - 1; 
-                while(a > 0);
-            } """ 
-        expect = "Error on line 2 col 19: a"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_7(self):
-        input = """main: function void () {
-                do {
-                    if (a == 10) break;
-                    a = a - 1; 
-                    printInteger(a);
-                }
-                while(a > 0);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    def test_stmt_while_7(self):
-        input = """main: function void () {
-                do {
-                    if (a == 10) continue;
-                    a = a - 1; 
-                    printInteger(a);
-                }
-                while(a > 0);
-            } """ 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    
-    # def test_stmt_break(self):          ### lỗi must reside in a loop 
-    #     input = """
-    #     main : function void() {
-    #         break;
-    #         return ;
-    #     }
-    #     """
-    #     expect = "successful"
-    #     self.assertTrue(TestParser.test(input, expect, 201))
-    # def test_stmt_continue(self):          ### lỗi must reside in a loop 
-    #     input = """
-    #     main : function void() {
-    #         continue;
-    #         return ;
-    #     }
-    #     """
-    #     expect = "successful"
-    #     self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_call_1(self):           
-        input = """
-        main : function void() {
-            foo(2 + x, 4.0 / y);
-            goo();
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_call_2(self):           
-        input = """
-        main : function void() {
-            a, b : integer = round(123.0e2), randomInt();
-            sum : integer = a + b + arr[0,0];
-            print(a, sum);
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_block_1(self):           
-        input = """
-        main : function void() {
-            {
-                r, s: integer;
-                r = 2.0;
-                a, b: array [5] of integer;
-                s = r * r * myPI;
-                a[0] = s;
-            }
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_block_1(self):           
-        input = """
-        main : function void() {
-            {
-                {
-                    
-                }
-                if (a == 0) printBoolean(b);
-            }
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_block_2(self):           
-        input = """
-        main : function void() {
-            {
-                {
-                    
-                }
-                if (a == 0) printBoolean(b);
-            }
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))
-    def test_stmt_block_3(self):           
-        input = """
-        main : function void() {
-            {
-                a : integer = 5;
-                b = a* 2_0 -3 ;
-                for (i = b, i > 1 , i-1)
-                print(Array[0, i]);
-            }
-            return ;
-        }
-        """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201))    
-    def test_stmt_return_1(self):
-        input = """
-        main: function void() {
-            a : string = "Hello world";
-            return a::"!";
-        }"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 202)) 
-    def test_stmt_return_2(self):
-        input = """
-        main: function void() {
-            return a[2,2]*1-b[0]/c;
-        }"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 202)) 
-    def test_stmt_return_3(self):
-        input = """
-        main: function void() {
-            return result+foo(1,2);
-        }"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 202)) 
-    def test_stmt_return_4(self):
-        input = """
-        main: function void() {
-            return ;
-        }"""
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ##test full
-    def test_full_1(self):
-        input = """
-x : integer = 65;
-fact : function integer (n : integer) {
-    if (n == 0) return 1;
-    else return n*fact(n-1);
+#     def test_illegal_string4(self):
+#         self.assertTrue(TestLexer.test("""  "abc123a\\mabc"  ""","""Illegal Escape In String: abc123a\\m""",301))
+#     def test_illegal_string5(self):
+#         self.assertTrue(TestLexer.test("""   123-4"abc123a\\b\\iasVm"  ""","""123,-,4,Illegal Escape In String: abc123a\\b\\i""",302))
+#     def test_illegal_string6(self):
+#         self.assertTrue(TestLexer.test("""  "Hi, this is abc \\h\\n\\t "  ""","""Illegal Escape In String: Hi, this is abc \h""",303))
+#     def test_illegal_string7(self):
+#         self.assertTrue(TestLexer.test(""" "     " " " "" "\\t\\b\\g" ""","""     , ,,Illegal Escape In String: \\t\\b\\g""",304))
+#     def test_illegal_string8(self):
+#         self.assertTrue(TestLexer.test(""" "X=004*0875.E-2\\087.02" ""","""Illegal Escape In String: X=004*0875.E-2\\0""",305))
+#     def test_illegal_string9(self):
+#         self.assertTrue(TestLexer.test(""" "illegal_escape\" ""","""illegal_escape,<EOF>""",306))
+#     def test_illegal_string10(self):
+#         self.assertTrue(TestLexer.test(""" 
+#         "t \ {abcd}\\efg"
+#         ""","Illegal Escape In String: t \ ",101))
+#     def test_operator(self):
+#         self.assertTrue(TestLexer.test("+ - * / ! % || && != == <= >= > < =", "+,-,*,/,!,%,||,&&,!=,==,<=,>=,>,<,=,<EOF>", 101))
+#     def test_operator2(self):
+#         self.assertTrue(TestLexer.test("2*2 + 2^ 1", "2,*,2,+,2,Error Token ^", 101))
+#     def test_operator3(self):
+#         self.assertTrue(TestLexer.test("do {print(a);} while (a & b);", "do,{,print,(,a,),;,},while,(,a,Error Token &", 101))
+#     def test_operator4(self):
+#         self.assertTrue(TestLexer.test("income=income + salary*1.2*rate[1]+month#3;", "income,=,income,+,salary,*,1.2,*,rate,[,1,],+,month,Error Token #", 101))
+#     def test_operator5(self):
+#         self.assertTrue(TestLexer.test("cost = sum((y-h(i))**2)", "cost,=,sum,(,(,y,-,h,(,i,),),*,*,2,),<EOF>", 101))
+#     def test_operator6(self):
+#         self.assertTrue(TestLexer.test("x = (4 + 3i)(2 + 5i).i^2", "x,=,(,4,+,3,i,),(,2,+,5,i,),.,i,Error Token ^", 101))
+#     def test_operator7(self):
+#         self.assertTrue(TestLexer.test("+-*/%*()/*//$#", "+,-,*,/,%,*,(,),/,*,<EOF>", 101))
 
-}
-inc : function void (out n: integer, delta: integer){
-    n = n + delta ;
-
-}
-main : function void () {
-    delta : integer = fact(3);
-    inc(x, delta);
-    printInt(x);
-}""" 
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 202)) 
+#     def test_separators(self):
+#         self.assertTrue(TestLexer.test("(  ) [ ] { } ; ,  =", "(,),[,],{,},;,,,=,<EOF>", 101))
     
-    def test_full_2(self):
-        input = """
-            i : integer ;
-            f : function integer() {
-                return 2000;
-            }
-            main: function void() {
-                main : integer ;
-                main = f();
-                printInteger(main);
-                {
-                    i = readInteger();
-                    main : integer;
-                    f : integer;
-                    main = f = i = 1000;
-                    printAll(i, main, f) ;
-                }
-                return ;
-            }
-        """
-        expect = "Error on line 14 col 29: ="
-        self.assertTrue(TestParser.test(input, expect, 201)) 
-        
+#     def test_full1(self):
+#         self.assertTrue(TestLexer.test("array[1+2,0]=0;","array,[,1,+,2,,,0,],=,0,;,<EOF>",101))
+#     def test_full2(self):
+#         self.assertTrue(TestLexer.test("x,y,z: float = 1.20e10, 7E-2, 3*a","x,,,y,,,z,:,float,=,1.20e10,,,7E-2,,,3,*,a,<EOF>",101))
+#     def test_full3(self):
+#         self.assertTrue(TestLexer.test("20>>3<<4<===>=b","20,>,>,3,<,<,4,<=,==,>=,b,<EOF>",101))
+#     def test_full4(self):
+#         self.assertTrue(TestLexer.test("(2.2+03)||a!==3&a","(,2.2,+,0,3,),||,a,!=,=,3,Error Token &",101))
+#     def test_full5(self):
+#         self.assertTrue(TestLexer.test("super(a[0,0],b*c-d,+3.4e-1+.e-2);","super,(,a,[,0,,,0,],,,b,*,c,-,d,,,+,3.4e-1,+,.e-2,),;,<EOF>",101)) 
+    
+#     def test_float10(self): 
+#         self.assertTrue(TestLexer.test("0.e-11 1.2E-22 0E 00.e .0e1 .0e-1","0.e-11,1.2E-22,0,E,0,0.,e,.0e1,.0e-1,<EOF>",101))   
+#     def test_string_escape2(self):
+#         self.assertTrue(TestLexer.test(""""He asked me: \\"Where is John?\\"" """, """He asked me: \\"Where is John?\\",<EOF>""", 151))
+#     ## He asked me: "Where is John?" lồng string trong string
+#     def test_string_escape3(self):
+#         self.assertTrue(TestLexer.test("""
+#         "This sentence contains new line
+#         "
+#         """, """Unclosed String: This sentence contains new line\n""", 152))
+#     def test_statement1(self):
+#         self.assertTrue(TestLexer.test("a:string =\"Hello, World!\n\"","a,:,string,=,Unclosed String: Hello, World!\n",101))  # xem lại
+#     def test_statement2(self):
+#         self.assertTrue(TestLexer.test("printInteger(123);","printInteger,(,123,),;,<EOF>", 101)) 
+#     def test_statement3(self):
+#         self.assertTrue(TestLexer.test("arr: array[1,2] of integer = {{-1,2}};","arr,:,array,[,1,,,2,],of,integer,=,{,{,-,1,,,2,},},;,<EOF>", 101)) 
+#     def test_statement3(self):
+#         self.assertTrue(TestLexer.test("printInteger(123);","printInteger,(,123,),;,<EOF>", 101)) 
+#     def test_program_1(self):
+#         self.assertTrue(TestLexer.test("""
+# main : function void() {                                      
+#     printString("Hello World");
+#     return ;
+# }
+# """, "main,:,function,void,(,),{,printString,(,Hello World,),;,return,;,},<EOF>",101))
+#     def test_program_2(self):
+#         self.assertTrue(TestLexer.test("""
+# main : function void() {                                       
+# // first block
+# {
+#     // second block
+#     {
+#         // third block
+#         {
+#             // fourth block
+#         }
+#     }
+# }}""", "main,:,function,void,(,),{,{,{,{,},},},},<EOF>",101))
+#     def test_program_3(self):
+#         self.assertTrue(TestLexer.test("""
+# a : integer = 0;
+# main : function void() {                                      
+#     return a;
+# }
+# """, "a,:,integer,=,0,;,main,:,function,void,(,),{,return,a,;,},<EOF>",101))
+#     def test_program_4(self):
+#         self.assertTrue(TestLexer.test("""
+# a : integer = 0;
+# main : function void() {                                      
+#     return a;
+# }
+# """, "a,:,integer,=,0,;,main,:,function,void,(,),{,return,a,;,},<EOF>",101))
+#     def test_program_5(self):
+#         self.assertTrue(TestLexer.test("""
+# {
+# r, s: integer;
+# r = 2.0;
+# a, b: array [5] of integer;
+# s = r * r * myPI;
+# a[0] = s;
+# }
+# """, "{,r,,,s,:,integer,;,r,=,2.0,;,a,,,b,:,array,[,5,],of,integer,;,s,=,r,*,r,*,myPI,;,a,[,0,],=,s,;,},<EOF>",101))
+#     def test_program_6(self):
+#         self.assertTrue(TestLexer.test("""
+# main: function void () {
+#     if (a>b) if (true) printString("TRUE"); else printString("FALSE");
+#     else printInteger(b);
+#     return;
+# }
+# """, "main,:,function,void,(,),{,if,(,a,>,b,),if,(,true,),printString,(,TRUE,),;,else,printString,(,FALSE,),;,else,printInteger,(,b,),;,return,;,},<EOF>",101))
+#     def test_program_7(self):
+#         self.assertTrue(TestLexer.test("""
+# main: function void () {
+#     for (i = n, , i%2) printString("Computer is working...\n");
+# }
+# """, "main,:,function,void,(,),{,for,(,i,=,n,,,,,i,%,2,),printString,(,Unclosed String: Computer is working...\n",101))
+#     def test_program_8(self):
+#         self.assertTrue(TestLexer.test("""
+#             main: function void () {
+#                 do {
+#                     if (a == 10) break;
+#                     a = a - 1; 
+#                     printInteger(a);
+#                 }
+#                 while(a > 0);
+#             }
+# """, "main,:,function,void,(,),{,do,{,if,(,a,==,10,),break,;,a,=,a,-,1,;,printInteger,(,a,),;,},while,(,a,>,0,),;,},<EOF>",101))
+#     def test_program_9(self):
+#         self.assertTrue(TestLexer.test("""
+#             main : function void() {
+#                 a, b : integer = round(123.0e2), randomInt();
+#                 /*
+#                 Calculate sum of 2 numbers a & b
+#                 */
+#                 sum : integer = a + b + arr[0,0];
+#                 print(a, sum);
+#                 return ;
+#             }
+# """, "main,:,function,void,(,),{,a,,,b,:,integer,=,round,(,123.0e2,),,,randomInt,(,),;,sum,:,integer,=,a,+,b,+,arr,[,0,,,0,],;,print,(,a,,,sum,),;,return,;,},<EOF>",101))
+#     def test_program_10(self):
+#         self.assertTrue(TestLexer.test("""
+#             main: function void() {
+#                 a : string = "Hello world"; // string 
+#                 return a::"!";
+#             }  
+# """, "main,:,function,void,(,),{,a,:,string,=,Hello world,;,return,a,::,!,;,},<EOF>",101))
+#     def test_program_11(self):
+#         self.assertTrue(TestLexer.test("""
+#             main : function void() {
+#             foo(2__0 + -x_1, 4.0e-2 / y2);
+#             goo();
+#             return ;
+#         } 
+# """, "main,:,function,void,(,),{,foo,(,20,+,-,x_1,,,4.0e-2,/,y2,),;,goo,(,),;,return,;,},<EOF>",101))
+#     def test_program_12(self):
+#         self.assertTrue(TestLexer.test("""
+#             main: function void () {
+#                 a = 2 + 2%2/2*-2 ;
+#                 b = 1*1--1+1/1 ;
+#                 c = a + b / (2*1.0+1) ;                
+#             }
+# """, "main,:,function,void,(,),{,a,=,2,+,2,%,2,/,2,*,-,2,;,b,=,1,*,1,-,-,1,+,1,/,1,;,c,=,a,+,b,/,(,2,*,1.0,+,1,),;,},<EOF>",101))
+#     def test_program_13(self):
+#         self.assertTrue(TestLexer.test("""
+#             main: function void () {
+#                 a = true ;
+#                 b = !a && false || (false && true || true) ;  
+#                 c = !!b || false ;             
+#             }
+# """, "main,:,function,void,(,),{,a,=,true,;,b,=,!,a,&&,false,||,(,false,&&,true,||,true,),;,c,=,!,!,b,||,false,;,},<EOF>",101))
+#     def test_program_14(self):
+#         self.assertTrue(TestLexer.test("""
+#             True : string = "It's true!" 
+#             false : string = "it's not true..." 
+# """, "True,:,string,=,It's true!,false,:,string,=,it's not true...,<EOF>",101))
+#     def test_integer3(self):
+#         self.assertTrue(TestLexer.test("123 _123 1_23 0123__45_6 __123", "123,_123,123,0,123456,__123,<EOF>", 1002))
+#     def test_integer5(self):
+#         self.assertTrue(TestLexer.test("1_23__456_", "123456,<EOF>", 1003))

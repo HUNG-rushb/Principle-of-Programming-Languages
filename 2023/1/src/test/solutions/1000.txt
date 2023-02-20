@@ -1,1 +1,1 @@
-He said: "He said:"I saw him."",<EOF>
+He said: \"He said:\"I saw him.\"\",<EOF>
