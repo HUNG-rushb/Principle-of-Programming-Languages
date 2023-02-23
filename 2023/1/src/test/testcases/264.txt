@@ -1,10 +1,10 @@
 
-            Class efwerweafdfewC {
-
-
-
-                Var a: Int = funewe44c();
-                Val ergserg: fgergsf = "Hewfwaefllo";
-                Val werqwea,b,c: Int = 0.433539, 1234.03432;
+            main: function void () {
+                i: integer = -10;
+                do{
+                    i = i++;
+                }
+                while (i!=0);
+                return  i;
             }
         

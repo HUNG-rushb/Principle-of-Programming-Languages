@@ -1,7 +1,11 @@
 
-            Class giraffe {
-                giraffe() {
-                    Return New giraffe().giraffe();
-                }
-            }
+        main: function void() {
+            if (a&&B) {
+                if (true) a = a + 1;
+                else continue;
+            } 
+            else if (true) a = a + 1;
+            else continue;
+            return true;
+        }
         

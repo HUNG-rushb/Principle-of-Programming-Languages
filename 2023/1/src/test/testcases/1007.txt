@@ -1,2 +1,2 @@
-"This sentence contains new line
+ "This sentence contains new line
 ." 

@@ -1,1 +1,1 @@
-integer,function,void,<EOF>
+a\b,<EOF>

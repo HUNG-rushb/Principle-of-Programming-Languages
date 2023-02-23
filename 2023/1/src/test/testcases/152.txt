@@ -1,4 +1,1 @@
-
-        "This sentence contains new line
-        "
-        
+{"asd","dawfwa\"","3","4\'"}

@@ -1,7 +1,10 @@
 
-            Class myHippo {
-                cat(hung: Array[Int, 99]) {
-                    Return hung[0]
+            main: function void () {
+                i: integer = -10;
+                do{
+                    i = i - 1;
                 }
+                while (i!=0);
+                return  i;
             }
         

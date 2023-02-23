@@ -1,9 +1,7 @@
 
-            Class Progrdfdafdsfam {
-                msdfaain() {
-                }
-            }
-            Ofsadfdsut.prwefwint(adsfa, b, 3);
-            Out.prinsdfs(a, b, 3);
-            Out.prinsdfat(a, b, 3);
+        main: function void() {
+            for (i = foo(12 * 3), i <= 10 && a || b,  foo(i))
+                if (a == 1) continue;
+                else break;
+        }
         

@@ -1,7 +1,8 @@
 
-            Class Quynh {
-                fsadf(iuiwer884: Float; b3342: Float) {
-                    Return iuiwer884 || b3342 < cwef.refer(afwedew,sdv2) && 23324 + 134235.4;
-                }
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
             }
-            
+            printInteger;
+        }
+        

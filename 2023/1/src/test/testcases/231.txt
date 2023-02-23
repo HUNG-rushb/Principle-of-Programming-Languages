@@ -1,14 +1,8 @@
 
-            Class Dog {
-                Var name: Int;
-
-
-
-                Var age: Int = 2, 6, 4;
-            }
-            Class Program {
-                main() {
-
-                }
-            }
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+            } else {} // empty
+        }
         

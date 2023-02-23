@@ -1,1 +1,1 @@
-Ident,1,id1,<EOF>
+1,A_BC,<EOF>

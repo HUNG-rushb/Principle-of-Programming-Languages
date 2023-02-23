@@ -1,5 +1,7 @@
 
-            Class quynh {
-                Var beRot: Array[Float, -20] = true;
+            main: function void () {
+                delta: string;
+                delta = "abcd"::"298";
+                printBoolean(delta);
             }
         

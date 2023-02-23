@@ -1,1 +1,3 @@
-"Quynhdethuongahihi\nfkkkkkkoekofkw \niwillmarryou";
+main : function void ( ) { 
+            delta : integer = fact (3); inc(x, delta); printint(x);
+            }

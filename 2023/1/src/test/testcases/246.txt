@@ -1,7 +1,8 @@
 
-            Class Madfasdfsadeo: Dsdafasdfog {
-                $gasdfasdfet() {
-                    Self.naasdfdsafme = Doasdfdsafg::nameasdfsdafsa;
+        main: function void() {
+            do {
+                continue;
                 }
-            }
+            while (i != 10 + 12);
+        }
         

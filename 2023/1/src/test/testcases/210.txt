@@ -1,12 +1,1 @@
-
-            Class father {
-                get(){
-
-                }
-            }
-            Class son: father {
-                ok() {
-                    Return super::laugh();
-                }
-            }
-        
+func: function auto ( a: float) {}

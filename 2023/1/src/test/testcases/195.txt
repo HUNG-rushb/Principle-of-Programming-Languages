@@ -1,0 +1,5 @@
+main : function void ( ) { 
+            mat : array[2,3] of integer;
+            mat = create_matrix(2,3);
+            print_matrix(mat);
+        }

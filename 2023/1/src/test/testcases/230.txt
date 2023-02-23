@@ -1,15 +1,9 @@
 
-            Class fwefwefaf {
-                maffwefgergergwain() {
-
-                }
-            }
-            Class fawfadsfd {
-
-
-
-                Destructor(param: Int, param_2: String) {
-
-                }
-            }
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+            } else  
+                c = 1;
+        }
         

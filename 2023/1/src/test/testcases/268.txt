@@ -1,7 +1,13 @@
 
-            Class Metawefeawfehod: Pafwefwafweram {
-                mawfawef() {
-                    awaefaw = Twefaefw::$gew_efweft() + New Xwefafw().Gawefafd() - Awefaw.bwfaf().fwefaw2113432().t___324_();
-                }
+            voidA: function integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(de,);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
             }
         

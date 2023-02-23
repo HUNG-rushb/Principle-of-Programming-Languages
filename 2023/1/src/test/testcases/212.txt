@@ -1,13 +1,10 @@
 
-            Class Shen {
-                $_____twilieye() {
-                    Return false;
+            main: function void () {
+                i: integer = 10;
+                do{
+                    i = i - 1;
                 }
-            }
-
-            Class Program {
-                main_main() {
-                    agfASFFFFFFEERSWQf = (myConst + okokokoko) && (x + y + z);
-                }
+                while (i!=0);
+                return  i;
             }
         

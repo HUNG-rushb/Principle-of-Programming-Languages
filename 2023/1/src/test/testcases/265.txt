@@ -1,12 +1,6 @@
 
-            Class Pwefwefasfrogram {
-                mawefwaefin() {
-                    func_decwew23423___________________lare() {
-
-
-
-                        Return maiwefwen().twfwefqwefqwfxt();
-                    }
-                }
+            main: function void () {
+                delta:= 34e2
+                printFloat(delta);
             }
         

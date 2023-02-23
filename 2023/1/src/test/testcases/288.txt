@@ -1,9 +1,14 @@
 
-            Class fsafdsfawef {
-                Val count: Int = 0;
-
-                fasdvnhnyj() {
-                    Return Self.fwefad + Self.count(_________) - naeefwfme::$turn(_________) * fewfafe.$Age(_________);
+            voidAB: function integer(n: integer,){
+                for (i = n, i >= 0, i - 1) {
+                    if (4*2 > i){
+                        writeInt(i*2);
+                        return;
+                    }
                 }
+            }
+            main: function void () {
+                voidAB(10);
+                printInteger("/ndone");
             }
         

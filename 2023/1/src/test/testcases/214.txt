@@ -1,15 +1,6 @@
 
-            Class testing____testing {
-                Constructor(hungyeuquynh: Array[Float, 9]) {
-                    Self.hung = hungyeuquynh[1];
-                    Self.love = hungyeuquynh[2];
-                    Self.quynh = hungyeuquynh[2][1];
-                    Self.hung = hungyeuquynh[1];
-                    Self.love = hungyeuquynh[2];
-                    Self.quynh = hungyeuquynh[2][1];
-                    Self.hung = hungyeuquynh[1];
-                    Self.love = hungyeuquynh[2];
-                    Self.quynh = hungyeuquynh[2][1];
-                }
+            main: function void () {
+                delta: float = 130.34e2;
+                printFloat(delta);
             }
         

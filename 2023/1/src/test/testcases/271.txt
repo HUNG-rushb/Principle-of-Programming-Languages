@@ -1,12 +1,7 @@
 
-            Class aafefwea___34543faf {
-                mawefawfin() {
-
-                }
-            }
-            Class B {
-                Constructor(aewf32,b324ffw,dagsdfw4223c: Float) {
-                    Return Self.aewew + gbsgdfgb + 564564;
-                }
+            main: function void () {
+                delta: string;
+                delta = "abcd":"298";
+                printBoolean(delta);
             }
         

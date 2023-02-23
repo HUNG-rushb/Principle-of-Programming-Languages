@@ -1,7 +1,7 @@
 
-            Class dqwdqffr {
-                __________453453() {
-                    Return _____________::hufawe::$bafawef::$__________________________________.faw7efhw236182;
-                }
+            main: function void () 
+                s: integer;
+                readInteger(s);
+                printInteger(s);
             }
         

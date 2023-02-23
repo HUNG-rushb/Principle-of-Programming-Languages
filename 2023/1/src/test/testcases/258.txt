@@ -1,5 +1,6 @@
 
-            Class Bqwdasdasdffwqdewf {
-                Var b, c : Int = 1384958670.44857682;
+            main: function void () {
+                delta: float == 3.45;
+                printFloat(delta);
             }
         

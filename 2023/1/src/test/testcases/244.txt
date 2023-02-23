@@ -1,11 +1,6 @@
 
-            Class tfhs {
-                assdwf() {
-                    If (afsadf == fsadfgwwbrtyu) {
-                        Foreach (i In 1 .. sadfwewefsdsadv By saudhuisadf) {
-                            Continue;
-                        }
-                    }
-                }
-            }
+        main: function void() {
+            while (i != 10 + 12)
+                a : integer = 5;
+        }
         

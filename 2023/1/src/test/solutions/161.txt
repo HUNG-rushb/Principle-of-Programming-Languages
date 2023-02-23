@@ -1,1 +1,1 @@
-Unclosed String: Open string 
+a,,,b,:,auto,<EOF>

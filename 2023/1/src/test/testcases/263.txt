@@ -1,7 +1,10 @@
 
-            Class Cdafwe23423onstruc {
-                Destruc________fwef3884___________() {
-                    Dawfewes.DeletefwefwAll();
+            main: function void () {
+                i: integer = 10;
+                do{
+                    i = i - 1;
                 }
+                while (i!=0)
+                return  i;
             }
         

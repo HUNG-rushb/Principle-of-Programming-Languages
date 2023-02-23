@@ -1,8 +1,10 @@
 
-            Class eerrerrert {
-                Var asdafd, bfasdf, cwefwefw: Float = 334, 4234, 54234;
-                $prifwwfwnt() {
-                    Return Array(a,b,c);
-                }
+        main: function void() {
+            for (i = 1, i <= 10 && a || b,  1 + i)
+            {
+                a = a + 1;
+                if (a == 1) continue;
+                else break;
             }
+        }
         

@@ -1,5 +1,10 @@
 
-            Class hungquynh {
-                If (asdfasd <= 34738736)
-            }
+        main: function void() {{{
+                a = a + 1;
+                b = b + 1;
+                {
+                    a = a + 1;
+                }
+                b = b + 1;
+            }}return;}
         

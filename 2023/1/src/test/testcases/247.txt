@@ -1,10 +1,9 @@
 
-
-
-            If (a >= b) {
-                Return Program;
-            }
-            Class Buffadadafalo: Anifr43t54gmals {
-                asd434Doaasgafdfadssa.scofdfapeMethod();
-            }
+        main: function void() {
+            do 
+                {
+                    do{}while(false);
+                }
+            while (i != 10 + 12);
+        }
         

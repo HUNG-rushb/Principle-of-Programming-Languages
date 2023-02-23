@@ -1,11 +1,6 @@
 
-            Class hungyeuquynh {
-                cuoi() {
-                    Foreach (i In 0 .. 999 By pi <= i) {
-                        gf.bf();
-                    }
-
-                    Return true;
-                }
+            main: function void () {
+                delta: integer = 3+34*30/5*16/4*2/2+19%4+2%2;
+                printInteger(delta);
             }
         

@@ -1,9 +1,4 @@
 
-            Class fasdfasdf {
-                Constructor(){Return eeeeeeeeeeeeeeeeeeeeeeee;}
-            }
-            Class dsbisubviweuhfw {
-
-                Return statements;
-            }
+        b : integer = 5;
+        a : integer = b = 6;
         

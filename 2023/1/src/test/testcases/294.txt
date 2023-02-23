@@ -1,13 +1,7 @@
 
-
-            Class qwqwdqwd {
-
-
-                ___________________________________() {
-
-                    awefd = khj::$bin()[0b101011];
-
-                    a = Main[0][1][2][1][2][1][2][1][2][1][2][1][2].get();
-                }
+            main: function void () {
+                s: string;
+                readString(s);
+                printString(s:io:"acd");
             }
         

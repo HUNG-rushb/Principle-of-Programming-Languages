@@ -1,12 +1,5 @@
 
-            Class Program {
-                main(){}
-            }
-
-            Class class1 {
-                Var name: String;
-            }
-            Class class2 {
-                Val $height: Float = 1.75;
-            }
+        x : auto = 0.0;
+        y : auto = true;
+        z : auto = "This is a string";
         

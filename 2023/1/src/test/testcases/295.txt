@@ -1,5 +1,7 @@
 
-            Class myClass {
-                Val a__________________738f738f7hfa: Boolean = Main.a.get(_____________________[__________._________(_____________,_______________)]);
+            main: function void () {
+                s: boolean;
+                readBoolean(s);
+                printBoolean(s && && true || false);
             }
         

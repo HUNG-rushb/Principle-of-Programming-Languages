@@ -1,12 +1,12 @@
 
-            Class ok {
-                $maiereewrwn() {
-
-                }
-            }
-            Class l1l1l1l1l {
-                adfasdfwerw(s1, s2, s3: String) {
-                    Return Str.concat(s13213, s12412, afw1231s3);
-                }
-            }
+        main: function void() {
+            if (a&&B) {
+                if (true) a = a + 1;
+                a = a + 3;
+                /* hello */
+                else continue;
+            } else  // no expr
+                break;
+            return true;
+        }
         

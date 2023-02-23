@@ -1,9 +1,8 @@
 
-            Class fffffffsdfasfwwf {
-                wewgwfwef(awefwfs: Boolean; bwwebhbhds: Float) {
-                    Foreach (iokosofd In 846 .. 240000 By isdfav <= 9999) {
-                        sfsdfum = sudsfgwerm + rraya[isdafhsf];
-                    }
-                }
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(a);
             }
-            
+            printInteger();
+        }
+        

@@ -1,8 +1,6 @@
 
-            Class CuoiLuonNha {
-                Destructor() {
-                    bunbo.Delete().All(0);
-                    love.hung_quynh();
-                }
+            main: function void () {
+                delta: string = "true";
+                printString(delta);
             }
         

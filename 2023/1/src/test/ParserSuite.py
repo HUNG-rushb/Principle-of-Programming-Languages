@@ -1972,3 +1972,5161 @@ class LexerSuite(unittest.TestCase):
 #         self.assertTrue(TestLexer.test("123 _123 1_23 0123__45_6 __123", "123,_123,123,0,123456,__123,<EOF>", 1002))
 #     def test_integer5(self):
 #         self.assertTrue(TestLexer.test("1_23__456_", "123456,<EOF>", 1003))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import unittest
+from TestUtils import TestParser
+
+
+class ParserSuite(unittest.TestCase):
+    # def test_simple_program_1(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 201))
+
+    # def test_simple_program_2(self):
+    #     input = """
+    #     main : function void {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "Error on line 2 col 29: {"
+    #     self.assertTrue(TestParser.test(input, expect, 202))
+
+    # def test_simple_program_3(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 203))
+
+    # def test_simple_program_4(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             printInteger(x)
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 12: }"
+    #     self.assertTrue(TestParser.test(input, expect, 204))
+
+    # def test_simple_program_5(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(a);
+    #         }
+    #         printInteger();
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 205))
+
+    # def test_simple_program_6(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger;
+    #     }
+    #     """
+    #     expect = "Error on line 6 col 24: ;"
+    #     self.assertTrue(TestParser.test(input, expect, 206))
+
+    # def test_simple_program_7(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "Error on line 3 col 29: )"
+    #     self.assertTrue(TestParser.test(input, expect, 207))
+
+    # def test_simple_program_8(self):
+    #     input = """
+    #     main : void() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "Error on line 2 col 15: void"
+    #     self.assertTrue(TestParser.test(input, expect, 208))
+
+    # def test_simple_program_9(self):
+    #     input = """
+    #     main : function() {
+    #         for (i = 1, j < 10, i + 1) {
+    #             writeInt(1);
+    #         }
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "Error on line 2 col 23: ("
+    #     self.assertTrue(TestParser.test(input, expect, 209))
+
+    # def test_simple_program_10(self):
+    #     input = """
+    #     main : function void() {
+    #         for (i = 1, j < 10) {
+    #             writeInt(1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Error on line 3 col 30: )"
+    #     self.assertTrue(TestParser.test(input, expect, 210))
+        
+    # """test if statement"""
+    # def test_if_statement_11(self):
+    #     input = """
+    #     main : function void() {
+    #         if(true){
+    #             for (i = 1, i < 10, i+1) {
+    #                 writeInt(i);
+    #         }
+    #         }else{
+    #             printInteger(0);
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 211))
+        
+    # def test_if_statement_12(self):
+    #     input = """
+    #     main : function void() {
+    #         if(true){
+    #             for (i = 1, i < 10, i+1) {
+    #                 writeInt(i);
+    #         }
+    #         }else{
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 212))
+    # def test_if_statement_13(self):
+    #     input = """
+    #     main : function void() {
+    #         if(true){
+    #             for (i = 1, i < 10, i+1) {
+    #                 writeInt(i);
+    #         }
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 213))
+    # def test_if_statement_14(self):
+    #     input = """
+    #     main : function void() {
+    #         if(true){
+    #         }else{
+    #             printInteger(0);
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 214))
+    # def test_if_statement_15(self):
+    #     input = """
+    #     fact : function integer(n: integer) {
+    #         if(n==0) return 1;
+    #         else return n*fact(n-1);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 215))
+
+    # """test Variable declarations"""
+    # def test_var_declarations_16(self):
+    #     input = """
+    #     delta: integer = 3;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 216))
+    # def test_var_declarations_17(self):
+    #     input = """
+    #     a, b, c: integer = 3, 4, 6;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 217))
+    # def test_var_declarations_18(self):
+    #     input = """
+    #     a, b, c, d: integer = 3, 4, 6;
+    #     """
+    #     expect = "Error on line 2 col 37: ;"
+    #     self.assertTrue(TestParser.test(input, expect, 218))
+    # def test_var_declarations_19(self):
+    #     input = """
+    #     x : array [2, 3] of integer
+    #     """
+    #     expect = "Error on line 3 col 8: <EOF>"
+    #     self.assertTrue(TestParser.test(input, expect, 219))
+    # def test_var_declarations_20(self):
+    #     input = """
+    #     x : array [2, 3] of float;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 220))
+    # def test_var_declarations_21(self):
+    #     input = """
+    #     x : array [2, 3, 4, 5] of integer;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 221))
+    # def test_var_declarations_22(self):
+    #     input = """
+    #     x : auto = 0.0;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 222))
+    # def test_var_declarations_23(self):
+    #     input = """
+    #     x : auto = 0.0;
+    #     y : auto = true;
+    #     z : auto = "This is a string";
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 223))
+    # def test_var_declarations_24(self):
+    #     input = """
+    #     x,y,z,y,t,n : auto = 1,2,3,4,5,6;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 224))
+    # def test_var_declarations_25(self):
+    #     input = """
+    #     x : array [] of integer;
+    #     """
+    #     expect = "Error on line 2 col 19: ]"
+    #     self.assertTrue(TestParser.test(input, expect, 225))
+        
+    # """test expression"""
+    # def test_expression_26(self):
+    #     input = """
+    #     x : integer = 1+2-3*4/5%-6;
+    #     y : boolean = true ! false && true || false;
+    #     z : string = "This is " :: "a string";
+    #     """
+    #     expect = "Error on line 3 col 27: !"
+    #     self.assertTrue(TestParser.test(input, expect, 226))
+    # def test_expression_27(self):
+    #     input = """
+    #     x : boolean = true == false;
+    #     y : boolean = true != false;
+    #     z : boolean = true < false;
+    #     a : boolean = true > false;
+    #     b : boolean = true <= false;
+    #     c : boolean = true >= false;
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 227))
+    # def test_expression_28(self):
+    #     input = """
+    #     fact : function integer(n: integer) {
+    #         if(n==0) return 1;
+    #         else return n*fact(n-1);
+    #     }
+    #     delta : integer = fact(5);
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 228))
+    # def test_expression_29(self):
+    #     input = """
+    #     fact : function integer(n: integer) {
+    #         if(n==0) return 1;
+    #         else return n*fact(n-1);
+    #     }
+    #     delta : integer = fact(5)*fact(4)*fact(3);
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 229))
+    # def test_expression_30(self):
+    #     input = """
+    #     x : integer = a[0, 0];
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 230))
+        
+    # """test assignment statement"""
+    # def test_assignment_statement_31(self):
+    #     input = """
+    #     main: function void () {
+    #         x : integer;
+    #         x = 1 + 2 + 3;
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 231))
+    # def test_assignment_statement_32(self):
+    #     input = """
+    #     x : array [2, 3] of integer; 
+    #     main: function void () {
+    #         x[1, 2] = 1;
+    #         x[0 ,0] = 2;
+    #         x[0 ,3] = 3;
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 232))
+    # def test_assignment_statement_33(self):
+    #     input = """
+    #     x : integer = 1;
+    #     y : integer = 2;
+    #     z : integer;
+    #     main: function void () {
+    #         z = x * y;
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 233))
+    # def test_assignment_statement_34(self):
+    #     input = """
+    #     x,y,z : boolean = true, true, false;
+    #     main: function void () {
+    #         z = x || y && z != x;
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 234))
+    # def test_assignment_statement_35(self):
+    #     input = """
+    #     fact : function integer(n: integer) {
+    #         if(n==0) return 1;
+    #         else return n*fact(n-1);
+    #     }
+    #     main: function void () {
+    #         delta : integer;
+    #         delta = fact(5)*fact(4)*fact(3);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 235))
+    # def test_assignment_statement_36(self):
+    #     input = """
+    #     fact : function integer(n: integer) {
+    #         if(n==0) return 1;
+    #         else return n*fact(n-1);
+    #     }
+    #     main: function void () {
+    #         delta : integer;
+    #         delta =  -fact(5);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 236))
+    # def test_assignment_statement_37(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #     }
+    #     delta = inc(5,1);
+    #     """
+    #     expect = "Error on line 5 col 14: ="
+    #     self.assertTrue(TestParser.test(input, expect, 237))
+    # def test_assignment_statement_38(self):
+    #     input = """
+    #     inc : function integer (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         return n;
+    #     }
+    #     main: function void () {
+    #     delta = inc(5;1);
+    #     }
+    #     """
+    #     expect = "Error on line 7 col 21: ;"
+    #     self.assertTrue(TestParser.test(input, expect, 238))
+    # def test_assignment_statement_39(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #     }
+    #     main: function void() {
+    #         delta = inc(5,1);
+    #         inc(x, delta);
+    #         printInteger(x);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 239))
+    # def test_assignment_statement_40(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #     }
+    #     delta : integer == inc(5,1);
+    #     """
+    #     expect = "Error on line 5 col 24: =="
+    #     self.assertTrue(TestParser.test(input, expect, 240))
+    
+    # """test for statement"""
+    # def test_for_statement_41(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i < 10, i+1){
+    #             writeInt(i);
+    #         } 
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 241))
+    # def test_for_statement_42(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i < 10){
+    #             writeInt(i);
+    #         } 
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 29: )"
+    #     self.assertTrue(TestParser.test(input, expect, 242))
+    # def test_for_statement_43(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i+1){
+    #             writeInt(i);
+    #         } 
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 26: )"
+    #     self.assertTrue(TestParser.test(input, expect, 243))
+    # def test_for_statement_44(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for( i < 10, i+1){
+    #             writeInt(i);
+    #         } 
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 19: <"
+    #     self.assertTrue(TestParser.test(input, expect, 244))
+    # def test_for_statement_45(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i < n, i+1){
+    #         } 
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 245))
+    # def test_for_statement_46(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i < n, i+1) writeInt(i);
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 246))
+    # def test_for_statement_47(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         i : integer;
+    #         for(i = 1, i < n, i+1){
+    #             delta : integer = 0;
+    #             writeInt(i+delta);
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 247))
+    # def test_for_statement_48(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         for(){
+                
+    #         }
+    #     }
+    #     """
+    #     expect = "Error on line 3 col 16: )"
+    #     self.assertTrue(TestParser.test(input, expect, 248))
+    # def test_for_statement_49(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         for(i = 1, i < n, i+1){
+    #             return 0;
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 249))
+    # def test_for_statement_50(self):
+    #     input = """
+    #     inc : function void (out n : integer, delta : integer){
+    #         n = n + delta;
+    #         for(i = 1, i < n, i+1){
+    #             return 0;
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 250))
+        
+    # """test error"""
+    # def test_error_81(self):
+    #     input = """
+    #     main: function void () {
+    #         x : integer;
+    #         x = 1 + 2 + 3;
+    #     }
+    #     return 1;
+    #     """
+    #     expect = "Error on line 6 col 8: return"
+    #     self.assertTrue(TestParser.test(input, expect, 281))
+    # def test_error_82(self):
+    #     input = """
+    #     main: function void () {
+    #         x : integer = 1;
+    #         if (x == 1) {
+    #             return true;
+    #         }
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 282))
+    # def test_error_83(self):
+    #     input = """
+    #     main: function void () {
+    #         x : integer = 1;
+    #         if (x == 1) {
+    #             break;
+    #             return true;
+    #         }
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 16: break"
+    #     self.assertTrue(TestParser.test(input, expect, 283))
+    # def test_error_84(self):
+    #     input = """
+    #     main: function void () {
+    #         x : integer = 1;
+    #         if (x == 1) {
+    #             continue;
+    #         }
+    #     }
+    #     """
+    #     expect = "Error on line 5 col 16: continue"
+    #     self.assertTrue(TestParser.test(input, expect, 284))
+    # def test_error_85(self):
+    #     input = """
+    #     main: function void () {
+            
+    #     }
+    #     """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 285))
+    # def test_error_86(self):
+    #     input = """
+    #     main: function void () {
+            
+    #     }
+    #     return 1;
+    #     """
+    #     expect = "Error on line 5 col 8: return"
+    #     self.assertTrue(TestParser.test(input, expect, 286))
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+#     def test_simple_program(self):
+#         input = """main: function void() {}"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 200))
+#     def test_simple_program2(self):
+#         input = """main: function integer() {}"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_simple_program3(self):
+#         input = """toString: function string(n: integer) {}"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 202))
+    
+#     def test_simple_program4(self):
+#         input = """Foo121: function string( out a : integer, b: string) {}"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 203))
+    
+#     def test_null_program(self):
+#         input = """ """
+#         expect = "Error on line 1 col 1: <EOF>"
+#         self.assertTrue(TestParser.test(input, expect, 204))
+        
+#     #  test simple error of function declaration
+#     def test_wrong_miss_close1(self):
+#         input = """func: function void ( {}"""
+#         expect = "Error on line 1 col 22: {"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     # def test_wrong_miss_close2(self):
+#         input = """func: function int() }"""
+#         expect = "Error on line 1 col 21: }"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_wrong_miss_functype(self):
+#         input = """func: function auto ( a: float) {}"""
+#         expect = "Error on line 1 col 15: auto"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_wrong_funcname(self):
+#         input = """2string: function string (n : integer) {}"""
+#         expect = "Error on line 1 col 0: 2"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_simple_program5(self):
+#         input = """
+#         inc : function integer (_n:integer) {}
+#         delta : function float (out a:string) {}
+#         main: function void() {}
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_simple_program5(self):
+#         input = """
+#         inc : function integer (_n:integer) {}
+#         delta : function float (out a:string) {}
+#         main: function void() {}
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_simple_program6(self):
+#         input = """
+#         multiply : function integer (a:integer, b: integer) {}
+#         main: function void() {}
+#         """
+#         expect = "Error on line 2 col 28: integer"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_simple_program7(self):
+#         input = """
+#         _Square_Area  : function float (r: float) inherit Rectangle_Area {}
+#         main: function void() {}
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     ## test vardecl
+#     def test_vardecl_(self):
+#         input = """x : integer = 65 ;"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_vardecl_2(self):
+#         input = """x,y,z : integer = 65, 12, 30;"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_vardecl_3(self):
+#         input = """x,y,z : integer = 65, 12, 30, 40;"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_vardecl_4(self):
+#         input = """True : string = "It's true!" 
+#         false : string = "it's not true..." """ 
+#         expect = "Error on line 2 col 8: false"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_vardecl_5(self):
+#         input = """x , y : boolean = true , false ;
+#                     a1, a2 : integer = b1, b2 ;""" 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_vardecl_4(self):
+#         input = """a, b, c, d: auto = 3, 4, 6;""" 
+#         expect = "Error on line 1 col 29: ;"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     # undone
+    
+    
+    
+#     # expression
+#     def test_expr_1(self):
+#         input = """a, b, c, a1: integer = 0;
+#             main: function void () {
+#                 a1 : integer = a + 1 ;
+#                 b = a + a1;
+#                 c = b-a-10;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_2(self):
+#         input = """main: function void () {
+#                 b = a + a1;
+#                 c = b*a/2.0;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_3(self):
+#         input = """
+#             round : function int(n: float, i: integer){}
+#             main: function void () {
+#                 a : integer = round(1.23-1.496, b) ;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_4(self):
+#         input = """
+#             main: function void () {
+#                 a = 2 + 2%2/2*-2 ;
+#                 b = 1*1--1+1/1 ;
+#                 c = a + b / (2*1.0+1) ;                
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_5(self):
+#         input = """
+#             main: function void () {
+#                 a = true ;
+#                 b = !a && false || (false && true || true) ;  
+#                 c = !!b || false ;             
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_6(self):
+#         input = """
+#             main: function void () {
+#                 a = b&& c || () ;             
+#             } """ 
+#         expect = "Error on line 3 col 30: )"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_7(self):
+#         input = """
+#             main: function void () {
+#                 a = b&& c || ;             
+#             } """ 
+#         expect = "Error on line 3 col 29: ;"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_8(self):
+#         input = """
+#             main: function void () {
+#                 a1, a2 : string = "Hello ", "World!" ;
+#                 a = a1 :: a2 ;            
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_9(self):
+#         input = """
+#             main: function void () {
+#                 str : string = "My name ";
+#                 str = str :: "is" :: "Hoa" ;            
+#             } """ 
+#         expect = "Error on line 4 col 34: ::"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_5(self):
+#         input = """
+#             main: function void () {
+#                 a : boolean ;
+#                 a = (3 > 2 ) || (7/2 <= 4+3) && !(1.0e1+1 >= 0) ;     
+#                 b = 1!= 2 || 0==0.1 ;
+#             } """ 
+#         expect = "Error on line 5 col 30: =="
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_expr_6(self):
+#         input = """
+#             main: function void () {
+#                 b = 1!= 2 || (0==0.1) ;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     #-test array type
+#     def test_array_1(self):
+#         input = """
+#             arr : array [2,3] of integer;
+#             arr_b : array[5] of boolean = {true, true, false, false, true};
+#         """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_array_2(self):
+#         input = """
+#             value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+#             S : array[0] of string = {};
+#         """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     # def test_array_3(self):
+#     #     input = """
+#     #             printArr: function void(arr:array[0] of string) { return ;}
+#     #             myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;
+#     #             main : function void(){
+#     #                 printAll(myPets);
+#     #             }
+#     #         """ 
+#     #     expect = "successful"
+#     #     self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_array_4(self):
+#         input = """
+#                 myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;
+#                 main : function void(){
+#                     myPets [1+1] = myPets [arr[0, nArr[a,c]]-1];
+#                     myPets[last] = "";
+#                     printAll(myPets) ;
+#                 }
+#             """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+    
+    
+#     ## statement
+#     def test_stmt_assign_1(self):
+#         input = """main: function void () {
+#                 r : float = 3.0e4;
+#                 r = 3.01e4 ;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_stmt_assign_2(self):
+#         input = """
+#             r : float = 3.0e4;
+#             r = 3.01e4 ;
+#             """ 
+#         expect = "Error on line 3 col 14: ="
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_assign_3(self):
+#         input = """pi : float = 3.14;
+#             main: function void () {
+#                 area = 123 ;
+#                 length, width = 3.0, 2;
+#             } """ 
+#         expect = "Error on line 4 col 22: ,"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_assign_4(self):
+#         input = """
+#             main: function void () {
+#                 area = 123 ;
+#                 length = 3.0, 2;
+#             } """ 
+#         expect = "Error on line 4 col 28: ,"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_assign_4(self):
+#         input = """
+#             main: function void () {
+#                 area = 123 ;
+#                 length = 3.0, 2;
+#             } """ 
+#         expect = "Error on line 4 col 28: ,"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_stmt_if_1(self):
+#         input = """main: function void () {
+#                 if (a>b) printInteger(a);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_if_2(self):
+#         input = """main: function void () {
+#                 if (a>b) printInteger(a);
+#                 else printInteger(b);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_if_3(self):
+#         input = """main: function void () {
+#                 if (a>b) 
+#                 {
+#                     temp : integer = a;
+#                     a = b;
+#                     b = temp ;
+#                 }
+#                 else printInteger(b);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_if_3(self):
+#         input = """main: function void () {
+#                 if (a>b) 
+#                 else printInteger(b);
+#             } """ 
+#         expect = "Error on line 3 col 16: else"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_if_4(self):
+#         input = """main: function void () {
+#                 if (a>b) printInteger(b)
+                
+#             } """ 
+#         expect = "Error on line 4 col 12: }"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_if_5(self):
+#         input = """main: function void () {
+#                 if (a>b) if (true) printString("TRUE"); else printString("FALSE");
+#                 else printInteger(b);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))        
+#     def test_stmt_if_6(self):
+#         input = """main: function void () {
+#                 if (a>b) {
+#                     if (true) printString("TRUE"); 
+#                 }
+#                 else if (a <= 0) printBoolean(value);
+#                 else a = -a;
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+    
+#     def test_stmt_for_1(self):
+#         input = """main: function void () {
+#                 for (i = 1, i <10, i+1) {
+#                     printInteger(i);
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_for_2(self):
+#         input = """main: function void () {
+#                 for (i = 100, i > 2, i/2) {
+#                     printFloat(1.0e2);
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_3(self):
+#         input = """main: function void () {
+#                 for (i = n-1, i > 0, i-1) {
+#                     r : float = a[i] ;                    
+#                     s = r * r * myPI;
+#                     printFloat(s);
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_4(self):
+#         input = """main: function void () {
+#                 for (i = n, i != 0, i%2) ;
+#             } """ 
+#         expect = "Error on line 2 col 41: ;"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_5(self):
+#         input = """main: function void () {
+#                 for (i = n, i != 0, i%2) printString("Computer is working...");
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_6(self):
+#         input = """main: function void () {
+#                 for ( i != 0, i%2) printString("Computer is working...");
+#             } """ 
+#         expect = "Error on line 2 col 24: !="
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_7(self):
+#         input = """main: function void () {
+#                 for (i = n, , i%2) printString("Computer is working...");
+#             } """ 
+#         expect = "Error on line 2 col 28: ,"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_8(self):
+#         input = """main: function void () {
+#                 for (i = n, i != 0, ) printString("Computer is working...");
+#             } """ 
+#         expect = "Error on line 2 col 36: )"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_for_9(self):
+#         input = """main: function void () {
+#                 for (i = n, i != 0, i%2) 
+#                     a : integer = 0 ;
+#                     for(j = 0, i < 100, j+a) {
+#                         a = a + n ;    
+#                     }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+    
+#     def test_stmt_while_1(self):
+#         input = """main: function void () {
+#                 while (false) {
+#                     s = add(2,3,4,5);
+#                     print(s);
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_2(self):
+#         input = """main: function void () {
+#                 while (a > 0 || (b -c < 1)) {
+#                     printString("printing...");
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_3(self):
+#         input = """main: function void () {
+#                 while () {
+#                     printString("printing...");
+#                 }
+#             } """ 
+#         expect = "Error on line 2 col 23: )"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_4(self):
+#         input = """main: function void () {
+#                 while (false) {
+#                 }
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_5(self):
+#         input = """main: function void () {
+#                 do {
+#                     a = a - 1; 
+#                     printInteger(a);
+#                 }
+#                 while(a > 0);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_6(self):
+#         input = """main: function void () {
+#                 do a = a - 1; 
+#                 while(a > 0);
+#             } """ 
+#         expect = "Error on line 2 col 19: a"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_7(self):
+#         input = """main: function void () {
+#                 do {
+#                     if (a == 10) break;
+#                     a = a - 1; 
+#                     printInteger(a);
+#                 }
+#                 while(a > 0);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+#     def test_stmt_while_7(self):
+#         input = """main: function void () {
+#                 do {
+#                     if (a == 10) continue;
+#                     a = a - 1; 
+#                     printInteger(a);
+#                 }
+#                 while(a > 0);
+#             } """ 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+    
+#     # def test_stmt_break(self):          ### lỗi must reside in a loop 
+#     #     input = """
+#     #     main : function void() {
+#     #         break;
+#     #         return ;
+#     #     }
+#     #     """
+#     #     expect = "successful"
+#     #     self.assertTrue(TestParser.test(input, expect, 201))
+#     # def test_stmt_continue(self):          ### lỗi must reside in a loop 
+#     #     input = """
+#     #     main : function void() {
+#     #         continue;
+#     #         return ;
+#     #     }
+#     #     """
+#     #     expect = "successful"
+#     #     self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_call_1(self):           
+#         input = """
+#         main : function void() {
+#             foo(2 + x, 4.0 / y);
+#             goo();
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_call_2(self):           
+#         input = """
+#         main : function void() {
+#             a, b : integer = round(123.0e2), randomInt();
+#             sum : integer = a + b + arr[0,0];
+#             print(a, sum);
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_block_1(self):           
+#         input = """
+#         main : function void() {
+#             {
+#                 r, s: integer;
+#                 r = 2.0;
+#                 a, b: array [5] of integer;
+#                 s = r * r * myPI;
+#                 a[0] = s;
+#             }
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_block_1(self):           
+#         input = """
+#         main : function void() {
+#             {
+#                 {
+                    
+#                 }
+#                 if (a == 0) printBoolean(b);
+#             }
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_block_2(self):           
+#         input = """
+#         main : function void() {
+#             {
+#                 {
+                    
+#                 }
+#                 if (a == 0) printBoolean(b);
+#             }
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))
+#     def test_stmt_block_3(self):           
+#         input = """
+#         main : function void() {
+#             {
+#                 a : integer = 5;
+#                 b = a* 2_0 -3 ;
+#                 for (i = b, i > 1 , i-1)
+#                 print(Array[0, i]);
+#             }
+#             return ;
+#         }
+#         """
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201))    
+#     def test_stmt_return_1(self):
+#         input = """
+#         main: function void() {
+#             a : string = "Hello world";
+#             return a::"!";
+#         }"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 202)) 
+#     def test_stmt_return_2(self):
+#         input = """
+#         main: function void() {
+#             return a[2,2]*1-b[0]/c;
+#         }"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 202)) 
+#     def test_stmt_return_3(self):
+#         input = """
+#         main: function void() {
+#             return result+foo(1,2);
+#         }"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 202)) 
+#     def test_stmt_return_4(self):
+#         input = """
+#         main: function void() {
+#             return ;
+#         }"""
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#     ##test full
+#     def test_full_1(self):
+#         input = """
+# x : integer = 65;
+# fact : function integer (n : integer) {
+#     if (n == 0) return 1;
+#     else return n*fact(n-1);
+
+# }
+# inc : function void (out n: integer, delta: integer){
+#     n = n + delta ;
+
+# }
+# main : function void () {
+#     delta : integer = fact(3);
+#     inc(x, delta);
+#     printInt(x);
+# }""" 
+#         expect = "successful"
+#         self.assertTrue(TestParser.test(input, expect, 202)) 
+    
+#     def test_full_2(self):
+#         input = """
+#             i : integer ;
+#             f : function integer() {
+#                 return 2000;
+#             }
+#             main: function void() {
+#                 main : integer ;
+#                 main = f();
+#                 printInteger(main);
+#                 {
+#                     i = readInteger();
+#                     main : integer;
+#                     f : integer;
+#                     main = f = i = 1000;
+#                     printAll(i, main, f) ;
+#                 }
+#                 return ;
+#             }
+#         """
+#         expect = "Error on line 14 col 29: ="
+#         self.assertTrue(TestParser.test(input, expect, 201)) 
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def test_simple_program_1(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+
+    def test_simple_program_2(self):
+        input = """
+        main : function void {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 2 col 29: {"
+        self.assertTrue(TestParser.test(input, expect, 202))
+
+    def test_simple_program_3(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+            }
+            printInteger(x);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 203))
+
+    def test_simple_program_4(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                printInteger(x)
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 5 col 12: }"
+        self.assertTrue(TestParser.test(input, expect, 204))
+
+    def test_simple_program_5(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(a);
+            }
+            printInteger();
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 205))
+
+    def test_simple_program_6(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger;
+        }
+        """
+        expect = "Error on line 6 col 24: ;"
+        self.assertTrue(TestParser.test(input, expect, 206))
+
+    def test_simple_program_7(self):
+        input = """
+        main : function void() {
+            for (i = 1, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 3 col 29: )"
+        self.assertTrue(TestParser.test(input, expect, 207))
+
+    def test_simple_program_8(self):
+        input = """
+        main : void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 2 col 15: void"
+        self.assertTrue(TestParser.test(input, expect, 208))
+
+    def test_simple_program_9(self):
+        input = """
+        main : function() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 2 col 23: ("
+        self.assertTrue(TestParser.test(input, expect, 209))
+
+    def test_simple_program_10(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10) {
+                writeInt(1);
+            }
+        }
+        """
+        expect = "Error on line 3 col 30: )"
+        self.assertTrue(TestParser.test(input, expect, 210))
+        
+    """test if statement"""
+    def test_if_statement_11(self):
+        input = """
+        main : function void() {
+            if(true){
+                for (i = 1, i < 10, i+1) {
+                    writeInt(i);
+            }
+            }else{
+                printInteger(0);
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 211))
+        
+    def test_if_statement_12(self):
+        input = """
+        main : function void() {
+            if(true){
+                for (i = 1, i < 10, i+1) {
+                    writeInt(i);
+            }
+            }else{
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 212))
+    def test_if_statement_13(self):
+        input = """
+        main : function void() {
+            if(true){
+                for (i = 1, i < 10, i+1) {
+                    writeInt(i);
+            }
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 213))
+    def test_if_statement_14(self):
+        input = """
+        main : function void() {
+            if(true){
+            }else{
+                printInteger(0);
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 214))
+    def test_if_statement_15(self):
+        input = """
+        fact : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*fact(n-1);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+
+    """test Variable declarations"""
+    def test_var_declarations_16(self):
+        input = """
+        delta: integer = 3;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 216))
+    def test_var_declarations_17(self):
+        input = """
+        a, b, c: integer = 3, 4, 6;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 217))
+    def test_var_declarations_18(self):
+        input = """
+        a, b, c, d: integer = 3, 4, 6;
+        """
+        expect = "Error on line 2 col 37: ;"
+        self.assertTrue(TestParser.test(input, expect, 218))
+    def test_simple_program_8(self):
+        input = """
+        main : void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        """
+        expect = "Error on line 2 col 15: void"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    
+    
+    
+    def test_var_declarations_19(self):
+        input = """
+        x : array [2, 3] of integer
+        """
+        expect = "Error on line 3 col 8: <EOF>"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    
+    
+    def test_var_declarations_20(self):
+        input = """
+        x : array [2, 3] of float;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 220))
+    def test_var_declarations_21(self):
+        input = """
+        x : array [2, 3, 4, 5] of integer;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 221))
+    def test_var_declarations_22(self):
+        input = """
+        x : auto = 0.0;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 222))
+    def test_var_declarations_23(self):
+        input = """
+        x : auto = 0.0;
+        y : auto = true;
+        z : auto = "This is a string";
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 223))
+    def test_var_declarations_24(self):
+        input = """
+        x,y,z,y,t,n : auto = 1,2,3,4,5,6;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 224))
+    def test_var_declarations_25(self):
+        input = """
+        x : array [] of integer;
+        """
+        expect = "Error on line 2 col 19: ]"
+        self.assertTrue(TestParser.test(input, expect, 225))
+        
+    """test expression"""
+    def test_expression_26(self):
+        input = """
+        x : integer = 1+2-3*4/5%-6;
+        y : boolean = true ! false && true || false;
+        z : string = "This is " :: "a string";
+        """
+        expect = "Error on line 3 col 27: !"
+        self.assertTrue(TestParser.test(input, expect, 226))
+    
+
+    def test_expression_27(self):
+        input = """
+        x : boolean = true == false;
+        y : boolean = true != false;
+        z : boolean = true < false;
+        a : boolean = true > false;
+        b : boolean = true <= false;
+        c : boolean = true >= false;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 227))
+    def test_expression_28(self):
+        input = """
+        fact : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*fact(n-1);
+        }
+        delta : integer = fact(5);
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 228))
+    def test_expression_29(self):
+        input = """
+        fact : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*fact(n-1);
+        }
+        delta : integer = fact(5)*fact(4)*fact(3);
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 229))
+    def test_expression_30(self):
+        input = """
+        x : integer = a[0, 0];
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 230))
+        
+    """test assignment statement"""
+    def test_assignment_statement_31(self):
+        input = """
+        main: function void () {
+            x : integer;
+            x = 1 + 2 + 3;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 231))
+    def test_assignment_statement_32(self):
+        input = """
+        x : array [2, 3] of integer; 
+        main: function void () {
+            x[1, 2] = 1;
+            x[0 ,0] = 2;
+            x[0 ,3] = 3;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 232))
+    def test_assignment_statement_33(self):
+        input = """
+        x : integer = 1;
+        y : integer = 2;
+        z : integer;
+        main: function void () {
+            z = x * y;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 233))
+   
+    def test_error_83(self):
+        input = """
+        main: function void () {
+            x : integer = 1;
+            if (x == 1) {
+                break;
+                return true;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 2100))
+
+    def test_error_84(self):
+        input = """
+        main: function void () {
+            x : integer = 1;
+            if (x == 1) {
+                continue;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 2101))
+   
+   
+    def test_assignment_statement_34(self):
+        input = """
+        x,y,z : boolean = true, true, false;
+        main: function void () {
+            z = x || y && z != x;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 234))
+    def test_assignment_statement_35(self):
+        input = """
+        fact : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*fact(n-1);
+        }
+        main: function void () {
+            delta : integer;
+            delta = fact(5)*fact(4)*fact(3);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 235))
+    def test_assignment_statement_36(self):
+        input = """
+        fact : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*fact(n-1);
+        }
+        main: function void () {
+            delta : integer;
+            delta =  -fact(5);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 236))
+    def test_assignment_statement_37(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+        }
+        delta = inc(5,1);
+        """
+        expect = "Error on line 5 col 14: ="
+        self.assertTrue(TestParser.test(input, expect, 237))
+    def test_assignment_statement_38(self):
+        input = """
+        inc : function integer (out n : integer, delta : integer){
+            n = n + delta;
+            return n;
+        }
+        main: function void () {
+        delta = inc(5;1);
+        }
+        """
+        expect = "Error on line 7 col 21: ;"
+        self.assertTrue(TestParser.test(input, expect, 238))
+    def test_assignment_statement_39(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+        }
+        main: function void() {
+            delta = inc(5,1);
+            inc(x, delta);
+            printInteger(x);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 239))
+    def test_assignment_statement_40(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+        }
+        delta : integer == inc(5,1);
+        """
+        expect = "Error on line 5 col 24: =="
+        self.assertTrue(TestParser.test(input, expect, 240))
+    
+    """test for statement"""
+    def test_for_statement_41(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i < 10, i+1){
+                writeInt(i);
+            } 
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 241))
+    def test_for_statement_42(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i < 10){
+                writeInt(i);
+            } 
+        }
+        """
+        expect = "Error on line 5 col 29: )"
+        self.assertTrue(TestParser.test(input, expect, 242))
+    def test_for_statement_43(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i+1){
+                writeInt(i);
+            } 
+        }
+        """
+        expect = "Error on line 5 col 26: )"
+        self.assertTrue(TestParser.test(input, expect, 243))
+    def test_for_statement_44(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for( i < 10, i+1){
+                writeInt(i);
+            } 
+        }
+        """
+        expect = "Error on line 5 col 19: <"
+        self.assertTrue(TestParser.test(input, expect, 244))
+    def test_for_statement_45(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i < n, i+1){
+            } 
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 245))
+    def test_for_statement_46(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i < n, i+1) writeInt(i);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 246))
+    def test_for_statement_47(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            i : integer;
+            for(i = 1, i < n, i+1){
+                delta : integer = 0;
+                writeInt(i+delta);
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 247))
+    def test_for_statement_48(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            for(){
+                
+            }
+        }
+        """
+        expect = "Error on line 3 col 16: )"
+        self.assertTrue(TestParser.test(input, expect, 248))
+    def test_for_statement_49(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            for(i = 1, i < n, i+1){
+                return 0;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 249))
+    def test_for_statement_50(self):
+        input = """
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+            for(i = 1, i < n, i+1){
+                return 0;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 250))
+        
+    """test error"""
+    def test_error_81(self):
+        input = """
+        main: function void () {
+            x : integer;
+            x = 1 + 2 + 3;
+        }
+        return 1;
+        """
+        expect = "Error on line 6 col 8: return"
+        self.assertTrue(TestParser.test(input, expect, 281))
+    def test_error_82(self):
+        input = """
+        main: function void () {
+            x : integer = 1;
+            if (x == 1) {
+                return true;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 282))
+    def test_error_83(self):
+        input = """
+        main: function void () {
+            x : integer = 1;
+            if (x == 1) {
+                break;
+                return true;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 283))
+    def test_error_84(self):
+        input = """
+        main: function void () {
+            x : integer = 1;
+            if (x == 1) {
+                continue;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 284))
+    def test_error_85(self):
+        input = """
+        main: function void () {
+            
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 285))
+    def test_error_86(self):
+        input = """
+        main: function void () {
+            
+        }
+        return 1;
+        """
+        expect = "Error on line 5 col 8: return"
+        self.assertTrue(TestParser.test(input, expect, 286))
+    
+    def test_simple_program(self):
+        input = """main: function void() {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 203))
+    def test_simple_program2(self):
+        input = """main: function void() {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    
+    def test_simple_program3(self):
+        input = """toString: function string(n: integer) {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_simple_program4(self):
+        input = """Foo121: function string( out a : integer, b: string) {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_null_program(self):
+        input = """ """
+        expect = "Error on line 1 col 1: <EOF>"
+        self.assertTrue(TestParser.test(input, expect, 201))
+        
+    #  test simple error of function declaration
+    def test_wrong_miss_close1(self):
+        input = """func: function void ( {}"""
+        expect = "Error on line 1 col 22: {"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_wrong_miss_close2(self):
+        input = """func: function int() }"""
+        expect = "Error on line 1 col 15: int"
+        self.assertTrue(TestParser.test(input, expect, 210))
+        
+    def test_wrong_miss_functype(self):
+        input = """func: function auto ( a: float) {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_wrong_funcname(self):
+        input = """2string: function string (n : integer) {}"""
+        expect = "Error on line 1 col 0: 2"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_simple_program5(self):
+        input = """
+        inc : function integer (_n:integer) {}
+        delta : function float (out a:string) {}
+        main: function void() {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_simple_program5(self):
+        input = """
+        inc : function integer (_n:integer) {}
+        delta : function float (out a:string) {}
+        main: function void() {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_simple_program6(self):
+        input = """
+        multiply : function integer (a:integer, b: integer) {}
+        main: function void() {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_simple_program7(self):
+        input = """
+        _Square_Area  : function float (r: float) inherit Rectangle_Area {}
+        main: function void() {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 2012))
+
+
+    ## test vardecl
+    def test_vardecl_(self):
+        input = """x : integer = 65 ;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_vardecl_2(self):
+        input = """x,y,z : integer = 65, 12, 30;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_vardecl_3(self):
+        input = """x,y,z : integer = 65, 12, 30, 40;"""
+        expect = "Error on line 1 col 28: ,"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_vardecl_4(self):
+        input = """True : string = "It's true!" 
+        false : string = "it's not true..." """ 
+        expect = "Error on line 2 col 8: false"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_vardecl_5(self):
+        input = """x , y : boolean = true , false ;
+                    a1, a2 : integer = b1, b2 ;""" 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_vardecl_4(self):
+        input = """a, b, c, d: auto = 3, 4, 6;""" 
+        expect = "Error on line 1 col 26: ;"
+        self.assertTrue(TestParser.test(input, expect, 210))
+
+    
+    ## expression
+    def test_expr_1(self):
+        input = """a, b, c, a1: integer = 0;
+            main: function void () {
+                a1 : integer = a + 1 ;
+                b = a + a1;
+                c = b-a-10;
+            } """ 
+        expect = "Error on line 1 col 24: ;"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_expr_2(self):
+        input = """main: function void () {
+                b = a + a1;
+                c = b*a/2.0;
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_3(self):
+        input = """
+            round : function integer(n: float, i: integer){}
+            main: function void () {
+                a : integer = round(1.23-1.496, b) ;
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_4(self):
+        input = """
+            main: function void () {
+                a = 2 + 2%2/2*-2 ;
+                b = 1*1--1+1/1 ;
+                c = a + b / (2*1.0+1) ;                
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_5(self):
+        input = """
+            main: function void () {
+                a = true ;
+                b = !a && false || (false && true || true) ;  
+                c = !!b || false ;             
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_6(self):
+        input = """
+            main: function void () {
+                a = b&& c || () ;             
+            } """ 
+        expect = "Error on line 3 col 30: )"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_7(self):
+        input = """
+            main: function void () {
+                a = b&& c || ;             
+            } """ 
+        expect = "Error on line 3 col 29: ;"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_8(self):
+        input = """
+            main: function void () {
+                a1, a2 : string = "Hello ", "World!" ;
+                a = a1 :: a2 ;            
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_9(self):
+        input = """
+            main: function void () {
+                str : string = "My name ";
+                str = str :: "is" :: "Hoa" ;            
+            } """ 
+        expect = "Error on line 4 col 34: ::"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_5(self):
+        input = """
+            main: function void () {
+                a : boolean ;
+                a = (3 > 2 ) || (7/2 <= 4+3) && !(1.0e1+1 >= 0) ;     
+                b = 1!= 2 || 0==0.1 ;
+            } """ 
+        expect = "Error on line 5 col 30: =="
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_expr_6(self):
+        input = """
+            main: function void () {
+                b = 1!= 2 || (0==0.1) ;
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    
+    
+    
+    
+    
+    #-test array type
+    def test_array_1(self):
+        input = """
+            arr : array [2,3] of integer;
+            arr_b : array[5] of boolean ;
+        """ 
+        expect = "successful"
+        
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_array_2(self):
+        input = """
+            value : array[2,3] of float;
+            S : array[0] of string;
+        """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_array_3(self):
+        input = """
+                printArr: function void(arr:array[0] of string) { return ;}
+                myPets : array[5] of string;
+                main : function void(){
+                    printAll(myPets);
+                }
+            """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_array_4(self):
+        input = """
+                myPets : array[5] of string ;
+                main : function void(){
+                    myPets [1+1] = myPets [arr[0, nArr[a,c]]-1];
+                    myPets[last] = "";
+                    printAll(myPets) ;
+                }
+            """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    
+    
+    
+    ## statement
+    def test_stmt_assign_1(self):
+        input = """main: function void () {
+                r : float = 3.0e4;
+                r = 3.01e4 ;
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_stmt_assign_2(self):
+        input = """
+            r : float = 3.0e4;
+            r = 3.01e4 ;
+            """ 
+        expect = "Error on line 3 col 14: ="
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_assign_3(self):
+        input = """pi : float = 3.14;
+            main: function void () {
+                area = 123 ;
+                length, width = 3.0, 2;
+            } """ 
+        expect = "Error on line 4 col 30: ="
+        self.assertTrue(TestParser.test(input, expect, 210))
+        
+    def test_stmt_assign_4(self):
+        input = """
+            main: function void () {
+                area = 123 ;
+                length = 3.0, 2;
+            } """ 
+        expect = "Error on line 4 col 28: ,"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_assign_4(self):
+        input = """
+            main: function void () {
+                area = 123 ;
+                length = 3.0, 2;
+            } """ 
+        expect = "Error on line 4 col 28: ,"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_stmt_if_1(self):
+        input = """main: function void () {
+                if (a>b) printInteger(a);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_if_2(self):
+        input = """main: function void () {
+                if (a>b) printInteger(a);
+                else printInteger(b);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_if_3(self):
+        input = """main: function void () {
+                if (a>b) 
+                {
+                    temp : integer = a;
+                    a = b;
+                    b = temp ;
+                }
+                else printInteger(b);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_if_3(self):
+        input = """main: function void () {
+                if (a>b) 
+                else printInteger(b);
+            } """ 
+        expect = "Error on line 3 col 16: else"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_if_4(self):
+        input = """main: function void () {
+                if (a>b) printInteger(b)
+                
+            } """ 
+        expect = "Error on line 4 col 12: }"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_if_5(self):
+        input = """main: function void () {
+                if (a>b) if (true) printString("TRUE"); else printString("FALSE");
+                else printInteger(b);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))        
+    def test_stmt_if_6(self):
+        input = """main: function void () {
+                if (a>b) {
+                    if (true) printString("TRUE"); 
+                }
+                else if (a <= 0) printBoolean(value);
+                else a = -a;
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    
+    def test_stmt_for_1(self):
+        input = """main: function void () {
+                for (i = 1, i <10, i+1) {
+                    printInteger(i);
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_for_2(self):
+        input = """main: function void () {
+                for (i = 100, i > 2, i/2) {
+                    printFloat(1.0e2);
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_3(self):
+        input = """main: function void () {
+                for (i = n-1, i > 0, i-1) {
+                    r : float = a[i] ;                    
+                    s = r * r * myPI;
+                    printFloat(s);
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_4(self):
+        input = """main: function void () {
+                for (i = n, i != 0, i%2) ;
+            } """ 
+        expect = "Error on line 2 col 41: ;"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_5(self):
+        input = """main: function void () {
+                for (i = n, i != 0, i%2) printString("Computer is working...");
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_6(self):
+        input = """main: function void () {
+                for ( i != 0, i%2) printString("Computer is working...");
+            } """ 
+        expect = "Error on line 2 col 24: !="
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_7(self):
+        input = """main: function void () {
+                for (i = n, , i%2) printString("Computer is working...");
+            } """ 
+        expect = "Error on line 2 col 28: ,"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_8(self):
+        input = """main: function void () {
+                for (i = n, i != 0, ) printString("Computer is working...");
+            } """ 
+        expect = "Error on line 2 col 36: )"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_for_9(self):
+        input = """main: function void () {
+                for (i = n, i != 0, i%2) 
+                    a : integer = 0 ;
+                    for(j = 0, i < 100, j+a) {
+                        a = a + n ;    
+                    }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+
+
+
+
+
+
+
+
+    
+    def test_stmt_while_1(self):
+        input = """main: function void () {
+                while (false) {
+                    s = add(2,3,4,5);
+                    print(s);
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_2(self):
+        input = """main: function void () {
+                while (a > 0 || (b -c < 1)) {
+                    printString("printing...");
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_3(self):
+        input = """main: function void () {
+                while () {
+                    printString("printing...");
+                }
+            } """ 
+        expect = "Error on line 2 col 23: )"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_4(self):
+        input = """main: function void () {
+                while (false) {
+                }
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_5(self):
+        input = """main: function void () {
+                do {
+                    a = a - 1; 
+                    printInteger(a);
+                }
+                while(a > 0);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210)) 
+    def test_stmt_while_6(self):
+        input = """main: function void () {
+                do a = a - 1; 
+                while(a > 0);
+            } """ 
+        expect = "Error on line 2 col 19: a"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_7(self):
+        input = """main: function void () {
+                do {
+                    if (a == 10) break;
+                    a = a - 1; 
+                    printInteger(a);
+                }
+                while(a > 0);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    def test_stmt_while_7(self):
+        input = """main: function void () {
+                do {
+                    if (a == 10) continue;
+                    a = a - 1; 
+                    printInteger(a);
+                }
+                while(a > 0);
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    
+    def test_stmt_break(self):          ### lỗi must reside in a loop 
+        input = """
+        main : function void() {
+            break;
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_continue(self):          ### lỗi must reside in a loop 
+        input = """
+        main : function void() {
+            continue;
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_call_1(self):           
+        input = """
+        main : function void() {
+            foo(2 + x, 4.0 / y);
+            goo();
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_call_2(self):           
+        input = """
+        main : function void() {
+            a, b : integer = round(123.0e2), randomInt();
+            sum : integer = a + b + arr[0,0];
+            print(a, sum);
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+
+
+
+
+
+
+    def test_stmt_block_1(self):           
+        input = """
+        main : function void() {
+            {
+                r, s: integer;
+                r = 2.0;
+                a, b: array [5] of integer;
+                s = r * r * myPI;
+                a[0] = s;
+            }
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_block_1(self):           
+        input = """
+        main : function void() {
+            {
+                {
+                    
+                }
+                if (a == 0) printBoolean(b);
+            }
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_block_2(self):           
+        input = """
+        main : function void() {
+            {
+                {
+                    
+                }
+                if (a == 0) printBoolean(b);
+            }
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+    def test_stmt_block_3(self):           
+        input = """
+        main : function void() {
+            {
+                a : integer = 5;
+                b = a* 2_0 -3 ;
+                for (i = b, i > 1 , i-1)
+                print(Array[0, i]);
+            }
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))    
+
+
+
+    # def test_parser89(self):
+    #     input = '''
+    #         voidAB: function integer(){
+    #             return 4+2;
+    #         }
+    #         main: function void () {
+    #             delta: integer = ();
+    #             printInteger(delta);
+    #         }
+    #     '''
+    #     expect = "Error on line 6 col 33: ("
+    #     self.assertTrue(TestParser.test(input, expect, 289))
+
+
+
+
+    def test_stmt_return_1(self):
+        input = """
+        main: function void() {
+            a : string = "Hello world";
+            return a::"!";
+        }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 202)) 
+    def test_stmt_return_2(self):
+        input = """
+        main: function void() {
+            return a[2,2]*1-b[0]/c;
+        }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 202)) 
+    def test_stmt_return_3(self):
+        input = """
+        main: function void() {
+            return result+foo(1,2);
+        }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 202)) 
+    def test_stmt_return_4(self):
+        input = """
+        main: function void() {
+            return ;
+        }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201)) 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ##test full
+    def test_full_1(self):
+        input = """
+x : integer = 65;
+fact : function integer (n : integer) {
+    if (n == 0) return 1;
+    else return n*fact(n-1);
+
+}
+inc : function void (out n: integer, delta: integer){
+    n = n + delta ;
+
+}
+main : function void () {
+    delta : integer = fact(3);
+    inc(x, delta);
+    printInt(x);
+}""" 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 202)) 
+    
+    
+    def test_vardecl_2003(self):
+        input = """True : string = "It's true!" 
+        false : string = "it's not true..." """
+        expect = "Error on line 2 col 8: false"
+        self.assertTrue(TestParser.test(input, expect, 2003))
+        
+        
+#################################################
+    # def test_full_2(self):
+    #     input = """
+    #         i : integer ;
+    #         f : function integer() {
+    #             return 2000;
+    #         }
+    #         main: function void() {
+    #             main : integer ;
+    #             main = f();
+    #             printInteger(main);
+    #             {
+    #                 i = readInteger();
+    #                 main : integer;
+    #                 f : integer;
+    #                 main = f = i = 1000;
+    #                 printAll(i, main, f) ;
+    #             }
+    #             return ;
+    #         }
+    #     """
+    #     expect = "Error on line 14 col 29: ="
+    #     self.assertTrue(TestParser.test(input, expect, 210)) 
+    def test_simple_program_5(self):
+        input = """
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(a);
+            }
+            printInteger();
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 205))  
+    def test_expr_8(self):
+        input = """
+            main: function void () {
+                a1, a2 : string = "Hello ", "World!" ;
+                a = a1 :: a2 ;            
+            } """ 
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))  
+    def test_var_declarations_2005(self):
+        input = """
+        x : array [] of integer;
+        """
+        expect = "Error on line 2 col 19: ]"
+        self.assertTrue(TestParser.test(input, expect, 210))
+    def test_null_program(self):
+        input = """ """
+        expect = "Error on line 1 col 1: <EOF>"
+        self.assertTrue(TestParser.test(input, expect, 201))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def test_parser0(self):
+        """Simple program: integermain() {} """
+        input = """main: function void() {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 200))
+
+    def test_parser1(self):
+        input = '''
+            x: integer = 65;
+            mess: function integer(n: integer){
+                return n/50 * 2;
+            }
+            main: function void () {
+                delta: integer = mess(7);
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+
+    def test_parser2(self):
+        input = '''
+            add: function integer(n: integer){
+                sum: integer = 0;
+                for (i = 0, i<=n, i+1){
+                    sum = sum + i;
+                }
+                return sum;
+            }
+            main: function void () {
+                delta: integer = add(10);
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 202))
+
+    def test_parser3(self):
+        input = '''
+            x: integer = 65;
+            fact: function integer(n: integer){
+                if (n == 0) return 1;
+                else return n * fact(n-1);
+            }
+            inc: function void (out n: integer, delta: integer){
+                n = n + delta;
+            }
+            main: function void () {
+                delta: integer = fact(3);
+                inc(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 203))
+
+    def test_parser4(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                while (i!=0){
+                    i = i - 1;
+                }
+                return  i;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 204))
+
+    def test_parser5(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                while (i>20){
+                    i = i + 2;
+                }
+                return  i;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 205))
+    
+    def test_parser6(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(delta);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 206))
+
+    def test_parser7(self):
+        input = '''
+            main: function void () {
+                delta: string = "dat";
+                printString(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 207))
+
+    def test_parser8(self):
+        input = '''
+            main: function void () {
+                delta: float = 3.45;
+                printFloat(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 208))
+
+    def test_parser9(self):
+        input = '''
+            main: function void () {
+                delta: boolean = true;
+                printBoolean(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 209))
+
+    def test_parser10(self):
+        input = '''
+            main: function void () {
+                b: array [5] of integer;
+                b[4] = 3;
+                printInteger(b[4]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 210))
+
+    def test_parser11(self):
+        input = '''
+            main: function void () {
+                delta: integer = 3+34*30/5*16/4*2/2+19%4+2%2;
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 211))
+
+    def test_parser12(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                do{
+                    i = i - 1;
+                }
+                while (i!=0);
+                return  i;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 212))
+
+    def test_parser13(self):
+        input = '''
+            main: function void () {
+                i: integer = -10;
+                do{
+                    i = i - 1;
+                }
+                while (i!=0);
+                return  i;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 213))
+
+    def test_parser14(self):
+        input = '''
+            main: function void () {
+                delta: float = 130.34e2;
+                printFloat(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 214))
+
+    def test_parser15(self):
+        input = '''
+            main: function void () {
+                delta: string = "true";
+                printString(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 215))
+
+    def test_parser16(self):
+        input = '''
+            voidA: function integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(delta);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 216))
+
+    def test_parser17(self):
+        input = '''
+            voidA: function integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer){
+                n = n + 24;
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 217))
+
+    def test_parser18(self):
+        input = '''
+            main: function void () {
+                delta: boolean = !true&&!false||true||false||!false;
+                printBoolean(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 218))
+    
+    def test_parser19(self):
+        input = '''
+            main: function void () {
+                delta: string;
+                delta = "abcd"::"298";
+                printBoolean(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 219))
+    
+    def test_parser20(self):
+        input = '''
+            main: function void () {
+                delta: boolean = true;
+                temp: boolean = !delta||false||!false;
+                printBoolean(temp);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 220))
+    
+    def test_parser21(self):
+        input = '''
+            main: function void () {
+                a,c: boolean = true,!false;
+                printBoolean(a);
+                printBoolean(c);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 221))
+        
+        
+    def test_parser22(self):
+        input = '''
+            main: function void () {
+                a,c: string = "true","!false";
+                printString(a);
+                printString(c);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 222))
+
+    def test_parser23(self):
+        input = '''
+            main: function void () {
+                a,c: string = "true","!false";
+                v: string = a::c;
+                printString(a);
+                printString(v);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 223))
+        
+    def test_parser24(self):
+        input = '''
+            main: function void () {
+                a,c: string = "true","det/tsef";
+                v: string = a::c;
+                printString(a);
+                printString(v);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 224))
+        
+    def test_parser25(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34));
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 225))
+        
+    def test_parser26(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34)+24);
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 226))
+        
+    def test_parser27(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34)%2);
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 227))
+        
+    def test_parser28(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34+voidA(3)));
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 228))
+        
+    def test_parser29(self):
+        input = '''
+            voidA: function string (s: string){
+                i: integer = 4;
+                while (i>0){
+                    s = s::"qua";
+                }
+                return s;
+            }
+            main: function void () {
+                delta: string = "av";
+                delta = voidA(delta);
+                printString(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 229))
+        
+    def test_parser30(self):
+        input = '''
+            voidAB: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(23);
+                delta = delta/2 + delta/2/3;
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 230))
+        
+    def test_parser31(self):
+        input = '''
+            voidA: function integer(n: array[5] of integer){
+                return n[4];
+            }
+            main: function void () {
+                delta: integer = 34+-4--5;
+                delta = delta*2;
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 231))
+
+    def test_parser32(self):
+        input = '''
+            main: function void () {
+                for (i = 1, i < 10, i + 1) {
+                    if (4*2 > i){
+                        writeInt(i);
+                        continue;
+                    }
+                }
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 232))
+
+    def test_parser33(self):
+        input = '''
+            main: function void () {
+                for (i = 1, i < 10, i + 1) {
+                    if (4*2 > i){
+                        writeInt(i);
+                        break;
+                    }
+                }
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 233))
+
+    def test_parser34(self):
+        input = '''
+            main: function void () {
+                for (i = 10, i >= 0, i - 1) {
+                    if (4*2 > i){
+                        writeInt(i*2);
+                        break;
+                    }
+                }
+                return;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 234))
+
+    def test_parser35(self):
+        input = '''
+            s: string = "daylastring";
+            main: function void () {
+                printString(s);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 235))
+        
+    def test_parser36(self):
+        input = '''
+            voidAB: function integer(n: integer){
+                for (i = n, i >= 0, i - 1) {
+                    if (4*2 > i){
+                        writeInt(i*2);
+                        return;
+                    }
+                }
+            }
+            main: function void () {
+                voidAB(10);
+                printInteger("/ndone");
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 236))
+        
+    def test_parser37(self):
+        input = '''
+            voidAB: function integer(){
+                return 4+2;
+            }
+            main: function void () {
+                delta: integer = voidAB();
+                printInteger(delta);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 237))
+        
+    def test_parser38(self):
+        input = '''
+            s: string = "daylastring";
+            main: function void () {
+                printString(s+"uk");
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 238))
+        
+    def test_parser39(self):
+        input = '''
+            s: boolean = true;
+            main: function void () {
+                s = false;
+                printBoolean(s);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 239))
+        
+    def test_parser40(self):
+        input = '''
+            s: float = 5.5;
+            main: function void () {
+                s = s/7;
+                printFloat(s);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 240))
+        
+    def test_parser41(self):
+        input = '''
+            main: function void () {
+                s: integer;
+                readInteger(s);
+                printInteger(s);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 241))
+        
+    def test_parser42(self):
+        input = '''
+            main: function void () {
+                s: string;
+                readString(s);
+                printString(s::"acd");
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 242))
+        
+    def test_parser43(self):
+        input = '''
+            main: function void () {
+                s: boolean;
+                readBoolean(s);
+                printBoolean(s && true || false);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 243))
+        
+    def test_parser44(self):
+        input = '''
+            main: function void () {
+                s: float;
+                readFloat(s);
+                printFloat(s + 40.9);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 244))
+        
+    def test_parser45(self):
+        input = '''
+            r, s: integer;
+            main: function void () {
+                a, b: array [5] of integer;
+                r = 2.0;
+                s = r * r * myPI;
+                a[0] = s;
+                printInteger(a[0]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 245))
+        
+    def test_parser46(self):
+        input = '''
+            r, s: integer = 5,10;
+            main: function void () {
+                a, b: array [5] of integer;
+                s = s * r * myPI;
+                a[0] = s;
+                printInteger(a[0]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 246))
+        
+    def test_parser47(self):
+        input = '''
+            main: function void () {
+                a, b: array [5] of integer;
+                a[0] = 12;
+                b[1] = a[0];
+                printInteger(b[1]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 247))
+
+    def test_parser48(self):
+        input = '''
+            main: function void () {
+                a, b: array [5] of integer;
+                a[0] = 2;
+                a[3] = 4;
+                b[1] = a[1 + a[0]];
+                printInteger(b[1]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 248))
+
+    def test_parser49(self):
+        input = '''
+            main: function void () {
+                a: array [5,2] of integer;
+                a[0,1] = 2;
+                printInteger(a[0,1] + 2);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 249))
+
+    def test_parser50(self):
+        input = '''
+            main: function void () {
+                a: array [5,2] of integer;
+                a[0,1] = 2;
+                a[0,2] = 5;
+                printInteger(a[0,1] + a[0,2]);
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 250))
+        
+    def test_parser51(self):
+        input = '''
+            x integer = 65;
+            mess: function integer(n: integer){
+                return n/50 * 2;
+            }
+            main: function void () {
+                delta: integer = mess(7);
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 2 col 14: integer"
+        self.assertTrue(TestParser.test(input, expect, 251))
+
+    def test_parser52(self):
+        input = '''
+            add: function integer(n: integer){
+                integer = 0;
+                for (i = 0, i<=n, i+1){
+                    sum = sum + i;
+                }
+                return sum;
+            }
+            main: function void () {
+                delta: integer = add(10);
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 3 col 16: integer"
+        self.assertTrue(TestParser.test(input, expect, 252))
+
+    def test_parser53(self):
+        input = '''
+            x: integer65;
+            fact: function integer(n: integer){
+                if (n == 0) return 1;
+                else return n * fact(n-1);
+            }
+            inc: function void (out n: integer, delta: integer){
+                n = n + delta;
+            }
+            main: function void () {
+                delta := fact(3);
+                inc(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "Error on line 2 col 15: integer65"
+        self.assertTrue(TestParser.test(input, expect, 253))
+
+    def test_parser54(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                while (i=0){
+                    i--;
+                }
+                return  i;
+            }
+        '''
+        expect = "Error on line 4 col 24: ="
+        self.assertTrue(TestParser.test(input, expect, 254))
+
+    def test_parser55(self):
+        input = '''
+            function void () {
+                i: integer = 10;
+                while (i>20){
+                    i+=2;
+                }
+                return  i;
+            }
+        '''
+        expect = "Error on line 2 col 12: function"
+        self.assertTrue(TestParser.test(input, expect, 255))
+
+    def test_parser56(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n%/10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(delta);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "Error on line 3 col 25: /"
+        self.assertTrue(TestParser.test(input, expect, 256))
+
+    def test_parser57(self):
+        input = '''
+            main: function () {
+                delta: string = "dat";
+                printString(delta);
+            }
+        '''
+        expect = "Error on line 2 col 27: ("
+        self.assertTrue(TestParser.test(input, expect, 257))
+
+    def test_parser58(self):
+        input = '''
+            main: function void () {
+                delta: float == 3.45;
+                printFloat(delta);
+            }
+        '''
+        expect = "Error on line 3 col 29: =="
+        self.assertTrue(TestParser.test(input, expect, 258))
+
+    def test_parser59(self):
+        input = '''
+            main: function void () {
+                delta: boolean = true;
+                printBoolean(delta++);
+            }
+        '''
+        expect = "Error on line 4 col 35: +"
+        self.assertTrue(TestParser.test(input, expect, 259))
+
+    def test_parser60(self):
+        input = '''
+            main: function void () {
+                b: array [5] integer = [1,2,3,4,6];
+                printInteger(b[4]);
+            }
+        '''
+        expect = "Error on line 3 col 29: integer"
+        self.assertTrue(TestParser.test(input, expect, 260))
+
+    def test_parser61(self):
+        input = '''
+            main: function void () {
+                delta: integer = 3+/2;
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 3 col 35: /"
+        self.assertTrue(TestParser.test(input, expect, 261))
+
+    def test_parser62(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                {
+                    i = i - 1;
+                }
+                while (i!=0)
+                return  i;
+            }
+        '''
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 262))
+    
+    def test_parser63(self):
+        input = '''
+            main: function void () {
+                i: integer = 10;
+                do{
+                    i = i - 1;
+                }
+                while (i!=0)
+                return  i;
+            }
+        '''
+        expect = "Error on line 8 col 16: return"
+        self.assertTrue(TestParser.test(input, expect, 263))
+
+    def test_parser64(self):
+        input = '''
+            main: function void () {
+                i: integer = -10;
+                do{
+                    i = i++;
+                }
+                while (i!=0);
+                return  i;
+            }
+        '''
+        expect = "Error on line 5 col 26: +"
+        self.assertTrue(TestParser.test(input, expect, 264))
+
+    def test_parser65(self):
+        input = '''
+            main: function void () {
+                delta:= 34e2
+                printFloat(delta);
+            }
+        '''
+        expect = "Error on line 3 col 22: ="
+        self.assertTrue(TestParser.test(input, expect, 265))
+
+    def test_parser66(self):
+        input = '''
+            main: function void () {
+                delta: string = "true";
+                4 = 5;
+                printString(delta);
+            }
+        '''
+        expect = "Error on line 4 col 16: 4"
+        self.assertTrue(TestParser.test(input, expect, 266))
+
+    def test_parser67(self):
+        input = '''
+            voidA: integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(delta);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "Error on line 2 col 26: ("
+        self.assertTrue(TestParser.test(input, expect, 267))
+
+    def test_parser68(self):
+        input = '''
+            voidA: function integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(de,);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "Error on line 6 col 33: )"
+        self.assertTrue(TestParser.test(input, expect, 268))
+
+    def test_parser69(self):
+        input = '''
+            voidA: function integer(n: integer) inheri voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer, delta: integer){
+                n = n + voidA(delta);
+            }
+            main: function void () {
+                delta: integer = 5;
+                voidB(x,delta);
+                printInteger(x);
+            }
+        '''
+        expect = "Error on line 2 col 48: inheri"
+        self.assertTrue(TestParser.test(input, expect, 269))
+
+    def test_parser70(self):
+        input = '''
+            main: function void () {
+                delta: bool = !true&&!false||true||false||!false;
+                printBoolean(delta);
+            }
+        '''
+        expect = "Error on line 3 col 23: bool"
+        self.assertTrue(TestParser.test(input, expect, 270))
+
+    def test_parser71(self):
+        input = '''
+            main: function void () {
+                delta: string;
+                delta = "abcd":"298";
+                printBoolean(delta);
+            }
+        '''
+        expect = "Error on line 4 col 30: :"
+        self.assertTrue(TestParser.test(input, expect, 271))
+
+    def test_parser72(self):
+        input = '''
+            main: function void () {
+                delta: boolean = true;
+                temp: boolean = !delta false||!false;
+                printBoolean(temp);
+            }
+        '''
+        expect = "Error on line 4 col 39: false"
+        self.assertTrue(TestParser.test(input, expect, 272))
+
+    def test_parser73(self):
+        input = '''
+            main: function void () {
+                a,c: boolean = true,!false;
+                printBoolean;
+                printBoolean(c);
+            }
+        '''
+        expect = "Error on line 4 col 28: ;"
+        self.assertTrue(TestParser.test(input, expect, 273))
+
+    def test_parser74(self):
+        input = '''
+            main: function void () {
+                a,b: string = "!false";
+                printString(a);
+                printString(c);
+            }
+        '''
+        expect = "Error on line 3 col 38: ;"
+        self.assertTrue(TestParser.test(input, expect, 274))
+
+    def test_parser75(self):
+        input = '''
+            main: function void () {
+                a,c: string : "true","!false";
+                v: string = a::c;
+                printString(a);
+                printString(v);
+            }
+        '''
+        expect = "Error on line 3 col 28: :"
+        self.assertTrue(TestParser.test(input, expect, 275))
+
+    def test_parser76(self):
+        input = '''
+            main: function void () {
+                a,c: string = "true","det\tsef";
+                v: string = a::c;
+                printString(a)
+            }
+        '''
+        expect = "Error on line 6 col 12: }"
+        self.assertTrue(TestParser.test(input, expect, 276))
+
+    def test_parser77(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34));
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 3 col 27: ;"
+        self.assertTrue(TestParser.test(input, expect, 277))
+
+    def test_parser78(self):
+        input = '''
+            voidA: function int{
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34)+24);
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 2 col 28: int"
+        self.assertTrue(TestParser.test(input, expect, 278))
+
+    def test_parser79(self):
+        input = '''
+            voidA: function integer(n: integer){
+                n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34)%2);
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 3 col 17: +"
+        self.assertTrue(TestParser.test(input, expect, 279))
+
+    def test_parser80(self):
+        input = '''
+            voidA: function integer(n: integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA34+voidA(3)));
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 6 col 56: )"
+        self.assertTrue(TestParser.test(input, expect, 280))
+
+    def test_parser81(self):
+        input = '''
+            main: function void () {
+                delta string = "av";
+                delta = voidA(delta);
+                printString(delta);
+            }
+        '''
+        expect = "Error on line 3 col 22: string"
+        self.assertTrue(TestParser.test(input, expect, 281))
+
+    def test_parser82(self):
+        input = '''
+            voidAB: function integer(n integer){
+                return n+4+2;
+            }
+            main: function void () {
+                delta: integer = voidA(23);
+                delta = delta/2 + delta/2/3;
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 2 col 39: integer"
+        self.assertTrue(TestParser.test(input, expect, 282))
+
+    def test_parser83(self):
+        input = '''
+            main: void () {
+                delta: integer = 34+-4--5;
+                delta = delta*2;
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 2 col 18: void"
+        self.assertTrue(TestParser.test(input, expect, 283))
+
+    def test_parser84(self):
+        input = '''
+            main: function void () {
+                for (i = 1, i < 10, i + 1) {
+                    if (4*2 >> i){
+                        writeInt(i);
+                        continue;
+                    }
+                }
+            }
+            //m cmt
+        '''
+        expect = "Error on line 4 col 29: >"
+        self.assertTrue(TestParser.test(input, expect, 284))
+    
+    def test_parser85(self):
+        input = '''
+            main: function void () {
+                for (i = 1, i < 10; i + 1) {
+                    if (4*2 > i){
+                        writeInt(i);
+                        break;
+                    }
+                }
+            }
+        '''
+        expect = "Error on line 3 col 34: ;"
+        self.assertTrue(TestParser.test(input, expect, 285))
+
+    def test_parser86(self):
+        input = '''
+            main: function void () {
+                for (i = 10, i >= 0, i = i- 1) {
+                    if (4*2 > i){
+                        writeInt(i*2);
+                        break;
+                    }
+                }
+                return;
+            }
+        '''
+        expect = "Error on line 3 col 39: ="
+        self.assertTrue(TestParser.test(input, expect, 286))
+
+    def test_parser87(self):
+        input = '''
+            s: string = "daylastring";
+            main: function void () {
+                (s);
+            }
+        '''
+        expect = "Error on line 4 col 16: ("
+        self.assertTrue(TestParser.test(input, expect, 287))
+
+    def test_parser88(self):
+        input = '''
+            voidAB: function integer(n: integer,){
+                for (i = n, i >= 0, i - 1) {
+                    if (4*2 > i){
+                        writeInt(i*2);
+                        return;
+                    }
+                }
+            }
+            main: function void () {
+                voidAB(10);
+                printInteger("/ndone");
+            }
+        '''
+        expect = "Error on line 2 col 48: )"
+        self.assertTrue(TestParser.test(input, expect, 288))
+
+    def test_parser89(self):
+        input = '''
+            voidAB: function integer(){
+                return 4+2;
+            }
+            main: function void () {
+                delta: integer = ();
+                printInteger(delta);
+            }
+        '''
+        expect = "Error on line 6 col 33: ("
+        self.assertTrue(TestParser.test(input, expect, 289))
+
+    def test_parser90(self):
+        input = '''
+            s: string = "daylastring";
+            main: function void () {
+                printString(s::);
+            }
+        '''
+        expect = "Error on line 4 col 31: )"
+        self.assertTrue(TestParser.test(input, expect, 290))
+
+    def test_parser91(self):
+        input = '''
+            s: boolean = true;
+            main: function void () {
+                s = false;
+                printBoolean(s);
+                return
+            }
+        '''
+        expect = "Error on line 7 col 12: }"
+        self.assertTrue(TestParser.test(input, expect, 291))
+
+    def test_parser92(self):
+        input = '''
+            s: floa = 5.5;
+            main: function void () {
+                s = s/7;
+                printFloat(s);
+            }
+        '''
+        expect = "Error on line 2 col 15: floa"
+        self.assertTrue(TestParser.test(input, expect, 292))
+
+    def test_parser93(self):
+        input = '''
+            main: function void () 
+                s: integer;
+                readInteger(s);
+                printInteger(s);
+            }
+        '''
+        expect = "Error on line 3 col 16: s"
+        self.assertTrue(TestParser.test(input, expect, 293))
+
+    def test_parser94(self):
+        input = '''
+            main: function void () {
+                s: string;
+                readString(s);
+                printString(s:io:"acd");
+            }
+        '''
+        expect = "Error on line 5 col 29: :"
+        self.assertTrue(TestParser.test(input, expect, 294))
+
+    def test_parser95(self):
+        input = '''
+            main: function void () {
+                s: boolean;
+                readBoolean(s);
+                printBoolean(s && && true || false);
+            }
+        '''
+        expect = "Error on line 5 col 34: &&"
+        self.assertTrue(TestParser.test(input, expect, 295))
+
+    def test_parser96(self):
+        input = '''
+            main: function void () {
+                s float;
+                readFloat(s);
+                printFloat(s + 40.9);
+            }
+        '''
+        expect = "Error on line 3 col 18: float"
+        self.assertTrue(TestParser.test(input, expect, 296))
+
+    def test_parser97(self):
+        input = '''
+            r, s: integer;
+            main: function void () {
+                a, b: array [5] of integer;
+                r = 2.0;
+                s = r * r * ;
+                a[0] = s;
+                printInteger(a[0]);
+            }
+        '''
+        expect = "Error on line 6 col 28: ;"
+        self.assertTrue(TestParser.test(input, expect, 297))
+    
+    def test_parser98(self):
+        input = '''
+            r, s = 5,10;
+            main: function void () {
+                a, b: array [5] of integer;
+                s = s * r * myPI;
+                a[0] = s;
+                printInteger(a[0]);
+            }
+        '''
+        expect = "Error on line 2 col 17: ="
+        self.assertTrue(TestParser.test(input, expect, 298))
+    
+    def test_parser99(self):
+        input = '''
+            r, s: integer = 5;10;
+            main: function void () {
+                a, b: array [5] of integer;
+                s = s * r * myPI;
+                a[0] = s;
+                printInteger(a[0]);
+            }
+        '''
+        expect = "Error on line 2 col 29: ;"
+        self.assertTrue(TestParser.test(input, expect, 299))
+    
+    def test_parser100(self):
+        input = '''
+            main: function void () {
+                a, b: array [5] of integer;
+                a[0,] = 12;
+                b[1] = a[0];
+                printInteger(b[1]);
+            }
+        '''
+        expect = "Error on line 4 col 20: ]"
+        self.assertTrue(TestParser.test(input, expect, 300))
+        
+    # def test_parser101(self):
+    #     input = '''
+    #     z : string;
+    #     out,x: string;
+    #     '''
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 333))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def test_simple_program(self):
+        """Simple program: integer main() {}"""
+        input = """main: function void() {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 201))
+
+    def test_decl_variable1(self):
+        """test decl integer variable"""
+        inp = r"""A, B: integer = 5, 6;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 202))
+
+    def test_decl_variable2(self):
+        """test decl string variable"""
+        inp = r"""A, B: string = "abc", "def";"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 203))
+
+    def test_decl_variable3(self):
+        """test decl float variable"""
+        inp = r"""A, B: float = 1.2, 3.4e-10;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 204))
+
+    def test_decl_variable4(self):
+        """test decl boolean variable"""
+        inp = r"""A, B: boolean = true, false;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 205))
+
+    def test_decl_variable5(self):
+        """test decl array variable"""
+        inp = r"""A, B: array[1,2] of integer = {1, 2}, {3, foo(4)};"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 206))
+
+    def test_decl_variable6(self):
+        """test decl auto variable"""
+        inp = r"""A, B: auto = 1, foo(4);"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 207))
+
+    def test_decl_variable7(self):
+        """test decl void variable -- void?"""
+        inp = r"""A, B: void = 1, 2;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 208))
+
+    def test_decl_function1(self):
+        """test decl function"""
+        inp = r"""A: function integer() {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 209))
+
+    def test_decl_function2(self):
+        """test decl function"""
+        inp = r"""A: function integer() inherit foo {}"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 210))
+
+    def test_decl_function3(self):
+        """test decl function"""
+        inp = r""" 
+            inc: function void(out n: integer) {
+                n  = n+ 1;
+                return n;
+            }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 211))
+
+    def test_decl_function4(self):
+        """test function in function"""
+        inp = r""" 
+            main: function void() {
+                foo: function void() {}
+                return;
+            }"""
+        expect = "successful"
+        self.assertFalse(TestParser.test(inp, expect, 212))
+
+    def test_expr1(self):
+        """test expr"""
+        inp = r"""x:integer = a + b * c - d / e % f;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 213))
+
+    def test_expr2(self):
+        """test expr"""
+        inp = r"""x:float=1E-4+10.0;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 214))
+
+    def test_expr3(self):
+        """test expr"""
+        inp = r"""
+         boo: boolean =  a && b || c && !d;
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 215))
+
+    def test_expr4(self):
+        """test expr"""
+        inp = r"""
+        
+            newStr: string = "Hello "::"World!";
+        
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 216))
+
+    def test_expr5(self):
+        """test expr"""
+        inp = r"""
+        main: function void(){
+            eq = a == b;
+            neq = a != b;
+            lt = a < b;
+            le = a <= b;
+            gt = a > b;
+            ge = a >= b;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 217))
+
+    def test_expr6(self):
+        """test index operator"""
+        inp = r"""
+        main: function void(){
+            Arr: array[5] of integer = {1,2,3,4,5};
+            a = Arr[3+1];
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 218))
+
+    def test_expr7(self):
+        """test index operator"""
+        inp = r"""
+        ~main: function void(){
+            Arr: array[5] of integer;
+            a = Arr[3];
+        }
+        """
+        expect = "~"
+        self.assertTrue(TestParser.test(inp, expect, 219))
+
+    def test_function1(self):
+        """test function call"""
+        inp = r"""
+        main: function void(){
+            foo(12);
+            fee(13);
+            fum(14+12, a&&b);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 220))
+
+    def test_function2(self):
+        """test function call"""
+        inp = r"""
+        main: function void() {
+            a : boolean = foo(12);
+            b = fee(13);
+            c = fum(14+12, a&&b);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 221))
+
+    def test_function3(self):
+        """test function call"""
+        inp = r"""
+        main: function void() {
+        b = fee(foo(13));
+        c = fum(14+12, foo(a&&b));
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 222))
+
+    def test_stmt_assign1(self):
+        """test assigment"""
+        inp = r"""
+        main: function void() {
+            a : integer = 3;
+            b : integer = a;
+            a = b;
+            b = foo(a&&b);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 223))
+
+    def test_stmt_assign2(self):
+        """test assigment"""
+        inp = r"""
+        a : integer = f00(22-foo(a + too(a)));
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 224))
+
+    def test_stmt_bad_assign3(self):
+        """test assigment"""
+        inp = r"""
+        a :integer = b = f00(22-foo(a + too(a)));
+        """
+        expect = "Error on line 2 col 23: ="
+        self.assertTrue(TestParser.test(inp, expect, 225))
+
+    def test_stmt_assign4(self):
+        """test assigment -- should assign expr be valid inside fcall?"""
+        inp = r"""
+        a :integer = f00(b=22-foo(a + too(a)));
+        """
+        expect = "Error on line 2 col 26: ="
+        self.assertTrue(TestParser.test(inp, expect, 226))
+
+    def test_stmt_assign5(self):
+        """test assigment"""
+        inp = r"""
+        x :boolean = a = b = c;
+        """
+        expect = "Error on line 2 col 23: ="
+        self.assertTrue(TestParser.test(inp, expect, 227))
+
+    def test_stmt_assign6(self):
+        """test assigment"""
+        inp = r"""
+        a = foo(4) = c = d;
+        """
+        expect = "Error on line 2 col 10: ="
+        self.assertTrue(TestParser.test(inp, expect, 228))
+
+    def test_stmt_assign7(self):
+        """test assigment -- uncertain"""
+        inp = r"""
+        b : integer = 5;
+        a : integer = b = 6;
+        """
+        expect = "Error on line 3 col 24: ="
+        self.assertTrue(TestParser.test(inp, expect, 229))
+
+    def test_stmt_ifelse1(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+            } else  
+                c = 1;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 230))
+
+    def test_stmt_ifelse2(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+            } else {} // empty
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 231))
+
+    def test_stmt_ifelse3(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+                return False;
+            } else 
+                break;
+            return ;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 232))
+
+    def test_stmt_ifelse4(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                if (true) a = a + 1;
+                else continue;
+            } else  // no expr
+                break;
+            return true;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 233))
+
+    def test_stmt_ifelse5(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                if (true) a = a + 1;
+                a = a + 3;
+                /* hello */
+                else continue;
+            } else  // no expr
+                break;
+            return true;
+        }
+        """
+        expect = "Error on line 7 col 16: else"
+        self.assertTrue(TestParser.test(inp, expect, 234))
+
+    def test_stmt_ifelse6(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (a&&B) {
+                if (true) a = a + 1;
+                else continue;
+            } 
+            else if (true) a = a + 1;
+            else continue;
+            return true;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 235))
+
+    def test_stmt_ifelse7(self):
+        """test ifelse"""
+        inp = r"""
+        main: function void() {
+            if (1+1 == 2)
+            return true;
+            else {if (1 + 1 != 3 && a)
+            return false;}
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 236))
+
+    def test_stmt_for1(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = 1, i <= 10, 1 + i)
+            {
+                a = a + 1;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 237))
+
+    def test_stmt_for2(self):
+        """test for -- assign?"""
+        inp = r"""
+        main: function void() {
+            for (i = 1, i <= 10,  1 + i)
+                a = a + 1;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 238))
+
+    def test_stmt_for3(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = 1, i <= 10,  1 + i)}
+        """
+        expect = "Error on line 3 col 40: }"
+        self.assertTrue(TestParser.test(inp, expect, 239))
+
+    def test_stmt_for4(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = 1, i <= 10 && a || b,  1 + i)
+            {
+                a = a + 1;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 240))
+
+    def test_stmt_for5(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = 1, i <= 10 && a || b,  1 + i)
+            {
+                a = a + 1;
+                if (a == 1) continue;
+                else break;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 241))
+
+    def test_stmt_for6(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = foo(12 * 3), i <= 10 && a || b,  foo(i))
+            {
+                a = a + 1;
+                if (a == 1) continue;
+                else break;
+            }
+            return true;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 242))
+
+    def test_stmt_for7(self):
+        """test for"""
+        inp = r"""
+        main: function void() {
+            for (i = foo(12 * 3), i <= 10 && a || b,  foo(i))
+                if (a == 1) continue;
+                else break;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 243))
+
+    def test_stmt_while1(self):
+        """test while"""
+        inp = r"""
+        main: function void() {
+            while (i != 10 + 12)
+                a : integer = 5;
+        }
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(inp, expect, 244))
+
+    def test_stmt_while2(self):
+        """test while"""
+        inp = r"""
+        main: function void() {
+            while (foo(a&&b + f00(12) != 10 && A))
+            {
+                continue;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 245))
+
+    def test_stmt_dowhile1(self):
+        """test dowhile"""
+        inp = r"""
+        main: function void() {
+            do {
+                continue;
+                }
+            while (i != 10 + 12);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 246))
+
+    def test_stmt_dowhile2(self):
+        """test dowhile"""
+        inp = r"""
+        main: function void() {
+            do 
+                {
+                    do{}while(false);
+                }
+            while (i != 10 + 12);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 247))
+
+    def test_stmt_dowhile3(self):
+        """test dowhile"""
+        inp = r"""
+        main: function void() {
+            do{do{}while(false);}while(false);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 248))
+
+    def test_stmt_return1(self):
+        """test return"""
+        inp = r"""
+        main: function void() {
+            return;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 249))
+
+    def test_stmt_return2(self):
+        """test return"""
+        inp = r"""
+        main: function void() {
+            return a && b + 10 % 12;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 250))
+
+    def test_stmt_fcall1(self):
+        """test fcall"""
+        inp = r"""
+        main: function void() {
+            foo(12);
+            e2q(foo(12 + w(12)) + 21 && a || b);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 251))
+
+    def test_stmt_block1(self):
+        """test block"""
+        inp = r"""
+        main: function void() {{{
+                a = a + 1;
+                b = b + 1;
+                {
+                    a = a + 1;
+                }
+                b = b + 1;
+            }}return;}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 252))
+
+    def test_mixed1(self):
+        """test mixed"""
+        inp = r"""
+        // program to print all odd number from 1 to 5000
+        main: function void() {
+            for (i = 1, i <= 5000,  i + 1)
+            {
+                /* check if i is odd or not */
+                if (i % 2 == 1)
+                    printInt(i);
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 253))
+
+    def test_mixed2(self):
+        """test mixed"""
+        inp = r"""
+        // program to calculate the sum of all even numbers from 1 to 100
+        calc: function void(out sum: integer) {
+            sum = 0;
+            for (i = 1, i <= 100,  i + 1)
+            {
+                /* check if i is even or not */
+                if (i % 2 == 0)
+                    sum = sum + i;
+            }
+            return;
+        }
+        main: function void() {
+            sum : integer;
+            calc(sum);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 254))
+
+    def test_mixed3(self):
+        """test mixed"""
+        inp = r"""
+        // program to find the factorial of a number
+        fact: function integer(n: integer) {
+            if (n == 0)
+                return 1;
+            else
+                return n * fact(n - 1);
+        }
+        main: function void() {
+            printInt(fact(5));
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 255))
+
+    def test_mixed4(self):
+        """test mixed"""
+        inp = r"""
+        // program to find highest number in a matrix
+        maxmat: function integer(out mat: array[3,3] of integer) {
+            max : integer;
+            max = mat[0,0];
+            for (i = 0, i < 10,  i + 1)
+            {
+                for (j = 0, j < 10,  j + 1)
+                {
+                    if (mat[i,j] > max)
+                        max = mat[i,j];
+                }
+            }
+            return max;
+        }
+        main: function void() {
+            mat : array[3,3] of integer = {{1,2,3},{4,5,6},{7,8,9}};
+            printInt(maxmat(mat));
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 256))
+
+    def test_mixed5(self):
+        """test mixed"""
+        inp = r"""
+        // program to find the sum of all elements in a matrix
+        summat: function integer(out mat: array[3,3] of integer) {
+            sum : integer;
+            sum = 0;
+            for (i = 0, i < 10,  i + 1)
+            {
+                for (j = 0, j < 10,  j + 1)
+                {
+                    sum = sum + mat[i,j];
+                }
+            }
+            return sum;
+        }
+        main: function void() {
+            mat : array[3,3] of integer = {{1,2,3},{4,5,6},{7,8,9}};
+            printInt(summat(mat));
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 257))
+
+    def test_mixed6(self):
+        """test mixed"""
+        inp = r"""
+        // bubble sort implementation
+        bubble: function void(inherit out arr: array[10] of integer) {
+            for (i = 0, i < 10,  i + 1)
+            {
+                for (j = 0, j < 10 - i - 1,  j + 1)
+                {
+                    if (arr[j] > arr[j + 1])
+                    {
+                        temp : integer;
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return;
+        }
+        main: function void() {
+            arr : array[10] of integer = {1,2,3,4,5,6,7,8,9,10};
+            bubble(arr);
+            for (i = 0, i < 10,  i + 1)
+                printInt(arr[i]);
+        }
+        
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(inp, expect, 258))
+
+    def test_vardecl1(self):
+        """test short variable decl"""
+        input = """a: integer = 3;b,c:string = "abc","def";"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 259))
+
+    def test_vardecl2(self):
+        """test full variable decl"""
+        input = """a, s, d: integer = 2, 3, 4;"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 260))
+
+    def test_bad_vardecl(self):
+        """test wrong full variable decl"""
+        input = """e, r, t, f: integer = 6, 5, 4;"""
+        expect = "Error on line 1 col 29: ;"
+        self.assertTrue(TestParser.test(input, expect, 261))
+
+    def test_mixed7(self):
+        """test return type in function decl"""
+        input = r"""main: function void () {}
+        fact: function integer (n: integer) {}
+        inc: function void(out n: integer, delta: integer) {}
+        autofact: function auto (n: integer) {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 262))
+
+    def test_mixed8(self):
+        """mixed test"""
+        input = r"""
+        port : integer = 80;
+        host : string = "localhost";
+        startServer: function void() {
+            server : auto = newServer(host, port);
+            start(server);
+        }
+        main: function void() {
+            startServer();
+        }"""
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 263))
+
+    def test_mixed9(self):
+        """mixed test"""
+        input = r"""
+        inc: function void(inherit a: integer, inherit out b: integer, inherit c:boolean, out d:integer) {}
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 264))
+
+    def test_mixed10(self):
+        """mixed test"""
+        input = r"""
+        caclPi: function float(n: integer) {
+            pi : float = 0;
+            for (i = 0, i < n, i + 1)
+            {
+                t : float = i % 2;
+                if (t == 0)
+                    pi = pi + 4 / 2 * i + 1;
+                else
+                    pi = pi - 4 / 2 * i + 1;
+            }
+            return pi;
+        }
+        main: function void() {
+            do {
+                n : integer;
+                print("Enter n: ");
+                n = readInt();
+                print("Pi = ");
+                printFloat(caclPi(n));
+                print("\n");
+            } while (n != 0);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 265))
+
+    def test_mixed11(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+            n : integer;
+            print("Enter n: ");
+            n = readInt();
+            print("Factorial of ");
+            printInt(n);
+            print(" is ");
+            printInt(fact(n));
+        }
+        fact: function integer(n: integer) {
+            if (n == 0)
+                return 1;
+            else
+                return n * fact(n - 1);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 266))
+
+    def test_mixed12(self):
+        """mixed test"""
+        input = r"""
+            foo2: function string (out a: integer, b: integer) inherit foo1 {
+                for (i = 0, i < 10, i == 2) {
+                    a = -a;
+                }
+                /*foo3: function string() { 
+                    for (i = init(i), foo4(i), i == 2) 
+                        a = a + 1;
+                }*/
+                return "abc";
+            }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 267))
+    
+    def test_mixed13(self):
+        """mixed test"""
+        input = r"""
+        mat : array[1,2,3,4,3] of integer = {{1,2,3},{4,5,6},{7,8,9}};
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 268))
+    
+    def test_mixed14(self):
+        """mixed test"""
+        input = r"""
+        mat : array[3,i] of integer = {{1,2,3},{4,5,6},{7,8,9}};
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 269))
+    
+    def test_mixed15(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+            n = {1,2,3}::{1,2,3};
+            str1 = "23r"::"23432aa";
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 270))
+    
+    def test_mixed16(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+            n = ff()::dd();
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 271))
+    
+    def test_mixed17(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+            a = {1+2,2/4};
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 272))
+
+    def test_mixed18(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+            n = {1,2,3}::{1,2,3};
+            str1 = "23r"::n;
+            for (i = 0, i < 10, i :: 2 :: 3) {
+                a = -a;
+            }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 273))
+    
+    def test_mixed19(self):
+        """mixed test"""
+        input = r"""
+        ^main: function void() {
+            n = {1,2,3}::{1,2,3};
+            str1 = "23r"::n;
+            for (i = 0, i < 10, a :: 2 :: 3) {
+                a = -a;
+            }
+        }
+        """
+        expect = "^"
+        self.assertTrue(TestParser.test(input, expect, 274))
+    
+    def test_mixed20(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {{
+           
+        }
+        """
+        expect = "Error on line 5 col 8: <EOF>"
+        self.assertTrue(TestParser.test(input, expect, 275))
+    
+    def test_mixed21(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+           /* n = {1,2,3}::{1,2,3};
+        }
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 276))
+    
+    def test_mixed22(self):
+        """mixed test"""
+        input = r"""
+        main: function void() {
+         //   n = {1,2,3}::{1,2,3};
+         /**
+            str1 = "23r"::n;
+        */
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 277))
+    
+    def test_mixed23(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            a::2;
+        }
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 278))
+    
+    def test_mixed24(self):
+        """mixed test"""
+        input = r"""
+        a,v: array[1,2,3,4,5] of integer = {1,2,3,4,5}, {1,2,3,4,5};
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 279))
+    
+    def test_mixed25(self):
+        """mixed test"""
+        input = r"""
+        a,v: array[1,2,3,4,5] of integer = {1,2,3,4,5}, {1,2,3,4,5}, 4;
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 280))
+    
+    def test_mixed26(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            a, b: boolean = arr[0,1], arr[1,2];
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 281))
+    
+    def test_mixed27(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            a, b: boolean = arr[foo()], arr[1,2];
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 282))
+    
+    def test_mixed28(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            do {
+            }
+            while ( arr[foo()]::arr[1,2] );
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 283))
+
+    def test_mixed29(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            while ( arr[foo()]::arr[1,2] ) {}
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 284))
+    
+    def test_mixed30(self):
+        """mixed test"""
+        input = r"""
+        fefef : function integer() {
+            do {
+            }
+            while ( arr[foo()]::arr[1,2] > 1 + 2 );
+            return 1;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 285))
+
+    def test_mixed31(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+                !-12;
+                -!3;
+                --2;
+        }
+            
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 286))
+    
+    def test_mixed32(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+                return !-1;
+        }
+            
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 287))
+    
+    def test_mixed33(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+                return -!1;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 288))
+    
+    def test_mixed34(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+                return !!!1;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 289))
+    
+    def test_mixed35(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+                for (i = -foo(), i < 10, i :: -2 :: 3E-10) {
+                    a = ---a;
+                    }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 290))
+
+    
+    def test_mixed36(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            a = 1 * 1 + 2 - 3 || !4 && 5 % 6 / 7 < 8 > 9 <= 10 >= 11 == 12 != 13 && 14 || 15; 
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 291))
+
+    def test_mixed37(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            d :: A :: a :: 1;
+        }
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 292))
+    
+    def test_mixed38(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            return foo(1_2 + 2 || 4 :: 5);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 293))
+
+    def test_mixed39(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            return -----foo(1_2 + 2 || 4 :: 5);
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 294))
+
+    def test_mixed40(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            return !32_23_12-3_6-2;
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 295))
+    
+    def test_mixed41(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            break; continue; break; continue;
+            while (1) {
+                break; continue; break; continue;
+                }
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 296))
+    
+    def test_mixed42(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 297))
+    
+    def test_mixed43(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            dd :: "tetst     \n";
+        }
+        """
+        expect = "successful"
+        self.assertFalse(TestParser.test(input, expect, 298))
+    
+    def test_mixed44(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            return fooo("q423 \\");
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 299))
+
+    def test_mixed45(self):
+        """mixed test"""
+        input = r"""
+        learningtofly: function integer() {
+            as, n : string = "q423 \\", "dwaf"::"dwad";
+        }
+        """
+        expect = "successful"
+        self.assertTrue(TestParser.test(input, expect, 300))

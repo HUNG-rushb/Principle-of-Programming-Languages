@@ -1,9 +1,6 @@
 
-            Class _____________ {
-                afawefafd () {
-                    ygouygua = name::$age;
-                    2dwqewqf = efwfwfwfasdfwef;
-                    wefafwefafasde = $wfwwoeifjoiwaf();
-                }
+            s: string = "daylastring";
+            main: function void () {
+                (s);
             }
         

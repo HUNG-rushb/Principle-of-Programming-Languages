@@ -1,20 +1,11 @@
 
-            Class testing {
-                Var twe, FWE32y: Int = 1, 00;
-                method(a,b,c:Int; r:Func) {
-                    If (0x0 + 2_13_123.645 > 0xAAAAAAAAAAAAAAAAAAAAAAAAA) {
-                        Foreach(index In 0x1 .. 12_3*45_35 By ug.gfsger(r)) {
-                            If (wthtrb / rtrwtwer) {
-                                If (wefwe32 >= afnewaiufbwi) {
-                                    Break;
-                                }
-                            }
-                        }
-                    }
-                    Elseif (tWFWA / 7_423.3243e-1231) {
-                        If (!FAWEF) { }
-                        Else { Return; }
+            main: function void () {
+                for (i = 1, i < 10, i + 1) {
+                    if (4*2 >> i){
+                        writeInt(i);
+                        continue;
                     }
                 }
             }
+            //m cmt
         

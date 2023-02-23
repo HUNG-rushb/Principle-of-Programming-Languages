@@ -1,8 +1,6 @@
 
-            Class B {
-
-
-
-                B435__.call();
+            main: function void () {
+                delta: integer = 3+/2;
+                printInteger(delta);
             }
         

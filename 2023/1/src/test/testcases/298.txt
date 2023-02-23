@@ -1,8 +1,9 @@
 
-            Class Cfwefw {
-                Var ______________________b________________: _____________________A__________________________;
-                wfea__weuwufhw__________5235() {
-                    Return C::$fwefew + C.mcbnvb().aed[0xFECDA213];
-                }
+            r, s = 5,10;
+            main: function void () {
+                a, b: array [5] of integer;
+                s = s * r * myPI;
+                a[0] = s;
+                printInteger(a[0]);
             }
         

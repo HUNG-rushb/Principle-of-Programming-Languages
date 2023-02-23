@@ -1,1 +1,3 @@
-"WebDev\dclub \dBKU";
+fo_00: function integer (n_9: integer) {
+                    if (n_9 == 0) return n + 12_12;
+            }

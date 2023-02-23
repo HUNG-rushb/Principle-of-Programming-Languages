@@ -1,11 +1,8 @@
 
-
-            Class hungquynhnh {
-
-                fff342411() {
-
-                    tr65.fkdfjdsak() {
-                    }
-                }
+            main: function void () {
+                a,c: string : "true","!false";
+                v: string = a::c;
+                printString(a);
+                printString(v);
             }
         

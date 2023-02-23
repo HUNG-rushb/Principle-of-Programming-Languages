@@ -1,8 +1,6 @@
 
-            Class Program {
-                func(){
-                    gjty4578_test();
-                } 
-            }
-            
+        main: function void() {
+            foo(12);
+            e2q(foo(12 + w(12)) + 21 && a || b);
+        }
         

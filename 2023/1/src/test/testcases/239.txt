@@ -1,28 +1,4 @@
 
-            Class Program {
-                main() {
-                }
-            }
-            Class newClass {
-                Val counqdqwdt: Int = 150324;
-                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
-                Pr234234intO32ut() {
-                    Return Self.cou123nt * Self.ra213124te;
-                }
-                Val counqdqwdt: Int = 150324;
-                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
-                Pr234234intO32ut() {
-                    Return Self.cou123nt * Self.ra213124te;
-                }
-                Val counqdqwdt: Int = 150324;
-                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
-                Pr234234intO32ut() {
-                    Return Self.cou123nt * Self.ra213124te;
-                }
-                Val counqdqwdt: Int = 150324;
-                Val sudwedm, rate: Float = 10123.23523, 312454.4234234;
-                Pr234234intO32ut() {
-                    Return Self.cou123nt * Self.ra213124te;
-                }
-            }
+        main: function void() {
+            for (i = 1, i <= 10,  1 + i)}
         

@@ -1,5 +1,5 @@
 
-            Class FSDFAA {
-                Return New BRETWERT(SGER5462A);
-            }
+        main: function void() {
+            return;
+        }
         

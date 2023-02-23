@@ -1,1 +1,1 @@
-5.1,+,1e5,<EOF>
+array,[,2,],of,integer,<EOF>

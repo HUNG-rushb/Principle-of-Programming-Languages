@@ -1,1 +1,1 @@
-integer function void
+"a\b"

@@ -1,8 +1,7 @@
 
-            Class qwefwe34234 {
-                Var wefeewf: qfwf = New dqwdwq();
-                mafwqfinStu() {
-                    Stazu[19] = za.za().za().za()[za5341];
-                }
+            main: function void () {
+                a,c: string = "true","det	sef";
+                v: string = a::c;
+                printString(a)
             }
         

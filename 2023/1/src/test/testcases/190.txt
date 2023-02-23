@@ -1,1 +1,3 @@
-"Hung thich Quynh lam do ahihi'" ahihi 
+ inc: function void(out n: integer) {
+            n  = n+ 1;
+        }

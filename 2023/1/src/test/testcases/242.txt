@@ -1,9 +1,11 @@
 
-            Class sdfsaf {
-                Var we: sdfsdddddddd;
-                Var me: tyer43534terster = 0.2;
-                $gsdafqe3432t() {
-                    Losdfgfsdcal.St4234ore.sieu3342thi();
-                }
+        main: function void() {
+            for (i = foo(12 * 3), i <= 10 && a || b,  foo(i))
+            {
+                a = a + 1;
+                if (a == 1) continue;
+                else break;
             }
+            return true;
+        }
         

@@ -1,4 +1,6 @@
 
-            Class ER: Aw, Tfwefa_2387_______fwefu {
+            main: function () {
+                delta: string = "dat";
+                printString(delta);
             }
         

@@ -1,5 +1,9 @@
 
-            Class oweyfoadnak_____________ {
-                Var _______________d_______________: Array[Array[Int, 3242376], 0b0];
+            voidA: function integer(n: integer){
+                return n+4+;
+            }
+            main: function void () {
+                delta: integer = voidA(voidA(34));
+                printInteger(delta);
             }
         

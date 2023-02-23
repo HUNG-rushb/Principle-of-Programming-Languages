@@ -1,13 +1,9 @@
 
-            Class Program {
-                main() {
-
+            function void () {
+                i: integer = 10;
+                while (i>20){
+                    i+=2;
                 }
-            }
-            Class ___2342____dfasfokBdfsdfasdf {
-
-            }
-            Class ____Csadf {
-
+                return  i;
             }
         
