@@ -1,3 +1,6 @@
 
-        a, b, c, d: integer = 3, 4, 6;
+        main: function void(){
+            Arr: array[5] of integer = {1,2,3,4,5};
+            a = Arr[3+1];
+        }
         

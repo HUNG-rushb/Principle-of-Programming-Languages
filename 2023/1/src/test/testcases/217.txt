@@ -1,3 +1,10 @@
 
-        a, b, c: integer = 3, 4, 6;
+        main: function void(){
+            eq = a == b;
+            neq = a != b;
+            lt = a < b;
+            le = a <= b;
+            gt = a > b;
+            ge = a >= b;
+        }
         

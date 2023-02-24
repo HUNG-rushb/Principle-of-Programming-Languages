@@ -27,15 +27,16 @@ main_function: MAIN COLON FUNCTION (all_type | VOID) LB RB block_statements;
 function_declaration: VARIABLE_IDENTIFIERS COLON FUNCTION (all_type | VOID) LB param_list RB (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
 
 // List of parameters
+param_list: param_list_no_empty | ;
+param_list_no_empty: param COMMA param_list_no_empty | param;
 param: (INHERIT | ) (OUT | ) VARIABLE_IDENTIFIERS COLON all_type;
-param_list:  param COMMA param_list | param | ;
 
 // Variable declaration
 // a, b, c : int;
 variable_declaration_no_init: variable_id_list COLON all_type SEMICOLON;
 // a, b, c: int = 1, 2, 3;
-variable_declaration_init:  VARIABLE_IDENTIFIERS variable_declaration_init_list expr SEMICOLON;
-variable_declaration_init_list: COMMA VARIABLE_IDENTIFIERS variable_declaration_init_list expr COMMA
+variable_declaration_init:  VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) SEMICOLON;
+variable_declaration_init_list: COMMA VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) COMMA
                                 | COLON all_type EQUAL ;
 
 
@@ -58,16 +59,16 @@ method_invocation_statements: (VARIABLE_IDENTIFIERS LB expr_list RB
                             | prevent_default_function) SEMICOLON;
 
 // Special function
-read_integer_function: READ_INTEGER LB RB;
-print_integer_function: PRINT_INTEGER LB (expr | ) RB;
-read_float_function: READ_FLOAT LB RB;
-write_float_function: WRITE_FLOAT LB (expr | ) RB;
-read_boolean_function: READ_BOOLEAN LB RB;
-print_boolean_function: PRINT_BOOLEAN LB (expr | ) RB;
-read_string_function: READ_STRING LB RB;
-print_string_function: PRINT_STRING LB (expr | ) RB;
-super_function: SUPER LB expr_list RB;
-prevent_default_function: PREVENT_DEFAULT LB RB;
+read_integer_function: READ_INTEGER LB (expr_list | ) RB;
+print_integer_function: PRINT_INTEGER LB (expr_list | ) RB;
+read_float_function: READ_FLOAT LB (expr_list | ) RB;
+write_float_function: WRITE_FLOAT LB (expr_list | ) RB;
+read_boolean_function: READ_BOOLEAN LB (expr_list | ) RB;
+print_boolean_function: PRINT_BOOLEAN LB (expr_list | ) RB;
+read_string_function: READ_STRING LB (expr_list | ) RB;
+print_string_function: PRINT_STRING LB (expr_list | ) RB;
+super_function: SUPER LB (expr_list | ) RB;
+prevent_default_function: PREVENT_DEFAULT LB (expr_list | ) RB;
 
 
 // If statements 
@@ -146,7 +147,7 @@ in_loop_statement: break_statements | continue_statements | block_in_loop_statem
 
 // EXPRESSIONS ----------------------------------------------------------------------------------
 expr_list: expr_list_no_empty | ;
-expr_list_no_empty: expr COMMA expr_list | expr;
+expr_list_no_empty: expr COMMA expr_list_no_empty | expr;
 
 expr: expr1 DOUBLECOLONOP expr1 | expr1;
 expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
@@ -164,6 +165,8 @@ expr10: LB expr RB;
 
 // index_operators: LSB expr_list RSB ;
 
+// Array init
+array_init: LCB expr_list_no_empty RCB;
 
 
 
@@ -175,13 +178,14 @@ expr10: LB expr RB;
 
 // Array literal
 array_lit: ARRAY LSB expr_list RSB ;
-// array_val: expr COMMA array_val | expr | ;
+
+
 
 
 // Literals
 literal:  INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit ;
 
-all_type: atomic_types | array_type | AUTO;
+all_type: atomic_types | array_type | AUTO | VOID;
 
 // Array type
 array_type: ARRAY LSB expr_list_no_empty RSB OF atomic_types;
@@ -287,7 +291,7 @@ BOOLLIT: 'true' | 'false';
 
 
 // Float literal 
-fragment DECIMALPART: '.' [0-9]+;
+fragment DECIMALPART: '.' [0-9]*;
 fragment EXPONENTPART: E (MINUSOP | PLUSOP)? ('0'* [1-9] [0-9]* | '0'+); 
 
 FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replace("_", "")}

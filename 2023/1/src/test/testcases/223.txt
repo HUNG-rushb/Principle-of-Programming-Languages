@@ -1,5 +1,8 @@
 
-        x : auto = 0.0;
-        y : auto = true;
-        z : auto = "This is a string";
+        main: function void() {
+            a : integer = 3;
+            b : integer = a;
+            a = b;
+            b = foo(a&&b);
+        }
         

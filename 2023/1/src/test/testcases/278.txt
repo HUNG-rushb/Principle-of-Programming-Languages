@@ -1,9 +1,5 @@
 
-            voidA: function int{
-                return n+4+2;
-            }
-            main: function void () {
-                delta: integer = voidA(voidA(34)+24);
-                printInteger(delta);
-            }
+        fefef : function integer() {
+            a::2;
+        }
         

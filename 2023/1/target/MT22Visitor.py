@@ -24,13 +24,18 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#param.
-    def visitParam(self, ctx:MT22Parser.ParamContext):
+    # Visit a parse tree produced by MT22Parser#param_list.
+    def visitParam_list(self, ctx:MT22Parser.Param_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#param_list.
-    def visitParam_list(self, ctx:MT22Parser.Param_listContext):
+    # Visit a parse tree produced by MT22Parser#param_list_no_empty.
+    def visitParam_list_no_empty(self, ctx:MT22Parser.Param_list_no_emptyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#param.
+    def visitParam(self, ctx:MT22Parser.ParamContext):
         return self.visitChildren(ctx)
 
 
@@ -276,6 +281,11 @@ class MT22Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MT22Parser#expr10.
     def visitExpr10(self, ctx:MT22Parser.Expr10Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#array_init.
+    def visitArray_init(self, ctx:MT22Parser.Array_initContext):
         return self.visitChildren(ctx)
 
 

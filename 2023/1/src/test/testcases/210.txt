@@ -1,1 +1,1 @@
-func: function auto ( a: float) {}
+A: function integer() inherit foo {}

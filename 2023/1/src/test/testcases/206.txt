@@ -1,8 +1,1 @@
-
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
-            }
-            printInteger;
-        }
-        
+A, B: array[1,2] of integer = {1, 2}, {3, foo(4)};

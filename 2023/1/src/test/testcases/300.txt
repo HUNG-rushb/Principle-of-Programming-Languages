@@ -1,8 +1,5 @@
 
-            main: function void () {
-                a, b: array [5] of integer;
-                a[0,] = 12;
-                b[1] = a[0];
-                printInteger(b[1]);
-            }
+        learningtofly: function integer() {
+            as, n : string = "q423 \\", "dwaf"::"dwad";
+        }
         

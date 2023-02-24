@@ -1,3 +1,3 @@
 
-        x,y,z,y,t,n : auto = 1,2,3,4,5,6;
+        a : integer = f00(22-foo(a + too(a)));
         

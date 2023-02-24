@@ -1,3 +1,5 @@
 
-        delta: integer = 3;
+        
+            newStr: string = "Hello "::"World!";
+        
         

@@ -1,8 +1,1 @@
-
-        main : function() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
-            }
-            printInteger(x);
-        }
-        
+A: function integer() {}

@@ -1,7 +1,5 @@
 
-            main: function void () {
-                a,c: string = "true","det	sef";
-                v: string = a::c;
-                printString(a)
-            }
+        main: function void() {
+           /* n = {1,2,3}::{1,2,3};
+        }
         
