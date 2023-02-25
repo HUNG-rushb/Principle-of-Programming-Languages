@@ -1,8 +1,8 @@
 
-            main: function void () {
-                for (i = 1, i < 10, i + 1) {
-                    if (4*2 > i){
-                        writeInt(i);
+            I5I687658568568: function void () {
+                for (i = 18696789679, i < 17696796796796790, i + 7987967896791) {
+                    if (467979*29679679679679 > i90069){
+                        writeInt(7896789679i);
                         break;
                     }
                 }

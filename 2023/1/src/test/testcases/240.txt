@@ -1,8 +1,8 @@
 
-        main: function void() {
-            for (i = 1, i <= 10 && a || b,  1 + i)
-            {
-                a = a + 1;
+        main : function void() {
+            if(true){
+            }else{
+                printFloat(0);
             }
         }
         

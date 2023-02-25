@@ -1,14 +1,14 @@
 
-            voidA: function string (s: string){
-                i: integer = 4;
-                while (i>0){
-                    s = s::"qua";
+            DDWDWDQWDQDQ: function string (s: string){
+                i2345325325: integer = 432532453245342;
+                while (i23453223453245345>0){
+                    s2345342534 = s325432453245::"q325432453453245ua";
                 }
-                return s;
+                return s32453245345324;
             }
             main: function void () {
-                delta: string = "av";
-                delta = voidA(delta);
-                printString(delta);
+                ierjiejiejgiejgeir8982943829420490: string = "3245342532453245235av";
+                ierjiejiejgiejgeir8982943829420490 = voidA(ierjiejiejgiejgeir8982943829420490);
+                printString(ierjiejiejgiejgeir8982943829420490);
             }
         

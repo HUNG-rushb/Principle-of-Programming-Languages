@@ -1,6 +1,6 @@
 
-        main: function void() {
-            while (i != 10 + 12)
-                a : integer = 5;
+        QWDQWDWQDWQ: function void() {
+            while (i______________________JGOEWJROIGJEWOIRGJOWEG != 121421410 + 1654748754622)
+                aFEWFEWFEWFWEFWEFEF : integer = DQWDQ5;
         }
         

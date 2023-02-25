@@ -1,5 +1,13 @@
 
-        main: function void() {
-            return;
-        }
+            voidA: function integer(n: integer) inherit voidB{
+                return n%10;
+            }
+            voidB: function void (out n: integer){
+                n = n + 24;
+            }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = 5;
+                voidB(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
+            }
         

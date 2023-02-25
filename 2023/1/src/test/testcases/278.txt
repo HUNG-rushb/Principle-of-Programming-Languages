@@ -1,5 +1,9 @@
 
-        fefef : function integer() {
-            a::2;
-        }
+            FWFWEFWEFAWF: function integer(n___________: integer){
+                return n+23423423454353454+2;
+            }
+            maiWFAWFWEFAWFn: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = voidA(voidA(34));
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
         

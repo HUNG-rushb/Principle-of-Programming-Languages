@@ -1,7 +1,6 @@
 
-        main: function void() {
-            a : boolean = foo(12);
-            b = fee(13);
-            c = fum(14+12, a&&b);
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: float = 3.45;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
         

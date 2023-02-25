@@ -1,8 +1,8 @@
 
-        main : function() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        SDFGDFGGSDFGDSFG : function() {
+            for (i23454325 = 1, j2345324534253534253453245 < 1234532453240, i 532453253254324+ 1) {
+                writeInt(15324532452354);
             }
-            printInteger(x);
+            printFloat(x3254325325432);
         }
         

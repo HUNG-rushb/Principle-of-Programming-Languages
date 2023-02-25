@@ -1,1 +1,3 @@
-e, r, t, f: integer = 6, 5, 4;
+
+        EWTEWRWERTWEa :integer = f00(b=22-foo(a + too(a)));
+        

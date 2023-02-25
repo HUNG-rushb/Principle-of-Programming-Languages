@@ -1,1 +1,28 @@
-A, B: auto = 1, foo(4);
+
+            GHDHGDBFGBDFBGx: integer = 4787685785687;
+            EWTRETEWT3452545345345: function integer(n5785687568568: integer){
+                return n856875687568568568/5665785687585670 * 87985872;
+            }
+            E3535435345: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
+        

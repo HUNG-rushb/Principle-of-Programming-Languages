@@ -1,1 +1,1 @@
-add,:,function,integer,(,n,:,integer,),{,sum,:,integer,=,0,;,for,(,i,=,0,,,i,<=,n,,,i,+,1,),{,sum,=,sum,+,i,;,},return,sum,;,},main,:,function,void,(,),{,delta,:,integer,=,add,(,10,),;,printInteger,(,delta,),;,},<EOF>
+add,:,function,integer,(,n,:,integer,),{,sum,:,integer,=,0,;,for,(,i,=,0,,,i,<=,n,,,i,+,1,),{,sum,=,sum,+,i,;,},return,sum,;,},main,:,function,void,(,),{,wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293,:,integer,=,add,(,10,),;,printInteger,(,wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293,),;,},<EOF>

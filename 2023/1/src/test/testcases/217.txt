@@ -1,10 +1,1 @@
-
-        main: function void(){
-            eq = a == b;
-            neq = a != b;
-            lt = a < b;
-            le = a <= b;
-            gt = a > b;
-            ge = a >= b;
-        }
-        
+c, ddddddddddddddddddddddddddadDDDDDD: auto = 1532453245325, foo(4453253454);

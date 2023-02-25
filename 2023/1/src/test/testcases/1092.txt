@@ -1,8 +1,8 @@
 
-            main: function void () {
-                for (i = 10, i >= 0, i - 1) {
-                    if (4*2 > i){
-                        writeInt(i*2);
+            SEGERGERGEGEGE: function void () {
+                for (iGSDVSFDVSDFBBSBSBEBBSR = 1FWFWFAWFAF0, iGSDVSFDVSDFBBSBSBEBBSR >= 054325453245, iGSDVSFDVSDFBBSBSBEBBSR - 13453253252345325) {
+                    if (WFWFWAFWEFWEFWEF4*2 > i324321412412411234){
+                        writeInt(iTRSHSSTHSDG*232424234234);
                         break;
                     }
                 }

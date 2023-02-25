@@ -1,9 +1,9 @@
 
-        main: function void() {
-            n = {1,2,3}::{1,2,3};
-            str1 = "23r"::n;
-            for (i = 0, i < 10, i :: 2 :: 3) {
-                a = -a;
-            }
+        RGSGSGSERGERG: function void() {
+            if (aEGRWGERGEGEG&&B) {
+                GEGEGEGERGEGa = ERGERGSEGEGb;
+                ERGERERTRTc = ERWGEGEWRGERGd;
+            } else  
+                cEGRGEWRGEGEGERG = 43535353453453451;
         }
         

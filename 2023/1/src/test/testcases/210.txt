@@ -1,1 +1,9 @@
-A: function integer() inherit foo {}
+
+            EWRTEWRTEWRTERWTWERT: function void () {
+                i324534253425345234523452353425: integer = 1324532453245324532450;
+                while (i532453453453453253245!=3253453245324532450){
+                    i34532453245 = i32453245 - 1324523453245345;
+                }
+                return  i324532453245;
+            }
+        

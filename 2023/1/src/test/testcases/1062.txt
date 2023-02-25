@@ -1,3 +1,3 @@
 
-        x :boolean = a = b = c;
+        xEEWRTEWRTWRTEWTEWT :boolean = aETEWRT = EWTEWTbEWRTEWT = cWERTEWTEWRTEWRTEWRTEWTWERT;
         

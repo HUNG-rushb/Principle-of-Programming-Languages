@@ -1,8 +1,9 @@
 
-        learningtofly: function integer() {
-            break; continue; break; continue;
-            while (1) {
-                break; continue; break; continue;
-                }
+        inc : function integer (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + ierjiejiejgiejgeir8982943829420490;
+            return n;
+        }
+        main: function void () {
+        ierjiejiejgiejgeir8982943829420490 = inc(5;1);
         }
         

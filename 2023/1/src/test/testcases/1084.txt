@@ -1,8 +1,8 @@
 
-        main: function void() {
-            for (i = 1, i <= 10, 1 + i)
+        WERTT53453453453535345345: function void() {
+            for (iTWETWERTERWTEWT = 11234213421431234124141341, iEWTREWTWE <= 112342134123412340, 1234124 + i1241241234124)
             {
-                a = a + 1;
+                aEWRTEWRTWET = WERTEWTEWRTEWRT + 143143412412;
             }
         }
         

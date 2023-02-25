@@ -1,5 +1,8 @@
 
-        main: function void() {
-           /* n = {1,2,3}::{1,2,3};
-        }
+            maEGEGEGEGin: function void () {
+                ERGEGEGa,ERGEGEc: string = "trGERGEGERGEue","!ERGERGERGERGEGERGse";
+                vERGERGE: string = EGREGa::GGGGGGGGGGGGGGGGGGGGGGGGGGGc;
+                printString(GERGERGa);
+                printString(vEGEG);
+            }
         

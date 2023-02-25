@@ -1,5 +1,8 @@
 
-        fefef : function integer() {
-            while ( arr[foo()]::arr[1,2] ) {}
+        WERTT53453453453535345345: function void() {
+            for (iTWETWERTERWTEWT = 11234213421431234124141341, iEWTREWTWE <= 112342134123412340, 1234124 + i1241241234124)
+            {
+                aEWRTEWRTWET = WERTEWTEWRTEWRT + 143143412412;
+            }
         }
         

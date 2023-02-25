@@ -1,5 +1,10 @@
 
-        learningtofly: function integer() {
-                return !!!1;
-        }
+            voidA: function integer(n: array[2353255] of integer){
+                return n[4235432453425];
+            }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = 323453254+-4235324523--5325324;
+                ierjiejiejgiejgeir8982943829420490 = ierjiejiejgiejgeir8982943829420490*2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
         

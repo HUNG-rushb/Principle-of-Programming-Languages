@@ -1,10 +1,10 @@
 
-            x: integer = 65;
-            mess: function integer(n: integer){
-                return n/50 * 2;
+            fwfwefwefwfwfwefwfwefwx: integer = 64234324234324324235;
+            mefwefwr42342ss: function integer(n: integer){
+                return n/50432424234324 * 213123123131312;
             }
             main: function void () {
-                delta: integer = mess(7);
-                printInteger(delta);
+                delwerwrwerwerewrwerwta: integer = mess(7);
+                printInteger(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
         

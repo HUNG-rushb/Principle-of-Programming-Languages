@@ -1,11 +1,6 @@
 
-        main: function void() {
-            if (a&&B) {
-                if (true) a = a + 1;
-                else continue;
-            } 
-            else if (true) a = a + 1;
-            else continue;
-            return true;
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: float = 130.34e2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
         

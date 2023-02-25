@@ -2,12 +2,12 @@
             voidA: function integer(n: integer){
                 return n%10;
             }
-            voidB: function void (out n: integer, delta: integer){
-                n = n + voidA(delta);
+            voidB: function void (out n: integer, wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: integer){
+                n = n + voidA(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
             main: function void () {
-                delta: integer = 5;
-                voidB(x,delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: integer = 5;
+                voidB(x,wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
                 printInteger(x);
             }
         

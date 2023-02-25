@@ -1,5 +1,5 @@
 
-        learningtofly: function integer() {
-            as, n : string = "q423 \\", "dwaf"::"dwad";
+        learningtoESGERGSERGfly: function integer() {
+            aEGRGEGSEGs, n : string = "q4GRGEGERGS23 \\", "dwaf"::"dwad";
         }
         

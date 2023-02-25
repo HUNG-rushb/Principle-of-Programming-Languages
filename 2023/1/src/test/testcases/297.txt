@@ -1,5 +1,10 @@
 
-        learningtofly: function integer() {
-            
+        fwfwefaf : function void (rytrytr645645654 n : integer, uiou : integer){
+            n3424242 = n + wfwfwfwf;
+        }
+        main: function void() {
+            deasdaioulta = wf(5,1);
+            iuouououo(x, wfwfwfwf);
+            printFloat(x);
         }
         

@@ -1,7 +1,7 @@
 
             main: function void () {
-                delta: string;
-                delta = "abcd"::"298";
-                printBoolean(delta);
+                ierjiejiejgiejgeir8982943829420490: string;
+                ierjiejiejgiejgeir8982943829420490 = "abcd"::"298";
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
             }
         

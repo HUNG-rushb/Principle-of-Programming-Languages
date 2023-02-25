@@ -1,6 +1,6 @@
 
             main: function void () {
-                delta: string = "dat";
-                printString(delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: string = "dat";
+                printString(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
         

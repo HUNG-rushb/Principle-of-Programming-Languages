@@ -1,5 +1,1 @@
-
-        learningtofly: function integer() {
-            dd :: "tetst     \n";
-        }
-        
+erwrwrwera: integer = 3;eeqweqeqb,c:string = "aqweqeqebc","dqweqeqeef";

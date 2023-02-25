@@ -1,4 +1,4 @@
 
-        b : integer = 5;
-        a : integer = b = 6;
+        bwefwefwfewfwef : integer = 5;
+        awfwefwef : integer = b = 324242346;
         

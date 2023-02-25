@@ -1,5 +1,7 @@
- 
-            inc: function void(out n: integer) {
-                n  = n+ 1;
-                return n;
+
+        mEWRTWERTWERTain : function void() {
+            for (i4532453245234523453245324534534253425 = 34253245345341, j453245324555532453425 < 134534532450, i53245532453245 + 12390534205) {
             }
+            printFloat(RGERWGEWRGERGx);
+        }
+        

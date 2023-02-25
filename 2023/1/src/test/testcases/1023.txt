@@ -1,8 +1,8 @@
 
-        main : void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        GERWGERWGEGERmain : void() {
+            for (i32452345 = 123452345, j3245325 < 103245324523, i + 132532453245) {
+                writeInt(123452345);
             }
-            printInteger(x);
+            printFloat(x325452345);
         }
         

@@ -1,5 +1,10 @@
 
-        learningtofly: function integer() {
-            return -----foo(1_2 + 2 || 4 :: 5);
+        iiwiueriwuerw892384928__________________________ : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*iiwiueriwuerw892384928__________________________(n-1);
+        }
+        main: function void () {
+            ierjiejiejgiejgeir8982943829420490 : integer;
+            ierjiejiejgiejgeir8982943829420490 =  -iiwiueriwuerw892384928__________________________(5);
         }
         

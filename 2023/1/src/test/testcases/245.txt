@@ -1,8 +1,5 @@
 
-        main: function void() {
-            while (foo(a&&b + f00(12) != 10 && A))
-            {
-                continue;
-            }
-        }
+        
+            newStr: string = "Hello "::"World!";
+        
         

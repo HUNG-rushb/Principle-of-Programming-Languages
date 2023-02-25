@@ -1,7 +1,7 @@
 
-            main: function void () {
-                b: array [5] of integer;
-                b[4] = 3;
-                printInteger(b[4]);
+            WERGEWGEWGERGWRGGWER: function void () {
+                b: array [54353254523] of integer;
+                b[424523453245] = 323452345235;
+                printFloat(b[25423525234]);
             }
         

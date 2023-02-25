@@ -1,5 +1,3 @@
 
-        fefef : function integer() {
-            a, b: boolean = arr[0,1], arr[1,2];
-        }
+        xFWFWEFWEF,FWFAWEFAWFWy,z234224,y4234234,t2342424,n4234234234324 : auto = 2343242341,2234234,324234,423423424,2342342345,234234234236;
         

@@ -1,8 +1,15 @@
 
-        learningtofly: function integer() {
-                !-12;
-                -!3;
-                --2;
+        CECECESF : function void() {
+            {
+                aFEWFFWEFWEFWFEWFWE : integer = 13242142141245;
+                bFEWFWEFWE = GGEGTRHRHT* 2213423412424_0123412342134213 -367354646262345153 ;
+
+
+
+
+                for (i324532532532 = bWEFWEFWEFWEFEWFEWEWFEWF, i253453245 > 134252346 , i234532453245342-123453245234523)
+                print(Array[0, i]);
+            }
+            return ;
         }
-            
         

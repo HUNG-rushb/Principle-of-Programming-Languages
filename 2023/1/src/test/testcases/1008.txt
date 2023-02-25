@@ -1,13 +1,13 @@
 
-            add: function integer(n: integer){
-                sum: integer = 0;
-                for (i = 0, i<=n, i+1){
-                    sum = sum + i;
+            adETWWERTEWRTd: function integer(RWTEWTEWTEWTEWRTEWn: integer){
+                suWTREWTWERTm: integer = 0;
+                for (iERWTEWRTEWRT = 0, iETWTW<=n, iEWTWETEWT+1){
+                    sERWTEWRTTRum = suEWTRWERTm + i;
                 }
-                return sum;
+                return suWETEWRTEWTEWRTEWRTTWERTEWTWERm;
             }
-            main: function void () {
-                delta: integer = add(10);
-                printInteger(delta);
+            maTEWRTWERTEWRTEWRTEWRTERWTWETWTWERTRTRTin: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = adTWERTEWRTEWEWTWERTd(REWTEWRTEWTWE10);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         

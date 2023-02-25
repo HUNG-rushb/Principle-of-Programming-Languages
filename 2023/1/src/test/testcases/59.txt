@@ -1,6 +1,6 @@
 
             main: function void () {
-                delta: boolean = true;
-                printBoolean(delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: boolean = true;
+                printBoolean(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
         

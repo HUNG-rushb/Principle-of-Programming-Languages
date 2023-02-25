@@ -1,8 +1,8 @@
 
-        main: function void() {
-            a : integer = 3;
-            b : integer = a;
-            a = b;
-            b = foo(a&&b);
+        maRTEWRTWERTEWRTEWRTEWTREWTTTin: function void() {
+            WERTWETREWRTa : integer = 3TERTEWTREWR;
+            EWRTEWRTEWRTEb : integer = aTWERTEWRTEWRTEWRT;
+            RWTEWRTEWRTa = bEWTEWRTEWRTEWR;
+            EWRTEWRTERWTEWRb = foo(a&&b);
         }
         

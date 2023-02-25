@@ -1,3 +1,7 @@
 
-        inc: function void(inherit a: integer, inherit out b: integer, inherit c:boolean, out d:integer) {}
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: boolean = true;
+                temp: boolean = !ierjiejiejgiejgeir8982943829420490||false||!false;
+                printBoolean(temp);
+            }
         

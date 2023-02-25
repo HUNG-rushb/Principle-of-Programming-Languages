@@ -1,7 +1,11 @@
 
-        fefef : function integer() {
-            do {
-            }
-            while ( arr[foo()]::arr[1,2] );
+        RETERT434353534534534: function void() {
+            if (a32423423242&&FEWFWEFEWFEWFEWFWEFEWFWEB) {
+                a5454545 = 7567567b;
+                cQ2RQ2R2R4 = dRWEKRJIWE89E8R9W8R9;
+                return False;
+            } else 
+                break;
+            return ;
         }
         

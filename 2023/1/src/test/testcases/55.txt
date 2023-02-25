@@ -1,9 +1,9 @@
 
-            main: function void () {
-                i: integer = 10;
-                while (i>20){
-                    i+=2;
+            wefjwijfiwejfiwejfiwfjwifjwiefj: function void () {
+                intretertertertertretetet: integer = 10;
+                while (intretertertertertretetet>20){
+                    intretertertertertretetet+=2;
                 }
-                return  i;
+                return  intretertertertertretetet;
             }
         

@@ -1,5 +1,10 @@
 
-        learningtofly: function integer() {
-            a = 1 * 1 + 2 - 3 || !4 && 5 % 6 / 7 < 8 > 9 <= 10 >= 11 == 12 != 13 && 14 || 15; 
-        }
+            I5I687658568568: function void () {
+                for (iWEEEEEEEEEEE = 18696789679, iWEWWWEWE < 17696796796796790, iWEREWREW + 7987967896791) {
+                    if (467979*29679679679679 > 90069){
+                        writeInt(7896789679);
+                        break;
+                    }
+                }
+            }
         

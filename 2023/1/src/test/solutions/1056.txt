@@ -1,1 +1,1 @@
-Error on line 2 col 15: void
+Error on line 2 col 25: void

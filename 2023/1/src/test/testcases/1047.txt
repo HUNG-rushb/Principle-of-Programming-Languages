@@ -1,6 +1,6 @@
 
             main: function void () {
-                delta: string = "true";
-                printString(delta);
+                ierjiejiejgiejgeir8982943829420490: string = "true";
+                printString(ierjiejiejgiejgeir8982943829420490);
             }
         

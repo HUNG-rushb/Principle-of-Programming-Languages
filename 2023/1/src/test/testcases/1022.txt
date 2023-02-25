@@ -1,8 +1,8 @@
 
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        GWERGEWRGEWGRGRGRGRGRG : function void() {
+            for (i32452353254 = 13245234, j34523453245342 < 132452353250, i32453425345342 + 234535324532451) {
+                writeInt(1532452345324532);
             }
-            printInteger;
+            printFloat;
         }
         

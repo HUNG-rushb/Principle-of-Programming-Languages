@@ -1,5 +1,3 @@
 
-        main: function void() {
-            n = ff()::dd();
-        }
+        wewrwerwra = foo(4) = 23423423423423c = 23432424234d;
         

@@ -1,5 +1,6 @@
 
-        main: function void() {
-            return a && b + 10 % 12;
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: boolean = !true&&!false||true||false||!false;
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
+            }
         

@@ -1,8 +1,8 @@
 
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                printInteger(x)
+        maEWRTEWRTEWTEWRTERWTERWTERWin : function void() {
+            for (i2345324532453245324532 = 23534532453451, j34534532453245342532 < 15345324532453453253420, i532324532453245324 + 1555553425234) {
+                printFloat(FWFERGREx)
             }
-            printInteger(x);
+            printFloat(GERGEWGWEx);
         }
         

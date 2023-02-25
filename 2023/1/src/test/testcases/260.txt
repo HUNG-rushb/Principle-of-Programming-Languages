@@ -1,1 +1,8 @@
-a, s, d: integer = 2, 3, 4;
+
+        main : function void() {
+            TREWRTEWRTEWRTEWTEWRc, ddddddddddddddddddddddddddadDDDDDD : integer = round(123.0e2), randomInt();
+            suEWRTEWRTEWRTm : integer = aEWRTEWRT + bWETEWRTWETRWERTEWTEWTEW + arr[0,0];
+            print(WERTEWRTWEa, suTEWRTEWRTEWRTm);
+            return ;
+        }
+        

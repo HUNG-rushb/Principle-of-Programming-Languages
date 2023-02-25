@@ -1,12 +1,10 @@
 
-        main: function void() {
-            if (a&&B) {
-                if (true) a = a + 1;
-                a = a + 3;
-                /* hello */
-                else continue;
-            } else  // no expr
-                break;
-            return true;
-        }
+            main: function void () {
+                i: integer = -10;
+                do{
+                    i = i - 1;
+                }
+                while (i!=0);
+                return  i;
+            }
         

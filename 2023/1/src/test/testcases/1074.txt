@@ -1,8 +1,8 @@
 
-        main: function void() {
+        GERGSGSEGSGSER: function void() {
             if (a&&B) {
-                a = b;
-                c = d;
+                aERGERGERGERG = bERERGERGERGERGERG;
+                GERGERGERGc = EGERGERGEGd;
             } else {} // empty
         }
         

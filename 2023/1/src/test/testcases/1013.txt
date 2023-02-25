@@ -1,8 +1,8 @@
 
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(a);
+        mERWERWGERGERWGERGERGERGERGain : function void() {
+            for (iGERWGERWG = 1, jWGERGERWGERGERGERGERGERGERGERGERGERGEWRGEWRGERG < 11324210, iERGERGERGEWRGERWGERWGERGERWGER + 5787606971) {
+                writeInt(aGWERGERGERWGERGEW);
             }
-            printInteger();
+            printFloat();
         }
         

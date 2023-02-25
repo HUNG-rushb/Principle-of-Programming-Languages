@@ -1,1 +1,3 @@
-a: integer = 3;b,c:string = "abc","def";
+
+        aEWRTEWRTEWRT :integer = ERWTETEWRTb = f00(2TT2-foo(a + too(a)));
+        

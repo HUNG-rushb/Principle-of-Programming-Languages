@@ -5,7 +5,7 @@
                     writeInt(i);
             }
             }else{
-                printInteger(0);
+                printFloat(0);
             }
         }
         

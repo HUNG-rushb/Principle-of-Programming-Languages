@@ -7,7 +7,7 @@ from TestUtils import TestLexer
 class LexerSuite(unittest.TestCase):
 
     def test_lexer0(self):
-        self.assertTrue(TestLexer.test("njviuehrfiuwaojdoa_____sjfdoFAWEFAWECASDCdsVRERE______ifjiodjcvr436763172637126372________________", "njviuehrfiuwaojdoasjfdoifjiodjcvr436763172637126372________________,<EOF>", 0))
+        self.assertTrue(TestLexer.test("njviuehrfiuwaojdoa_____sjfdoFAWEFAWECASDCdsVRERE______ifjiodjcvr436763172637126372________________", "njviuehrfiuwaojdoa_____sjfdoFAWEFAWECASDCdsVRERE______ifjiodjcvr436763172637126372________________,<EOF>", 0))
         
     def test_lexer1(self):
         input = """{"}"""
@@ -135,7 +135,7 @@ class LexerSuite(unittest.TestCase):
                 writeInt(i);
                 }
             '''
-        expect = "for,(,i,=,1344242342423423432432423432,,,i,<,1fwefhweuhfiwjeiwejf0,,,i,+,1,),{,writeInt,(,i,),;,},<EOF>"
+        expect = "for,(,i,=,1344242342423423432432423432,,,i,<,1,fwefhweuhfiwjeiwejf0,,,i,+,1,),{,writeInt,(,i,),;,},<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 25))
         
     def test_lexer26(self):
@@ -201,7 +201,7 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.test("//hjhjhusrgergergserhu/*youergergsegrare lgsegergive */", "<EOF>", 35))
 
     def test_lexer36(self):
-        self.assertTrue(TestLexer.test("//heergergergsellewo mwfwfywef f              fawf234242 riwfwfewfawfsadfsdafsadvwaeend \n a_____seurirui283743287482374832748da", "as_____deurirui283743287482374832748a,<EOF>", 36))
+        self.assertTrue(TestLexer.test("//heergergergsellewo mwfwfywef f              fawf234242 riwfwfewfawfsadfsdafsadvwaeend \n a_____seurirui283743287482374832748da", "a_____seurirui283743287482374832748da,<EOF>", 36))
 
     def test_lexer37(self):
         self.assertTrue(TestLexer.test("/*helwefwflodfsd fsfsd  f  fwewefewe   wfrdssafend \n nothinfweafwfsdghjhj \n love */ nfwefwfwfwfweftp", "nfwefwfwfwfweftp,<EOF>", 37))
@@ -250,7 +250,7 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer50(self):
         input = ":a:sxassa:,irejgwefowiefoiwefuawfu__________7432432849238493284AFSFAFWEFWEFAWFWEF___________________________ioj0990hiju."
-        expect = ":,a,:,sxassa,:,,,irejgiojwefowiefoiwefuawfu__________7432432849238493284AFSFAFWEFWEFAWFWEF___________________________0990hiju,.,<EOF>"
+        expect = ":,a,:,sxassa,:,,,irejgwefowiefoiwefuawfu__________7432432849238493284AFSFAFWEFWEFAWFWEF___________________________ioj0990hiju,.,<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 50))
         
     def test_lexer51(self):
@@ -318,15 +318,15 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer55(self):
         input = '''
-            main: function void () {
-                i: integer = 10;
-                while (i>20){
-                    i+=2;
+            wefjwijfiwejfiwejfiwfjwifjwiefj: function void () {
+                intretertertertertretetet: integer = 10;
+                while (intretertertertertretetet>20){
+                    intretertertertertretetet+=2;
                 }
-                return  i;
+                return  intretertertertertretetet;
             }
         '''
-        expect = "main,:,function,void,(,),{,i,:,integer,=,10,;,while,(,i,>,20,),{,i,+,=,2,;,},return,i,;,},<EOF>"
+        expect = "wefjwijfiwejfiwejfiwfjwifjwiefj,:,function,void,(,),{,intretertertertertretetet,:,integer,=,10,;,while,(,intretertertertertretetet,>,20,),{,intretertertertertretetet,+,=,2,;,},return,intretertertertertretetet,;,},<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 55))
 
     def test_lexer56(self):
@@ -408,7 +408,7 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer65(self):
         input = "@______________43875938275983475023804930932sgZSDGWGREGER!@!@###@$!@$@#$@!$!@#$!@#$12^^^^^!"
-        expect = "!,Error Token @"
+        expect = "Error Token @"
         self.assertTrue(TestLexer.test(input, expect, 65))
 
     def test_lexer66(self):
@@ -453,7 +453,7 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer74(self):
         input = "a[312343542345345345 + x.foo(212343542345345345)] = a[b[212343542345345345]] + 312343542345345345;"
-        expect = "a,[,312343542345345345,+,x,.,foo,(,212343542345345345,),],=,a,[,b,[,2,],],+,312343542345345345,;,<EOF>"
+        expect = "a,[,312343542345345345,+,x,.,foo,(,212343542345345345,),],=,a,[,b,[,212343542345345345,],],+,312343542345345345,;,<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 74))
 
     def test_lexer75(self):
@@ -473,7 +473,7 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer78(self):
         input = """ " \\wfwefefefefafsfhmmbnbvn\\t" """
-        expect = """ \\wfwefefefefafsfhmmbnbvn\\t,<EOF>"""
+        expect = "Illegal Escape In String:  \w"
         self.assertTrue(TestLexer.test(input, expect, 78))
 
     def test_lexer79(self):
@@ -572,12 +572,12 @@ class LexerSuite(unittest.TestCase):
 
     def test_lexer97(self):
         input = """{         "1rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi" ,      "rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi2"     ,      "rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi3"       }"""
-        expect = """{,1rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi,,,rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi2,,,3,},<EOF>"""
+        expect = "{,1rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi,,,rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi2,,,rrio3iru34ur34u________________92834928398r2938r923r8923rfiafi3,},<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 97))
     
     def test_lexer98(self):
         input = "3249284923849284923823983298239r.00000000000000000000000000000000000000e34823748324923489238432984293843298429384"
-        expect = "3249284923849284923823983298239r.00000000000000000000000000000000000000e34823748324923489238432984293843298429384,<EOF>"
+        expect = "3249284923849284923823983298239,r,.00000000000000000000000000000000000000e34823748324923489238432984293843298429384,<EOF>"
         self.assertTrue(TestLexer.test(input, expect, 98))
     
     def test_lexer99(self):

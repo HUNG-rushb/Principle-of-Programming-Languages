@@ -1,5 +1,1 @@
-
-        
-            newStr: string = "Hello "::"World!";
-        
-        
+c, ddddddddddddddddddddddddddadDDDDDD: array[132453245342,3245234532452] of integer = {13245325, 254352234534253425}, {253245324532453, foo(4)};

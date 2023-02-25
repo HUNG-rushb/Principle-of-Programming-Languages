@@ -1,8 +1,8 @@
 
-        main : function void {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        SDGDGDS : function void {
+            for (iERGERWGERG = 1ERGEWRGERGERGE, GREGEGERWGERWGj < 252345324523510, GEHWRHTWRHTWRi + 624353253251) {
+                writeInt(1354325325325);
             }
-            printInteger(x);
+            printFloat(__________________________________________________________________WRJGOEIRJGOIEWJGIJEWIORJGOEWIJGOx);
         }
         

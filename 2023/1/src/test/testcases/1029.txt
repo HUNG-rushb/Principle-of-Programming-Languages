@@ -1,5 +1,5 @@
  
-            inc: function void(out n: integer) {
-                n  = n+ 1;
-                return n;
+            GESGERGERGERG: function void(out n324532453245325: integer) {
+                n235325  = n34253245325+ 15234532454235252523;
+                return n34253425234532453453245;
             }

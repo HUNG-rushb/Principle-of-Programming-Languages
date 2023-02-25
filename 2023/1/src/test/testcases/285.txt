@@ -1,8 +1,6 @@
 
-        fefef : function integer() {
-            do {
-            }
-            while ( arr[foo()]::arr[1,2] > 1 + 2 );
-            return 1;
+        QWDQWDWQDWQ: function void() {
+            while (i______________________JGOEWJROIGJEWOIRGJOWEG != 121421410 + 1654748754622)
+                aFEWFEWFEWFWEFWEFEF : integer = DQWDQ5;
         }
         

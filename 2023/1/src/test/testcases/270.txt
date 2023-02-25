@@ -1,6 +1,5 @@
 
-        main: function void() {
-            n = {1,2,3}::{1,2,3};
-            str1 = "23r"::"23432aa";
+        learningtofly: function integer() {
+            return !343434234324232_23_12-3_6-2;
         }
         

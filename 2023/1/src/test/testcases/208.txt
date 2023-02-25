@@ -1,1 +1,13 @@
-A, B: void = 1, 2;
+
+            adETWWERTEWRTd: function integer(RWTEWTEWTEWTEWRTEWn: integer){
+                suWTREWTWERTm: integer = 0;
+                for (iERWTEWRTEWRT = 0, iETWTW<=n, iEWTWETEWT+1){
+                    sERWTEWRTTRum = suEWTRWERTm + i;
+                }
+                return suWETEWRTEWTEWRTEWRTTWERTEWTWERm;
+            }
+            maTEWRTWERTEWRTEWRTEWRTERWTWETWTWERTRTRTin: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = adTWERTEWRTEWEWTWERTd(REWTEWRTEWTWE10);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
+        

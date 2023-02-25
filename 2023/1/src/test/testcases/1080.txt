@@ -1,5 +1,5 @@
 
-        x : auto = 0.0;
-        y : auto = true;
-        z : auto = "This is a string";
+        xWEFAWFAWEFAWEF : auto = 0.0;
+        yWAFWFAWF : auto = true;
+        zAEWFAWEFWAEFWAEFWEFWEF : auto = "ThWAEFAWEFs is aWFWAEFAWEFAWFWstrWFWEFAWFing";
         

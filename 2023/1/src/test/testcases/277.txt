@@ -1,8 +1,8 @@
 
-        main: function void() {
-         //   n = {1,2,3}::{1,2,3};
-         /**
-            str1 = "23r"::n;
-        */
-        }
+            EGEGmaiEGEGERGERGEGEEGn: function void () {
+                a,c: string = "true","det/tsef";
+                v: string = a::c;
+                printString(a);
+                printString(v);
+            }
         

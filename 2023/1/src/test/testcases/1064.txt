@@ -1,7 +1,7 @@
 
             main: function void () {
-                delta: boolean = true;
-                temp: boolean = !delta||false||!false;
+                ierjiejiejgiejgeir8982943829420490: boolean = true;
+                temp: boolean = !ierjiejiejgiejgeir8982943829420490||false||!false;
                 printBoolean(temp);
             }
         

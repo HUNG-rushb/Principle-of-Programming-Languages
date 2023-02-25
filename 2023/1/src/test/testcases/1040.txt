@@ -2,7 +2,7 @@
         main : function void() {
             if(true){
             }else{
-                printInteger(0);
+                printFloat(0);
             }
         }
         

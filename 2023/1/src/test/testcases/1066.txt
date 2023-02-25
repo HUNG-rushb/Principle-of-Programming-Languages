@@ -1,7 +1,7 @@
 
             main: function void () {
-                a,c: boolean = true,!false;
-                printBoolean(a);
-                printBoolean(c);
+                uyututytDEGEGEGa,c: boolean = true,!false;
+                printBoolean(_56765756756756a);
+                printBoolean(34t3t34t3t3tc);
             }
         

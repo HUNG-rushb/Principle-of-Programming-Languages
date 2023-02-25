@@ -1,3 +1,1 @@
-
-        x :boolean = a = b = c;
-        
+A23542353253245: function integer() {}

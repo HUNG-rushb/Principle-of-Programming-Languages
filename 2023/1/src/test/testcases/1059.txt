@@ -1,3 +1,3 @@
 
-        a :integer = b = f00(22-foo(a + too(a)));
+        aEWRTEWRTEWRT :integer = ERWTETEWRTb = f00(2TT2-foo(a + too(a)));
         

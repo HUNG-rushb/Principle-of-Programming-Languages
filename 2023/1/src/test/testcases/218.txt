@@ -1,6 +1,9 @@
 
-        main: function void(){
-            Arr: array[5] of integer = {1,2,3,4,5};
-            a = Arr[3+1];
-        }
+            FWEFWQETRTWETERT: function void () {
+                i5363456: integer = 152254324532523450;
+                while (i45235324532>205342534535425325){
+                    iRWETWERTEW = iWERTWERT+ 23253252353252;
+                }
+                return  iRTREWTWERTWERT;
+            }
         

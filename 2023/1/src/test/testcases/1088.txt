@@ -3,8 +3,8 @@
                 return n+4+2;
             }
             main: function void () {
-                delta: integer = voidA(23);
-                delta = delta/2 + delta/2/3;
-                printInteger(delta);
+                ierjiejiejgiejgeir8982943829420490: integer = voidA(23);
+                ierjiejiejgiejgeir8982943829420490 = ierjiejiejgiejgeir8982943829420490/2 + ierjiejiejgiejgeir8982943829420490/2/3;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         

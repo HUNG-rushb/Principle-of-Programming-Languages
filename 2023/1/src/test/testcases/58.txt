@@ -1,6 +1,6 @@
 
             main: function void () {
-                delta: float = 3.45;
-                printFloat(delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: float = 3.45;
+                printFloat(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
         

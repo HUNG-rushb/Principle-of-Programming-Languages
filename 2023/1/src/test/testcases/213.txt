@@ -1,1 +1,8 @@
-x:integer = a + b * c - d / e % f;
+
+        mERWERWGERGERWGERGERGERGERGain : function void() {
+            for (iGERWGERWG = 1, jWGERGERWGERGERGERGERGERGERGERGERGERGEWRGEWRGERG < 11324210, iERGERGERGEWRGERWGERWGERGERWGER + 5787606971) {
+                writeInt(aGWERGERGERWGERGEW);
+            }
+            printFloat();
+        }
+        

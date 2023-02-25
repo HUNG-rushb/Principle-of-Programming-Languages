@@ -1,5 +1,3 @@
 
-        fefef : function integer() {
-            a, b: boolean = arr[foo()], arr[1,2];
-        }
+        x23424Q24Q24Q2Q24Q24Q234Q224Q : array [] of integer;
         

@@ -1,6 +1,6 @@
 
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
+        inc : function void (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + 2342423424;
         }
-        delta = inc(5,1);
+        ierjiejiejgiejgeir8982943829420490 = inc(5,1);
         

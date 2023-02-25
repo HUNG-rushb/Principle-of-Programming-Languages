@@ -4,12 +4,12 @@
                 if (n == 0) return 1;
                 else return n * fact(n-1);
             }
-            inc: function void (out n: integer, delta: integer){
-                n = n + delta;
+            inc: function void (out n: integer, wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: integer){
+                n = n + wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293;
             }
             main: function void () {
-                delta: integer = fact(3);
-                inc(x,delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: integer = fact(3);
+                inc(x,wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
                 printInteger(x);
             }
         

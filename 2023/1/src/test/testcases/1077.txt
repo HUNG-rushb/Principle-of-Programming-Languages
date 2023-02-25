@@ -1,5 +1,5 @@
 
-            main: function void () {
+            EGEGmaiEGEGERGERGEGEEGn: function void () {
                 a,c: string = "true","det/tsef";
                 v: string = a::c;
                 printString(a);

@@ -1,9 +1,6 @@
 
-        main: function void() {
-            do 
-                {
-                    do{}while(false);
-                }
-            while (i != 10 + 12);
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: string = "true";
+                printString(ierjiejiejgiejgeir8982943829420490);
+            }
         

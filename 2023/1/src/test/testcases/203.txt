@@ -1,1 +1,8 @@
-A, B: string = "abc", "def";
+
+        SDGDGDS : function void {
+            for (iERGERWGERG = 1ERGEWRGERGERGE, GREGEGERWGERWGj < 252345324523510, GEHWRHTWRHTWRi + 624353253251) {
+                writeInt(1354325325325);
+            }
+            printFloat(__________________________________________________________________WRJGOEIRJGOIEWJGIJEWIORJGOEWIJGOx);
+        }
+        

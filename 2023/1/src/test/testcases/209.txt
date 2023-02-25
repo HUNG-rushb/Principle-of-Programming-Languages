@@ -1,1 +1,15 @@
-A: function integer() {}
+
+            xRWETEWRTEWRTEWRTEWRT: integer = 65;
+            iiwiueriwuerw892384928__________________________: function integer(n: integer){
+                if (nERWTWERTEWRTEWRTWER == 0ERWTEWRTEWRT) return WTERWTEWRTEWRTEWRT;
+                else return nTEWRTEWRTEWRT * iiwiueriwuerw892384928__________________________(nWERTEWRTEWRTEWRTERWTER-1);
+            }
+            iTEWRTEWRTERTWERTWnc: function void (out n: integer, ierjiejiejgiejgeir8982943829420490: integer){
+                nEWRTEWRTERTERW = TEWRTEWRTEWRn + ierjiejiejgiejgeir8982943829420490;
+            }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = iiwiueriwuerw892384928__________________________(3);
+                inc(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
+            }
+        

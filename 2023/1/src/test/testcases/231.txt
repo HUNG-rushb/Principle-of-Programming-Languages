@@ -1,8 +1,7 @@
 
-        main: function void() {
-            if (a&&B) {
-                a = b;
-                c = d;
-            } else {} // empty
-        }
+            WERGEWGEWGERGWRGGWER: function void () {
+                b: array [54353254523] of integer;
+                b[424523453245] = 323452345235;
+                printFloat(b[25423525234]);
+            }
         

@@ -1,9 +1,9 @@
 
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
-            i : integer;
-            for(i = 1, i < 10){
-                writeInt(i);
+        fwefwfwffewfwf : function void (fwefwefwefwf n : integer, fwefwf : integer){
+            nfewf = newfwfwf + defwfelta;
+            iewfwf : integer;
+            for(ifwefw = 1fwew, i < 132322230){
+                writeInt(iwewafwef);
             } 
         }
         

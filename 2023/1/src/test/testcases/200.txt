@@ -1,1 +1,9 @@
-main: function void() {}
+
+        fwefwfwffewfwf : function void (fwefwefwefwf n : integer, fwefwf : integer){
+            nfewf = newfwfwf + defwfelta;
+            iewfwf : integer;
+            for(ifwefw = 1fwew, i < 132322230){
+                writeInt(iwewafwef);
+            } 
+        }
+        

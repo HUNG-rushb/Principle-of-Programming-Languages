@@ -1,8 +1,8 @@
 
-            main: function void () {
-                a,c: string = "true","!false";
-                v: string = a::c;
-                printString(a);
-                printString(v);
+            maEGEGEGEGin: function void () {
+                ERGEGEGa,ERGEGEc: string = "trGERGEGERGEue","!ERGERGERGERGEGERGse";
+                vERGERGE: string = EGREGa::GGGGGGGGGGGGGGGGGGGGGGGGGGGc;
+                printString(GERGERGa);
+                printString(vEGEG);
             }
         

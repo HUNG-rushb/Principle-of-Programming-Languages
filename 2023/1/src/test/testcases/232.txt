@@ -1,11 +1,6 @@
 
-        main: function void() {
-            if (a&&B) {
-                a = b;
-                c = d;
-                return False;
-            } else 
-                break;
-            return ;
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = 3+34*30/5*16/4*2/2+19%4+2%2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+            }
         

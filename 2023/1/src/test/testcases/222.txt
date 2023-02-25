@@ -1,6 +1,8 @@
 
-        main: function void() {
-        b = fee(foo(13));
-        c = fum(14+12, foo(a&&b));
+        GWERGEWRGEWGRGRGRGRGRG : function void() {
+            for (i32452353254 = 13245234, j34523453245342 < 132452353250, i32453425345342 + 234535324532451) {
+                writeInt(1532452345324532);
+            }
+            printFloat;
         }
         

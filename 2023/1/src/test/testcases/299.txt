@@ -1,5 +1,1 @@
-
-        learningtofly: function integer() {
-            return fooo("q423 \\");
-        }
-        
+effwfw, rwefwe, twefw, fwefwf: integer = 635453,3453535, 3534;

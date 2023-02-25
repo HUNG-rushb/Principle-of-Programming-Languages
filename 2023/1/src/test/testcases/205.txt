@@ -1,1 +1,1 @@
-A, B: boolean = true, false;
+BBBBBBBBBBBBBBBBBBc, ddddddddddddddddddddddddddadDDDDDD: integer = 5, 6;

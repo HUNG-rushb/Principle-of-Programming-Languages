@@ -5,323 +5,355 @@ import unittest
 from TestUtils import TestParser
 
 class ParserSuite(unittest.TestCase):
+    
+
+    def test00(self):
+        input = """
+        fwefwfwffewfwf : function void (fwefwefwefwf n : integer, fwefwf : integer){
+            nfewf = newfwfwf + defwfelta;
+            iewfwf : integer;
+            for(ifwefw = 1fwew, i < 132322230){
+                writeInt(iwewafwef);
+            } 
+        }
+        """
+        expect = "Error on line 2 col 53: n"
+        self.assertTrue(TestParser.test(input, expect, 200))
 
     def test01(self):
         input = """
-        x,y,z : integer = 1,2,3,4;
+        xUOYPULUI,GGGERGERy,z2341FSGEWRRGFDFHDG : integer = 141234124,213423412412432,31234214,234123421424;
         """
-        expect = "Error on line 2 col 31: ,"
-        self.assertTrue(TestParser.test(input, expect, 1001))
+        expect = "Error on line 2 col 94: ,"
+        self.assertTrue(TestParser.test(input, expect, 201))
 
     def test02(self):
         input = """
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        maSin : function void() {
+            for (iERGERWGERG = 1ERGEWRGERGERGE, GREGEGERWGERWGj < 252345324523510, GEHWRHTWRHTWRi + 624353253251) {
+                writeInt(1354325325325);
             }
-            printInteger(x);
+            printFloat(__________________________________________________________________WRJGOEIRJGOIEWJGIJEWIORJGOEWIJGOx);
         }
         """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1002))
+        expect = "Error on line 3 col 32: ERGEWRGERGERGE"
+        self.assertTrue(TestParser.test(input, expect,202))
 
     def test03(self):
         input = """
-        main : function void {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        SDGDGDS : function void {
+            for (iERGERWGERG = 1ERGEWRGERGERGE, GREGEGERWGERWGj < 252345324523510, GEHWRHTWRHTWRi + 624353253251) {
+                writeInt(1354325325325);
             }
-            printInteger(x);
+            printFloat(__________________________________________________________________WRJGOEIRJGOIEWJGIJEWIORJGOEWIJGOx);
         }
         """
-        expect = "Error on line 2 col 29: {"
-        self.assertTrue(TestParser.test(input, expect,1003))
+        expect = "Error on line 2 col 32: {"
+        self.assertTrue(TestParser.test(input, expect,203))
 
     def test04(self):
-        input = """main: function void() {}"""
+        input = """SFGSDGSDGDS: function void() {}"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1004))
+        self.assertTrue(TestParser.test(input, expect,204))
 
     def test05(self):
-        input = r"""A, B: integer = 5, 6;"""
+        input = r"""BBBBBBBBBBBBBBBBBBc, ddddddddddddddddddddddddddadDDDDDD: integer = 5, 6;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1005))
+        self.assertTrue(TestParser.test(input, expect,205))
 
     def test06(self):
-        input = r"""A, B: string = "abc", "def";"""
+        input = r"""c, ddddddddddddddddddddddddddadDDDDDD: string = "abc", "def";"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1006))
+        self.assertTrue(TestParser.test(input, expect,206))
 
     def test07(self):
         input = '''
-            x: integer = 65;
-            mess: function integer(n: integer){
-                return n/50 * 2;
+            GHDHGDBFGBDFBGx: integer = 4787685785687;
+            EWTRETEWT3452545345345: function integer(n5785687568568: integer){
+                return n856875687568568568/5665785687585670 * 87985872;
             }
-            main: function void () {
-                delta: integer = mess(7);
-                printInteger(delta);
+            E3535435345: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
+                ierjiejiejgiejgeir8982943829420490: integer = RRTY67767(7678658756865);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1007))
+        self.assertTrue(TestParser.test(input, expect,207))
 
     def test08(self):
         input = '''
-            add: function integer(n: integer){
-                sum: integer = 0;
-                for (i = 0, i<=n, i+1){
-                    sum = sum + i;
+            adETWWERTEWRTd: function integer(RWTEWTEWTEWTEWRTEWn: integer){
+                suWTREWTWERTm: integer = 0;
+                for (iERWTEWRTEWRT = 0, iETWTW<=n, iEWTWETEWT+1){
+                    sERWTEWRTTRum = suEWTRWERTm + i;
                 }
-                return sum;
+                return suWETEWRTEWTEWRTEWRTTWERTEWTWERm;
             }
-            main: function void () {
-                delta: integer = add(10);
-                printInteger(delta);
+            maTEWRTWERTEWRTEWRTEWRTERWTWETWTWERTRTRTin: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = adTWERTEWRTEWEWTWERTd(REWTEWRTEWTWE10);
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1008))
+        self.assertTrue(TestParser.test(input, expect,208))
 
     def test09(self):
         input = '''
-            x: integer = 65;
-            fact: function integer(n: integer){
-                if (n == 0) return 1;
-                else return n * fact(n-1);
+            xRWETEWRTEWRTEWRTEWRT: integer = 65;
+            iiwiueriwuerw892384928__________________________: function integer(n: integer){
+                if (nERWTWERTEWRTEWRTWER == 0ERWTEWRTEWRT) return WTERWTEWRTEWRTEWRT;
+                else return nTEWRTEWRTEWRT * iiwiueriwuerw892384928__________________________(nWERTEWRTEWRTEWRTERWTER-1);
             }
-            inc: function void (out n: integer, delta: integer){
-                n = n + delta;
+            iTEWRTEWRTERTWERTWnc: function void (out n: integer, ierjiejiejgiejgeir8982943829420490: integer){
+                nEWRTEWRTERTERW = TEWRTEWRTEWRn + ierjiejiejgiejgeir8982943829420490;
             }
             main: function void () {
-                delta: integer = fact(3);
-                inc(x,delta);
-                printInteger(x);
+                ierjiejiejgiejgeir8982943829420490: integer = iiwiueriwuerw892384928__________________________(3);
+                inc(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
             }
         '''
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1009))
+        expect = "Error on line 4 col 45: ERWTEWRTEWRT"
+        self.assertTrue(TestParser.test(input, expect,209))
 
     def test10(self):
         input = '''
-            main: function void () {
-                i: integer = 10;
-                while (i!=0){
-                    i = i - 1;
+            EWRTEWRTEWRTERWTWERT: function void () {
+                i324534253425345234523452353425: integer = 1324532453245324532450;
+                while (i532453453453453253245!=3253453245324532450){
+                    i34532453245 = i32453245 - 1324523453245345;
                 }
-                return  i;
+                return  i324532453245;
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1010))
+        self.assertTrue(TestParser.test(input, expect,210))
 
     def test11(self):
         input = """
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
+        mEWRTWERTWERTain : function void() {
+            for (i4532453245234523453245324534534253425 = 34253245345341, j453245324555532453425 < 134534532450, i53245532453245 + 12390534205) {
             }
-            printInteger(x);
+            printFloat(RGERWGEWRGERGx);
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1011))
+        self.assertTrue(TestParser.test(input, expect,211))
 
     def test12(self):
         input = """
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                printInteger(x)
+        maEWRTEWRTEWTEWRTERWTERWTERWin : function void() {
+            for (i2345324532453245324532 = 23534532453451, j34534532453245342532 < 15345324532453453253420, i532324532453245324 + 1555553425234) {
+                printFloat(FWFERGREx)
             }
-            printInteger(x);
+            printFloat(GERGEWGWEx);
         }
         """
         expect = "Error on line 5 col 12: }"
-        self.assertTrue(TestParser.test(input, expect, 1012))
+        self.assertTrue(TestParser.test(input, expect, 212))
 
     def test13(self):
         input = """
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(a);
+        mERWERWGERGERWGERGERGERGERGain : function void() {
+            for (iGERWGERWG = 1, jWGERGERWGERGERGERGERGERGERGERGERGERGEWRGEWRGERG < 11324210, iERGERGERGEWRGERWGERWGERGERWGER + 5787606971) {
+                writeInt(aGWERGERGERWGERGEW);
             }
-            printInteger();
+            printFloat();
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1013))
+        self.assertTrue(TestParser.test(input, expect,213))
         
     def test14(self):
-        input = r"""A, B: float = 1.2, 3.4e-10;"""
+        input = r"""c, ddddddddddddddddddddddddddadDDDDDD: float = 534253425321.2534532534253245342, 323523453252352345235245.3254234532453244e-10;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1014))
+        self.assertTrue(TestParser.test(input, expect,214))
 
     def test15(self):
-        input = r"""A, B: boolean = true, false;"""
+        input = r"""c, ddddddddddddddddddddddddddadDDDDDD: boolean = true, false;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1015))
+        self.assertTrue(TestParser.test(input, expect, 215))
 
     def test16(self):
-        input = r"""A, B: array[1,2] of integer = {1, 2}, {3, foo(4)};"""
+        input = r"""c, ddddddddddddddddddddddddddadDDDDDD: array[132453245342,3245234532452] of integer = {13245325, 254352234534253425}, {253245324532453, foo(4)};"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1016))
+        self.assertTrue(TestParser.test(input, expect,216))
 
     def test17(self):
-        input = r"""A, B: auto = 1, foo(4);"""
+        input = r"""c, ddddddddddddddddddddddddddadDDDDDD: auto = 1532453245325, foo(4453253454);"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1017))
+        self.assertTrue(TestParser.test(input, expect,217))
 
     def test18(self):
         input = '''
-            main: function void () {
-                i: integer = 10;
-                while (i>20){
-                    i = i + 2;
+            FWEFWQETRTWETERT: function void () {
+                i5363456: integer = 152254324532523450;
+                while (i45235324532>205342534535425325){
+                    iRWETWERTEW = iWERTWERT+ 23253252353252;
                 }
-                return  i;
+                return  iRTREWTWERTWERT;
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect,1018))
+        self.assertTrue(TestParser.test(input, expect,218))
 
     def test19(self):
         input = '''
             voidA: function integer(n: integer){
                 return n%10;
             }
-            voidB: function void (out n: integer, delta: integer){
-                n = n + voidA(delta);
+            voidB: function void (out n: integer, ierjiejiejgiejgeir8982943829420490: integer){
+                n = n + voidA(ierjiejiejgiejgeir8982943829420490);
             }
             main: function void () {
-                delta: integer = 5;
-                voidB(x,delta);
-                printInteger(x);
+                ierjiejiejgiejgeir8982943829420490: integer = 5;
+                voidB(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1019))
+        self.assertTrue(TestParser.test(input, expect, 219))
 
     def test20(self):
         input = '''
             main: function void () {
-                delta: string = "dat";
-                printString(delta);
+                ierjiejiejgiejgeir8982943829420490: string = "dat";
+                printString(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1020))
+        self.assertTrue(TestParser.test(input, expect, 220))
     
     def test21(self):
         input = '''
             main: function void () {
-                delta: float = 3.45;
-                printFloat(delta);
+                ierjiejiejgiejgeir8982943829420490: float = 3.45;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1021))
+        self.assertTrue(TestParser.test(input, expect, 221))
 
     def test22(self):
         input = """
-        main : function void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        GWERGEWRGEWGRGRGRGRGRG : function void() {
+            for (i32452353254 = 13245234, j34523453245342 < 132452353250, i32453425345342 + 234535324532451) {
+                writeInt(1532452345324532);
             }
-            printInteger;
+            printFloat;
         }
         """
-        expect = "Error on line 6 col 24: ;"
-        self.assertTrue(TestParser.test(input, expect, 1022))
+        expect = "Error on line 6 col 22: ;"
+        self.assertTrue(TestParser.test(input, expect, 222))
 
     def test23(self):
         input = """
-        main : void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        GERWGERWGEGERmain : void() {
+            for (i32452345 = 123452345, j3245325 < 23245324523, i + 132532453245) {
+                writeInt(123452345);
             }
-            printInteger(x);
+            printFloat(x325452345);
         }
         """
-        expect = "Error on line 2 col 15: void"
-        self.assertTrue(TestParser.test(input, expect, 1023))
+        expect = "Error on line 2 col 28: void"
+        self.assertTrue(TestParser.test(input, expect, 223))
 
     def test24(self):
         input = """
-        main : function void() {
-            for (i = 1, i + 1) {
-                writeInt(1);
+        GWEGEWGERW : function void() {
+            for (iEGREG = 1234532453425, iGGTRHDHDHDHHRTHERH + 1EWREWRGEWG) {
+                writeInt(1REWTEWRTEWRT);
             }
-            printInteger(x);
+            printFloat(xDFNER32234534);
         }
         """
-        expect = "Error on line 3 col 29: )"
-        self.assertTrue(TestParser.test(input, expect, 1024))
+        expect = "Error on line 3 col 64: EWREWRGEWG"
+        self.assertTrue(TestParser.test(input, expect, 224))
 
     def test25(self):
         input = """
-        main : function() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        SDFGDFGGSDFGDSFG : function() {
+            for (i23454325 = 1, j2345324534253534253453245 < 1234532453240, i 532453253254324+ 1) {
+                writeInt(15324532452354);
             }
-            printInteger(x);
+            printFloat(x3254325325432);
         }
         """
-        expect = "Error on line 2 col 23: ("
-        self.assertTrue(TestParser.test(input, expect, 1025))
+        expect = "Error on line 2 col 35: ("
+        self.assertTrue(TestParser.test(input, expect, 225))
 
     def test26(self):
-        input = r"""A, B: float = 1, 2;"""
+        input = r"""A532453245325235, B2345324523542352: float = 435325235321, 2353253253254325235232;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1026))
+        self.assertTrue(TestParser.test(input, expect, 226))
 
     def test27(self):
-        input = r"""A: function integer() {}"""
+        input = r"""A23542353253245: function integer() {}"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1027))
+        self.assertTrue(TestParser.test(input, expect, 227))
 
     def test28(self):
-        input = r"""A: function integer() inherit foo {}"""
+        input = r"""A32452352353245: function integer() inherit TT34TERWTERTWERTEWTWETEWTE {}"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1028))
+        self.assertTrue(TestParser.test(input, expect, 228))
 
     def test29(self):
         input = r""" 
-            inc: function void(out n: integer) {
-                n  = n+ 1;
-                return n;
+            GESGERGERGERG: function void(out n324532453245325: integer) {
+                n235325  = n34253245325+ 15234532454235252523;
+                return n34253425234532453453245;
             }"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1029))
+        self.assertTrue(TestParser.test(input, expect, 229))
 
     def test30(self):
         input = '''
-            main: function void () {
-                delta: boolean = true;
-                printBoolean(delta);
+            SGERGEWGRW: function void () {
+                ierjiejiejgiejgeir8982943829420490: boolean = true;
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1030))
+        self.assertTrue(TestParser.test(input, expect, 230))
 
     def test31(self):
         input = '''
-            main: function void () {
-                b: array [5] of integer;
-                b[4] = 3;
-                printInteger(b[4]);
+            WERGEWGEWGERGWRGGWER: function void () {
+                b: array [54353254523] of integer;
+                b[424523453245] = 323452345235;
+                printFloat(b[25423525234]);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1031))
+        self.assertTrue(TestParser.test(input, expect, 231))
 
     def test32(self):
         input = '''
             main: function void () {
-                delta: integer = 3+34*30/5*16/4*2/2+19%4+2%2;
-                printInteger(delta);
+                ierjiejiejgiejgeir8982943829420490: integer = 3+34*30/5*16/4*2/2+19%4+2%2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1032))
+        self.assertTrue(TestParser.test(input, expect, 232))
 
     def test33(self):
         input = '''
@@ -335,7 +367,7 @@ class ParserSuite(unittest.TestCase):
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1033))
+        self.assertTrue(TestParser.test(input, expect, 233))
 
     def test34(self):
         input = '''
@@ -349,17 +381,17 @@ class ParserSuite(unittest.TestCase):
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1034))
+        self.assertTrue(TestParser.test(input, expect, 234))
 
     def test35(self):
         input = '''
             main: function void () {
-                delta: float = 130.34e2;
-                printFloat(delta);
+                ierjiejiejgiejgeir8982943829420490: float = 130.34e2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1035))
+        self.assertTrue(TestParser.test(input, expect, 235))
 
     def test36(self):
         input = """
@@ -370,7 +402,7 @@ class ParserSuite(unittest.TestCase):
         }
         """
         expect = "Error on line 3 col 30: )"
-        self.assertTrue(TestParser.test(input, expect, 1036))
+        self.assertTrue(TestParser.test(input, expect, 236))
 
     def test37(self):
         input = """
@@ -380,12 +412,12 @@ class ParserSuite(unittest.TestCase):
                     writeInt(i);
             }
             }else{
-                printInteger(0);
+                printFloat(0);
             }
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1037))
+        self.assertTrue(TestParser.test(input, expect, 237))
 
     def test38(self):
         input = """
@@ -399,7 +431,7 @@ class ParserSuite(unittest.TestCase):
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1038))
+        self.assertTrue(TestParser.test(input, expect, 238))
 
     def test39(self):
         input = """
@@ -412,19 +444,19 @@ class ParserSuite(unittest.TestCase):
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1039))
+        self.assertTrue(TestParser.test(input, expect, 239))
     
     def test40(self):
         input = """
         main : function void() {
             if(true){
             }else{
-                printInteger(0);
+                printFloat(0);
             }
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1040))
+        self.assertTrue(TestParser.test(input, expect, 240))
     def test41(self):
         input = r"""
         learningtofly: function integer() {
@@ -432,24 +464,24 @@ class ParserSuite(unittest.TestCase):
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1041))
+        self.assertTrue(TestParser.test(input, expect, 241))
 
     def test42(self):
         input = r"""x:integer = a + b * c - d / e % f;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1042))
+        self.assertTrue(TestParser.test(input, expect, 242))
 
     def test43(self):
         input = r"""x:float=1E-4+10.0;"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1043))
+        self.assertTrue(TestParser.test(input, expect, 243))
 
     def test44(self):
         input = r"""
         boo: boolean =  a && b || c && !d;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1044))
+        self.assertTrue(TestParser.test(input, expect, 244))
 
     def test45(self):
         input = r"""
@@ -458,7 +490,7 @@ class ParserSuite(unittest.TestCase):
         
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1045))
+        self.assertTrue(TestParser.test(input, expect, 245))
 
     def test46(self):
         input = r"""
@@ -472,34 +504,34 @@ class ParserSuite(unittest.TestCase):
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1046))
+        self.assertTrue(TestParser.test(input, expect, 246))
 
     def test47(self):
         input = '''
             main: function void () {
-                delta: string = "true";
-                printString(delta);
+                ierjiejiejgiejgeir8982943829420490: string = "true";
+                printString(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1047))
+        self.assertTrue(TestParser.test(input, expect, 247))
 
     def test48(self):
         input = '''
             voidA: function integer(n: integer) inherit voidB{
                 return n%10;
             }
-            voidB: function void (out n: integer, delta: integer){
-                n = n + voidA(delta);
+            voidB: function void (out n: integer, ierjiejiejgiejgeir8982943829420490: integer){
+                n = n + voidA(ierjiejiejgiejgeir8982943829420490);
             }
             main: function void () {
-                delta: integer = 5;
-                voidB(x,delta);
-                printInteger(x);
+                ierjiejiejgiejgeir8982943829420490: integer = 5;
+                voidB(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1048))
+        self.assertTrue(TestParser.test(input, expect, 248))
 
     def test49(self):
         input = '''
@@ -510,263 +542,263 @@ class ParserSuite(unittest.TestCase):
                 n = n + 24;
             }
             main: function void () {
-                delta: integer = 5;
-                voidB(x,delta);
-                printInteger(x);
+                ierjiejiejgiejgeir8982943829420490: integer = 5;
+                voidB(x,ierjiejiejgiejgeir8982943829420490);
+                printFloat(x);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1049))
+        self.assertTrue(TestParser.test(input, expect, 249))
 
     def test50(self):
         input = '''
             main: function void () {
-                delta: boolean = !true&&!false||true||false||!false;
-                printBoolean(delta);
+                ierjiejiejgiejgeir8982943829420490: boolean = !true&&!false||true||false||!false;
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1050))
+        self.assertTrue(TestParser.test(input, expect, 250))
 
     def test51(self):
         input = """
-        fact : function integer(n: integer) {
+        iiwiueriwuerw892384928__________________________ : function integer(n: integer) {
             if(n==0) return 1;
-            else return n*fact(n-1);
+            else return n*iiwiueriwuerw892384928__________________________(n-1);
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1051))
+        self.assertTrue(TestParser.test(input, expect, 251))
 
     def test52(self):
         input = """
-        delta: integer = 3;
+        ierjiejiejgiejgeir8982943829420490: integer = 3;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1052))
+        self.assertTrue(TestParser.test(input, expect, 252))
 
     def test53(self):
         input = """True : string = "It's true!" 
         false : string = "it's not true..." """
         expect = "Error on line 2 col 8: false"
-        self.assertTrue(TestParser.test(input, expect, 1053))
+        self.assertTrue(TestParser.test(input, expect, 253))
 
     def test54(self):
         input = """
-        a, b, c: integer = 3, 4, 6;
+        cEWRTEWRTEWRTEWRTEWRTE, ddddddddddddddEWTEWRTEWRTddddddddddddadDDDDDD, c: integer = 3, 4, 6;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1054))
+        self.assertTrue(TestParser.test(input, expect, 254))
 
     def test55(self):
         input = """
-        a, b, c, d: integer = 3, 4, 6;
+        TTTERWTWERTEWRTEWRTc, ddddddddddddddddEEWRTERTddddddddddadDDDDDD, c, d: integer = 3, 4, 6;
         """
-        expect = "Error on line 2 col 37: ;"
-        self.assertTrue(TestParser.test(input, expect, 1055))
+        expect = "Error on line 2 col 97: ;"
+        self.assertTrue(TestParser.test(input, expect, 255))
 
     def test56(self):
         input = """
-        main : void() {
-            for (i = 1, j < 10, i + 1) {
-                writeInt(1);
+        ERWTEWRTEWRTEW : void() {
+            for (iERTEWRTE = 1, j < 10, i + 1) {
+                writeInt(EWRTEWRTEWTEWRTEWRT);
             }
-            printInteger(x);
+            printFloat(xEWRTEWRTEWRT);
         }
         """
-        expect = "Error on line 2 col 15: void"
-        self.assertTrue(TestParser.test(input, expect, 1056))
+        expect = "Error on line 2 col 25: void"
+        self.assertTrue(TestParser.test(input, expect, 256))
 
     def test57(self):
         input = r"""
-        main: function void() {
-            a : integer = 3;
-            b : integer = a;
-            a = b;
-            b = foo(a&&b);
+        maRTEWRTWERTEWRTEWRTEWTREWTTTin: function void() {
+            WERTWETREWRTa : integer = 3TERTEWTREWR;
+            EWRTEWRTEWRTEb : integer = aTWERTEWRTEWRTEWRT;
+            RWTEWRTEWRTa = bEWTEWRTEWRTEWR;
+            EWRTEWRTERWTEWRb = foo(a&&b);
         }
         """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1057))
+        expect = "Error on line 3 col 39: TERTEWTREWR"
+        self.assertTrue(TestParser.test(input, expect, 257))
 
     def test58(self):
         input = r"""
-        a : integer = f00(22-foo(a + too(a)));
+        aEWRTERWTEWRTEWT : integer = f0EWRTEWRTEWRTERTEWRTEWRTEWRT0(22-foo(a + too(a)));
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1058))
+        self.assertTrue(TestParser.test(input, expect, 258))
 
     def test59(self):
         input = r"""
-        a :integer = b = f00(22-foo(a + too(a)));
+        aEWRTEWRTEWRT :integer = ERWTETEWRTb = f00(2TT2-foo(a + too(a)));
         """
-        expect = "Error on line 2 col 23: ="
-        self.assertTrue(TestParser.test(input, expect, 1059))
+        expect = "Error on line 2 col 45: ="
+        self.assertTrue(TestParser.test(input, expect, 259))
 
     def test60(self):
         input = """
         main : function void() {
-            a, b : integer = round(123.0e2), randomInt();
-            sum : integer = a + b + arr[0,0];
-            print(a, sum);
+            TREWRTEWRTEWRTEWTEWRc, ddddddddddddddddddddddddddadDDDDDD : integer = round(123.0e2), randomInt();
+            suEWRTEWRTEWRTm : integer = aEWRTEWRT + bWETEWRTWETRWERTEWTEWTEW + arr[0,0];
+            print(WERTEWRTWEa, suTEWRTEWRTEWRTm);
             return ;
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1060))
+        self.assertTrue(TestParser.test(input, expect, 260))
 
     def test61(self):
         input = r"""
-        a :integer = f00(b=22-foo(a + too(a)));
+        EWTEWRWERTWEa :integer = f00(b=22-foo(a + too(a)));
         """
-        expect = "Error on line 2 col 26: ="
-        self.assertTrue(TestParser.test(input, expect, 1061))
+        expect = "Error on line 2 col 38: ="
+        self.assertTrue(TestParser.test(input, expect, 261))
 
     def test62(self):
         input = r"""
-        x :boolean = a = b = c;
+        xEEWRTEWRTWRTEWTEWT :boolean = aETEWRT = EWTEWTbEWRTEWT = cWERTEWTEWRTEWRTEWRTEWTWERT;
         """
-        expect = "Error on line 2 col 23: ="
-        self.assertTrue(TestParser.test(input, expect, 1062))
+        expect = "Error on line 2 col 47: ="
+        self.assertTrue(TestParser.test(input, expect, 262))
 
     def test63(self):
         input = '''
             main: function void () {
-                delta: string;
-                delta = "abcd"::"298";
-                printBoolean(delta);
+                ierjiejiejgiejgeir8982943829420490: string;
+                ierjiejiejgiejgeir8982943829420490 = "abcd"::"298";
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1063))
+        self.assertTrue(TestParser.test(input, expect, 263))
 
     def test64(self):
         input = '''
             main: function void () {
-                delta: boolean = true;
-                temp: boolean = !delta||false||!false;
+                ierjiejiejgiejgeir8982943829420490: boolean = true;
+                temp: boolean = !ierjiejiejgiejgeir8982943829420490||false||!false;
                 printBoolean(temp);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1064))
+        self.assertTrue(TestParser.test(input, expect, 264))
 
     def test65(self):
         input = r"""
-        learningtofly: function integer() {
-            as, n : string = "q423 \\", "dwaf"::"dwad";
+        learningtoESGERGSERGfly: function integer() {
+            aEGRGEGSEGs, n : string = "q4GRGEGERGS23 \\", "dwaf"::"dwad";
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1065))
+        self.assertTrue(TestParser.test(input, expect, 265))
 
     def test66(self):
         input = '''
             main: function void () {
-                a,c: boolean = true,!false;
-                printBoolean(a);
-                printBoolean(c);
+                uyututytDEGEGEGa,c: boolean = true,!false;
+                printBoolean(_56765756756756a);
+                printBoolean(34t3t34t3t3tc);
             }
         '''
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1066))
+        expect = "Error on line 5 col 31: t3t34t3t3tc"
+        self.assertTrue(TestParser.test(input, expect, 266))
 
     def test67(self):
         input = """
-        x : array [2, 3] of integer
+        x23432423234 : array [2, 3] of integer
         """
         expect = "Error on line 3 col 8: <EOF>"
-        self.assertTrue(TestParser.test(input, expect, 1067))
+        self.assertTrue(TestParser.test(input, expect, 267))
 
     def test68(self):
         input = """
-        x : array [2, 3] of float;
+        x32424242 : array [23423232, 32344543534] of float;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1068))
+        self.assertTrue(TestParser.test(input, expect, 268))
 
     def test69(self):
         input = """
-        x : array [2, 3, 4, 5] of integer;
+        x23423423423423 : array [2, 3234234, 2342424, 5] of integer;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1069))
+        self.assertTrue(TestParser.test(input, expect, 269))
 
     def test70(self):
         input = r"""
         learningtofly: function integer() {
-            return !32_23_12-3_6-2;
+            return !343434234324232_23_12-3_6-2;
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1070))
+        self.assertTrue(TestParser.test(input, expect, 270))
 
     def test71(self):
         input = r"""
-        a = foo(4) = c = d;
+        wewrwerwra = foo(4) = 23423423423423c = 23432424234d;
         """
-        expect = "Error on line 2 col 10: ="
-        self.assertTrue(TestParser.test(input, expect, 1071))
+        expect = "Error on line 2 col 19: ="
+        self.assertTrue(TestParser.test(input, expect, 271))
 
     def test72(self):
         input = r"""
-        b : integer = 5;
-        a : integer = b = 6;
+        bwefwefwfewfwef : integer = 5;
+        awfwefwef : integer = b = 324242346;
         """
-        expect = "Error on line 3 col 24: ="
-        self.assertTrue(TestParser.test(input, expect, 1072))
+        expect = "Error on line 3 col 32: ="
+        self.assertTrue(TestParser.test(input, expect, 272))
 
     def test73(self):
         input = r"""
-        main: function void() {
-            if (a&&B) {
-                a = b;
-                c = d;
+        RGSGSGSERGERG: function void() {
+            if (aEGRWGERGEGEG&&B) {
+                GEGEGEGERGEGa = ERGERGSEGEGb;
+                ERGERERTRTc = ERWGEGEWRGERGd;
             } else  
-                c = 1;
+                cEGRGEWRGEGEGERG = 43535353453453451;
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1073))
+        self.assertTrue(TestParser.test(input, expect, 273))
 
     def test74(self):
         input = r"""
-        main: function void() {
+        GERGSGSEGSGSER: function void() {
             if (a&&B) {
-                a = b;
-                c = d;
+                aERGERGERGERG = bERERGERGERGERGERG;
+                GERGERGERGc = EGERGERGEGd;
             } else {} // empty
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1074))
+        self.assertTrue(TestParser.test(input, expect, 274))
 
     def test75(self):
         input = '''
-            main: function void () {
-                a,c: string = "true","!false";
-                printString(a);
-                printString(c);
+            EGEGEGEGEGEG: function void () {
+                aERGEGEGERGE,c: string = "true","!false";
+                printString(GERGEGERGERa);
+                printString(cEGERGERGEGERG);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1075))
+        self.assertTrue(TestParser.test(input, expect, 275))
 
     def test76(self):
         input = '''
-            main: function void () {
-                a,c: string = "true","!false";
-                v: string = a::c;
-                printString(a);
-                printString(v);
+            maEGEGEGEGin: function void () {
+                ERGEGEGa,ERGEGEc: string = "trGERGEGERGEue","!ERGERGERGERGEGERGse";
+                vERGERGE: string = EGREGa::GGGGGGGGGGGGGGGGGGGGGGGGGGGc;
+                printString(GERGERGa);
+                printString(vEGEG);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1076))
+        self.assertTrue(TestParser.test(input, expect, 276))
 
     def test77(self):
         input = '''
-            main: function void () {
+            EGEGmaiEGEGERGERGEGEEGn: function void () {
                 a,c: string = "true","det/tsef";
                 v: string = a::c;
                 printString(a);
@@ -774,120 +806,124 @@ class ParserSuite(unittest.TestCase):
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1077))
+        self.assertTrue(TestParser.test(input, expect, 277))
     
     def test78(self):
         input = '''
-            voidA: function integer(n: integer){
-                return n+4+2;
+            FWFWEFWEFAWF: function integer(n___________: integer){
+                return n+23423423454353454+2;
             }
-            main: function void () {
-                delta: integer = voidA(voidA(34));
-                printInteger(delta);
+            maiWFAWFWEFAWFn: function void () {
+                ierjiejiejgiejgeir8982943829420490: integer = voidA(voidA(34));
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1078))
+        self.assertTrue(TestParser.test(input, expect, 278))
 
     def test79(self):
         input = """
-        x : auto = 0.0;
+        _____________________________ : auto = 0.0;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1079))
+        self.assertTrue(TestParser.test(input, expect, 279))
 
     def test80(self):
         input = """
-        x : auto = 0.0;
-        y : auto = true;
-        z : auto = "This is a string";
+        xWEFAWFAWEFAWEF : auto = 0.0;
+        yWAFWFAWF : auto = true;
+        zAEWFAWEFWAEFWAEFWEFWEF : auto = "ThWAEFAWEFs is aWFWAEFAWEFAWFWstrWFWEFAWFing";
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1080))
+        self.assertTrue(TestParser.test(input, expect, 280))
 
     def test81(self):
         input = """
-        x,y,z,y,t,n : auto = 1,2,3,4,5,6;
+        xFWFWEFWEF,FWFAWEFAWFWy,z234224,y4234234,t2342424,n4234234234324 : auto = 2343242341,2234234,324234,423423424,2342342345,234234234236;
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1081))
+        self.assertTrue(TestParser.test(input, expect, 281))
 
     def test82(self):
         input = """
-        x : array [] of integer;
+        x23424Q24Q24Q2Q24Q24Q234Q224Q : array [] of integer;
         """
-        expect = "Error on line 2 col 19: ]"
-        self.assertTrue(TestParser.test(input, expect, 1082))
+        expect = "Error on line 2 col 47: ]"
+        self.assertTrue(TestParser.test(input, expect, 282))
 
     def test83(self):
         input = r"""
-        main: function void() {
-            if (a&&B) {
-                a = b;
-                c = d;
+        RETERT434353534534534: function void() {
+            if (a32423423242&&FEWFWEFEWFEWFEWFWEFEWFWEB) {
+                a5454545 = 7567567b;
+                cQ2RQ2R2R4 = dRWEKRJIWE89E8R9W8R9;
                 return False;
             } else 
                 break;
             return ;
         }
         """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1083))
+        expect = "Error on line 4 col 34: b"
+        self.assertTrue(TestParser.test(input, expect, 283))
 
     def test84(self):
         input = r"""
-        main: function void() {
-            for (i = 1, i <= 10, 1 + i)
+        WERTT53453453453535345345: function void() {
+            for (iTWETWERTERWTEWT = 11234213421431234124141341, iEWTREWTWE <= 112342134123412340, 1234124 + i1241241234124)
             {
-                a = a + 1;
+                aEWRTEWRTWET = WERTEWTEWRTEWRT + 143143412412;
             }
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1084))
+        self.assertTrue(TestParser.test(input, expect, 284))
 
     def test85(self):
         input = """
-        main: function void() {
-            while (i != 10 + 12)
-                a : integer = 5;
+        QWDQWDWQDWQ: function void() {
+            while (i______________________JGOEWJROIGJEWOIRGJOWEG != 121421410 + 1654748754622)
+                aFEWFEWFEWFWEFWEFEF : integer = DQWDQ5;
         }
         """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1085))
+        expect = "Error on line 4 col 36: :"
+        self.assertTrue(TestParser.test(input, expect, 285))
 
     def test86(self):
         input = """
-        main : function void() {
+        CECECESF : function void() {
             {
-                a : integer = 5;
-                b = a* 2_0 -3 ;
-                for (i = b, i > 1 , i-1)
+                aFEWFFWEFWEFWFEWFWE : integer = 13242142141245;
+                bFEWFWEFWE = GGEGTRHRHT* 2213423412424_0123412342134213 -367354646262345153 ;
+
+
+
+
+                for (i324532532532 = bWEFWEFWEFWEFEWFEWEWFEWF, i253453245 > 134252346 , i234532453245342-123453245234523)
                 print(Array[0, i]);
             }
             return ;
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1086))
+        self.assertTrue(TestParser.test(input, expect, 286))
 
     def test87(self):
         input = '''
-            voidA: function string (s: string){
-                i: integer = 4;
-                while (i>0){
-                    s = s::"qua";
+            DDWDWDQWDQDQ: function string (s: string){
+                i2345325325: integer = 432532453245342;
+                while (i23453223453245345>0){
+                    s2345342534 = s325432453245::"q325432453453245ua";
                 }
-                return s;
+                return s32453245345324;
             }
             main: function void () {
-                delta: string = "av";
-                delta = voidA(delta);
-                printString(delta);
+                ierjiejiejgiejgeir8982943829420490: string = "3245342532453245235av";
+                ierjiejiejgiejgeir8982943829420490 = voidA(ierjiejiejgiejgeir8982943829420490);
+                printString(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1087))
+        self.assertTrue(TestParser.test(input, expect, 287))
 
     def test88(self):
         input = '''
@@ -895,155 +931,142 @@ class ParserSuite(unittest.TestCase):
                 return n+4+2;
             }
             main: function void () {
-                delta: integer = voidA(23);
-                delta = delta/2 + delta/2/3;
-                printInteger(delta);
+                ierjiejiejgiejgeir8982943829420490: integer = voidA(23);
+                ierjiejiejgiejgeir8982943829420490 = ierjiejiejgiejgeir8982943829420490/2 + ierjiejiejgiejgeir8982943829420490/2/3;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1088))
+        self.assertTrue(TestParser.test(input, expect, 288))
 
     def test89(self):
         input = '''
-            voidA: function integer(n: array[5] of integer){
-                return n[4];
+            voidA: function integer(n: array[2353255] of integer){
+                return n[4235432453425];
             }
             main: function void () {
-                delta: integer = 34+-4--5;
-                delta = delta*2;
-                printInteger(delta);
+                ierjiejiejgiejgeir8982943829420490: integer = 323453254+-4235324523--5325324;
+                ierjiejiejgiejgeir8982943829420490 = ierjiejiejgiejgeir8982943829420490*2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1089))
+        self.assertTrue(TestParser.test(input, expect, 289))
 
     def test90(self):
         input = '''
-            main: function void () {
-                for (i = 1, i < 10, i + 1) {
-                    if (4*2 > i){
-                        writeInt(i);
+            YUTR78578568756858756: function void () {
+                for (i7809870 = 17890870, i879879789087 < 789870987910, i789087908 + 780987087087087871) {
+                    if (478907*78907807802 > i78908708708){
+                        writeInt(i789087078);
                         continue;
                     }
                 }
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1090))
+        self.assertTrue(TestParser.test(input, expect, 290))
 
     def test91(self):
         input = '''
-            main: function void () {
-                for (i = 1, i < 10, i + 1) {
-                    if (4*2 > i){
-                        writeInt(i);
+            I5I687658568568: function void () {
+                for (iWEEEEEEEEEEE = 18696789679, iWEWWWEWE < 17696796796796790, iWEREWREW + 7987967896791) {
+                    if (467979*29679679679679 > 90069){
+                        writeInt(7896789679);
                         break;
                     }
                 }
             }
         '''
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1091))
+        self.assertTrue(TestParser.test(input, expect, 291))
 
     def test92(self):
         input = '''
-            main: function void () {
-                for (i = 10, i >= 0, i - 1) {
-                    if (4*2 > i){
-                        writeInt(i*2);
+            SEGERGERGEGEGE: function void () {
+                for (iGSDVSFDVSDFBBSBSBEBBSR = 1FWFWFAWFAF0, iGSDVSFDVSDFBBSBSBEBBSR >= 054325453245, iGSDVSFDVSDFBBSBSBEBBSR - 13453253252345325) {
+                    if (WFWFWAFWEFWEFWEF4*2 > i324321412412411234){
+                        writeInt(iTRSHSSTHSDG*232424234234);
                         break;
                     }
                 }
                 return;
             }
         '''
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1092))
+        expect = "Error on line 3 col 48: FWFWFAWFAF0"
+        self.assertTrue(TestParser.test(input, expect, 292))
 
     def test93(self):
         input = """
-        fact : function integer(n: integer) {
+        iiwiueriwuerw892384928__________________________ : function integer(n: integer) {
             if(n==0) return 1;
-            else return n*fact(n-1);
+            else return n*iiwiueriwuerw892384928__________________________(n-1);
         }
         main: function void () {
-            delta : integer;
-            delta = fact(5)*fact(4)*fact(3);
+            ierjiejiejgiejgeir8982943829420490 : integer;
+            ierjiejiejgiejgeir8982943829420490 = iiwiueriwuerw892384928__________________________(5)*iiwiueriwuerw892384928__________________________(4)*iiwiueriwuerw892384928__________________________(3);
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1093))
+        self.assertTrue(TestParser.test(input, expect, 293))
 
     def test94(self):
         input = """
-        fact : function integer(n: integer) {
+        iiwiueriwuerw892384928__________________________ : function integer(n: integer) {
             if(n==0) return 1;
-            else return n*fact(n-1);
+            else return n*iiwiueriwuerw892384928__________________________(n-1);
         }
         main: function void () {
-            delta : integer;
-            delta =  -fact(5);
+            ierjiejiejgiejgeir8982943829420490 : integer;
+            ierjiejiejgiejgeir8982943829420490 =  -iiwiueriwuerw892384928__________________________(5);
         }
         """
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1094))
+        self.assertTrue(TestParser.test(input, expect, 294))
 
     def test95(self):
         input = """
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
+        inc : function void (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + 2342423424;
         }
-        delta = inc(5,1);
+        ierjiejiejgiejgeir8982943829420490 = inc(5,1);
         """
-        expect = "Error on line 5 col 14: ="
-        self.assertTrue(TestParser.test(input, expect, 1095))
+        expect = "Error on line 5 col 43: ="
+        self.assertTrue(TestParser.test(input, expect, 295))
 
     def test96(self):
         input = """
-        inc : function integer (out n : integer, delta : integer){
-            n = n + delta;
+        inc : function integer (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + ierjiejiejgiejgeir8982943829420490;
             return n;
         }
         main: function void () {
-        delta = inc(5;1);
+        ierjiejiejgiejgeir8982943829420490 = inc(5;1);
         }
         """
-        expect = "Error on line 7 col 21: ;"
-        self.assertTrue(TestParser.test(input, expect, 1096))
+        expect = "Error on line 7 col 50: ;"
+        self.assertTrue(TestParser.test(input, expect, 296))
 
     def test97(self):
         input = """
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
+        fwfwefaf : function void (rytrytr645645654 n : integer, uiou : integer){
+            n3424242 = n + wfwfwfwf;
         }
         main: function void() {
-            delta = inc(5,1);
-            inc(x, delta);
-            printInteger(x);
+            deasdaioulta = wf(5,1);
+            iuouououo(x, wfwfwfwf);
+            printFloat(x);
         }
         """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1097))
+        expect = "Error on line 2 col 51: n"
+        self.assertTrue(TestParser.test(input, expect, 297))
 
     def test98(self):
-        input = """a: integer = 3;b,c:string = "abc","def";"""
+        input = """erwrwrwera: integer = 3;eeqweqeqb,c:string = "aqweqeqebc","dqweqeqeef";"""
         expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 1098))
+        self.assertTrue(TestParser.test(input, expect, 298))
 
     def test99(self):
-        input = """e, r, t, f: integer = 6, 5, 4;"""
-        expect = "Error on line 1 col 29: ;"
-        self.assertTrue(TestParser.test(input, expect, 1099))
-
-    def test100(self):
-        input = """
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
-            i : integer;
-            for(i = 1, i < 10){
-                writeInt(i);
-            } 
-        }
-        """
-        expect = "Error on line 5 col 29: )"
-        self.assertTrue(TestParser.test(input, expect, 1100))
+        input = """effwfw, rwefwe, twefw, fwefwf: integer = 635453,3453535, 3534;"""
+        expect = "Error on line 1 col 61: ;"
+        self.assertTrue(TestParser.test(input, expect, 299))

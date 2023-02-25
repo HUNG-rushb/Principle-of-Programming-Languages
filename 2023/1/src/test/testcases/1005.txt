@@ -1,1 +1,1 @@
-A, B: integer = 5, 6;
+BBBBBBBBBBBBBBBBBBc, ddddddddddddddddddddddddddadDDDDDD: integer = 5, 6;

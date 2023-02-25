@@ -1,1 +1,1 @@
-A: function integer() inherit foo {}
+A32452352353245: function integer() inherit TT34TERWTERTWERTEWTWETEWTE {}

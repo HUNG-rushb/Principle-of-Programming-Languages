@@ -1,10 +1,10 @@
 
-        inc : function void (out n : integer, delta : integer){
-            n = n + delta;
+        fwfwefaf : function void (rytrytr645645654 n : integer, uiou : integer){
+            n3424242 = n + wfwfwfwf;
         }
         main: function void() {
-            delta = inc(5,1);
-            inc(x, delta);
-            printInteger(x);
+            deasdaioulta = wf(5,1);
+            iuouououo(x, wfwfwfwf);
+            printFloat(x);
         }
         

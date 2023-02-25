@@ -7,7 +7,7 @@
                 return sum;
             }
             main: function void () {
-                delta: integer = add(10);
-                printInteger(delta);
+                wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293: integer = add(10);
+                printInteger(wuuiweuiefuwifuiewfuwifuwiefuwiefuwifuwifuweufwie324824289482934832984293);
             }
         

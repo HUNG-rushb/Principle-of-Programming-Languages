@@ -1,1 +1,1 @@
-e, r, t, f: integer = 6, 5, 4;
+effwfw, rwefwe, twefw, fwefwf: integer = 635453,3453535, 3534;

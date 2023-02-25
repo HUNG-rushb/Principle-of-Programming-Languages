@@ -1,10 +1,7 @@
 
-        port : integer = 80;
-        host : string = "localhost";
-        startServer: function void() {
-            server : auto = newServer(host, port);
-            start(server);
-        }
-        main: function void() {
-            startServer();
-        }
+            main: function void () {
+                ierjiejiejgiejgeir8982943829420490: string;
+                ierjiejiejgiejgeir8982943829420490 = "abcd"::"298";
+                printBoolean(ierjiejiejgiejgeir8982943829420490);
+            }
+        

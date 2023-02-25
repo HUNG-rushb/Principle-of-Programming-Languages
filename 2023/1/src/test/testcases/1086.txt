@@ -1,9 +1,13 @@
 
-        main : function void() {
+        CECECESF : function void() {
             {
-                a : integer = 5;
-                b = a* 2_0 -3 ;
-                for (i = b, i > 1 , i-1)
+                aFEWFFWEFWEFWFEWFWE : integer = 13242142141245;
+                bFEWFWEFWE = GGEGTRHRHT* 2213423412424_0123412342134213 -367354646262345153 ;
+
+
+
+
+                for (i324532532532 = bWEFWEFWEFWEFEWFEWEWFEWF, i253453245 > 134252346 , i234532453245342-123453245234523)
                 print(Array[0, i]);
             }
             return ;

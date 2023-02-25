@@ -1,5 +1,6 @@
 
-        learningtofly: function integer() {
-            return !32_23_12-3_6-2;
+        inc : function void (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + 2342423424;
         }
+        ierjiejiejgiejgeir8982943829420490 = inc(5,1);
         

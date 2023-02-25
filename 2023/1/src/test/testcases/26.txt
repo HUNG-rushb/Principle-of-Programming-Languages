@@ -1,4 +1,4 @@
 
-            foo(2 + x, 4.0 / y);
-            goo();
+            fwewerwrwrwerwerwerewrewoo(92384932849284932849284928342 + x__________________________________________________, 44564646546546546546464.0 / y);
+            gowewerwerwerwrwerewrwerwero();
             

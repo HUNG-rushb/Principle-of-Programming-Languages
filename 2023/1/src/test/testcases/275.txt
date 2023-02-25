@@ -1,5 +1,7 @@
 
-        main: function void() {{
-           
-        }
+            EGEGEGEGEGEG: function void () {
+                aERGEGEGERGE,c: string = "true","!false";
+                printString(GERGEGERGERa);
+                printString(cEGERGERGEGERG);
+            }
         

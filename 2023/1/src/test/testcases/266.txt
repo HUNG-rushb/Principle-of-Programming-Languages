@@ -1,17 +1,7 @@
 
-        main: function void() {
-            n : integer;
-            print("Enter n: ");
-            n = readInt();
-            print("Factorial of ");
-            printInt(n);
-            print(" is ");
-            printInt(fact(n));
-        }
-        fact: function integer(n: integer) {
-            if (n == 0)
-                return 1;
-            else
-                return n * fact(n - 1);
-        }
+            main: function void () {
+                uyututytDEGEGEGa,c: boolean = true,!false;
+                printBoolean(_56765756756756a);
+                printBoolean(34t3t34t3t3tc);
+            }
         

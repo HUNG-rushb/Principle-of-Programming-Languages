@@ -1,9 +1,9 @@
 
-            main: function void () {
-                i: integer = 10;
-                while (i>20){
-                    i = i + 2;
+            FWEFWQETRTWETERT: function void () {
+                i5363456: integer = 152254324532523450;
+                while (i45235324532>205342534535425325){
+                    iRWETWERTEW = iWERTWERT+ 23253252353252;
                 }
-                return  i;
+                return  iRTREWTWERTWERT;
             }
         

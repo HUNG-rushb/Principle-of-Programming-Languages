@@ -1,9 +1,9 @@
 
-        inc : function integer (out n : integer, delta : integer){
-            n = n + delta;
+        inc : function integer (out n : integer, ierjiejiejgiejgeir8982943829420490 : integer){
+            n = n + ierjiejiejgiejgeir8982943829420490;
             return n;
         }
         main: function void () {
-        delta = inc(5;1);
+        ierjiejiejgiejgeir8982943829420490 = inc(5;1);
         }
         

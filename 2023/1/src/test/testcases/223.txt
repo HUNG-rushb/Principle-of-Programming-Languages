@@ -1,8 +1,8 @@
 
-        main: function void() {
-            a : integer = 3;
-            b : integer = a;
-            a = b;
-            b = foo(a&&b);
+        GERWGERWGEGERmain : void() {
+            for (i32452345 = 123452345, j3245325 < 23245324523, i + 132532453245) {
+                writeInt(123452345);
+            }
+            printFloat(x325452345);
         }
         

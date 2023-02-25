@@ -1,6 +1,6 @@
 
-        main: function void() {
-            foo(12);
-            e2q(foo(12 + w(12)) + 21 && a || b);
+        iiwiueriwuerw892384928__________________________ : function integer(n: integer) {
+            if(n==0) return 1;
+            else return n*iiwiueriwuerw892384928__________________________(n-1);
         }
         

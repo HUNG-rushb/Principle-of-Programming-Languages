@@ -1,6 +1,6 @@
 
             main: function void () {
-                delta: float = 130.34e2;
-                printFloat(delta);
+                ierjiejiejgiejgeir8982943829420490: float = 130.34e2;
+                printFloat(ierjiejiejgiejgeir8982943829420490);
             }
         

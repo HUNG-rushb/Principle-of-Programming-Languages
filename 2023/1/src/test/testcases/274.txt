@@ -1,9 +1,8 @@
 
-        ^main: function void() {
-            n = {1,2,3}::{1,2,3};
-            str1 = "23r"::n;
-            for (i = 0, i < 10, a :: 2 :: 3) {
-                a = -a;
-            }
+        GERGSGSEGSGSER: function void() {
+            if (a&&B) {
+                aERGERGERGERG = bERERGERGERGERGERG;
+                GERGERGERGc = EGERGERGEGd;
+            } else {} // empty
         }
         

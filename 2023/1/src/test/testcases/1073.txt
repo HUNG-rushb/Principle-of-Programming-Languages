@@ -1,9 +1,9 @@
 
-        main: function void() {
-            if (a&&B) {
-                a = b;
-                c = d;
+        RGSGSGSERGERG: function void() {
+            if (aEGRWGERGEGEG&&B) {
+                GEGEGEGERGEGa = ERGERGSEGEGb;
+                ERGERERTRTc = ERWGEGEWRGERGd;
             } else  
-                c = 1;
+                cEGRGEWRGEGEGERG = 43535353453453451;
         }
         
