@@ -1,0 +1,5 @@
+
+        learningtofly: function integer() {
+            as, n : string = "q423 \\", "dwaf"::"dwad";
+        }
+        

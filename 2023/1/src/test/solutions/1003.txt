@@ -1,1 +1,1 @@
-123456,_,<EOF>
+Error on line 2 col 29: {

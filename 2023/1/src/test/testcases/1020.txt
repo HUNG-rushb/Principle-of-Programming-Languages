@@ -1,1 +1,6 @@
- "illegal_escape" 
+
+            main: function void () {
+                delta: string = "dat";
+                printString(delta);
+            }
+        

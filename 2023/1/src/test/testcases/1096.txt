@@ -1,0 +1,9 @@
+
+        inc : function integer (out n : integer, delta : integer){
+            n = n + delta;
+            return n;
+        }
+        main: function void () {
+        delta = inc(5;1);
+        }
+        

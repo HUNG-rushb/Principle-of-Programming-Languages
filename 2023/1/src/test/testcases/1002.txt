@@ -1,1 +1,8 @@
-123 _123 1_23 0123__45_6 __123
+
+        main : function void() {
+            for (i = 1, j < 10, i + 1) {
+                writeInt(1);
+            }
+            printInteger(x);
+        }
+        

@@ -1,0 +1,1 @@
+a: integer = 3;b,c:string = "abc","def";

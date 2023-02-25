@@ -1,0 +1,8 @@
+
+        main: function void() {
+            a : integer = 3;
+            b : integer = a;
+            a = b;
+            b = foo(a&&b);
+        }
+        

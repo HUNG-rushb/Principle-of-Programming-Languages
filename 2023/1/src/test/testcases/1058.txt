@@ -1,0 +1,3 @@
+
+        a : integer = f00(22-foo(a + too(a)));
+        

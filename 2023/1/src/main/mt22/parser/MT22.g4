@@ -33,11 +33,11 @@ param: (INHERIT | ) (OUT | ) VARIABLE_IDENTIFIERS COLON all_type;
 
 // Variable declaration
 // a, b, c : int;
-variable_declaration_no_init: variable_id_list COLON all_type SEMICOLON;
+variable_declaration_no_init: variable_id_list COLON all_type_no_void SEMICOLON;
 // a, b, c: int = 1, 2, 3;
 variable_declaration_init:  VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) SEMICOLON;
 variable_declaration_init_list: COMMA VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) COMMA
-                                | COLON all_type EQUAL ;
+                                | COLON all_type_no_void EQUAL ;
 
 
 // Assignment statement
@@ -80,19 +80,17 @@ elseif_statement: ELSE IF LB expr RB (block_statements | statement) elseif_list_
 else_statement: ELSE (block_statements | statement) | ;
 
 // For In statement
-for_statements: FOR LB VARIABLE_IDENTIFIERS EQUAL expr COMMA expr COMMA expr RB (block_statements 
-                                                                                | statement );
+for_statements: FOR LB VARIABLE_IDENTIFIERS EQUAL expr COMMA expr COMMA expr RB (block_statements_no_func_decl | statement_no_var_no_func);
                                                                                 // | block_in_loop_statements 
                                                                                 // | in_loop_statement);
 
 // While statement
-while_statements: WHILE LB expr RB (block_statements 
-                                    | statement );
+while_statements: WHILE LB expr RB (block_statements_no_func_decl | statement_no_var_no_func);
                                     // | block_in_loop_statements 
                                     // | in_loop_statement);
 
 // Do - While statement
-do_while_statements: DO block_statements WHILE LB expr RB SEMICOLON;
+do_while_statements: DO block_statements_no_func_decl WHILE LB expr RB SEMICOLON;
 
 
 
@@ -124,6 +122,8 @@ global_statement: variable_declaration_no_init
 //                                 | COLON all_type EQUAL ;
 
 block_statements: LCB statements RCB;
+// block_statements__no_var_decl: LCB statements_no_var_decl RCB;
+block_statements_no_func_decl: LCB statements_no_func_decl RCB;
 // block_statements: LCB block_statements_sub RCB;
 // block_statements_sub: LCB | ;
 
@@ -141,6 +141,47 @@ statement:  variable_declaration_no_init
             | return_nothing_statements
             | in_loop_statement
             | block_statements;
+
+// statements_no_var_decl: statement_no_var_decl statements_no_var_decl | statement_no_var_decl | ;
+// statement_no_var_decl:  function_declaration 
+//                         | assignment_statements 
+//                         | if_statements 
+//                         | for_statements 
+//                         | while_statements
+//                         | do_while_statements
+//                         | method_invocation_statements
+//                         | return_statements 
+//                         | return_nothing_statements
+//                         | in_loop_statement
+//                         | statements_no_var_decl;
+
+statements_no_func_decl: statement_no_func_decl statements_no_func_decl | statement_no_func_decl | ;
+statement_no_func_decl:  variable_declaration_no_init 
+                        | variable_declaration_init 
+                        | assignment_statements 
+                        | if_statements 
+                        | for_statements 
+                        | while_statements
+                        | do_while_statements
+                        | method_invocation_statements
+                        | return_statements 
+                        | return_nothing_statements
+                        | in_loop_statement
+                        | block_statements_no_func_decl;
+
+statements_no_var_no_func: statement_no_var_no_func statements_no_var_no_func | statement_no_var_no_func | ;
+statement_no_var_no_func: assignment_statements 
+                        | if_statements 
+                        | for_statements 
+                        | while_statements
+                        | do_while_statements
+                        | method_invocation_statements
+                        | return_statements 
+                        | return_nothing_statements
+                        | in_loop_statement
+                        | block_statements;
+
+
 block_in_loop_statements: LCB in_loop_statements RCB;
 in_loop_statements: in_loop_statement in_loop_statements | in_loop_statement | ;
 in_loop_statement: break_statements | continue_statements | block_in_loop_statements;
@@ -186,6 +227,7 @@ array_lit: ARRAY LSB expr_list RSB ;
 literal:  INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit ;
 
 all_type: atomic_types | array_type | AUTO | VOID;
+all_type_no_void: atomic_types | array_type | AUTO ;
 
 // Array type
 array_type: ARRAY LSB expr_list_no_empty RSB OF atomic_types;
@@ -301,7 +343,7 @@ FLOATLIT: ( ((DEC | '0') DECIMALPART EXPONENTPART) {self.text = self.text.replac
 			) {self.text = self.text.replace("_", "")}; 
 
 // Integer literal
-fragment DEC: [1-9] (UNDERSCORE* [0-9] | [0-9])* ;
+fragment DEC: [1-9] (UNDERSCORE [0-9] | [0-9])* ;
 
 INTLIT: (DEC) {self.text = self.text.replace("_", "")} | '0';
 

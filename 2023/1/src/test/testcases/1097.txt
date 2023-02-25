@@ -1,0 +1,10 @@
+
+        inc : function void (out n : integer, delta : integer){
+            n = n + delta;
+        }
+        main: function void() {
+            delta = inc(5,1);
+            inc(x, delta);
+            printInteger(x);
+        }
+        

@@ -1,0 +1,3 @@
+
+        x : array [] of integer;
+        

@@ -1,0 +1,5 @@
+
+        
+            newStr: string = "Hello "::"World!";
+        
+        

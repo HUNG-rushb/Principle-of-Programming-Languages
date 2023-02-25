@@ -1,0 +1,4 @@
+
+        b : integer = 5;
+        a : integer = b = 6;
+        

@@ -1,0 +1,5 @@
+
+        learningtofly: function integer() {
+            return -----foo(1_2 + 2 || 4 :: 5);
+        }
+        

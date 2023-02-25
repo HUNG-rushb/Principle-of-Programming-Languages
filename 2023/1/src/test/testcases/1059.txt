@@ -1,0 +1,3 @@
+
+        a :integer = b = f00(22-foo(a + too(a)));
+        

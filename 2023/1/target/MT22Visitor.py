@@ -194,6 +194,11 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MT22Parser#block_statements_no_func_decl.
+    def visitBlock_statements_no_func_decl(self, ctx:MT22Parser.Block_statements_no_func_declContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MT22Parser#statements.
     def visitStatements(self, ctx:MT22Parser.StatementsContext):
         return self.visitChildren(ctx)
@@ -201,6 +206,26 @@ class MT22Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MT22Parser#statement.
     def visitStatement(self, ctx:MT22Parser.StatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#statements_no_func_decl.
+    def visitStatements_no_func_decl(self, ctx:MT22Parser.Statements_no_func_declContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#statement_no_func_decl.
+    def visitStatement_no_func_decl(self, ctx:MT22Parser.Statement_no_func_declContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#statements_no_var_no_func.
+    def visitStatements_no_var_no_func(self, ctx:MT22Parser.Statements_no_var_no_funcContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#statement_no_var_no_func.
+    def visitStatement_no_var_no_func(self, ctx:MT22Parser.Statement_no_var_no_funcContext):
         return self.visitChildren(ctx)
 
 
@@ -301,6 +326,11 @@ class MT22Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MT22Parser#all_type.
     def visitAll_type(self, ctx:MT22Parser.All_typeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#all_type_no_void.
+    def visitAll_type_no_void(self, ctx:MT22Parser.All_type_no_voidContext):
         return self.visitChildren(ctx)
 
 

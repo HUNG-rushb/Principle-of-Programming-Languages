@@ -1,0 +1,10 @@
+
+        main: function void(){
+            eq = a == b;
+            neq = a != b;
+            lt = a < b;
+            le = a <= b;
+            gt = a > b;
+            ge = a >= b;
+        }
+        

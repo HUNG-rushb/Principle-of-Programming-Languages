@@ -1,2 +1,6 @@
- "%^&*(
-"|"|b6783\")&* 
+
+            main: function void () {
+                delta: float = 3.45;
+                printFloat(delta);
+            }
+        

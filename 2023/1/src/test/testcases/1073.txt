@@ -1,0 +1,9 @@
+
+        main: function void() {
+            if (a&&B) {
+                a = b;
+                c = d;
+            } else  
+                c = 1;
+        }
+        
