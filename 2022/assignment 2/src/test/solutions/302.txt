@@ -1,1 +1,7 @@
-Program([ClassDecl(Id(Solution),[MethodDecl(Id(average),Instance,[param(Id(s),IntType)],Block([Return(BinaryOp(/,BinaryOp(-,BinaryOp(-,CallExpr(Id(that),Id(accumulate),[Id(begin)]),CallExpr(Id(that),Id(min_element),[Id(begin),Id(end)])),CallExpr(Id(that),Id(max_element),[Id(begin),Id(end)])),BinaryOp(-,CallExpr(Id(s),Id(size),[]),IntLit(2))))]))])])
+Program([
+	VarDecl(x, IntegerType, IntegerLit(1))
+	VarDecl(y, IntegerType, IntegerLit(2))
+	VarDecl(z, IntegerType, IntegerLit(3))
+	VarDecl(a, FloatType)
+	VarDecl(b, FloatType)
+])

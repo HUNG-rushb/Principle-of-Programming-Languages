@@ -1,8 +1,0 @@
-
-            Class _Rqwdqweq {
-                Val $_____465y: Int = 12312412;
-                _Fr3fwa() {
-                    Val _, __, ___: Boolean = 3342, 44231, 35459789;
-                }
-            }
-        

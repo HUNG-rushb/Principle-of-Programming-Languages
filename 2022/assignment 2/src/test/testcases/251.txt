@@ -1,8 +1,0 @@
-
-            Class Program {
-                func(){
-                    gjty4578_test();
-                } 
-            }
-            
-        

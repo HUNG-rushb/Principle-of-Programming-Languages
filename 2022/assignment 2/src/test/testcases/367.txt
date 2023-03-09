@@ -1,9 +1,0 @@
-
-            Class Program {
-                main() { }
-                main(a,b: Int) { }
-            }
-            Class Program {
-                main(a: Float) { }
-            }
-            

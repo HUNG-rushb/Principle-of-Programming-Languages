@@ -1,10 +1,1 @@
-
-            Class dfasvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv {
-                getWife() {
-                    Var hung: Boolean = true;
-                }
-                main() {
-                    Var quynh: Float;
-                }
-            }
-            
+a, b, c: integer = 3, 4, 6;

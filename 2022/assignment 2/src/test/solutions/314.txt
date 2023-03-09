@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Solution),[MethodDecl(Id(prefixCount),Instance,[param(Id(words),ArrayType(10,StringType)),param(Id(pref),StringType)],Block([VarDecl(Id(ans),IntType,IntLit(0)),For(Id(w),IntLit(0),IntLit(10),IntLit(1),Block([AssignStmt(Id(ans),BinaryOp(+,Id(ans),CallExpr(Id(w),Id(find),[Id(pref)])))])]),Return(Id(ans))]))])])

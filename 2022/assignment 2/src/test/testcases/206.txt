@@ -1,7 +1,0 @@
-
-            Class Quynh {
-                fsadf(iuiwer884: Float; b3342: Float) {
-                    Return iuiwer884 || b3342 < cwef.refer(afwedew,sdv2) && 23324 + 134235.4;
-                }
-            }
-            

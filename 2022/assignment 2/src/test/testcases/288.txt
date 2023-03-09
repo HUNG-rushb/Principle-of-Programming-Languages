@@ -1,9 +1,0 @@
-
-            Class fsafdsfawef {
-                Val count: Int = 0;
-
-                fasdvnhnyj() {
-                    Return Self.fwefad + Self.count(_________) - naeefwfme::$turn(_________) * fewfafe.$Age(_________);
-                }
-            }
-        

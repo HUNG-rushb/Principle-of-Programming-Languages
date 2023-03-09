@@ -1,1 +1,5 @@
-Program([ClassDecl(Id(Future),[MethodDecl(Id(countOdds),Instance,[param(Id(low),IntType),param(Id(high),IntType)],Block([VarDecl(Id(res),IntType,BinaryOp(/,BinaryOp(-,Id(high),Id(low)),IntLit(2))),If(BinaryOp(||,BinaryOp(!=,BinaryOp(%,Id(low),IntLit(2)),IntLit(0)),BinaryOp(!=,BinaryOp(%,Id(high),IntLit(2)),IntLit(0))),Block([AssignStmt(Id(res),BinaryOp(+,Id(res),IntLit(1)))])),Return(Id(res))]))])])
+Program([
+	VarDecl(x, IntegerType, IntegerLit(1))
+	VarDecl(y, IntegerType, IntegerLit(2))
+	VarDecl(z, IntegerType, IntegerLit(3))
+])

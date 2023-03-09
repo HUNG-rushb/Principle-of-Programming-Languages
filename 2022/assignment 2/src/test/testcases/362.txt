@@ -1,9 +1,0 @@
-
-            Class Laptop: PC {
-                Val mainboard: board;
-                Val RAM: ram;
-                start_up() {
-                    Return "Hi" + pc.name + "Windows is booting";
-                }
-            }
-            

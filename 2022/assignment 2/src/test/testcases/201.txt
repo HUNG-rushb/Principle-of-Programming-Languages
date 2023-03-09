@@ -1,12 +1,1 @@
-
-            Class DFVDWDosadfwqg: DFCVBBBBBBBBBBBBBBBAniqvsdvmal {
-                $hungyeuquynhquatriquadat() {
-                    awefdcvvv = asuidfuw[71223][24132];
-                }
-            }
-            Class kitty: hyeergere {
-                $fwefwefwfc() {
-                    Return Self.wuefwiu1237wfbhwbfw;
-                }
-            }
-            
+delta: integer = 3;

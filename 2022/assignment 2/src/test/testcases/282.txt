@@ -1,7 +1,0 @@
-
-            Class aawefdsfsad {
-                dessfrfdedad() {
-                    Val fwefdfadsfaefewrerq: Array[Array[Array[Float, 00],0x3_23],4];
-                }
-            }
-        

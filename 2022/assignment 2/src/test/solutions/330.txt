@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(efewfwefsdfadf),[MethodDecl(Id(kaidwdwq),Instance,[],Block([Continue,Return(Id(_______________)),Return(Id(_343_______1342341331_______)),Return(Id(____FDFEWFWEbreb___________)),Return(Id(______awefwaef_________))]))])])

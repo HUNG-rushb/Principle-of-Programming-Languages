@@ -1,17 +1,1 @@
-
-        Class Future { 
-
-            countOdds (low, high : Int) {
-
-                Var res : Int = (high - low) / 2;
-                
-                If ((low % 2 != 0) || (high % 2 != 0))
-                {
-                    res = res +  1;
-                }
-            
-                Return res;
-            }
-    
-        }
-        
+x, y, z: integer = 1, 2, 3;

@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Solution),[MethodDecl(Id(hammingWeight),Instance,[param(Id(n),ClassType(Id(uint32_t)))],Block([VarDecl(Id(count),IntType,IntLit(0)),If(Id(n),Block([AssignStmt(Id(count),BinaryOp(+,Id(count),IntLit(1)))])),Return(Id(count))]))])])

@@ -1,8 +1,0 @@
-
-            Class awfefdsaf {
-                
-                awfdfasdf() {
-                    Return ewfawefefafA::$naawefawefadsme() + twefwecsdfas();
-                }
-            }
-        

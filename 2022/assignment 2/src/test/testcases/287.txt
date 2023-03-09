@@ -1,9 +1,0 @@
-
-            Class _____________ {
-                afawefafd () {
-                    ygouygua = name::$age;
-                    2dwqewqf = efwfwfwfasdfwef;
-                    wefafwefafasde = $wfwwoeifjoiwaf();
-                }
-            }
-        

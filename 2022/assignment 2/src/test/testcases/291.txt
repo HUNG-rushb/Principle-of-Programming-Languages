@@ -1,9 +1,0 @@
-
-            Class Test{
-
-                Test(){
-                    Var awdqe: Boolean= Self::ins;
-                    Var b21324: Float= Self::$afwfdsfsfa;
-                }
-            }
-        

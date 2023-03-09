@@ -1,7 +1,1 @@
- 
-            Class meomeoemeoemoeemoeo: Cat {
-                Var truefalse: Boolean;
-                Var $a, c, d: Float = .e41231, 234322., 712328.333333339;
-                Var a: Array[Int, 8] = Array(10907090.1232, 3.6123, 34e5, 23243e4, 12332432.723E4 , 32144E512311111, 23E4623887, 12132.7E4);
-            }
-            
+main: function void () {}

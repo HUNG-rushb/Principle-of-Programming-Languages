@@ -1,7 +1,0 @@
-
-            Class Cdafwe23423onstruc {
-                Destruc________fwef3884___________() {
-                    Dawfewes.DeletefwefwAll();
-                }
-            }
-        

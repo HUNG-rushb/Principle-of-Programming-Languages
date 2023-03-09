@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(qwqwdqwd),[MethodDecl(Id(___________________________________),Instance,[],Block([AssignStmt(Id(awefd),ArrayCell(CallExpr(Id(khj),Id($bin),[]),[IntLit(43)])),AssignStmt(Id(a),CallExpr(Id(Main),Id(get),[]))]))])])

@@ -1,7 +1,0 @@
-
-            Class expr2 {
-                r() {
-                    a = (3 - 9 * -4) % (0b1) - "string" ==. "hello";
-                }
-            }
-            

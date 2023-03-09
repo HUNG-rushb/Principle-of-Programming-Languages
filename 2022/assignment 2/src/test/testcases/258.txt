@@ -1,5 +1,0 @@
-
-            Class Bqwdasdasdffwqdewf {
-                Var b, c : Int = 1384958670.44857682;
-            }
-        
