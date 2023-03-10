@@ -1,5 +1,10 @@
 
             adETWWERTEWRTd: function integer(RWTEWTEWTEWTEWRTEWn: integer){
+
+
+                break;
+                continue;
+
                 suWTREWTWERTm: integer = 0;
                 for (iERWTEWRTEWRT = 0, iETWTW<=n, iEWTWETEWT+1){
                     sERWTEWRTTRum = suEWTRWERTm + i;

@@ -1,4 +1,4 @@
-# Generated from main/mt22/parser/MT22.g4 by ANTLR 4.9.2
+# Generated from d:\Github\Principle-of-Programming-Languages\2023\2\src\main\mt22\parser\MT22.g4 by ANTLR 4.9.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -12,7 +12,7 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3E")
-        buf.write("\u028e\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u028d\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -51,27 +51,27 @@ def serializedATN():
         buf.write("\n!\3\"\3\"\3\"\3\"\3#\3#\3#\3$\3$\3$\3$\5$\u01a2\n$\3")
         buf.write("%\3%\3%\3%\5%\u01a8\n%\3&\3&\3&\3&\3\'\3\'\3\'\3\'\3(")
         buf.write("\3(\3(\3(\3(\5(\u01b7\n(\3)\3)\3)\3)\3)\3)\3)\3)\3)\3")
-        buf.write(")\3)\3)\5)\u01c5\n)\3*\3*\3*\3*\3*\5*\u01cc\n*\3+\3+\3")
+        buf.write(")\3)\3)\3)\5)\u01c6\n)\3*\3*\3*\3*\3*\5*\u01cd\n*\3+\3")
         buf.write("+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\5+\u01db\n+\3,\3,\3,\3")
-        buf.write(",\3,\5,\u01e2\n,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u01ef")
-        buf.write("\n-\3.\3.\3.\3.\3/\3/\3/\3/\3/\5/\u01fa\n/\3\60\3\60\3")
-        buf.write("\60\5\60\u01ff\n\60\3\61\3\61\5\61\u0203\n\61\3\62\3\62")
-        buf.write("\3\62\3\62\3\62\5\62\u020a\n\62\3\63\3\63\3\63\3\63\3")
-        buf.write("\63\5\63\u0211\n\63\3\64\3\64\3\64\3\64\3\64\5\64\u0218")
-        buf.write("\n\64\3\65\3\65\3\65\3\65\3\65\3\65\7\65\u0220\n\65\f")
-        buf.write("\65\16\65\u0223\13\65\3\66\3\66\3\66\3\66\3\66\3\66\7")
-        buf.write("\66\u022b\n\66\f\66\16\66\u022e\13\66\3\67\3\67\3\67\3")
-        buf.write("\67\3\67\3\67\7\67\u0236\n\67\f\67\16\67\u0239\13\67\3")
-        buf.write("8\38\38\58\u023e\n8\39\39\39\59\u0243\n9\3:\3:\3:\3:\3")
-        buf.write(":\3:\3:\3:\7:\u024d\n:\f:\16:\u0250\13:\3;\3;\3;\3;\3")
-        buf.write(";\3;\5;\u0258\n;\3<\3<\3<\5<\u025d\n<\3=\3=\3=\3=\3>\3")
-        buf.write(">\3>\3>\3?\3?\3?\3?\3?\3@\3@\3@\3@\3@\5@\u0271\n@\3A\3")
-        buf.write("A\3A\3A\5A\u0277\nA\3B\3B\3B\5B\u027c\nB\3C\3C\3C\3C\3")
-        buf.write("C\3C\3C\3D\3D\3E\3E\3E\3E\3E\5E\u028c\nE\3E\2\6hjlrF\2")
+        buf.write(",\3,\5,\u01e2\n,\3-\3-\3-\3-\3-\3-\3-\3-\3-\3-\5-\u01ee")
+        buf.write("\n-\3.\3.\3.\3.\3/\3/\3/\3/\3/\5/\u01f9\n/\3\60\3\60\3")
+        buf.write("\60\5\60\u01fe\n\60\3\61\3\61\5\61\u0202\n\61\3\62\3\62")
+        buf.write("\3\62\3\62\3\62\5\62\u0209\n\62\3\63\3\63\3\63\3\63\3")
+        buf.write("\63\5\63\u0210\n\63\3\64\3\64\3\64\3\64\3\64\5\64\u0217")
+        buf.write("\n\64\3\65\3\65\3\65\3\65\3\65\3\65\7\65\u021f\n\65\f")
+        buf.write("\65\16\65\u0222\13\65\3\66\3\66\3\66\3\66\3\66\3\66\7")
+        buf.write("\66\u022a\n\66\f\66\16\66\u022d\13\66\3\67\3\67\3\67\3")
+        buf.write("\67\3\67\3\67\7\67\u0235\n\67\f\67\16\67\u0238\13\67\3")
+        buf.write("8\38\38\58\u023d\n8\39\39\39\59\u0242\n9\3:\3:\3:\3:\3")
+        buf.write(":\3:\3:\3:\7:\u024c\n:\f:\16:\u024f\13:\3;\3;\3;\3;\3")
+        buf.write(";\3;\5;\u0257\n;\3<\3<\3<\5<\u025c\n<\3=\3=\3=\3=\3>\3")
+        buf.write(">\3>\3>\3?\3?\3?\3?\3?\3@\3@\3@\3@\3@\5@\u0270\n@\3A\3")
+        buf.write("A\3A\3A\5A\u0276\nA\3B\3B\3B\5B\u027b\nB\3C\3C\3C\3C\3")
+        buf.write("C\3C\3C\3D\3D\3E\3E\3E\3E\3E\5E\u028b\nE\3E\2\6hjlrF\2")
         buf.write("\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64")
         buf.write("\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnprtvxz|~\u0080\u0082\u0084")
         buf.write("\u0086\u0088\2\7\5\2)*,-/\60\3\2\'(\3\2!\"\3\2#%\3\2\34")
-        buf.write("\37\2\u02b8\2\u008a\3\2\2\2\4\u008d\3\2\2\2\6\u0098\3")
+        buf.write("\37\2\u02b6\2\u008a\3\2\2\2\4\u008d\3\2\2\2\6\u0098\3")
         buf.write("\2\2\2\b\u00ab\3\2\2\2\n\u00b2\3\2\2\2\f\u00b6\3\2\2\2")
         buf.write("\16\u00c0\3\2\2\2\20\u00c5\3\2\2\2\22\u00da\3\2\2\2\24")
         buf.write("\u00dc\3\2\2\2\26\u00e7\3\2\2\2\30\u00f8\3\2\2\2\32\u00fc")
@@ -82,15 +82,15 @@ def serializedATN():
         buf.write("\u016e\3\2\2\28\u017c\3\2\2\2:\u0184\3\2\2\2<\u018c\3")
         buf.write("\2\2\2>\u018f\3\2\2\2@\u0194\3\2\2\2B\u0196\3\2\2\2D\u019a")
         buf.write("\3\2\2\2F\u01a1\3\2\2\2H\u01a7\3\2\2\2J\u01a9\3\2\2\2")
-        buf.write("L\u01ad\3\2\2\2N\u01b6\3\2\2\2P\u01c4\3\2\2\2R\u01cb\3")
-        buf.write("\2\2\2T\u01da\3\2\2\2V\u01e1\3\2\2\2X\u01ee\3\2\2\2Z\u01f0")
-        buf.write("\3\2\2\2\\\u01f9\3\2\2\2^\u01fe\3\2\2\2`\u0202\3\2\2\2")
-        buf.write("b\u0209\3\2\2\2d\u0210\3\2\2\2f\u0217\3\2\2\2h\u0219\3")
-        buf.write("\2\2\2j\u0224\3\2\2\2l\u022f\3\2\2\2n\u023d\3\2\2\2p\u0242")
-        buf.write("\3\2\2\2r\u0244\3\2\2\2t\u0257\3\2\2\2v\u025c\3\2\2\2")
-        buf.write("x\u025e\3\2\2\2z\u0262\3\2\2\2|\u0266\3\2\2\2~\u0270\3")
-        buf.write("\2\2\2\u0080\u0276\3\2\2\2\u0082\u027b\3\2\2\2\u0084\u027d")
-        buf.write("\3\2\2\2\u0086\u0284\3\2\2\2\u0088\u028b\3\2\2\2\u008a")
+        buf.write("L\u01ad\3\2\2\2N\u01b6\3\2\2\2P\u01c5\3\2\2\2R\u01cc\3")
+        buf.write("\2\2\2T\u01da\3\2\2\2V\u01e1\3\2\2\2X\u01ed\3\2\2\2Z\u01ef")
+        buf.write("\3\2\2\2\\\u01f8\3\2\2\2^\u01fd\3\2\2\2`\u0201\3\2\2\2")
+        buf.write("b\u0208\3\2\2\2d\u020f\3\2\2\2f\u0216\3\2\2\2h\u0218\3")
+        buf.write("\2\2\2j\u0223\3\2\2\2l\u022e\3\2\2\2n\u023c\3\2\2\2p\u0241")
+        buf.write("\3\2\2\2r\u0243\3\2\2\2t\u0256\3\2\2\2v\u025b\3\2\2\2")
+        buf.write("x\u025d\3\2\2\2z\u0261\3\2\2\2|\u0265\3\2\2\2~\u026f\3")
+        buf.write("\2\2\2\u0080\u0275\3\2\2\2\u0082\u027a\3\2\2\2\u0084\u027c")
+        buf.write("\3\2\2\2\u0086\u0283\3\2\2\2\u0088\u028a\3\2\2\2\u008a")
         buf.write("\u008b\5F$\2\u008b\u008c\7\2\2\3\u008c\3\3\2\2\2\u008d")
         buf.write("\u008e\7\3\2\2\u008e\u008f\79\2\2\u008f\u0092\7\4\2\2")
         buf.write("\u0090\u0093\5\u0080A\2\u0091\u0093\7 \2\2\u0092\u0090")
@@ -215,112 +215,112 @@ def serializedATN():
         buf.write("M\3\2\2\2\u01b1\u01b2\5P)\2\u01b2\u01b3\5N(\2\u01b3\u01b7")
         buf.write("\3\2\2\2\u01b4\u01b7\5P)\2\u01b5\u01b7\3\2\2\2\u01b6\u01b1")
         buf.write("\3\2\2\2\u01b6\u01b4\3\2\2\2\u01b6\u01b5\3\2\2\2\u01b7")
-        buf.write("O\3\2\2\2\u01b8\u01c5\5\16\b\2\u01b9\u01c5\5\20\t\2\u01ba")
-        buf.write("\u01c5\5\6\4\2\u01bb\u01c5\5\24\13\2\u01bc\u01c5\5.\30")
-        buf.write("\2\u01bd\u01c5\5\66\34\2\u01be\u01c5\58\35\2\u01bf\u01c5")
-        buf.write("\5:\36\2\u01c0\u01c5\5\30\r\2\u01c1\u01c5\5B\"\2\u01c2")
-        buf.write("\u01c5\5D#\2\u01c3\u01c5\5J&\2\u01c4\u01b8\3\2\2\2\u01c4")
-        buf.write("\u01b9\3\2\2\2\u01c4\u01ba\3\2\2\2\u01c4\u01bb\3\2\2\2")
-        buf.write("\u01c4\u01bc\3\2\2\2\u01c4\u01bd\3\2\2\2\u01c4\u01be\3")
-        buf.write("\2\2\2\u01c4\u01bf\3\2\2\2\u01c4\u01c0\3\2\2\2\u01c4\u01c1")
-        buf.write("\3\2\2\2\u01c4\u01c2\3\2\2\2\u01c4\u01c3\3\2\2\2\u01c5")
-        buf.write("Q\3\2\2\2\u01c6\u01c7\5T+\2\u01c7\u01c8\5R*\2\u01c8\u01cc")
-        buf.write("\3\2\2\2\u01c9\u01cc\5T+\2\u01ca\u01cc\3\2\2\2\u01cb\u01c6")
-        buf.write("\3\2\2\2\u01cb\u01c9\3\2\2\2\u01cb\u01ca\3\2\2\2\u01cc")
-        buf.write("S\3\2\2\2\u01cd\u01db\5\16\b\2\u01ce\u01db\5\20\t\2\u01cf")
-        buf.write("\u01db\5\24\13\2\u01d0\u01db\5.\30\2\u01d1\u01db\5\66")
-        buf.write("\34\2\u01d2\u01db\58\35\2\u01d3\u01db\5:\36\2\u01d4\u01db")
-        buf.write("\5\30\r\2\u01d5\u01db\5B\"\2\u01d6\u01db\5D#\2\u01d7\u01db")
-        buf.write("\5<\37\2\u01d8\u01db\5> \2\u01d9\u01db\5L\'\2\u01da\u01cd")
-        buf.write("\3\2\2\2\u01da\u01ce\3\2\2\2\u01da\u01cf\3\2\2\2\u01da")
-        buf.write("\u01d0\3\2\2\2\u01da\u01d1\3\2\2\2\u01da\u01d2\3\2\2\2")
-        buf.write("\u01da\u01d3\3\2\2\2\u01da\u01d4\3\2\2\2\u01da\u01d5\3")
-        buf.write("\2\2\2\u01da\u01d6\3\2\2\2\u01da\u01d7\3\2\2\2\u01da\u01d8")
-        buf.write("\3\2\2\2\u01da\u01d9\3\2\2\2\u01dbU\3\2\2\2\u01dc\u01dd")
-        buf.write("\5X-\2\u01dd\u01de\5V,\2\u01de\u01e2\3\2\2\2\u01df\u01e2")
-        buf.write("\5X-\2\u01e0\u01e2\3\2\2\2\u01e1\u01dc\3\2\2\2\u01e1\u01df")
-        buf.write("\3\2\2\2\u01e1\u01e0\3\2\2\2\u01e2W\3\2\2\2\u01e3\u01ef")
-        buf.write("\5\24\13\2\u01e4\u01ef\5.\30\2\u01e5\u01ef\5\66\34\2\u01e6")
-        buf.write("\u01ef\58\35\2\u01e7\u01ef\5:\36\2\u01e8\u01ef\5\30\r")
-        buf.write("\2\u01e9\u01ef\5B\"\2\u01ea\u01ef\5D#\2\u01eb\u01ef\5")
-        buf.write("<\37\2\u01ec\u01ef\5> \2\u01ed\u01ef\5J&\2\u01ee\u01e3")
-        buf.write("\3\2\2\2\u01ee\u01e4\3\2\2\2\u01ee\u01e5\3\2\2\2\u01ee")
-        buf.write("\u01e6\3\2\2\2\u01ee\u01e7\3\2\2\2\u01ee\u01e8\3\2\2\2")
-        buf.write("\u01ee\u01e9\3\2\2\2\u01ee\u01ea\3\2\2\2\u01ee\u01eb\3")
-        buf.write("\2\2\2\u01ee\u01ec\3\2\2\2\u01ee\u01ed\3\2\2\2\u01efY")
-        buf.write("\3\2\2\2\u01f0\u01f1\7\65\2\2\u01f1\u01f2\5\\/\2\u01f2")
-        buf.write("\u01f3\7\66\2\2\u01f3[\3\2\2\2\u01f4\u01f5\5^\60\2\u01f5")
-        buf.write("\u01f6\5\\/\2\u01f6\u01fa\3\2\2\2\u01f7\u01fa\5^\60\2")
-        buf.write("\u01f8\u01fa\3\2\2\2\u01f9\u01f4\3\2\2\2\u01f9\u01f7\3")
-        buf.write("\2\2\2\u01f9\u01f8\3\2\2\2\u01fa]\3\2\2\2\u01fb\u01ff")
-        buf.write("\5<\37\2\u01fc\u01ff\5> \2\u01fd\u01ff\5Z.\2\u01fe\u01fb")
-        buf.write("\3\2\2\2\u01fe\u01fc\3\2\2\2\u01fe\u01fd\3\2\2\2\u01ff")
-        buf.write("_\3\2\2\2\u0200\u0203\5b\62\2\u0201\u0203\3\2\2\2\u0202")
-        buf.write("\u0200\3\2\2\2\u0202\u0201\3\2\2\2\u0203a\3\2\2\2\u0204")
-        buf.write("\u0205\5d\63\2\u0205\u0206\78\2\2\u0206\u0207\5b\62\2")
-        buf.write("\u0207\u020a\3\2\2\2\u0208\u020a\5d\63\2\u0209\u0204\3")
-        buf.write("\2\2\2\u0209\u0208\3\2\2\2\u020ac\3\2\2\2\u020b\u020c")
-        buf.write("\5f\64\2\u020c\u020d\7+\2\2\u020d\u020e\5f\64\2\u020e")
-        buf.write("\u0211\3\2\2\2\u020f\u0211\5f\64\2\u0210\u020b\3\2\2\2")
-        buf.write("\u0210\u020f\3\2\2\2\u0211e\3\2\2\2\u0212\u0213\5h\65")
-        buf.write("\2\u0213\u0214\t\2\2\2\u0214\u0215\5h\65\2\u0215\u0218")
-        buf.write("\3\2\2\2\u0216\u0218\5h\65\2\u0217\u0212\3\2\2\2\u0217")
-        buf.write("\u0216\3\2\2\2\u0218g\3\2\2\2\u0219\u021a\b\65\1\2\u021a")
-        buf.write("\u021b\5j\66\2\u021b\u0221\3\2\2\2\u021c\u021d\f\4\2\2")
-        buf.write("\u021d\u021e\t\3\2\2\u021e\u0220\5j\66\2\u021f\u021c\3")
-        buf.write("\2\2\2\u0220\u0223\3\2\2\2\u0221\u021f\3\2\2\2\u0221\u0222")
-        buf.write("\3\2\2\2\u0222i\3\2\2\2\u0223\u0221\3\2\2\2\u0224\u0225")
-        buf.write("\b\66\1\2\u0225\u0226\5l\67\2\u0226\u022c\3\2\2\2\u0227")
-        buf.write("\u0228\f\4\2\2\u0228\u0229\t\4\2\2\u0229\u022b\5l\67\2")
-        buf.write("\u022a\u0227\3\2\2\2\u022b\u022e\3\2\2\2\u022c\u022a\3")
-        buf.write("\2\2\2\u022c\u022d\3\2\2\2\u022dk\3\2\2\2\u022e\u022c")
-        buf.write("\3\2\2\2\u022f\u0230\b\67\1\2\u0230\u0231\5n8\2\u0231")
-        buf.write("\u0237\3\2\2\2\u0232\u0233\f\4\2\2\u0233\u0234\t\5\2\2")
-        buf.write("\u0234\u0236\5n8\2\u0235\u0232\3\2\2\2\u0236\u0239\3\2")
-        buf.write("\2\2\u0237\u0235\3\2\2\2\u0237\u0238\3\2\2\2\u0238m\3")
-        buf.write("\2\2\2\u0239\u0237\3\2\2\2\u023a\u023b\7&\2\2\u023b\u023e")
-        buf.write("\5n8\2\u023c\u023e\5p9\2\u023d\u023a\3\2\2\2\u023d\u023c")
-        buf.write("\3\2\2\2\u023eo\3\2\2\2\u023f\u0240\7\"\2\2\u0240\u0243")
-        buf.write("\5p9\2\u0241\u0243\5r:\2\u0242\u023f\3\2\2\2\u0242\u0241")
-        buf.write("\3\2\2\2\u0243q\3\2\2\2\u0244\u0245\b:\1\2\u0245\u0246")
-        buf.write("\5t;\2\u0246\u024e\3\2\2\2\u0247\u0248\f\4\2\2\u0248\u0249")
-        buf.write("\7\63\2\2\u0249\u024a\5b\62\2\u024a\u024b\7\64\2\2\u024b")
-        buf.write("\u024d\3\2\2\2\u024c\u0247\3\2\2\2\u024d\u0250\3\2\2\2")
-        buf.write("\u024e\u024c\3\2\2\2\u024e\u024f\3\2\2\2\u024fs\3\2\2")
-        buf.write("\2\u0250\u024e\3\2\2\2\u0251\u0252\7;\2\2\u0252\u0253")
-        buf.write("\7\61\2\2\u0253\u0254\5`\61\2\u0254\u0255\7\62\2\2\u0255")
-        buf.write("\u0258\3\2\2\2\u0256\u0258\5v<\2\u0257\u0251\3\2\2\2\u0257")
-        buf.write("\u0256\3\2\2\2\u0258u\3\2\2\2\u0259\u025d\5~@\2\u025a")
-        buf.write("\u025d\7;\2\2\u025b\u025d\5x=\2\u025c\u0259\3\2\2\2\u025c")
-        buf.write("\u025a\3\2\2\2\u025c\u025b\3\2\2\2\u025dw\3\2\2\2\u025e")
-        buf.write("\u025f\7\61\2\2\u025f\u0260\5d\63\2\u0260\u0261\7\62\2")
-        buf.write("\2\u0261y\3\2\2\2\u0262\u0263\7\65\2\2\u0263\u0264\5b")
-        buf.write("\62\2\u0264\u0265\7\66\2\2\u0265{\3\2\2\2\u0266\u0267")
-        buf.write("\7\33\2\2\u0267\u0268\7\63\2\2\u0268\u0269\5`\61\2\u0269")
-        buf.write("\u026a\7\64\2\2\u026a}\3\2\2\2\u026b\u0271\7>\2\2\u026c")
-        buf.write("\u0271\7=\2\2\u026d\u0271\7<\2\2\u026e\u0271\7?\2\2\u026f")
-        buf.write("\u0271\5|?\2\u0270\u026b\3\2\2\2\u0270\u026c\3\2\2\2\u0270")
-        buf.write("\u026d\3\2\2\2\u0270\u026e\3\2\2\2\u0270\u026f\3\2\2\2")
-        buf.write("\u0271\177\3\2\2\2\u0272\u0277\5\u0086D\2\u0273\u0277")
-        buf.write("\5\u0084C\2\u0274\u0277\7\17\2\2\u0275\u0277\7 \2\2\u0276")
-        buf.write("\u0272\3\2\2\2\u0276\u0273\3\2\2\2\u0276\u0274\3\2\2\2")
-        buf.write("\u0276\u0275\3\2\2\2\u0277\u0081\3\2\2\2\u0278\u027c\5")
-        buf.write("\u0086D\2\u0279\u027c\5\u0084C\2\u027a\u027c\7\17\2\2")
-        buf.write("\u027b\u0278\3\2\2\2\u027b\u0279\3\2\2\2\u027b\u027a\3")
-        buf.write("\2\2\2\u027c\u0083\3\2\2\2\u027d\u027e\7\33\2\2\u027e")
-        buf.write("\u027f\7\63\2\2\u027f\u0280\5b\62\2\u0280\u0281\7\64\2")
-        buf.write("\2\u0281\u0282\7\31\2\2\u0282\u0283\5\u0086D\2\u0283\u0085")
-        buf.write("\3\2\2\2\u0284\u0285\t\6\2\2\u0285\u0087\3\2\2\2\u0286")
-        buf.write("\u0287\7;\2\2\u0287\u0288\78\2\2\u0288\u028c\5\u0088E")
-        buf.write("\2\u0289\u028c\7;\2\2\u028a\u028c\3\2\2\2\u028b\u0286")
-        buf.write("\3\2\2\2\u028b\u0289\3\2\2\2\u028b\u028a\3\2\2\2\u028c")
-        buf.write("\u0089\3\2\2\2:\u0092\u009d\u00a5\u00ab\u00b2\u00b6\u00ba")
-        buf.write("\u00c9\u00d2\u00da\u00e7\u00f8\u0100\u0108\u0110\u0118")
-        buf.write("\u0120\u0128\u0130\u0138\u0140\u0148\u0152\u0159\u0162")
-        buf.write("\u0169\u016c\u017a\u0182\u0194\u01a1\u01a7\u01b6\u01c4")
-        buf.write("\u01cb\u01da\u01e1\u01ee\u01f9\u01fe\u0202\u0209\u0210")
-        buf.write("\u0217\u0221\u022c\u0237\u023d\u0242\u024e\u0257\u025c")
-        buf.write("\u0270\u0276\u027b\u028b")
+        buf.write("O\3\2\2\2\u01b8\u01c6\5\16\b\2\u01b9\u01c6\5\20\t\2\u01ba")
+        buf.write("\u01c6\5\6\4\2\u01bb\u01c6\5\24\13\2\u01bc\u01c6\5.\30")
+        buf.write("\2\u01bd\u01c6\5\66\34\2\u01be\u01c6\58\35\2\u01bf\u01c6")
+        buf.write("\5:\36\2\u01c0\u01c6\5\30\r\2\u01c1\u01c6\5B\"\2\u01c2")
+        buf.write("\u01c6\5D#\2\u01c3\u01c6\5^\60\2\u01c4\u01c6\5J&\2\u01c5")
+        buf.write("\u01b8\3\2\2\2\u01c5\u01b9\3\2\2\2\u01c5\u01ba\3\2\2\2")
+        buf.write("\u01c5\u01bb\3\2\2\2\u01c5\u01bc\3\2\2\2\u01c5\u01bd\3")
+        buf.write("\2\2\2\u01c5\u01be\3\2\2\2\u01c5\u01bf\3\2\2\2\u01c5\u01c0")
+        buf.write("\3\2\2\2\u01c5\u01c1\3\2\2\2\u01c5\u01c2\3\2\2\2\u01c5")
+        buf.write("\u01c3\3\2\2\2\u01c5\u01c4\3\2\2\2\u01c6Q\3\2\2\2\u01c7")
+        buf.write("\u01c8\5T+\2\u01c8\u01c9\5R*\2\u01c9\u01cd\3\2\2\2\u01ca")
+        buf.write("\u01cd\5T+\2\u01cb\u01cd\3\2\2\2\u01cc\u01c7\3\2\2\2\u01cc")
+        buf.write("\u01ca\3\2\2\2\u01cc\u01cb\3\2\2\2\u01cdS\3\2\2\2\u01ce")
+        buf.write("\u01db\5\16\b\2\u01cf\u01db\5\20\t\2\u01d0\u01db\5\24")
+        buf.write("\13\2\u01d1\u01db\5.\30\2\u01d2\u01db\5\66\34\2\u01d3")
+        buf.write("\u01db\58\35\2\u01d4\u01db\5:\36\2\u01d5\u01db\5\30\r")
+        buf.write("\2\u01d6\u01db\5B\"\2\u01d7\u01db\5D#\2\u01d8\u01db\5")
+        buf.write("^\60\2\u01d9\u01db\5L\'\2\u01da\u01ce\3\2\2\2\u01da\u01cf")
+        buf.write("\3\2\2\2\u01da\u01d0\3\2\2\2\u01da\u01d1\3\2\2\2\u01da")
+        buf.write("\u01d2\3\2\2\2\u01da\u01d3\3\2\2\2\u01da\u01d4\3\2\2\2")
+        buf.write("\u01da\u01d5\3\2\2\2\u01da\u01d6\3\2\2\2\u01da\u01d7\3")
+        buf.write("\2\2\2\u01da\u01d8\3\2\2\2\u01da\u01d9\3\2\2\2\u01dbU")
+        buf.write("\3\2\2\2\u01dc\u01dd\5X-\2\u01dd\u01de\5V,\2\u01de\u01e2")
+        buf.write("\3\2\2\2\u01df\u01e2\5X-\2\u01e0\u01e2\3\2\2\2\u01e1\u01dc")
+        buf.write("\3\2\2\2\u01e1\u01df\3\2\2\2\u01e1\u01e0\3\2\2\2\u01e2")
+        buf.write("W\3\2\2\2\u01e3\u01ee\5\24\13\2\u01e4\u01ee\5.\30\2\u01e5")
+        buf.write("\u01ee\5\66\34\2\u01e6\u01ee\58\35\2\u01e7\u01ee\5:\36")
+        buf.write("\2\u01e8\u01ee\5\30\r\2\u01e9\u01ee\5B\"\2\u01ea\u01ee")
+        buf.write("\5D#\2\u01eb\u01ee\5^\60\2\u01ec\u01ee\5J&\2\u01ed\u01e3")
+        buf.write("\3\2\2\2\u01ed\u01e4\3\2\2\2\u01ed\u01e5\3\2\2\2\u01ed")
+        buf.write("\u01e6\3\2\2\2\u01ed\u01e7\3\2\2\2\u01ed\u01e8\3\2\2\2")
+        buf.write("\u01ed\u01e9\3\2\2\2\u01ed\u01ea\3\2\2\2\u01ed\u01eb\3")
+        buf.write("\2\2\2\u01ed\u01ec\3\2\2\2\u01eeY\3\2\2\2\u01ef\u01f0")
+        buf.write("\7\65\2\2\u01f0\u01f1\5\\/\2\u01f1\u01f2\7\66\2\2\u01f2")
+        buf.write("[\3\2\2\2\u01f3\u01f4\5^\60\2\u01f4\u01f5\5\\/\2\u01f5")
+        buf.write("\u01f9\3\2\2\2\u01f6\u01f9\5^\60\2\u01f7\u01f9\3\2\2\2")
+        buf.write("\u01f8\u01f3\3\2\2\2\u01f8\u01f6\3\2\2\2\u01f8\u01f7\3")
+        buf.write("\2\2\2\u01f9]\3\2\2\2\u01fa\u01fe\5<\37\2\u01fb\u01fe")
+        buf.write("\5> \2\u01fc\u01fe\5Z.\2\u01fd\u01fa\3\2\2\2\u01fd\u01fb")
+        buf.write("\3\2\2\2\u01fd\u01fc\3\2\2\2\u01fe_\3\2\2\2\u01ff\u0202")
+        buf.write("\5b\62\2\u0200\u0202\3\2\2\2\u0201\u01ff\3\2\2\2\u0201")
+        buf.write("\u0200\3\2\2\2\u0202a\3\2\2\2\u0203\u0204\5d\63\2\u0204")
+        buf.write("\u0205\78\2\2\u0205\u0206\5b\62\2\u0206\u0209\3\2\2\2")
+        buf.write("\u0207\u0209\5d\63\2\u0208\u0203\3\2\2\2\u0208\u0207\3")
+        buf.write("\2\2\2\u0209c\3\2\2\2\u020a\u020b\5f\64\2\u020b\u020c")
+        buf.write("\7+\2\2\u020c\u020d\5f\64\2\u020d\u0210\3\2\2\2\u020e")
+        buf.write("\u0210\5f\64\2\u020f\u020a\3\2\2\2\u020f\u020e\3\2\2\2")
+        buf.write("\u0210e\3\2\2\2\u0211\u0212\5h\65\2\u0212\u0213\t\2\2")
+        buf.write("\2\u0213\u0214\5h\65\2\u0214\u0217\3\2\2\2\u0215\u0217")
+        buf.write("\5h\65\2\u0216\u0211\3\2\2\2\u0216\u0215\3\2\2\2\u0217")
+        buf.write("g\3\2\2\2\u0218\u0219\b\65\1\2\u0219\u021a\5j\66\2\u021a")
+        buf.write("\u0220\3\2\2\2\u021b\u021c\f\4\2\2\u021c\u021d\t\3\2\2")
+        buf.write("\u021d\u021f\5j\66\2\u021e\u021b\3\2\2\2\u021f\u0222\3")
+        buf.write("\2\2\2\u0220\u021e\3\2\2\2\u0220\u0221\3\2\2\2\u0221i")
+        buf.write("\3\2\2\2\u0222\u0220\3\2\2\2\u0223\u0224\b\66\1\2\u0224")
+        buf.write("\u0225\5l\67\2\u0225\u022b\3\2\2\2\u0226\u0227\f\4\2\2")
+        buf.write("\u0227\u0228\t\4\2\2\u0228\u022a\5l\67\2\u0229\u0226\3")
+        buf.write("\2\2\2\u022a\u022d\3\2\2\2\u022b\u0229\3\2\2\2\u022b\u022c")
+        buf.write("\3\2\2\2\u022ck\3\2\2\2\u022d\u022b\3\2\2\2\u022e\u022f")
+        buf.write("\b\67\1\2\u022f\u0230\5n8\2\u0230\u0236\3\2\2\2\u0231")
+        buf.write("\u0232\f\4\2\2\u0232\u0233\t\5\2\2\u0233\u0235\5n8\2\u0234")
+        buf.write("\u0231\3\2\2\2\u0235\u0238\3\2\2\2\u0236\u0234\3\2\2\2")
+        buf.write("\u0236\u0237\3\2\2\2\u0237m\3\2\2\2\u0238\u0236\3\2\2")
+        buf.write("\2\u0239\u023a\7&\2\2\u023a\u023d\5n8\2\u023b\u023d\5")
+        buf.write("p9\2\u023c\u0239\3\2\2\2\u023c\u023b\3\2\2\2\u023do\3")
+        buf.write("\2\2\2\u023e\u023f\7\"\2\2\u023f\u0242\5p9\2\u0240\u0242")
+        buf.write("\5r:\2\u0241\u023e\3\2\2\2\u0241\u0240\3\2\2\2\u0242q")
+        buf.write("\3\2\2\2\u0243\u0244\b:\1\2\u0244\u0245\5t;\2\u0245\u024d")
+        buf.write("\3\2\2\2\u0246\u0247\f\4\2\2\u0247\u0248\7\63\2\2\u0248")
+        buf.write("\u0249\5b\62\2\u0249\u024a\7\64\2\2\u024a\u024c\3\2\2")
+        buf.write("\2\u024b\u0246\3\2\2\2\u024c\u024f\3\2\2\2\u024d\u024b")
+        buf.write("\3\2\2\2\u024d\u024e\3\2\2\2\u024es\3\2\2\2\u024f\u024d")
+        buf.write("\3\2\2\2\u0250\u0251\7;\2\2\u0251\u0252\7\61\2\2\u0252")
+        buf.write("\u0253\5`\61\2\u0253\u0254\7\62\2\2\u0254\u0257\3\2\2")
+        buf.write("\2\u0255\u0257\5v<\2\u0256\u0250\3\2\2\2\u0256\u0255\3")
+        buf.write("\2\2\2\u0257u\3\2\2\2\u0258\u025c\5~@\2\u0259\u025c\7")
+        buf.write(";\2\2\u025a\u025c\5x=\2\u025b\u0258\3\2\2\2\u025b\u0259")
+        buf.write("\3\2\2\2\u025b\u025a\3\2\2\2\u025cw\3\2\2\2\u025d\u025e")
+        buf.write("\7\61\2\2\u025e\u025f\5d\63\2\u025f\u0260\7\62\2\2\u0260")
+        buf.write("y\3\2\2\2\u0261\u0262\7\65\2\2\u0262\u0263\5b\62\2\u0263")
+        buf.write("\u0264\7\66\2\2\u0264{\3\2\2\2\u0265\u0266\7\33\2\2\u0266")
+        buf.write("\u0267\7\63\2\2\u0267\u0268\5`\61\2\u0268\u0269\7\64\2")
+        buf.write("\2\u0269}\3\2\2\2\u026a\u0270\7>\2\2\u026b\u0270\7=\2")
+        buf.write("\2\u026c\u0270\7<\2\2\u026d\u0270\7?\2\2\u026e\u0270\5")
+        buf.write("|?\2\u026f\u026a\3\2\2\2\u026f\u026b\3\2\2\2\u026f\u026c")
+        buf.write("\3\2\2\2\u026f\u026d\3\2\2\2\u026f\u026e\3\2\2\2\u0270")
+        buf.write("\177\3\2\2\2\u0271\u0276\5\u0086D\2\u0272\u0276\5\u0084")
+        buf.write("C\2\u0273\u0276\7\17\2\2\u0274\u0276\7 \2\2\u0275\u0271")
+        buf.write("\3\2\2\2\u0275\u0272\3\2\2\2\u0275\u0273\3\2\2\2\u0275")
+        buf.write("\u0274\3\2\2\2\u0276\u0081\3\2\2\2\u0277\u027b\5\u0086")
+        buf.write("D\2\u0278\u027b\5\u0084C\2\u0279\u027b\7\17\2\2\u027a")
+        buf.write("\u0277\3\2\2\2\u027a\u0278\3\2\2\2\u027a\u0279\3\2\2\2")
+        buf.write("\u027b\u0083\3\2\2\2\u027c\u027d\7\33\2\2\u027d\u027e")
+        buf.write("\7\63\2\2\u027e\u027f\5b\62\2\u027f\u0280\7\64\2\2\u0280")
+        buf.write("\u0281\7\31\2\2\u0281\u0282\5\u0086D\2\u0282\u0085\3\2")
+        buf.write("\2\2\u0283\u0284\t\6\2\2\u0284\u0087\3\2\2\2\u0285\u0286")
+        buf.write("\7;\2\2\u0286\u0287\78\2\2\u0287\u028b\5\u0088E\2\u0288")
+        buf.write("\u028b\7;\2\2\u0289\u028b\3\2\2\2\u028a\u0285\3\2\2\2")
+        buf.write("\u028a\u0288\3\2\2\2\u028a\u0289\3\2\2\2\u028b\u0089\3")
+        buf.write("\2\2\2:\u0092\u009d\u00a5\u00ab\u00b2\u00b6\u00ba\u00c9")
+        buf.write("\u00d2\u00da\u00e7\u00f8\u0100\u0108\u0110\u0118\u0120")
+        buf.write("\u0128\u0130\u0138\u0140\u0148\u0152\u0159\u0162\u0169")
+        buf.write("\u016c\u017a\u0182\u0194\u01a1\u01a7\u01b6\u01c5\u01cc")
+        buf.write("\u01da\u01e1\u01ed\u01f8\u01fd\u0201\u0208\u020f\u0216")
+        buf.write("\u0220\u022b\u0236\u023c\u0241\u024d\u0256\u025b\u026f")
+        buf.write("\u0275\u027a\u028a")
         return buf.getvalue()
 
 
@@ -546,12 +546,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_program
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitProgram" ):
-                return visitor.visitProgram(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -609,12 +603,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_main_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMain_function" ):
-                return visitor.visitMain_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -706,12 +694,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_function_declaration
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFunction_declaration" ):
-                return visitor.visitFunction_declaration(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -786,12 +768,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_param_list
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParam_list" ):
-                return visitor.visitParam_list(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -844,12 +820,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_param_list_no_empty
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParam_list_no_empty" ):
-                return visitor.visitParam_list_no_empty(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -913,12 +883,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_param
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParam" ):
-                return visitor.visitParam(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -992,12 +956,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_variable_declaration_no_init
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVariable_declaration_no_init" ):
-                return visitor.visitVariable_declaration_no_init(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1051,12 +1009,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_variable_declaration_init
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVariable_declaration_init" ):
-                return visitor.visitVariable_declaration_init(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1136,12 +1088,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_variable_declaration_init_list
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVariable_declaration_init_list" ):
-                return visitor.visitVariable_declaration_init_list(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1224,12 +1170,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_assignment_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAssignment_statements" ):
-                return visitor.visitAssignment_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1278,12 +1218,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_lhs
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLhs" ):
-                return visitor.visitLhs(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1390,12 +1324,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_method_invocation_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMethod_invocation_statements" ):
-                return visitor.visitMethod_invocation_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1495,12 +1423,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_read_integer_function
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRead_integer_function" ):
-                return visitor.visitRead_integer_function(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1559,12 +1481,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_print_integer_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPrint_integer_function" ):
-                return visitor.visitPrint_integer_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1625,12 +1541,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_read_float_function
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRead_float_function" ):
-                return visitor.visitRead_float_function(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1689,12 +1599,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_write_float_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitWrite_float_function" ):
-                return visitor.visitWrite_float_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1755,12 +1659,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_read_boolean_function
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRead_boolean_function" ):
-                return visitor.visitRead_boolean_function(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1819,12 +1717,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_print_boolean_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPrint_boolean_function" ):
-                return visitor.visitPrint_boolean_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1885,12 +1777,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_read_string_function
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRead_string_function" ):
-                return visitor.visitRead_string_function(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1949,12 +1835,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_print_string_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPrint_string_function" ):
-                return visitor.visitPrint_string_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2015,12 +1895,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_super_function
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSuper_function" ):
-                return visitor.visitSuper_function(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2079,12 +1953,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_prevent_default_function
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPrevent_default_function" ):
-                return visitor.visitPrevent_default_function(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2157,12 +2025,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_if_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitIf_statements" ):
-                return visitor.visitIf_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2222,12 +2084,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_elseif_list_statements
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitElseif_list_statements" ):
-                return visitor.visitElseif_list_statements(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2305,12 +2161,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_elseif_statement
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitElseif_statement" ):
-                return visitor.visitElseif_statement(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2375,12 +2225,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_else_statement
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitElse_statement" ):
-                return visitor.visitElse_statement(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2474,12 +2318,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_for_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFor_statements" ):
-                return visitor.visitFor_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2563,12 +2401,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_while_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitWhile_statements" ):
-                return visitor.visitWhile_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2642,12 +2474,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_do_while_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDo_while_statements" ):
-                return visitor.visitDo_while_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2696,12 +2522,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_break_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBreak_statements" ):
-                return visitor.visitBreak_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2740,12 +2560,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_continue_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitContinue_statements" ):
-                return visitor.visitContinue_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2781,12 +2595,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_return_expr
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitReturn_expr" ):
-                return visitor.visitReturn_expr(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2840,12 +2648,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_return_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitReturn_statements" ):
-                return visitor.visitReturn_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2886,12 +2688,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_return_nothing_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitReturn_nothing_statements" ):
-                return visitor.visitReturn_nothing_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2931,12 +2727,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_global_statements
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGlobal_statements" ):
-                return visitor.visitGlobal_statements(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2998,12 +2788,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_global_statement
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGlobal_statement" ):
-                return visitor.visitGlobal_statement(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -3070,12 +2854,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_block_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBlock_statements" ):
-                return visitor.visitBlock_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3120,12 +2898,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_block_statements_no_func_decl
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBlock_statements_no_func_decl" ):
-                return visitor.visitBlock_statements_no_func_decl(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3167,12 +2939,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_statements
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatements" ):
-                return visitor.visitStatements(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -3265,18 +3031,16 @@ class MT22Parser ( Parser ):
             return self.getTypedRuleContext(MT22Parser.Return_nothing_statementsContext,0)
 
 
+        def in_loop_statement(self):
+            return self.getTypedRuleContext(MT22Parser.In_loop_statementContext,0)
+
+
         def block_statements(self):
             return self.getTypedRuleContext(MT22Parser.Block_statementsContext,0)
 
 
         def getRuleIndex(self):
             return MT22Parser.RULE_statement
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatement" ):
-                return visitor.visitStatement(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -3286,7 +3050,7 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 78, self.RULE_statement)
         try:
-            self.state = 450
+            self.state = 451
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,33,self._ctx)
             if la_ == 1:
@@ -3358,6 +3122,12 @@ class MT22Parser ( Parser ):
             elif la_ == 12:
                 self.enterOuterAlt(localctx, 12)
                 self.state = 449
+                self.in_loop_statement()
+                pass
+
+            elif la_ == 13:
+                self.enterOuterAlt(localctx, 13)
+                self.state = 450
                 self.block_statements()
                 pass
 
@@ -3389,12 +3159,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_statements_no_func_decl
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatements_no_func_decl" ):
-                return visitor.visitStatements_no_func_decl(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3403,20 +3167,20 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Statements_no_func_declContext(self, self._ctx, self.state)
         self.enterRule(localctx, 80, self.RULE_statements_no_func_decl)
         try:
-            self.state = 457
+            self.state = 458
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,34,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 452
-                self.statement_no_func_decl()
                 self.state = 453
+                self.statement_no_func_decl()
+                self.state = 454
                 self.statements_no_func_decl()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 455
+                self.state = 456
                 self.statement_no_func_decl()
                 pass
 
@@ -3482,12 +3246,8 @@ class MT22Parser ( Parser ):
             return self.getTypedRuleContext(MT22Parser.Return_nothing_statementsContext,0)
 
 
-        def break_statements(self):
-            return self.getTypedRuleContext(MT22Parser.Break_statementsContext,0)
-
-
-        def continue_statements(self):
-            return self.getTypedRuleContext(MT22Parser.Continue_statementsContext,0)
+        def in_loop_statement(self):
+            return self.getTypedRuleContext(MT22Parser.In_loop_statementContext,0)
 
 
         def block_statements_no_func_decl(self):
@@ -3496,12 +3256,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_statement_no_func_decl
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatement_no_func_decl" ):
-                return visitor.visitStatement_no_func_decl(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -3516,78 +3270,72 @@ class MT22Parser ( Parser ):
             la_ = self._interp.adaptivePredict(self._input,35,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 459
+                self.state = 460
                 self.variable_declaration_no_init()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 460
+                self.state = 461
                 self.variable_declaration_init()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 461
+                self.state = 462
                 self.assignment_statements()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 462
+                self.state = 463
                 self.if_statements()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 463
+                self.state = 464
                 self.for_statements()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 464
+                self.state = 465
                 self.while_statements()
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 465
+                self.state = 466
                 self.do_while_statements()
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 466
+                self.state = 467
                 self.method_invocation_statements()
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
-                self.state = 467
+                self.state = 468
                 self.return_statements()
                 pass
 
             elif la_ == 10:
                 self.enterOuterAlt(localctx, 10)
-                self.state = 468
+                self.state = 469
                 self.return_nothing_statements()
                 pass
 
             elif la_ == 11:
                 self.enterOuterAlt(localctx, 11)
-                self.state = 469
-                self.break_statements()
+                self.state = 470
+                self.in_loop_statement()
                 pass
 
             elif la_ == 12:
                 self.enterOuterAlt(localctx, 12)
-                self.state = 470
-                self.continue_statements()
-                pass
-
-            elif la_ == 13:
-                self.enterOuterAlt(localctx, 13)
                 self.state = 471
                 self.block_statements_no_func_decl()
                 pass
@@ -3619,12 +3367,6 @@ class MT22Parser ( Parser ):
 
         def getRuleIndex(self):
             return MT22Parser.RULE_statements_no_var_no_func
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatements_no_var_no_func" ):
-                return visitor.visitStatements_no_var_no_func(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -3705,12 +3447,8 @@ class MT22Parser ( Parser ):
             return self.getTypedRuleContext(MT22Parser.Return_nothing_statementsContext,0)
 
 
-        def break_statements(self):
-            return self.getTypedRuleContext(MT22Parser.Break_statementsContext,0)
-
-
-        def continue_statements(self):
-            return self.getTypedRuleContext(MT22Parser.Continue_statementsContext,0)
+        def in_loop_statement(self):
+            return self.getTypedRuleContext(MT22Parser.In_loop_statementContext,0)
 
 
         def block_statements(self):
@@ -3720,12 +3458,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_statement_no_var_no_func
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatement_no_var_no_func" ):
-                return visitor.visitStatement_no_var_no_func(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3734,7 +3466,7 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Statement_no_var_no_funcContext(self, self._ctx, self.state)
         self.enterRule(localctx, 86, self.RULE_statement_no_var_no_func)
         try:
-            self.state = 492
+            self.state = 491
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,37,self._ctx)
             if la_ == 1:
@@ -3788,18 +3520,12 @@ class MT22Parser ( Parser ):
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
                 self.state = 489
-                self.break_statements()
+                self.in_loop_statement()
                 pass
 
             elif la_ == 10:
                 self.enterOuterAlt(localctx, 10)
                 self.state = 490
-                self.continue_statements()
-                pass
-
-            elif la_ == 11:
-                self.enterOuterAlt(localctx, 11)
-                self.state = 491
                 self.block_statements()
                 pass
 
@@ -3833,12 +3559,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_block_in_loop_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBlock_in_loop_statements" ):
-                return visitor.visitBlock_in_loop_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3848,11 +3568,11 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 88, self.RULE_block_in_loop_statements)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 494
+            self.state = 493
             self.match(MT22Parser.LCB)
-            self.state = 495
+            self.state = 494
             self.in_loop_statements()
-            self.state = 496
+            self.state = 495
             self.match(MT22Parser.RCB)
         except RecognitionException as re:
             localctx.exception = re
@@ -3881,12 +3601,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_in_loop_statements
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitIn_loop_statements" ):
-                return visitor.visitIn_loop_statements(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3895,20 +3609,20 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.In_loop_statementsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 90, self.RULE_in_loop_statements)
         try:
-            self.state = 503
+            self.state = 502
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,38,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 498
+                self.state = 497
                 self.in_loop_statement()
-                self.state = 499
+                self.state = 498
                 self.in_loop_statements()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 501
+                self.state = 500
                 self.in_loop_statement()
                 pass
 
@@ -3949,12 +3663,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_in_loop_statement
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitIn_loop_statement" ):
-                return visitor.visitIn_loop_statement(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -3963,22 +3671,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.In_loop_statementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 92, self.RULE_in_loop_statement)
         try:
-            self.state = 508
+            self.state = 507
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.BREAK]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 505
+                self.state = 504
                 self.break_statements()
                 pass
             elif token in [MT22Parser.CONTINUE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 506
+                self.state = 505
                 self.continue_statements()
                 pass
             elif token in [MT22Parser.LCB]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 507
+                self.state = 506
                 self.block_in_loop_statements()
                 pass
             else:
@@ -4007,12 +3715,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr_list
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr_list" ):
-                return visitor.visitExpr_list(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4021,12 +3723,12 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr_listContext(self, self._ctx, self.state)
         self.enterRule(localctx, 94, self.RULE_expr_list)
         try:
-            self.state = 512
+            self.state = 511
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.ARRAY, MT22Parser.MINUSOP, MT22Parser.NOTOP, MT22Parser.LB, MT22Parser.VARIABLE_IDENTIFIERS, MT22Parser.BOOLLIT, MT22Parser.FLOATLIT, MT22Parser.INTLIT, MT22Parser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 510
+                self.state = 509
                 self.expr_list_no_empty()
                 pass
             elif token in [MT22Parser.RB, MT22Parser.RSB]:
@@ -4066,12 +3768,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr_list_no_empty
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr_list_no_empty" ):
-                return visitor.visitExpr_list_no_empty(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4080,22 +3776,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr_list_no_emptyContext(self, self._ctx, self.state)
         self.enterRule(localctx, 96, self.RULE_expr_list_no_empty)
         try:
-            self.state = 519
+            self.state = 518
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,41,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 514
+                self.state = 513
                 self.expr()
-                self.state = 515
+                self.state = 514
                 self.match(MT22Parser.COMMA)
-                self.state = 516
+                self.state = 515
                 self.expr_list_no_empty()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 518
+                self.state = 517
                 self.expr()
                 pass
 
@@ -4129,12 +3825,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr" ):
-                return visitor.visitExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4143,22 +3833,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.ExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 98, self.RULE_expr)
         try:
-            self.state = 526
+            self.state = 525
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,42,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 521
+                self.state = 520
                 self.expr1()
-                self.state = 522
+                self.state = 521
                 self.match(MT22Parser.DOUBLECOLONOP)
-                self.state = 523
+                self.state = 522
                 self.expr1()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 525
+                self.state = 524
                 self.expr1()
                 pass
 
@@ -4207,12 +3897,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr1
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr1" ):
-                return visitor.visitExpr1(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4222,27 +3906,27 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 100, self.RULE_expr1)
         self._la = 0 # Token type
         try:
-            self.state = 533
+            self.state = 532
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,43,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 528
+                self.state = 527
                 self.expr2(0)
-                self.state = 529
+                self.state = 528
                 _la = self._input.LA(1)
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MT22Parser.EQUALOP) | (1 << MT22Parser.NOTEQUALOP) | (1 << MT22Parser.GTE) | (1 << MT22Parser.LTE) | (1 << MT22Parser.GT) | (1 << MT22Parser.LT))) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 530
+                self.state = 529
                 self.expr2(0)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 532
+                self.state = 531
                 self.expr2(0)
                 pass
 
@@ -4280,12 +3964,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr2
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr2" ):
-                return visitor.visitExpr2(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
     def expr2(self, _p:int=0):
@@ -4298,10 +3976,10 @@ class MT22Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 536
+            self.state = 535
             self.expr3(0)
             self._ctx.stop = self._input.LT(-1)
-            self.state = 543
+            self.state = 542
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,44,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -4311,20 +3989,20 @@ class MT22Parser ( Parser ):
                     _prevctx = localctx
                     localctx = MT22Parser.Expr2Context(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr2)
-                    self.state = 538
+                    self.state = 537
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 539
+                    self.state = 538
                     _la = self._input.LA(1)
                     if not(_la==MT22Parser.ANDOP or _la==MT22Parser.OROP):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 540
+                    self.state = 539
                     self.expr3(0) 
-                self.state = 545
+                self.state = 544
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,44,self._ctx)
 
@@ -4361,12 +4039,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr3
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr3" ):
-                return visitor.visitExpr3(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
     def expr3(self, _p:int=0):
@@ -4379,10 +4051,10 @@ class MT22Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 547
+            self.state = 546
             self.expr4(0)
             self._ctx.stop = self._input.LT(-1)
-            self.state = 554
+            self.state = 553
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,45,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -4392,20 +4064,20 @@ class MT22Parser ( Parser ):
                     _prevctx = localctx
                     localctx = MT22Parser.Expr3Context(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr3)
-                    self.state = 549
+                    self.state = 548
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 550
+                    self.state = 549
                     _la = self._input.LA(1)
                     if not(_la==MT22Parser.PLUSOP or _la==MT22Parser.MINUSOP):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 551
+                    self.state = 550
                     self.expr4(0) 
-                self.state = 556
+                self.state = 555
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,45,self._ctx)
 
@@ -4445,12 +4117,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr4
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr4" ):
-                return visitor.visitExpr4(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
     def expr4(self, _p:int=0):
@@ -4463,10 +4129,10 @@ class MT22Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 558
+            self.state = 557
             self.expr5()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 565
+            self.state = 564
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,46,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -4476,20 +4142,20 @@ class MT22Parser ( Parser ):
                     _prevctx = localctx
                     localctx = MT22Parser.Expr4Context(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr4)
-                    self.state = 560
+                    self.state = 559
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 561
+                    self.state = 560
                     _la = self._input.LA(1)
                     if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MT22Parser.MULTIPLYOP) | (1 << MT22Parser.DIVIDEOP) | (1 << MT22Parser.MODULOOP))) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 562
+                    self.state = 561
                     self.expr5() 
-                self.state = 567
+                self.state = 566
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,46,self._ctx)
 
@@ -4523,12 +4189,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr5
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr5" ):
-                return visitor.visitExpr5(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4537,19 +4197,19 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr5Context(self, self._ctx, self.state)
         self.enterRule(localctx, 108, self.RULE_expr5)
         try:
-            self.state = 571
+            self.state = 570
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.NOTOP]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 568
+                self.state = 567
                 self.match(MT22Parser.NOTOP)
-                self.state = 569
+                self.state = 568
                 self.expr5()
                 pass
             elif token in [MT22Parser.ARRAY, MT22Parser.MINUSOP, MT22Parser.LB, MT22Parser.VARIABLE_IDENTIFIERS, MT22Parser.BOOLLIT, MT22Parser.FLOATLIT, MT22Parser.INTLIT, MT22Parser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 570
+                self.state = 569
                 self.expr6()
                 pass
             else:
@@ -4585,12 +4245,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr6
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr6" ):
-                return visitor.visitExpr6(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4599,19 +4253,19 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr6Context(self, self._ctx, self.state)
         self.enterRule(localctx, 110, self.RULE_expr6)
         try:
-            self.state = 576
+            self.state = 575
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.MINUSOP]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 573
+                self.state = 572
                 self.match(MT22Parser.MINUSOP)
-                self.state = 574
+                self.state = 573
                 self.expr6()
                 pass
             elif token in [MT22Parser.ARRAY, MT22Parser.LB, MT22Parser.VARIABLE_IDENTIFIERS, MT22Parser.BOOLLIT, MT22Parser.FLOATLIT, MT22Parser.INTLIT, MT22Parser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 575
+                self.state = 574
                 self.expr7(0)
                 pass
             else:
@@ -4654,12 +4308,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr7
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr7" ):
-                return visitor.visitExpr7(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
     def expr7(self, _p:int=0):
@@ -4671,10 +4319,10 @@ class MT22Parser ( Parser ):
         self.enterRecursionRule(localctx, 112, self.RULE_expr7, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 579
+            self.state = 578
             self.expr8()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 588
+            self.state = 587
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,49,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -4684,17 +4332,17 @@ class MT22Parser ( Parser ):
                     _prevctx = localctx
                     localctx = MT22Parser.Expr7Context(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr7)
-                    self.state = 581
+                    self.state = 580
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 582
+                    self.state = 581
                     self.match(MT22Parser.LSB)
-                    self.state = 583
+                    self.state = 582
                     self.expr_list_no_empty()
-                    self.state = 584
+                    self.state = 583
                     self.match(MT22Parser.RSB) 
-                self.state = 590
+                self.state = 589
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,49,self._ctx)
 
@@ -4734,12 +4382,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr8
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr8" ):
-                return visitor.visitExpr8(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4748,24 +4390,24 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr8Context(self, self._ctx, self.state)
         self.enterRule(localctx, 114, self.RULE_expr8)
         try:
-            self.state = 597
+            self.state = 596
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,50,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 591
+                self.state = 590
                 self.match(MT22Parser.VARIABLE_IDENTIFIERS)
-                self.state = 592
+                self.state = 591
                 self.match(MT22Parser.LB)
-                self.state = 593
+                self.state = 592
                 self.expr_list()
-                self.state = 594
+                self.state = 593
                 self.match(MT22Parser.RB)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 596
+                self.state = 595
                 self.expr9()
                 pass
 
@@ -4800,12 +4442,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr9
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr9" ):
-                return visitor.visitExpr9(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4814,22 +4450,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Expr9Context(self, self._ctx, self.state)
         self.enterRule(localctx, 116, self.RULE_expr9)
         try:
-            self.state = 602
+            self.state = 601
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.ARRAY, MT22Parser.BOOLLIT, MT22Parser.FLOATLIT, MT22Parser.INTLIT, MT22Parser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 599
+                self.state = 598
                 self.literal()
                 pass
             elif token in [MT22Parser.VARIABLE_IDENTIFIERS]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 600
+                self.state = 599
                 self.match(MT22Parser.VARIABLE_IDENTIFIERS)
                 pass
             elif token in [MT22Parser.LB]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 601
+                self.state = 600
                 self.expr10()
                 pass
             else:
@@ -4864,12 +4500,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_expr10
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr10" ):
-                return visitor.visitExpr10(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4879,11 +4509,11 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 118, self.RULE_expr10)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 604
+            self.state = 603
             self.match(MT22Parser.LB)
-            self.state = 605
+            self.state = 604
             self.expr()
-            self.state = 606
+            self.state = 605
             self.match(MT22Parser.RB)
         except RecognitionException as re:
             localctx.exception = re
@@ -4914,12 +4544,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_array_init
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArray_init" ):
-                return visitor.visitArray_init(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4929,11 +4553,11 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 120, self.RULE_array_init)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 608
+            self.state = 607
             self.match(MT22Parser.LCB)
-            self.state = 609
+            self.state = 608
             self.expr_list_no_empty()
-            self.state = 610
+            self.state = 609
             self.match(MT22Parser.RCB)
         except RecognitionException as re:
             localctx.exception = re
@@ -4967,12 +4591,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_array_lit
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArray_lit" ):
-                return visitor.visitArray_lit(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -4982,13 +4600,13 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 122, self.RULE_array_lit)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 612
+            self.state = 611
             self.match(MT22Parser.ARRAY)
-            self.state = 613
+            self.state = 612
             self.match(MT22Parser.LSB)
-            self.state = 614
+            self.state = 613
             self.expr_list()
-            self.state = 615
+            self.state = 614
             self.match(MT22Parser.RSB)
         except RecognitionException as re:
             localctx.exception = re
@@ -5025,12 +4643,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_literal
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLiteral" ):
-                return visitor.visitLiteral(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5039,32 +4651,32 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.LiteralContext(self, self._ctx, self.state)
         self.enterRule(localctx, 124, self.RULE_literal)
         try:
-            self.state = 622
+            self.state = 621
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.INTLIT]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 617
+                self.state = 616
                 self.match(MT22Parser.INTLIT)
                 pass
             elif token in [MT22Parser.FLOATLIT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 618
+                self.state = 617
                 self.match(MT22Parser.FLOATLIT)
                 pass
             elif token in [MT22Parser.BOOLLIT]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 619
+                self.state = 618
                 self.match(MT22Parser.BOOLLIT)
                 pass
             elif token in [MT22Parser.STRINGLIT]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 620
+                self.state = 619
                 self.match(MT22Parser.STRINGLIT)
                 pass
             elif token in [MT22Parser.ARRAY]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 621
+                self.state = 620
                 self.array_lit()
                 pass
             else:
@@ -5103,12 +4715,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_all_type
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAll_type" ):
-                return visitor.visitAll_type(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5117,27 +4723,27 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.All_typeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 126, self.RULE_all_type)
         try:
-            self.state = 628
+            self.state = 627
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.BOOLEAN, MT22Parser.FLOAT, MT22Parser.INTEGER, MT22Parser.STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 624
+                self.state = 623
                 self.atomic_types()
                 pass
             elif token in [MT22Parser.ARRAY]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 625
+                self.state = 624
                 self.array_type()
                 pass
             elif token in [MT22Parser.AUTO]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 626
+                self.state = 625
                 self.match(MT22Parser.AUTO)
                 pass
             elif token in [MT22Parser.VOID]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 627
+                self.state = 626
                 self.match(MT22Parser.VOID)
                 pass
             else:
@@ -5173,12 +4779,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_all_type_no_void
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAll_type_no_void" ):
-                return visitor.visitAll_type_no_void(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5187,22 +4787,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.All_type_no_voidContext(self, self._ctx, self.state)
         self.enterRule(localctx, 128, self.RULE_all_type_no_void)
         try:
-            self.state = 633
+            self.state = 632
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MT22Parser.BOOLEAN, MT22Parser.FLOAT, MT22Parser.INTEGER, MT22Parser.STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 630
+                self.state = 629
                 self.atomic_types()
                 pass
             elif token in [MT22Parser.ARRAY]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 631
+                self.state = 630
                 self.array_type()
                 pass
             elif token in [MT22Parser.AUTO]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 632
+                self.state = 631
                 self.match(MT22Parser.AUTO)
                 pass
             else:
@@ -5247,12 +4847,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_array_type
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArray_type" ):
-                return visitor.visitArray_type(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5262,17 +4856,17 @@ class MT22Parser ( Parser ):
         self.enterRule(localctx, 130, self.RULE_array_type)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 635
+            self.state = 634
             self.match(MT22Parser.ARRAY)
-            self.state = 636
+            self.state = 635
             self.match(MT22Parser.LSB)
-            self.state = 637
+            self.state = 636
             self.expr_list_no_empty()
-            self.state = 638
+            self.state = 637
             self.match(MT22Parser.RSB)
-            self.state = 639
+            self.state = 638
             self.match(MT22Parser.OF)
-            self.state = 640
+            self.state = 639
             self.atomic_types()
         except RecognitionException as re:
             localctx.exception = re
@@ -5305,12 +4899,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_atomic_types
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAtomic_types" ):
-                return visitor.visitAtomic_types(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5321,7 +4909,7 @@ class MT22Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 642
+            self.state = 641
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MT22Parser.BOOLEAN) | (1 << MT22Parser.FLOAT) | (1 << MT22Parser.INTEGER) | (1 << MT22Parser.STRING))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -5357,12 +4945,6 @@ class MT22Parser ( Parser ):
         def getRuleIndex(self):
             return MT22Parser.RULE_variable_id_list
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVariable_id_list" ):
-                return visitor.visitVariable_id_list(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -5371,22 +4953,22 @@ class MT22Parser ( Parser ):
         localctx = MT22Parser.Variable_id_listContext(self, self._ctx, self.state)
         self.enterRule(localctx, 134, self.RULE_variable_id_list)
         try:
-            self.state = 649
+            self.state = 648
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,55,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 644
+                self.state = 643
                 self.match(MT22Parser.VARIABLE_IDENTIFIERS)
-                self.state = 645
+                self.state = 644
                 self.match(MT22Parser.COMMA)
-                self.state = 646
+                self.state = 645
                 self.variable_id_list()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 647
+                self.state = 646
                 self.match(MT22Parser.VARIABLE_IDENTIFIERS)
                 pass
 

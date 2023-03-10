@@ -121,9 +121,10 @@ statement:  variable_declaration_no_init
             | method_invocation_statements
             | return_statements 
             | return_nothing_statements
-            | in_loop_statement
+            // | in_loop_statement
             | block_statements;
 
+// Block statement used in  loop
 statements_no_func_decl: statement_no_func_decl statements_no_func_decl | statement_no_func_decl | ;
 statement_no_func_decl:  variable_declaration_no_init 
                         | variable_declaration_init 
@@ -135,10 +136,12 @@ statement_no_func_decl:  variable_declaration_no_init
                         | method_invocation_statements
                         | return_statements 
                         | return_nothing_statements
+                        | break_statements 
+                        | continue_statements
                         | in_loop_statement
                         | block_statements_no_func_decl;
 
-statements_no_var_no_func: statement_no_var_no_func statements_no_var_no_func | statement_no_var_no_func | ;
+// Only 1 statemant
 statement_no_var_no_func: assignment_statements 
                         | if_statements 
                         | for_statements 
@@ -147,8 +150,10 @@ statement_no_var_no_func: assignment_statements
                         | method_invocation_statements
                         | return_statements 
                         | return_nothing_statements
-                        | in_loop_statement
-                        | block_statements;
+                        | break_statements 
+                        | continue_statements;
+                        // | in_loop_statement
+                        // | block_statements;
 
 
 block_in_loop_statements: LCB in_loop_statements RCB;
