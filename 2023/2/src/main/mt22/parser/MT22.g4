@@ -20,7 +20,8 @@ program: global_statements EOF ;
 //  |_| /_/    \_\_|  \_\_____/|______|_|  \_\
 
 // Main function
-main_function: MAIN COLON FUNCTION (all_type | VOID) LB RB block_statements;
+// main_function: MAIN COLON FUNCTION (all_type | VOID) LB RB block_statements;
+main_function: MAIN COLON FUNCTION (all_type | VOID) LB param_list RB (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
 
 // Function declaration
 function_declaration: VARIABLE_IDENTIFIERS COLON FUNCTION (all_type | VOID) LB param_list RB (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
@@ -173,12 +174,14 @@ expr8: VARIABLE_IDENTIFIERS LB expr_list RB | expr9;
 expr9: literal | VARIABLE_IDENTIFIERS | expr10; 
 expr10: LB expr RB;
 
-// Array init
-array_init: LCB expr_list_no_empty RCB;
+
 
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------
+
+// Array init
+array_init: LCB expr_list_no_empty RCB;
 
 // Array literal
 array_lit: ARRAY LSB expr_list RSB ;

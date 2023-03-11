@@ -1070,13 +1070,6 @@ class ASTGeneration(D96Visitor):
             return FloatLiteral(float(a))
 
         elif ctx.BOOLLIT():
-            # a = ctx.BOOLLIT().getText()
-
-            # if a == 'True':
-            #     return BooleanLiteral(bool(a))
-            # else:
-            #     return BooleanLiteral(ctx.BOOLLIT().getText() == "True")
-            
             return BooleanLiteral(ctx.BOOLLIT().getText() == "True")
         elif ctx.STRINGLIT():
             a = str(ctx.STRINGLIT().getText())
