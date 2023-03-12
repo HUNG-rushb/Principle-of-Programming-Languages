@@ -91,7 +91,7 @@ class BinExpr(Expr):
 
 class UnExpr(Expr):
     def __init__(self, op: str, val: Expr):
-        self.op = str
+        self.op = op
         self.val = val
 
     def __str__(self):
@@ -134,6 +134,9 @@ class FloatLit(Expr):
 class StringLit(Expr):
     def __init__(self, val: str):
         self.val = val
+    
+     def __str__(self):
+        return "StringLit({})".format(self.val)
 
 
 class BooleanLit(Expr):
