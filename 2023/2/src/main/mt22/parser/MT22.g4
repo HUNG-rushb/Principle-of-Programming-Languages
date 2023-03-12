@@ -58,16 +58,16 @@ method_invocation_statements: (VARIABLE_IDENTIFIERS LB expr_list RB
                             | prevent_default_function) SEMICOLON;
 
 // Special function
-read_integer_function: READ_INTEGER LB (expr_list | ) RB;
-print_integer_function: PRINT_INTEGER LB (expr_list | ) RB;
-read_float_function: READ_FLOAT LB (expr_list | ) RB;
-write_float_function: WRITE_FLOAT LB (expr_list | ) RB;
-read_boolean_function: READ_BOOLEAN LB (expr_list | ) RB;
-print_boolean_function: PRINT_BOOLEAN LB (expr_list | ) RB;
-read_string_function: READ_STRING LB (expr_list | ) RB;
-print_string_function: PRINT_STRING LB (expr_list | ) RB;
-super_function: SUPER LB (expr_list | ) RB;
-prevent_default_function: PREVENT_DEFAULT LB (expr_list | ) RB;
+read_integer_function: READ_INTEGER LB expr_list RB;
+print_integer_function: PRINT_INTEGER LB expr_list RB;
+read_float_function: READ_FLOAT LB expr_list RB;
+write_float_function: WRITE_FLOAT LB expr_list RB;
+read_boolean_function: READ_BOOLEAN LB expr_list RB;
+print_boolean_function: PRINT_BOOLEAN LB expr_list RB;
+read_string_function: READ_STRING LB expr_list RB;
+print_string_function: PRINT_STRING LB expr_list RB;
+super_function: SUPER LB expr_list RB;
+prevent_default_function: PREVENT_DEFAULT LB expr_list RB;
 
 
 // If statements 
@@ -152,9 +152,9 @@ statement_no_var_no_func: assignment_statements
                         | block_statements;
 
 
-block_in_loop_statements: LCB in_loop_statements RCB;
-in_loop_statements: in_loop_statement in_loop_statements | in_loop_statement | ;
-in_loop_statement: break_statements | continue_statements | block_in_loop_statements;
+// block_in_loop_statements: LCB in_loop_statements RCB;
+// in_loop_statements: in_loop_statement in_loop_statements | in_loop_statement | ;
+in_loop_statement: break_statements | continue_statements;
 
 // EXPRESSIONS ----------------------------------------------------------------------------------
 expr_list: expr_list_no_empty | ;
