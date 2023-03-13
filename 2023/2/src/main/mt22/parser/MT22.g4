@@ -193,13 +193,14 @@ all_type: atomic_types | array_type | AUTO | VOID;
 all_type_no_void: atomic_types | array_type | AUTO ;
 
 // Array type
-array_type: ARRAY LSB expr_list_no_empty RSB OF atomic_types;
+array_type: ARRAY LSB integer_list_no_empty RSB OF atomic_types;
+integer_list_no_empty: INTLIT COMMA integer_list_no_empty | INTLIT;
 
 // Atomic types
 atomic_types: BOOLEAN | INTEGER | FLOAT | STRING;
 
 // Variable id list
-variable_id_list: VARIABLE_IDENTIFIERS COMMA variable_id_list | VARIABLE_IDENTIFIERS | ;
+variable_id_list: VARIABLE_IDENTIFIERS COMMA variable_id_list | VARIABLE_IDENTIFIERS;
 
 
 //   _      ________   ________ _____  

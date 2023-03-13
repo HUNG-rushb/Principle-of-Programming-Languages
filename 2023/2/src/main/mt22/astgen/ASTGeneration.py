@@ -11,11 +11,11 @@ class ASTGeneration(MT22Visitor):
     # global_statements: global_statement global_statements | global_statement ;
     def visitGlobal_statements(self, ctx:MT22Parser.Global_statementsContext):
         if ctx.getChildCount() == 1:
-            global_statement = [self.visit(ctx.global_statement())]
+            global_statement = self.visit(ctx.global_statement())
             
             return global_statement 
         else:
-            global_statement = [self.visit(ctx.global_statement())]
+            global_statement = self.visit(ctx.global_statement())
             global_statements = self.visit(ctx.global_statements())
 
             return  global_statement + global_statements 
@@ -26,18 +26,12 @@ class ASTGeneration(MT22Visitor):
     #                 | main_function;
     def visitGlobal_statement(self, ctx:MT22Parser.Global_statementContext):
         if ctx.variable_declaration_no_init():
-            # print('1')
             return self.visit(ctx.variable_declaration_no_init())
         elif ctx.variable_declaration_init():
-            # print('2')
             return self.visit(ctx.variable_declaration_init())
-
         elif ctx.function_declaration():
-            # print('3')
             return self.visit(ctx.function_declaration())
-            
         elif ctx.main_function():
-            # print('4')
             return self.visit(ctx.main_function())
 
 
@@ -62,7 +56,7 @@ class ASTGeneration(MT22Visitor):
         
         body = self.visit(ctx.block_statements())
 
-        return FuncDecl(MAIN, return_type,param_list, inherit,body)
+        return [FuncDecl(MAIN, return_type,param_list, inherit,body)]
 
     # function_declaration: VARIABLE_IDENTIFIERS COLON FUNCTION (all_type | VOID) LB param_list RB 
     # (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
@@ -83,7 +77,7 @@ class ASTGeneration(MT22Visitor):
         
         body = self.visit(ctx.block_statements())
 
-        return FuncDecl(MAIN, return_type, param_list, inherit,body)
+        return [FuncDecl(MAIN, return_type, param_list, inherit,body)]
 
 
 
@@ -136,18 +130,16 @@ class ASTGeneration(MT22Visitor):
 
     
 
-   
+    # x,y,z : integer
     # variable_declaration_no_init: variable_id_list COLON all_type_no_void SEMICOLON;
-    def visitVariable_declaration_no_init(self, ctx:MT22Parser.Variable_declaration_no_initContext):
-        name = ctx.VARIABLE_IDENTIFIERS().getText()
-        typ = self.visit(ctx.all_type_no_void())
 
+    def visitVariable_declaration_no_init(self, ctx:MT22Parser.Variable_declaration_no_initContext):
         variable_id_list = self.visit(ctx.variable_id_list())
         variable_type = self.visit(ctx.all_type_no_void())
         result = []
         
-        for i in variable_id_list:
-            result += [VarDecl(i, variable_type, None)] 
+        for id in variable_id_list:
+            result += [VarDecl(id, variable_type, None)]
 
         return result
 
@@ -168,7 +160,7 @@ class ASTGeneration(MT22Visitor):
             length = len(variable_declaration_init_list) // 2
             typ = variable_declaration_init_list.pop(length)
 
-            variable_declaration_init_list.append(expr)
+            variable_declaration_init_list.append(value)
             variable_declaration_init_list.insert(0, name)
 
             length = len(variable_declaration_init_list) // 2
@@ -640,7 +632,6 @@ class ASTGeneration(MT22Visitor):
         else: 
             return []
 
-
     def visitExpr_list_no_empty(self, ctx:MT22Parser.Expr_list_no_emptyContext):
         if ctx.getChildCount() == 1:
             expr = [self.visit(ctx.expr())]
@@ -650,21 +641,18 @@ class ASTGeneration(MT22Visitor):
             expr_list_no_empty = self.visit(ctx.expr_list_no_empty())
             return expr + expr_list_no_empty 
 
-
     # expr: expr1 DOUBLECOLONOP expr1 | expr1;
-    # expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
-
     def visitExpr(self, ctx:MT22Parser.ExprContext):
         if ctx.getChildCount() == 3:
             operand = ctx.DOUBLECOLONOP().getText()
             left = self.visit(ctx.expr1(0))
             right = self.visit(ctx.expr1(1))
 
-            return BinaryOp(operand, left, right)
+            return BinExpr(operand, left, right)
         else:  
-            return self.visit(ctx.expr1())
+            return self.visit(ctx.expr1(0))
 
-
+    # expr1: expr2 (EQUALOP | NOTEQUALOP | LT | GT | LTE | GTE) expr2 | expr2;
     def visitExpr1(self, ctx:MT22Parser.Expr1Context):
         if ctx.getChildCount() == 3:
             if ctx.EQUALOP():
@@ -683,9 +671,9 @@ class ASTGeneration(MT22Visitor):
             left = self.visit(ctx.expr2(0))
             right = self.visit(ctx.expr2(1))
 
-            return BinaryOp(operand, left, right)
+            return BinExpr(operand, left, right)
         else:  
-            return self.visit(ctx.expr2())
+            return self.visit(ctx.expr2(0))
 
     # expr2: expr2 (ANDOP | OROP) expr3 | expr3;
     # expr3: expr3 (PLUSOP | MINUSOP) expr4 | expr4;
@@ -699,7 +687,7 @@ class ASTGeneration(MT22Visitor):
             left = self.visit(ctx.expr2())
             right = self.visit(ctx.expr3())
 
-            return BinaryOp(operand, left, right)
+            return BinExpr(operand, left, right)
         else:  
             return self.visit(ctx.expr3())
 
@@ -713,7 +701,7 @@ class ASTGeneration(MT22Visitor):
             left = self.visit(ctx.expr3())
             right = self.visit(ctx.expr4())
 
-            return BinaryOp(operand, left, right)
+            return BinExpr(operand, left, right)
         else:  
             return self.visit(ctx.expr4())
 
@@ -731,7 +719,7 @@ class ASTGeneration(MT22Visitor):
             left = self.visit(ctx.expr4())
             right = self.visit(ctx.expr5())
 
-            return BinaryOp(operand, left, right)
+            return BinExpr(operand, left, right)
         else:  
             return self.visit(ctx.expr5())
 
@@ -739,27 +727,24 @@ class ASTGeneration(MT22Visitor):
         if ctx.getChildCount() == 2:
             operand = ctx.NOTOP().getText()
             body = self.visit(ctx.expr5())
-            return UnaryOp(operand, body)
+            return UnExpr(operand, body)
         else:  
             return self.visit(ctx.expr6())
 
     # expr6: MINUSOP expr6 | expr7;
-    # expr7: expr7 LSB expr_list_no_empty RSB | expr8;
     def visitExpr6(self, ctx:MT22Parser.Expr6Context):
         if ctx.getChildCount() == 2:
             operand = ctx.MINUSOP().getText()
             body = self.visit(ctx.expr6())
 
-            return UnaryOp(operand, body)
+            return UnExpr(operand, body)
         else:  
             return self.visit(ctx.expr7())
 
+
     # !!!!!!!!!!!!!!!!!!!!
     # !!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!
-    # !!!!!!!!!!!!!!!!!!!!
+    # expr7: expr7 LSB expr_list_no_empty RSB | expr8;
     def visitExpr7(self, ctx:MT22Parser.Expr7Context):
         if ctx.getChildCount() == 4:
             name = self.visit(ctx.expr7())
@@ -804,14 +789,12 @@ class ASTGeneration(MT22Visitor):
     # variable_id_list: VARIABLE_IDENTIFIERS COMMA variable_id_list | VARIABLE_IDENTIFIERS | ;
     def visitVariable_id_list(self, ctx:MT22Parser.Variable_id_listContext):
         if ctx.getChildCount() == 3:     
-            a = Id(ctx.VARIABLE_IDENTIFIERS().getText())
-            identifier_list = self.visit(ctx.identifier_list())
-            return [a] + identifier_list
+            a = ctx.VARIABLE_IDENTIFIERS()
+            variable_id_list = self.visit(ctx.variable_id_list())
+            return [a] + variable_id_list
         elif ctx.getChildCount() == 1:
-            a = Id(ctx.VARIABLE_IDENTIFIERS().getText())
+            a = ctx.VARIABLE_IDENTIFIERS()
             return [a]
-        else: 
-            return []
 
 
     # array_init: LCB expr_list_no_empty RCB;
@@ -826,7 +809,6 @@ class ASTGeneration(MT22Visitor):
     # literal:  INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | array_lit ;
     def visitLiteral(self, ctx:MT22Parser.LiteralContext):
         if ctx.INTLIT():
-            # a = ctx.INTLIT().getText()
             return IntegerLit(int(ctx.INTLIT().getText(), 10))
         elif ctx.FLOATLIT():
             a = ctx.FLOATLIT().getText()
@@ -843,11 +825,21 @@ class ASTGeneration(MT22Visitor):
             return self.visit(ctx.array_lit())
 
 
-     # array_type: ARRAY LSB expr_list_no_empty RSB OF atomic_types;
+    # array_type: ARRAY LSB integer_list_no_empty RSB OF atomic_types;
+    # integer_list_no_empty: INTLIT COMMA integer_list_no_empty | INTLIT;
     def visitArray_type(self, ctx:MT22Parser.Array_typeContext):
-        dimensions = self.visit(ctx.expr_list_no_empty())
+        dimensions = self.visit(ctx.integer_list_no_empty())
         typ = self.visit(ctx.atomic_types())
-        return ArrayLit(dimensions, typ)
+        return ArrayType(dimensions, typ)
+    
+    def visitInteger_list_no_empty(self, ctx:MT22Parser.Integer_list_no_emptyContext):
+        if ctx.getChildCount() == 1:
+            return [int(ctx.INTLIT().getText(), 10)]
+        elif ctx.getChildCount() == 3:
+            result = [int(ctx.INTLIT().getText(), 10)]
+            integer_list_no_empty = self.visit(ctx.integer_list_no_empty())
+            return result + integer_list_no_empty 
+
 
     # all_type: atomic_types | array_type | AUTO | VOID;
     def visitAll_type(self, ctx:MT22Parser.All_typeContext):
@@ -871,7 +863,7 @@ class ASTGeneration(MT22Visitor):
 
     # atomic_types: BOOLEAN | INTEGER | FLOAT | STRING;
     def visitAtomic_types(self, ctx:MT22Parser.Atomic_typesContext):
-        if ctx.INT():
+        if ctx.INTEGER():
             return IntegerType()
         elif ctx.FLOAT():
             return FloatType()

@@ -5,5 +5,4 @@
         d: array[1,2] of boolean;
         e,f: array[2,3] of string;
         g: array[1] of float = {a+1.2};
-        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};
         

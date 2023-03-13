@@ -329,6 +329,11 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MT22Parser#integer_list_no_empty.
+    def visitInteger_list_no_empty(self, ctx:MT22Parser.Integer_list_no_emptyContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MT22Parser#atomic_types.
     def visitAtomic_types(self, ctx:MT22Parser.Atomic_typesContext):
         return self.visitChildren(ctx)
