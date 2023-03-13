@@ -6,8 +6,7 @@ from AST import *
 class ASTGeneration(MT22Visitor):
     # program: global_statements EOF ;
     def visitProgram(self, ctx:MT22Parser.ProgramContext):
-        return Program(self.visit(ctx.global_statements))
-
+        return Program(self.visit(ctx.global_statements()))
 
     # global_statements: global_statement global_statements | global_statement ;
     def visitGlobal_statements(self, ctx:MT22Parser.Global_statementsContext):
@@ -223,7 +222,7 @@ class ASTGeneration(MT22Visitor):
             cell = self.visit(ctx.expr_list_no_empty())
             return ArrayCell(name, cell)
         elif ctx.getChildCount() == 1:
-            return ctx.VARIABLE_IDENTIFIERS().getText()
+            return Id(ctx.VARIABLE_IDENTIFIERS().getText())
 
     # method_invocation_statements: (VARIABLE_IDENTIFIERS LB expr_list RB 
     #                             | read_integer_function

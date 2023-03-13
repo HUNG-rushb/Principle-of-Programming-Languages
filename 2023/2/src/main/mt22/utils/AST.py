@@ -60,7 +60,7 @@ class ArrayType(Type):
         self.typ = typ
 
     def __str__(self):
-        return "ArrayType([{}], {})".format(", ".join([dimen for dimen in self.dimensions]), str(self.typ))
+        return "ArrayType([{}], {})".format(", ".join([str(dimen) for dimen in self.dimensions]), str(self.typ))
 
 
 class AutoType(Type):
@@ -134,8 +134,8 @@ class FloatLit(Expr):
 class StringLit(Expr):
     def __init__(self, val: str):
         self.val = val
-    
-     def __str__(self):
+
+    def __str__(self):
         return "StringLit({})".format(self.val)
 
 
@@ -152,7 +152,7 @@ class ArrayLit(Expr):
         self.explist = explist
 
     def __str__(self):
-        return "ArrayLit([{}])".format(", ".join([self.visit(exp) for exp in self.explist]))
+        return "ArrayLit([{}])".format(", ".join([str(exp) for exp in self.explist]))
 
 
 class FuncCall(Expr):
@@ -204,6 +204,10 @@ class ForStmt(Stmt):
         return "ForStmt({}, {}, {}, {})".format(str(self.init), str(self.cond), str(self.upd), str(self.stmt))
 
 
+
+
+
+
 class WhileStmt(Stmt):
     def __init__(self, cond: Expr, stmt: Stmt):
         self.cond = cond
@@ -220,6 +224,13 @@ class DoWhileStmt(Stmt):
 
     def __str__(self):
         return "DoWhileStmt({}, {})".format(str(self.cond), str(self.stmt))
+
+
+
+
+
+
+
 
 
 class BreakStmt(Stmt):

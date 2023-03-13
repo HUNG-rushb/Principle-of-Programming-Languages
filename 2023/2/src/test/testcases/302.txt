@@ -1,2 +1,7 @@
-x, y, z: integer = 1, 2, 3;
-        a, b: float;
+
+        main: function void (){}
+        abc: function integer(){}
+        def: function integer() inherit abc{}
+        ghi: function array[1,2] of boolean () {}
+        klm: function array[1,2] of string () inherit ghi {}
+        
