@@ -1,3 +1,5 @@
 
-        a : integer = round(1.23-1.496, b);
+                a : float = 2 + 2%2/2*-2 ;
+                b : float = 1*1--1+1/1 ;
+                c : float = a + b / (2*1.0+1) ;
         

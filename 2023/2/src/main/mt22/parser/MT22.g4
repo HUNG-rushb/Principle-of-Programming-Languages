@@ -173,9 +173,22 @@ expr6: MINUSOP expr6 | expr7;
 // a[1]
 expr7: expr7 LSB expr_list_no_empty RSB | expr8;
 // foo()
-expr8: VARIABLE_IDENTIFIERS LB expr_list RB | expr9;
+expr8: expr8_func_call_name LB expr_list RB | expr9;
 expr9: literal | VARIABLE_IDENTIFIERS | array_init | LCB RCB | expr10; 
 expr10: LB expr RB;
+
+
+expr8_func_call_name: VARIABLE_IDENTIFIERS 
+                    | READ_INTEGER 
+                    | PRINT_INTEGER 
+                    | READ_FLOAT
+                    | WRITE_FLOAT
+                    | READ_BOOLEAN
+                    | PRINT_BOOLEAN 
+                    | READ_STRING
+                    | PRINT_STRING
+                    | SUPER
+                    | PREVENT_DEFAULT;
 
 
 

@@ -209,7 +209,7 @@ class ASTGeneration(MT22Visitor):
 
     def visitLhs(self, ctx:MT22Parser.LhsContext):
         if ctx.getChildCount() == 4:
-            name = Id(ctx.VARIABLE_IDENTIFIERS().getText())     
+            name = ctx.VARIABLE_IDENTIFIERS().getText()  
             cell = self.visit(ctx.expr_list_no_empty())
             return ArrayCell(name, cell)
         elif ctx.getChildCount() == 1:
@@ -425,13 +425,13 @@ class ASTGeneration(MT22Visitor):
     # for_statements: FOR LB VARIABLE_IDENTIFIERS EQUAL expr COMMA expr COMMA expr RB
     #            (block_statements_no_func_decl | statement_no_var_no_func);
     def visitFor_statements(self, ctx:MT22Parser.For_statementsContext):
-        init = AssignStmt( ctx.VARIABLE_IDENTIFIERS().getText(), self.visit(ctx.expr(0)))
+        init = AssignStmt(Id(ctx.VARIABLE_IDENTIFIERS().getText()), self.visit(ctx.expr(0)))
         cond = self.visit(ctx.expr(1))
         upd  = self.visit(ctx.expr(2))
         if ctx.block_statements_no_func_decl():
-            stmt =  self.visit(ctx.block_statements_no_func_decl())
+            stmt = self.visit(ctx.block_statements_no_func_decl())
         elif ctx.statement_no_var_no_func():
-            stmt =  self.visit(ctx.statement_no_var_no_func())
+            stmt = self.visit(ctx.statement_no_var_no_func())[0]
 
         return [ForStmt(init, cond, upd, stmt)]
 
@@ -447,7 +447,7 @@ class ASTGeneration(MT22Visitor):
         if ctx.block_statements_no_func_decl():
             stmt =  self.visit(ctx.block_statements_no_func_decl())
         elif ctx.statement_no_var_no_func():
-            stmt =  self.visit(ctx.statement_no_var_no_func())
+            stmt =  self.visit(ctx.statement_no_var_no_func())[0]
 
         return [WhileStmt(cond, stmt)]
 
@@ -620,8 +620,8 @@ class ASTGeneration(MT22Visitor):
             return self.visit(ctx.return_nothing_statements())
         elif ctx.in_loop_statement():
             return self.visit(ctx.in_loop_statement())
-        elif ctx.block_statements():
-            return [self.visit(ctx.block_statements())]
+        elif ctx.block_statements_no_func_decl():
+            return [self.visit(ctx.block_statements_no_func_decl())]
 
 
 
@@ -824,18 +824,22 @@ class ASTGeneration(MT22Visitor):
     def visitExpr7(self, ctx:MT22Parser.Expr7Context):
         if ctx.getChildCount() == 4:
             name = self.visit(ctx.expr7())
+
+            if isinstance(name, Id):
+                name = ctx.expr7().getText()
+
             expr_list_no_empty = self.visit(ctx.expr_list_no_empty())
 
             return ArrayCell(name, expr_list_no_empty)
         else:  
             return self.visit(ctx.expr8())
 
-    # expr8: VARIABLE_IDENTIFIERS LB expr_list RB | expr9;
+    # expr8: expr8_func_call_name LB expr_list RB | expr9;
     # expr9: literal | VARIABLE_IDENTIFIERS | array_init | expr10; 
     # expr10: LB expr RB;
     def visitExpr8(self, ctx:MT22Parser.Expr8Context):
         if ctx.getChildCount() == 4:
-            name = ctx.VARIABLE_IDENTIFIERS().getText()
+            name = self.visit(ctx.expr8_func_call_name())
             expr_list = self.visit(ctx.expr_list())
 
             return FuncCall(name, expr_list)
@@ -857,8 +861,41 @@ class ASTGeneration(MT22Visitor):
         return self.visit(ctx.expr())
 
 
-
-
+    # expr8_func_call_name: VARIABLE_IDENTIFIERS 
+    #                 | READ_INTEGER 
+    #                 | PRINT_INTEGER 
+    #                 | READ_FLOAT
+    #                 | WRITE_FLOAT
+    #                 | READ_BOOLEAN
+    #                 | PRINT_BOOLEAN 
+    #                 | READ_STRING
+    #                 | PRINT_STRING
+    #                 | SUPER
+    #                 | PREVENT_DEFAULT;
+    def visitExpr8_func_call_name(self, ctx:MT22Parser.Expr8_func_call_nameContext):
+        if ctx.VARIABLE_IDENTIFIERS():
+            return ctx.VARIABLE_IDENTIFIERS().getText()
+        elif ctx.READ_INTEGER():
+            return ctx.READ_INTEGER().getText()
+        elif ctx.PRINT_INTEGER():
+            return ctx.PRINT_INTEGER().getText()
+        elif ctx.READ_FLOAT():
+            return ctx.READ_FLOAT().getText()
+        elif ctx.WRITE_FLOAT():
+            return ctx.WRITE_FLOAT().getText()
+        elif ctx.READ_BOOLEAN():
+            return ctx.READ_BOOLEAN().getText()
+        elif ctx.PRINT_BOOLEAN():
+            return ctx.PRINT_BOOLEAN().getText()
+        elif ctx.READ_STRING():
+            return ctx.READ_STRING().getText()
+        elif ctx.PRINT_STRING():
+            return ctx.PRINT_STRING().getText()
+        elif ctx.SUPER():
+            return ctx.SUPER().getText()
+        elif ctx.PREVENT_DEFAULT():
+            return ctx.PREVENT_DEFAULT().getText()
+        
 
 
 

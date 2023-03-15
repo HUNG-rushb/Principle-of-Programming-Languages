@@ -1,7 +1,4 @@
-
-        abc: function integer(a: integer){}
-        def: function integer(a: array[3] of integer) inherit abc{}
-        ghi: function array[1,2] of boolean (out n: integer) {}
-        klm: function array[1,2] of string (inherit out a: array[3] of integer, n: integer) inherit ghi {}
-       
+               
+            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+            S : array[0] of string = {};
         

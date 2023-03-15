@@ -1,3 +1,7 @@
 Program([
-	VarDecl(a, IntegerType, BinExpr(+, FuncCall(toInt, [Id(bc_), IntegerLit(2), IntegerLit(10)]), FuncCall(randomInt, [])))
+	VarDecl(x, IntegerType, IntegerLit(1))
+	VarDecl(y, IntegerType, IntegerLit(2))
+	VarDecl(z, IntegerType, IntegerLit(3))
+	VarDecl(a, FloatType)
+	VarDecl(b, FloatType)
 ])

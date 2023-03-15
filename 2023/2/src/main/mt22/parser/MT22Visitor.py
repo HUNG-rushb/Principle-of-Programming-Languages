@@ -304,6 +304,11 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MT22Parser#expr8_func_call_name.
+    def visitExpr8_func_call_name(self, ctx:MT22Parser.Expr8_func_call_nameContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MT22Parser#array_init.
     def visitArray_init(self, ctx:MT22Parser.Array_initContext):
         return self.visitChildren(ctx)

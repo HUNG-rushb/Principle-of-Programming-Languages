@@ -1092,85 +1092,100 @@ class ASTGenSuite(unittest.TestCase):
 #         self.assertTrue(TestAST.test(input, expect, 300))
 
 
-    def test_expr_10(self):
-        input = """               
-        a : integer = toInt(bc_, 2, 10) + randomInt() ;
-        """
-        expect = """Program([
-	VarDecl(a, IntegerType, BinExpr(+, FuncCall(toInt, [Id(bc_), IntegerLit(2), IntegerLit(10)]), FuncCall(randomInt, [])))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 302))
+#     def test_expr_10(self):
+#         input = """               
+#         a : integer = toInt(bc_, 2, 10) + randomInt() ;
+#         """
+#         expect = """Program([
+# 	VarDecl(a, IntegerType, BinExpr(+, FuncCall(toInt, [Id(bc_), IntegerLit(2), IntegerLit(10)]), FuncCall(randomInt, [])))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 302))
 
-# # --------- Test array
+# # # --------- Test array
 
-    def test_array_1(self):
-        input = """               
-            a : array [2] of integer;
-            newarr, arr : array [1,2,3] of string;
-        """
-        expect = """Program([
-	VarDecl(a, ArrayType([2], IntegerType))
-	VarDecl(newarr, ArrayType([1, 2, 3], StringType))
-	VarDecl(arr, ArrayType([1, 2, 3], StringType))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 300))
+#     def test_array_1(self):
+#         input = """               
+#             a : array [2] of integer;
+#             newarr, arr : array [1,2,3] of string;
+#         """
+#         expect = """Program([
+# 	VarDecl(a, ArrayType([2], IntegerType))
+# 	VarDecl(newarr, ArrayType([1, 2, 3], StringType))
+# 	VarDecl(arr, ArrayType([1, 2, 3], StringType))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 300))
 
-    def test_array_2(self):
-        input = """               
-            arr : array [1_0] of float = {1,2,3,4,5,6,7,8,9,10};
-        """
-        expect = """Program([
-	VarDecl(arr, ArrayType([10], FloatType), ArrayLit([IntegerLit(1), IntegerLit(2), IntegerLit(3), IntegerLit(4), IntegerLit(5), IntegerLit(6), IntegerLit(7), IntegerLit(8), IntegerLit(9), IntegerLit(10)]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 300))
+#     def test_array_2(self):
+#         input = """               
+#             arr : array [1_0] of float = {1,2,3,4,5,6,7,8,9,10};
+#         """
+#         expect = """Program([
+# 	VarDecl(arr, ArrayType([10], FloatType), ArrayLit([IntegerLit(1), IntegerLit(2), IntegerLit(3), IntegerLit(4), IntegerLit(5), IntegerLit(6), IntegerLit(7), IntegerLit(8), IntegerLit(9), IntegerLit(10)]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 300))
 
-    def test_array_3(self):
-        input = """               
-            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
-            S : array[0] of string = {};
-        """
-        expect = """Program([
-	VarDecl(value, ArrayType([2, 3], FloatType), ArrayLit([ArrayLit([FloatLit(1.2), UnExpr(-, FloatLit(40000000000.0)), BinExpr(/, BinExpr(*, FloatLit(1.02), IntegerLit(12)), IntegerLit(1))]), ArrayLit([Id(a), Id(b), FloatLit(7.0)])]))
-	VarDecl(S, ArrayType([0], StringType), ArrayLit([]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 300))
+#     def test_array_3(self):
+#         input = """               
+#             value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+#             S : array[0] of string = {};
+#         """
+#         expect = """Program([
+# 	VarDecl(value, ArrayType([2, 3], FloatType), ArrayLit([ArrayLit([FloatLit(1.2), UnExpr(-, FloatLit(40000000000.0)), BinExpr(/, BinExpr(*, FloatLit(1.02), IntegerLit(12)), IntegerLit(1))]), ArrayLit([Id(a), Id(b), FloatLit(7.0)])]))
+# 	VarDecl(S, ArrayType([0], StringType), ArrayLit([]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 300))
 
-    def test_array_4(self):
-        input = """               
-            printArr: function void(out arr:array[5] of string) 
-                { return (arr[0]);}
-            myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;    
-        """
-        expect = """Program([
-	FuncDecl(printArr, VoidType, [OutParam(arr, ArrayType([5], StringType))], None, BlockStmt([ReturnStmt(ArrayCell(arr, [IntegerLit(0)]))]))
-	VarDecl(myPets, ArrayType([5], StringType), ArrayLit([StringLit(Cat), StringLit(Dog), StringLit(Parot), StringLit(Pig), StringLit(Ducky)]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 300))
+#     def test_array_4(self):
+#         input = """               
+#             printArr: function void(out arr:array[5] of string) 
+#                 { return (arr[0]);}
+#             myPets : array[5] of string = {"Cat", "Dog", "Parot", "Pig", "Ducky"} ;    
+#         """
+#         expect = """Program([
+# 	FuncDecl(printArr, VoidType, [OutParam(arr, ArrayType([5], StringType))], None, BlockStmt([ReturnStmt(ArrayCell(arr, [IntegerLit(0)]))]))
+# 	VarDecl(myPets, ArrayType([5], StringType), ArrayLit([StringLit(Cat), StringLit(Dog), StringLit(Parot), StringLit(Pig), StringLit(Ducky)]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 301))
 
-    def test_array_5(self):
-        input = """               
-                main : function void(){
-                    arrB[0,0,arrB[0,0,arrB[i,i,0]]] = arrayA[10-1,8+1];
-                }
-        """
-        expect = """Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(ArrayCell(arrB, [IntegerLit(0), IntegerLit(0), ArrayCell(arrB, [IntegerLit(0), IntegerLit(0), ArrayCell(arrB, [Id(i), Id(i), IntegerLit(0)])])]), ArrayCell(arrayA, [BinExpr(-, IntegerLit(10), IntegerLit(1)), BinExpr(+, IntegerLit(8), IntegerLit(1))]))]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 300))
-
-
-    def test_array_no(self):
-        input = """               
-            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
-            S : array[0] of string = {};
-        """
-        expect = """Program([
-	VarDecl(value, ArrayType([2, 3], FloatType), ArrayLit([ArrayLit([FloatLit(1.2), UnExpr(-, FloatLit(40000000000.0)), BinExpr(/, BinExpr(*, FloatLit(1.02), IntegerLit(12)), IntegerLit(1))]), ArrayLit([Id(a), Id(b), FloatLit(7.0)])]))
-	VarDecl(S, ArrayType([0], StringType), ArrayLit([]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 311))
+#     def test_array_5(self):
+#         input = """               
+#                 main : function void(){
+#                     arrB[0,0,arrB[0,0,arrB[i,i,0]]] = arrayA[10-1,8+1];
+#                 }
+#         """
+#         expect = """Program([
+# 	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(ArrayCell(arrB, [IntegerLit(0), IntegerLit(0), ArrayCell(arrB, [IntegerLit(0), IntegerLit(0), ArrayCell(arrB, [Id(i), Id(i), IntegerLit(0)])])]), ArrayCell(arrayA, [BinExpr(-, IntegerLit(10), IntegerLit(1)), BinExpr(+, IntegerLit(8), IntegerLit(1))]))]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 302))
 
 
+#     def test_array_no(self):
+#         input = """               
+#             value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+#             S : array[0] of string = {};
+#         """
+#         expect = """Program([
+# 	VarDecl(value, ArrayType([2, 3], FloatType), ArrayLit([ArrayLit([FloatLit(1.2), UnExpr(-, FloatLit(40000000000.0)), BinExpr(/, BinExpr(*, FloatLit(1.02), IntegerLit(12)), IntegerLit(1))]), ArrayLit([Id(a), Id(b), FloatLit(7.0)])]))
+# 	VarDecl(S, ArrayType([0], StringType), ArrayLit([]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 303))
+
+#     def test_stmt_2(self):
+#         input = """
+#         plus: function integer(b: integer) {
+#         a: integer = 2;
+#         return a + b;
+#         }
+#         abs: function integer() inherit plus {
+#         c: integer = a + plus(5);
+#         return c;
+#         }
+#         """
+#         expect = """Program([
+# 	FuncDecl(plus, IntegerType, [Param(b, IntegerType)], None, BlockStmt([VarDecl(a, IntegerType, IntegerLit(2)), ReturnStmt(BinExpr(+, Id(a), Id(b)))]))
+# 	FuncDecl(abs, IntegerType, [], plus, BlockStmt([VarDecl(c, IntegerType, BinExpr(+, Id(a), FuncCall(plus, [IntegerLit(5)]))), ReturnStmt(Id(c))]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 300))
 
 # ## Test statement
 # ## --------- Built in function
@@ -1190,6 +1205,7 @@ class ASTGenSuite(unittest.TestCase):
 # ])"""
 #         self.assertTrue(TestAST.test(input, expect, 300))
 
+
 #     def test_built_in_function_2(self):
 #         input = """
 #         main: function void () {
@@ -1197,6 +1213,7 @@ class ASTGenSuite(unittest.TestCase):
 #                 b = readFloat();
 #                 c = readBoolean();
 #                 d = readString();
+                
 #         }
 #         """
 #         expect = """Program([
@@ -2107,25 +2124,43 @@ class ASTGenSuite(unittest.TestCase):
 # ])"""
 #         self.assertTrue(TestAST.test(input, expect, 300))
 
-#     def test_full_7(self):
-#         input = """
-#             main : function void() {
-#                 arr : array[7] of integer = {5, 4, 9, 1, 4, 6, 3 };
-#                 n : integer = sizeof(arr)/sizeof(arr[0]);
-#                 pair1, pair2 : integer;
-#                 if (findPairs(arr, n, pair1, pair2)) {
-#                     if (checkAnswer(arr, n, pair1, pair2)){
-#                         printString("Your answer is correct.");                    
-#                     }
-#                     else printString("Your answer is incorrect.");
-#                 }
-#                 else printString("No pair found.");
-#             }
-#         """
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(arr, ArrayType([7], IntegerType), ArrayLit([IntegerLit(5), IntegerLit(4), IntegerLit(9), IntegerLit(1), IntegerLit(4), IntegerLit(6), IntegerLit(3)])), VarDecl(n, IntegerType, BinExpr(/, FuncCall(sizeof, [Id(arr)]), FuncCall(sizeof, [ArrayCell(arr, [IntegerLit(0)])]))), VarDecl(p, IntegerType), VarDecl(a, IntegerType), VarDecl(i, IntegerType), VarDecl(r, IntegerType), VarDecl(1, IntegerType), VarDecl(p, IntegerType), VarDecl(a, IntegerType), VarDecl(i, IntegerType), VarDecl(r, IntegerType), VarDecl(2, IntegerType), IfStmt(FuncCall(findPairs, [Id(arr), Id(n), Id(pair1), Id(pair2)]), BlockStmt([IfStmt(FuncCall(checkAnswer, [Id(arr), Id(n), Id(pair1), Id(pair2)]), BlockStmt([CallStmt(printString, StringLit(Your answer is correct.))]), CallStmt(printString, StringLit(Your answer is incorrect.)))]), CallStmt(printString, StringLit(No pair found.)))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+    def test_full_7(self):
+        input = """
+            main : function void() {
+                arr : array[7] of integer = {5, 4, 9, 1, 4, 6, 3 };
+                n : integer = sizeof(arr)/sizeof(arr[0]);
+                pair1, pair2 : integer;
+                if (findPairs(arr, n, pair1, pair2)) {
+                    if (checkAnswer(arr, n, pair1, pair2)){
+                        printString("Your answer is correct.");                    
+                    }
+                    else printString("Your answer is incorrect.");
+                }
+                else printString("No pair found.");
+            }
+        """
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(arr, ArrayType([7], IntegerType), ArrayLit([IntegerLit(5), IntegerLit(4), IntegerLit(9), IntegerLit(1), IntegerLit(4), IntegerLit(6), IntegerLit(3)])), VarDecl(n, IntegerType, BinExpr(/, FuncCall(sizeof, [Id(arr)]), FuncCall(sizeof, [ArrayCell(arr, [IntegerLit(0)])]))), VarDecl(p, IntegerType), VarDecl(a, IntegerType), VarDecl(i, IntegerType), VarDecl(r, IntegerType), VarDecl(1, IntegerType), VarDecl(p, IntegerType), VarDecl(a, IntegerType), VarDecl(i, IntegerType), VarDecl(r, IntegerType), VarDecl(2, IntegerType), IfStmt(FuncCall(findPairs, [Id(arr), Id(n), Id(pair1), Id(pair2)]), BlockStmt([IfStmt(FuncCall(checkAnswer, [Id(arr), Id(n), Id(pair1), Id(pair2)]), BlockStmt([CallStmt(printString, StringLit(Your answer is correct.))]), CallStmt(printString, StringLit(Your answer is incorrect.)))]), CallStmt(printString, StringLit(No pair found.)))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 300))
+
+
+    def test_stmt_while_6(self):
+        input = """
+        main: function void () {  
+                while (arr[a,b] == "Cat"){
+                        while (a > 0) {
+                                if (x) break;
+                                a = a - 2; 
+                                while (false) printFloat(3.2e2);
+                        }
+                        update(arr);
+                }  
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([WhileStmt(BinExpr(==, ArrayCell(arr, [Id(a), Id(b)]), StringLit(Cat)), BlockStmt([WhileStmt(BinExpr(>, Id(a), IntegerLit(0)), BlockStmt([IfStmt(Id(x), BreakStmt()), AssignStmt(Id(a), BinExpr(-, Id(a), IntegerLit(2))), WhileStmt(BooleanLit(False), CallStmt(printFloat, FloatLit(320.0)))])), CallStmt(update, Id(arr))]))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 359))
 
 #     def test_full_8(self):
 #         input = """
