@@ -1,7 +1,11 @@
 
-        main: function void () {
-              if (a>b) {}
-              else if (true) a = b;
-                  else a = 0;           
-              
+        main: function void () {  
+                while (arr[a,b] == "Cat"){
+                        while (a > 0) {
+                                if (x) break;
+                                a = a - 2; 
+                                while (false) printFloat(3.2e2);
+                        }
+                        update(arr);
+                }  
         }

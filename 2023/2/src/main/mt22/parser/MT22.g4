@@ -77,7 +77,7 @@ prevent_default_function: PREVENT_DEFAULT LB expr_list RB;
 if_statements: IF LB expr RB (block_statements | statement) elseif_list_statements ;
 elseif_list_statements: elseif_statement | else_statement | ;
 elseif_statement: ELSE IF LB expr RB (block_statements | statement) elseif_list_statements;
-else_statement: ELSE (block_statements | statement) | ;
+else_statement: ELSE (block_statements | statement);
 
 // For In statement
 for_statements: FOR LB VARIABLE_IDENTIFIERS EQUAL expr COMMA expr COMMA expr RB (block_statements_no_func_decl | statement_no_var_no_func);

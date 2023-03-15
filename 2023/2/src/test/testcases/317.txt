@@ -1,7 +1,9 @@
 
         main: function void () {
-              if (a>b) {}
+              if (a>b) {
+                print("Value a = ", a);
+              }
               else if (true) a = b;
-                  else a = 0;           
+                else a = 0;           
               
         }

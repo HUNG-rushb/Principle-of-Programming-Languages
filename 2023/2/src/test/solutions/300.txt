@@ -1,3 +1,3 @@
 Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), IfStmt(BooleanLit(True), [<AST.AssignStmt object at 0x000001FB75503DD0>], [<AST.AssignStmt object at 0x000001FB754BF2D0>]))]))
+	FuncDecl(main, VoidType, [], None, BlockStmt([WhileStmt(BinExpr(==, ArrayCell(Id(arr), [Id(a), Id(b)]), StringLit(Cat)), BlockStmt([WhileStmt(BinExpr(>, Id(a), IntegerLit(0)), BlockStmt([IfStmt(Id(x), BreakStmt()), AssignStmt(Id(a), BinExpr(-, Id(a), IntegerLit(2))), WhileStmt(BooleanLit(False), [<AST.CallStmt object at 0x000001BAE1663510>])])), CallStmt(update, Id(arr))]))]))
 ])

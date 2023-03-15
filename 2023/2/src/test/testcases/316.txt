@@ -1,6 +1,8 @@
 
         main: function void () {
-              if (a>b) {}
+              if (a>b) {
+                print("Value a = ", a);
+              }
               else a = "This is 'else' ";                
               
         }

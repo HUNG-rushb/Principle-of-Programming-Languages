@@ -227,7 +227,7 @@ class ASTGeneration(MT22Visitor):
     #                             | super_function
     #                             | prevent_default_function) SEMICOLON;
     def visitMethod_invocation_statements(self, ctx:MT22Parser.Method_invocation_statementsContext):
-        if ctx.getChildCount() == 4:
+        if ctx.getChildCount() > 2:
             name = ctx.VARIABLE_IDENTIFIERS().getText()
             args = self.visit(ctx.expr_list())
             return [CallStmt(name, args)]
@@ -332,26 +332,51 @@ class ASTGeneration(MT22Visitor):
 
 
 
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
-
-    
+    # class IfStmt(Stmt):
+    # def __init__(self, cond: Expr, tstmt: Stmt, fstmt: Stmt or None = None):
+    #     self.cond = cond
+    #     self.tstmt = tstmt
+    #     self.fstmt = fstmt
 
     # if_statements: IF LB expr RB (block_statements | statement) elseif_list_statements ;
     def visitIf_statements(self, ctx:MT22Parser.If_statementsContext):
         cond = self.visit(ctx.expr())
 
         if ctx.block_statements():
-            tstmt =  self.visit(ctx.block_statements())
+            tstmt = self.visit(ctx.block_statements())
         else: 
             tstmt = self.visit(ctx.statement())[0]
 
         
         fstmt = self.visit(ctx.elseif_list_statements())
 
-        if len(fstmt) == 1:
-            
+        # if len(fstmt) == 1:
+
 
         return [IfStmt(cond, tstmt, fstmt)]
 
@@ -369,23 +394,21 @@ class ASTGeneration(MT22Visitor):
         cond = self.visit(ctx.expr())
 
         if ctx.block_statements():
-            tstmt =  self.visit(ctx.block_statements())
+            tstmt = self.visit(ctx.block_statements())
         else: 
             tstmt = self.visit(ctx.statement())[0]
 
         fstmt = self.visit(ctx.elseif_list_statements())
 
-        return [IfStmt(cond, tstmt, fstmt)]
+        return IfStmt(cond, tstmt, fstmt)
 
-    # else_statement: ELSE (block_statements | statement) | ;
+    # else_statement: ELSE (block_statements | statement);
     def visitElse_statement(self, ctx:MT22Parser.Else_statementContext):
-        if ctx.getChildCount() == 2:
-            if ctx.block_statements():
-                return self.visit(ctx.block_statements())
-            elif ctx.statement():
-                return self.visit(ctx.statement())[0]
-        else:
-            return None
+        if ctx.block_statements():
+            return self.visit(ctx.block_statements())
+        elif ctx.statement():
+            return self.visit(ctx.statement())[0]
+
 
         
 
@@ -541,7 +564,7 @@ class ASTGeneration(MT22Visitor):
         elif ctx.in_loop_statement():
             return self.visit(ctx.in_loop_statement())
         elif ctx.block_statements():
-            return self.visit(ctx.block_statements())
+            return [self.visit(ctx.block_statements())]
 
 
 
@@ -552,7 +575,15 @@ class ASTGeneration(MT22Visitor):
 
     # statements_no_func_decl: statement_no_func_decl statements_no_func_decl | statement_no_func_decl | ;
     def visitStatements_no_func_decl(self, ctx:MT22Parser.Statements_no_func_declContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount() == 1:
+            statement_no_func_decl = self.visit(ctx.statement_no_func_decl())
+            return statement_no_func_decl
+        elif ctx.getChildCount() == 2:
+            statement_no_func_decl = self.visit(ctx.statement_no_func_decl())
+            statements_no_func_decl = self.visit(ctx.statements_no_func_decl())
+            return statement_no_func_decl + statements_no_func_decl 
+        else: 
+            return []
 
     # statement_no_func_decl:  variable_declaration_no_init 
     #                         | variable_declaration_init 
@@ -567,7 +598,30 @@ class ASTGeneration(MT22Visitor):
     #                         | in_loop_statement
     #                         | block_statements_no_func_decl;
     def visitStatement_no_func_decl(self, ctx:MT22Parser.Statement_no_func_declContext):
-        return self.visitChildren(ctx)
+        if ctx.variable_declaration_no_init():
+            return self.visit(ctx.variable_declaration_no_init())
+        elif ctx.variable_declaration_init():
+            return self.visit(ctx.variable_declaration_init())
+        elif ctx.assignment_statements():
+            return self.visit(ctx.assignment_statements())
+        elif ctx.if_statements():
+            return self.visit(ctx.if_statements())
+        elif ctx.for_statements():
+            return self.visit(ctx.for_statements())
+        elif ctx.while_statements():
+            return self.visit(ctx.while_statements())
+        elif ctx.do_while_statements():
+            return self.visit(ctx.do_while_statements())
+        elif ctx.method_invocation_statements():
+            return self.visit(ctx.method_invocation_statements())
+        elif ctx.return_statements():
+            return self.visit(ctx.return_statements())
+        elif ctx.return_nothing_statements():
+            return self.visit(ctx.return_nothing_statements())
+        elif ctx.in_loop_statement():
+            return self.visit(ctx.in_loop_statement())
+        elif ctx.block_statements():
+            return [self.visit(ctx.block_statements())]
 
 
 
@@ -595,7 +649,26 @@ class ASTGeneration(MT22Visitor):
     #                         | in_loop_statement
     #                         | block_statements;
     def visitStatement_no_var_no_func(self, ctx:MT22Parser.Statement_no_var_no_funcContext):
-        return self.visitChildren(ctx)
+        if ctx.assignment_statements():
+            return self.visit(ctx.assignment_statements())
+        elif ctx.if_statements():
+            return self.visit(ctx.if_statements())
+        elif ctx.for_statements():
+            return self.visit(ctx.for_statements())
+        elif ctx.while_statements():
+            return self.visit(ctx.while_statements())
+        elif ctx.do_while_statements():
+            return self.visit(ctx.do_while_statements())
+        elif ctx.method_invocation_statements():
+            return self.visit(ctx.method_invocation_statements())
+        elif ctx.return_statements():
+            return self.visit(ctx.return_statements())
+        elif ctx.return_nothing_statements():
+            return self.visit(ctx.return_nothing_statements())
+        elif ctx.in_loop_statement():
+            return self.visit(ctx.in_loop_statement())
+        elif ctx.block_statements():
+            return [self.visit(ctx.block_statements())]
 
 
 
@@ -762,7 +835,7 @@ class ASTGeneration(MT22Visitor):
     # expr10: LB expr RB;
     def visitExpr8(self, ctx:MT22Parser.Expr8Context):
         if ctx.getChildCount() == 4:
-            name = Id(ctx.VARIABLE_IDENTIFIERS().getText())
+            name = ctx.VARIABLE_IDENTIFIERS().getText()
             expr_list = self.visit(ctx.expr_list())
 
             return FuncCall(name, expr_list)

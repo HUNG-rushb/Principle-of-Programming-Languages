@@ -1,2 +1,3 @@
-x, y, z: integer = 1, 2, 3;
-        a, b: float;
+               
+        a : integer = toInt(bc_, 2, 10) + randomInt() ;
+        

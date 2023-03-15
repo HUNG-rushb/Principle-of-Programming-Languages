@@ -1,3 +1,4 @@
-
-        a : integer = round(1.23-1.496, b);
+               
+            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+            S : array[0] of string = {};
         
