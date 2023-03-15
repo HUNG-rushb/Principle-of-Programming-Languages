@@ -1,7 +1,6 @@
 
         main: function void () {
               if (a>b) {}
-              else if (true) a = b;
-                  else a = 0;           
+              else a = "This is 'else' ";                
               
         }

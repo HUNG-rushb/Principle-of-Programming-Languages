@@ -24,6 +24,11 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MT22Parser#inherit_function.
+    def visitInherit_function(self, ctx:MT22Parser.Inherit_functionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MT22Parser#param_list.
     def visitParam_list(self, ctx:MT22Parser.Param_listContext):
         return self.visitChildren(ctx)

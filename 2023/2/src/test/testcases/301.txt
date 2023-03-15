@@ -1,8 +1,5 @@
 
-        x, y, z: integer;
-        a: float = 1.2;
-        b,c: boolean = true, false;
-        d: array[1,2] of boolean;
-        e,f: array[2,3] of string;
-        g: array[1] of float = {a+1.2};
+                a : float = 2 + 2%2/2*-2 ;
+                b : float = 1*1--1+1/1 ;
+                c : float = a + b / (2*1.0+1) ;
         

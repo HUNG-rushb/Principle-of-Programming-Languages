@@ -21,10 +21,13 @@ program: global_statements EOF ;
 
 // Main function
 // main_function: MAIN COLON FUNCTION (all_type | VOID) LB RB block_statements;
-main_function: MAIN COLON FUNCTION (all_type | VOID) LB param_list RB (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
+main_function: MAIN COLON FUNCTION (all_type | VOID) LB param_list RB (inherit_function | ) block_statements;
 
 // Function declaration
-function_declaration: VARIABLE_IDENTIFIERS COLON FUNCTION (all_type | VOID) LB param_list RB (INHERIT VARIABLE_IDENTIFIERS | ) block_statements;
+function_declaration: VARIABLE_IDENTIFIERS COLON FUNCTION (all_type | VOID) LB param_list RB (inherit_function | ) block_statements;
+
+inherit_function: INHERIT VARIABLE_IDENTIFIERS;
+
 
 // List of parameters
 param_list: param_list_no_empty | ;
@@ -35,8 +38,8 @@ param: (INHERIT | ) (OUT | ) VARIABLE_IDENTIFIERS COLON all_type;
 // a, b, c : int;
 variable_declaration_no_init: variable_id_list COLON all_type_no_void SEMICOLON;
 // a, b, c: int = 1, 2, 3;
-variable_declaration_init:  VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) SEMICOLON;
-variable_declaration_init_list: COMMA VARIABLE_IDENTIFIERS variable_declaration_init_list (expr | array_init) COMMA
+variable_declaration_init:  VARIABLE_IDENTIFIERS variable_declaration_init_list expr SEMICOLON;
+variable_declaration_init_list: COMMA VARIABLE_IDENTIFIERS variable_declaration_init_list expr COMMA
                                 | COLON all_type_no_void EQUAL ;
 
 // Assignment statement
@@ -171,7 +174,7 @@ expr6: MINUSOP expr6 | expr7;
 expr7: expr7 LSB expr_list_no_empty RSB | expr8;
 // foo()
 expr8: VARIABLE_IDENTIFIERS LB expr_list RB | expr9;
-expr9: literal | VARIABLE_IDENTIFIERS | expr10; 
+expr9: literal | VARIABLE_IDENTIFIERS | array_init | LCB RCB | expr10; 
 expr10: LB expr RB;
 
 
@@ -181,7 +184,7 @@ expr10: LB expr RB;
 // --------------------------------------------------------------------------------------------------
 
 // Array init
-array_init: LCB expr_list_no_empty RCB;
+array_init: LCB expr_list RCB;
 
 // Array literal
 array_lit: ARRAY LSB expr_list RSB ;
@@ -285,13 +288,15 @@ COMMA: ',';
 COLON: ':';
 SEMICOLON: ';';
 
+// Boolean literal 
+BOOLLIT: 'true' | 'false';
+
 
 // Variable indentifiers
 VARIABLE_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
 
 
-// Boolean literal 
-BOOLLIT: 'true' | 'false';
+
 
 
 // Float literal 

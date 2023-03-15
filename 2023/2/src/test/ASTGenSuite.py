@@ -4,40 +4,53 @@ from AST import *
 
 
 class ASTGenSuite(unittest.TestCase):
-    # def test_short_vardecl(self):
-    #     input = """x: integer;"""
-    #     expect = str(Program([VarDecl("x", IntegerType())]))
-    #     self.assertTrue(TestAST.test(input, expect, 300))
+#     def test_short_vardecl(self):
+#         input = """x: integer;"""
+#         expect = str(Program([VarDecl("x", IntegerType())]))
+#         self.assertTrue(TestAST.test(input, expect, 300))
 
-    # d: array[1,2] of boolean;
-    #     e,f: array[2,3] of string;
-    #     g: array[1] of float = {a+1.2};
-    #     h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};
-    def test_vardecl(self):
-        input = """
-        x, y, z: integer;
-        a: float = 1.2;
-        b,c: boolean = true, false;
-        d: array[1,2] of boolean;
-        e,f: array[2,3] of string;
-        g: array[1] of float = {a+1.2};
-        """
-        expect = """Program([
-	VarDecl(x, IntegerType)
-	VarDecl(y, IntegerType)
-	VarDecl(z, IntegerType)
-	VarDecl(a, FloatType, FloatLit(1.2))
-	VarDecl(b, BooleanType, BooleanLit(True))
-	VarDecl(c, BooleanType, BooleanLit(False))
-	VarDecl(d, ArrayType([1, 2], BooleanType))
-	VarDecl(e, ArrayType([2, 3], StringType))
-	VarDecl(f, ArrayType([2, 3], StringType))
-	VarDecl(g, ArrayType([1], FloatType), ArrayLit([BinExpr(+, Id(a), FloatLit(1.2))]))
-	VarDecl(h, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
-	VarDecl(i, ArrayType([1, 2], StringType), ArrayLit([ArrayLit([]), StringLit(BKOOL)]))
-])"""
-        self.assertTrue(TestAST.test(input, expect, 301))
 
+#     def test_vardecl(self):
+#         input = """
+#         x, y, z: integer;
+#         a: float = 1.2;
+#         b,c: boolean = true, false;
+#         d: array[1,2] of boolean;
+#         e,f: array[2,3] of string;
+#         g: array[1] of float = {a+1.2};
+#         h: array[1,2] of string = {"D96","MT22"};
+#         h2: array[1] of string = {"D96","MT22", "efwfewfewfew"};
+#         h3,i: array[1,2] of string = {"D96","MT22"}, "fwefwf";
+#         h4,i2: array[1,2] of string = {"D96","MT22"}, {"D96","MT22"};
+#         h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};
+#         h5: string = {} ;
+#         """
+#         expect = """Program([
+# 	VarDecl(x, IntegerType)
+# 	VarDecl(y, IntegerType)
+# 	VarDecl(z, IntegerType)
+# 	VarDecl(a, FloatType, FloatLit(1.2))
+# 	VarDecl(b, BooleanType, Id(true))
+# 	VarDecl(c, BooleanType, Id(false))
+# 	VarDecl(d, ArrayType([1, 2], BooleanType))
+# 	VarDecl(e, ArrayType([2, 3], StringType))
+# 	VarDecl(f, ArrayType([2, 3], StringType))
+# 	VarDecl(g, ArrayType([1], FloatType), ArrayLit([BinExpr(+, Id(a), FloatLit(1.2))]))
+# 	VarDecl(h, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
+# 	VarDecl(h2, ArrayType([1], StringType), ArrayLit([StringLit(D96), StringLit(MT22), StringLit(efwfewfewfew)]))
+# 	VarDecl(h3, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
+# 	VarDecl(i, ArrayType([1, 2], StringType), StringLit(fwefwf))
+# 	VarDecl(h4, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
+# 	VarDecl(i2, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
+# 	VarDecl(h, ArrayType([1, 2], StringType), ArrayLit([StringLit(D96), StringLit(MT22)]))
+# 	VarDecl(i, ArrayType([1, 2], StringType), ArrayLit([ArrayLit([]), StringLit(BKOOL)]))
+# 	VarDecl(h5, StringType, ArrayLit([]))
+# ])"""
+#         self.assertTrue(TestAST.test(input, expect, 301))
+
+        # def: function integer() inherit abc{}
+        # ghi: function array[1,2] of boolean () {}
+        # klm: function array[1,2] of string () inherit ghi {}
 #     def test_funcdecl(self):
 #         input = """
 #         main: function void (){}
@@ -45,6 +58,7 @@ class ASTGenSuite(unittest.TestCase):
 #         def: function integer() inherit abc{}
 #         ghi: function array[1,2] of boolean () {}
 #         klm: function array[1,2] of string () inherit ghi {}
+        
 #         """
 #         expect = """Program([
 # 	FuncDecl(main, VoidType, [], None, BlockStmt([]))
@@ -55,12 +69,14 @@ class ASTGenSuite(unittest.TestCase):
 # ])"""
 #         self.assertTrue(TestAST.test(input, expect, 302))
 
+
 #     def test_param(self):
 #         input = """
 #         abc: function integer(a: integer){}
 #         def: function integer(a: array[3] of integer) inherit abc{}
 #         ghi: function array[1,2] of boolean (out n: integer) {}
 #         klm: function array[1,2] of string (inherit out a: array[3] of integer, n: integer) inherit ghi {}
+       
 #         """
 #         expect = """Program([
 # 	FuncDecl(abc, IntegerType, [Param(a, IntegerType)], None, BlockStmt([]))
@@ -69,6 +85,8 @@ class ASTGenSuite(unittest.TestCase):
 # 	FuncDecl(klm, ArrayType([1, 2], StringType), [InheritOutParam(a, ArrayType([3], IntegerType)), Param(n, IntegerType)], ghi, BlockStmt([]))
 # ])"""
 #         self.assertTrue(TestAST.test(input, expect, 303))
+
+
 
 #     def test_stmt_1(self):
 #         input = """
@@ -84,6 +102,30 @@ class ASTGenSuite(unittest.TestCase):
 # 	FuncDecl(main, VoidType, [], None, BlockStmt([ReturnStmt()]))
 # ])"""
 #         self.assertTrue(TestAST.test(input, expect, 304))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #     def test_stmt_2(self):
 #         input = """
@@ -210,9 +252,9 @@ class ASTGenSuite(unittest.TestCase):
 # 	VarDecl(a1, AutoType, Id(b1))
 # 	VarDecl(a2, AutoType, Id(b2))
 # ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+#         self.assertTrue(TestAST.test(input, expect, 312))
 
-# ## Test function declaration
+## Test function declaration
 
 #     def test_simple_program(self):
 #         """Simple program"""
@@ -265,6 +307,33 @@ class ASTGenSuite(unittest.TestCase):
 #         self.assertTrue(TestAST.test(input, expect, 300))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # # Test expression
 #     def test_expr_1(self):
 #         input = """main: function void () {
@@ -294,7 +363,7 @@ class ASTGenSuite(unittest.TestCase):
 #         expect = """Program([
 # 	VarDecl(a, IntegerType, FuncCall(Id(round), [BinExpr(-, FloatLit(1.23), FloatLit(1.496)), Id(b)]))
 # ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+#         self.assertTrue(TestAST.test(input, expect, 311))
 
 
 #     def test_expr_4(self):
@@ -374,7 +443,7 @@ class ASTGenSuite(unittest.TestCase):
 #         expect = """Program([
 # 	VarDecl(a, IntegerType, BinExpr(+, FuncCall(Id(toInt), [Id(bc_), IntegerLit(2), IntegerLit(10)]), FuncCall(Id(randomInt), [])))
 # ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+#         self.assertTrue(TestAST.test(input, expect, 312))
 
 # # # --------- Test array
 
@@ -430,7 +499,7 @@ class ASTGenSuite(unittest.TestCase):
 #         expect = """Program([
 # 	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(ArrayCell(Id(arrB), [IntegerLit(0), IntegerLit(0), ArrayCell(Id(arrB), [IntegerLit(0), IntegerLit(0), ArrayCell(Id(arrB), [Id(i), Id(i), IntegerLit(0)])])]), ArrayCell(Id(arrayA), [BinExpr(-, IntegerLit(10), IntegerLit(1)), BinExpr(+, IntegerLit(8), IntegerLit(1))]))]))
 # ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+#         self.assertTrue(TestAST.test(input, expect, 313))
 
 
 #     def test_array_no(self):
@@ -446,8 +515,31 @@ class ASTGenSuite(unittest.TestCase):
 
 
 
-# # ## Test statement
-# # # --------- Assignment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ## Test statement
+# # --------- Assignment
 #     def test_stmt_assign_1(self):
 #         input = """
 #         main: function void () {
@@ -508,63 +600,63 @@ class ASTGenSuite(unittest.TestCase):
 #         self.assertTrue(TestAST.test(input, expect, 304))
 
 # ##---------- If
-#     def test_stmt_if_1(self):
-#         input = """
-#         main: function void () {
-#               if (a>b) a = b;
-#         }"""
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), AssignStmt(Id(a), Id(b)))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+    def test_stmt_if_1(self):
+        input = """
+        main: function void () {
+              if (a>b) a = b;
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), AssignStmt(Id(a), Id(b)))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 313))
         
-#     def test_stmt_if_2(self):
-#         input = """
-#         main: function void () {
-#               if (a>b) {a = b;}
-#         }"""
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([AssignStmt(Id(a), Id(b))]))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+    def test_stmt_if_2(self):
+        input = """
+        main: function void () {
+              if (a>b) {a = b;}
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([AssignStmt(Id(a), Id(b))]))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 314))
 
-#     def test_stmt_if_3(self):
-#         input = """
-#         main: function void () {
-#               if (a>b) {}
-#               else {
-#                 print("Value a = ", a);
-#               }
-#         }"""
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), BlockStmt([CallStmt(print, StringLit(Value a = ), Id(a))]))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+    def test_stmt_if_3(self):
+        input = """
+        main: function void () {
+              if (a>b) {}
+              else {
+                print("Value a = ", a);
+              }
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), BlockStmt([CallStmt(print, StringLit(Value a = ), Id(a))]))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 315))
 
-#     def test_stmt_if_4(self):
-#         input = """
-#         main: function void () {
-#               if (a>b) {}
-#               else a = "This is 'else' ";                
+    def test_stmt_if_4(self):
+        input = """
+        main: function void () {
+              if (a>b) {}
+              else a = "This is 'else' ";                
               
-#         }"""
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), AssignStmt(Id(a), StringLit(This is 'else' )))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), AssignStmt(Id(a), StringLit(This is 'else' )))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 316))
 
-#     def test_stmt_if_5(self):
-#         input = """
-#         main: function void () {
-#               if (a>b) {}
-#               else if (true) a = b;
-#                   else a = 0;           
+    def test_stmt_if_5(self):
+        input = """
+        main: function void () {
+              if (a>b) {}
+              else if (true) a = b;
+                  else a = 0;           
               
-#         }"""
-#         expect = """Program([
-# 	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), IfStmt(BooleanLit(True), AssignStmt(Id(a), Id(b)), AssignStmt(Id(a), IntegerLit(0))))]))
-# ])"""
-#         self.assertTrue(TestAST.test(input, expect, 300))
+        }"""
+        expect = """Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([]), IfStmt(BooleanLit(True), AssignStmt(Id(a), Id(b)), AssignStmt(Id(a), IntegerLit(0))))]))
+])"""
+        self.assertTrue(TestAST.test(input, expect, 317))
 
 # # ## Test full
 
