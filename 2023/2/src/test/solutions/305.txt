@@ -1,4 +1,3 @@
 Program([
-	FuncDecl(plus, IntegerType, [Param(b, IntegerType)], None, BlockStmt([VarDecl(a, IntegerType, IntegerLit(2)), ReturnStmt(BinExpr(+, Id(a), Id(b)))]))
-	FuncDecl(abs, IntegerType, [], plus, BlockStmt([VarDecl(c, IntegerType, BinExpr(+, Id(a), FuncCall(plus, [IntegerLit(5)]))), ReturnStmt(Id(c))]))
+	VarDecl(x, IntegerType)
 ])

@@ -1,10 +1,2 @@
-
-        plus: function integer(b: integer) {
-            a: integer = 2;
-            return a + b;
-        }
-        abs: function integer() inherit plus {
-            c: integer = a + plus(5);
-            return c;
-        }
+x: integer;
         
