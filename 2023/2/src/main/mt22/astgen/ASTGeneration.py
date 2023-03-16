@@ -1,3 +1,6 @@
+# Trịnh Duy Hưng 
+# 1913652
+
 from MT22Visitor import MT22Visitor
 from MT22Parser import MT22Parser
 from AST import *
@@ -995,7 +998,3 @@ class ASTGeneration(MT22Visitor):
             return BooleanType()
         elif ctx.STRING():
             return StringType()
-
-
-    
-

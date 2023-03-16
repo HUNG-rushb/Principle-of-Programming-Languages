@@ -1,5 +1,5 @@
-# # 1913652
-# # Trịnh Duy Hưng
+# Trịnh Duy Hưng 
+# 1913652
 
 import unittest
 from TestUtils import TestParser
@@ -100,22 +100,69 @@ class ParserSuite(unittest.TestCase):
 
     def test08(self):
         input = '''
-            adETWWERTEWRTd: function integer(RWTEWTEWTEWTEWRTEWn: integer){
+            floatTest: function void (){
+                a = .e52;
+                a = .e-52;
+
+                a = .e00000000000000000000000;
+                a = .e-0000000000000000000000;
+
+                a = .e00000000000000000000000;
+                a = .e+0000000000000000000000;
+
+                a = .0e52;
+                a = 0.e52;
+                a = 0.0e52;
+
+                a = .0e-52;
+                a = 0.e-52;
+                a = 0.0e-52;
+
+                a = .0e0000000052;
+                a = 0.e0000000052;
+                a = 0.0e0000000052;
+
+                a = .0e-0000000052;
+                a = 0.e-0000000052;
+                a = 0.0e-0000000052;
+
+                a = .5e52;
+                a = 5.e52;
+                a = 5.5e52;
+                
+                a = .5e0000052;
+                a = 5.e000052;
+                a = 5.5e00000052;
+
+                a = .5e-00052;
+                a = 5.e-00052;
+                a = 5.5e-000052;
+
+                a = .5e-000;
+                a = 5.e-000;
+                a = 5.5e-0000;
 
 
-                break;
-                continue;
+                a = 5e52;
+                a = 0e52;
 
-                suWTREWTWERTm: integer = 0;
-                for (iERWTEWRTEWRT = 0, iETWTW<=n, iEWTWETEWT+1){
-                    sERWTEWRTTRum = suEWTRWERTm + i;
-                }
-                return suWETEWRTEWTEWRTEWRTTWERTEWTWERm;
-            }
-            maTEWRTWERTEWRTEWRTEWRTERWTWETWTWERTRTRTin: function void () {
-                ierjiejiejgiejgeir8982943829420490: integer = adTWERTEWRTEWEWTWERTd(REWTEWRTEWTWE10);
-                printFloat(ierjiejiejgiejgeir8982943829420490);
-            }
+                a = 5e+0000052;
+                a = 0e-00000052;
+
+            
+                a = 0e-000000;
+                a = 0_0e-0000_00;
+                a = 0_0.0000e-0000_00;
+                a = 0e-0000001;
+              
+                a = 434_5.34_2324
+                
+                a = 5_236_7387.e52;
+                a = 5_236_7387.1323e52;
+
+                a = 5_236_7387.e0052;
+                a = 5_236_7387.1323e0052;
+        }
         '''
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect,208))
