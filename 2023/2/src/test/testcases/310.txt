@@ -1,4 +1,47 @@
-               
-            a : array [2] of integer;
-            arr : array [1,2,3] of string;
+
+            main: function void() {
+                printString("");
+                {
+                    {
+                        {
+                            {
+                                {
+                                    {
+                                        {
+                                            n: function void() {
+                                                printString("");
+                                            }
+                                        }
+                                    }
+
+                                    {
+                                        {
+                                            n: function void() {
+                                                printString("");
+                                            }
+                                        }
+                                    }
+                                }
+
+                                {
+                                        {
+                                            n: function void() {
+                                                printString("");
+                                            }
+                                        }
+                                    }
+                            
+
+                            {
+                                        {
+                                            n: function void() {
+                                                printString("");
+                                            }
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
         

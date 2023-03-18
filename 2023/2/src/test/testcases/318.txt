@@ -1,0 +1,8 @@
+
+        x , y : boolean = true , false ;
+                    a1, a2 : auto = b1, b2 ;
+        x , y : boolean = true , false ;
+                    a1, a2 : auto = b1, b2 ;
+        x , y : boolean = true , false ;
+                    a1, a2 : auto = b1, b2 ;
+        

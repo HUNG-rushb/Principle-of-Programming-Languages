@@ -1,4 +1,15 @@
 
-        main: function void () {
-              if (a>b) a = b;
-        }
+        x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};
+
+        main: function void (){}
+        abc: function integer(){}
+        def: function integer() inherit abc{}
+        ghi: function array[1,2] of boolean () {}
+        klm: function array[1,2] of string () inherit ghi {}
+        

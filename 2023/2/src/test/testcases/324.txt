@@ -1,0 +1,40 @@
+
+        plus: function integer(b: integer) {
+        a: integer = 2;
+        return a + b;
+        }
+        abs: function integer() inherit plus {
+        c: integer = a + plus(5);
+        return c;
+        }
+        plus: function integer(b: integer) {
+        a: integer = 2;
+        return a + b;
+        }
+        abs: function integer() inherit plus {
+        c: integer = a + plus(5);
+        return c;
+        for(i = 1, i<length(a), i+1) print(a[i]);
+            while(a[1]<n) {
+                print(a[1]);
+                a[1] = a[1] - 1;for(i = 1, i<length(a), i+1) print(a[i]);
+            while(a[1]<n) {
+                print(a[1]);
+                a[1] = a[1] - 1;
+            }
+            do {
+                a[2] = a[2] - n;
+            } while(a[2] > 0);
+            }
+            do {
+                a[2] = a[2] - n;for(i = 1, i<length(a), i+1) print(a[i]);
+            while(a[1]<n) {
+                print(a[1]);
+                a[1] = a[1] - 1;
+            }
+            do {
+                a[2] = a[2] - n;
+            } while(a[2] > 0);
+            } while(a[2] > 0);
+        }
+        

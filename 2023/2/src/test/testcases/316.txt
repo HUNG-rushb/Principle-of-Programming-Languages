@@ -1,8 +1,14 @@
 
-        main: function void () {
-              if (a>b) {
-                print("Value a = ", a);
-              }
-              else a = "This is 'else' ";                
-              
+        abs: function integer() {
+            return 0;
+            return 0;
+            return 0;
+            return 0;
         }
+        main: function void() {
+            return;
+            return;
+            return;
+            return;
+        }
+        

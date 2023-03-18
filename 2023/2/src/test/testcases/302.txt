@@ -1,2 +1,24 @@
-x, y, z: integer = 1, 2, 3;
-        a, b: float;
+
+            printAnimal : function void(out animal: string, num: integer) {       
+
+            }
+            printBird : function void(bird : string) inherit printAnimal {
+                arr[i, 0] = a[b324234[_fwfow32_3240294024x + ______y[1,2,2,0,0,1234_859348,2]-h[g[5%2]*t[0,t[1]]] * 8+1--1]] + 3;
+                b : boolean = 1/2+33243-74989234*93489234909/4382370+3983;
+            }
+            main: function void() {
+                birds : array[2,3] of string = {{"birdA", "birdB", "birdC"},{"birdX", "birdY", "birdZ"}};
+                printBird(bird[a[i], 2]);
+                return ;
+            }
+            printAnimal : function void(out animal: string, num: integer) {       
+
+            }
+            printBird : function void(bird : string) inherit printAnimal {
+                r, s: integer;
+                r = 2.0;
+                a, b: array [5] of integer;
+                s = r * r * myPI;
+                a[0] = s;
+            }
+        

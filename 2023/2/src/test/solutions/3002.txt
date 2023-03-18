@@ -1,4 +1,0 @@
-Program([
-	FuncDecl(voidA, IntegerType, [Param(n, IntegerType)], None, BlockStmt([]))
-	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(delta, IntegerType, FuncCall(voidA, [FuncCall(voidA, [IntegerLit(34)])]))]))
-])

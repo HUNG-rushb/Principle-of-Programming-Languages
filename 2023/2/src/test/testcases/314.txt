@@ -1,4 +1,37 @@
 
-        main: function void () {
-              if (a>b) {a = b;}
-        }
+        main: function void (){x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};}
+        abc: function integer(){x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};}
+        def: function integer() inherit abc{x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};}
+        ghi: function array[1,2] of boolean () {x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};}
+        klm: function array[1,2] of string () inherit ghi {x, y, z: integer;
+        a: float = 1.2;
+        b,c: boolean = true, false;
+        d: array[1,2] of boolean;
+        e,f: array[2,3] of string;
+        g: array[1] of float = {a+1.2};
+        h,i: array[1,2] of string = {"D96","MT22"}, {{}, "BKOOL"};}
+        

@@ -1,0 +1,5 @@
+Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(Id(count), IntegerLit(1))]))
+	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(Id(count), IntegerLit(1))]))
+	FuncDecl(main, VoidType, [], None, BlockStmt([AssignStmt(Id(count), IntegerLit(1))]))
+])

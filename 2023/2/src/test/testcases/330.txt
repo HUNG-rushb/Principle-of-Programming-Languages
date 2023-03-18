@@ -1,0 +1,18 @@
+
+        /* Program([
+	FuncDecl(toString, StringType, [], None, BlockStmt([]))
+	FuncDecl(toInteger, IntegerType, [], None, BlockStmt([]))
+]) */
+toString : function string () {
+            /* Program([
+	FuncDecl(toString, StringType, [], None, BlockStmt([]))
+	FuncDecl(toInteger, IntegerType, [], None, BlockStmt([]))
+]) */
+        }
+        toInteger : function integer () {
+
+            /* Program([
+	FuncDecl(toString, StringType, [], None, BlockStmt([]))
+	FuncDecl(toInteger, IntegerType, [], None, BlockStmt([]))
+]) */
+        }

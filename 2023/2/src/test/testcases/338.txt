@@ -1,0 +1,10 @@
+               
+            value : array[2,3] of float = {{1.2,-4.0e10,1.02*12/1},{a, b, 7.0}};
+            S : array[0] of string = {};
+            a1, a2 : string = "Hello ", "World!" ;
+        a: string = a1 :: a2 ;            
+        a: string = (a :: ( a :: "a" ) ) :: a;        
+        a1, a2 : string = "Hello ", "World!" ;
+        a: string = a1 :: a2 ;            
+        a: string = (a :: ( a :: "a" ) ) :: a;  
+        

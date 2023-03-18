@@ -1,9 +1,66 @@
 
-        modArray: function array[3] of integer (inherit a: array[3] of integer,out n: integer){
-            a[0] = a[0] + n;
-            if(a[1] < n) a[1] = a[1] + n; 
-            if(a[2] > 0) return a;
-            else a[2] = -a[2];
-            return a;
-        }
+            main : function void() {
+                x = a() + b()*c(d);
+                if (x < a(arr[0,i])) return;
+                x = x / max(x,y+sub(x-y));
+                for (i = 1, i < n , i/2) {
+                    {
+                        k : integer = 0;
+                        k = i;
+                        if (k < 10 ) break;
+
+                        for (i = 1, i < n , i/2) {
+                            {
+                                k : integer = 0;
+                                k = i;
+                                if (k < 10 ) break;
+                            }
+                        }
+                    }
+                }
+                print("The result is ",x);
+                x = a() + b()*c(d);
+                if (x < a(arr[0,i])) return;
+                x = x / max(x,y+sub(x-y));
+                for (i = 1, i < n , i/2) {
+                    {
+                        k : integer = 0;
+                        k = i;
+                        if (k < 10 ) break;
+
+                        for (i = 1, i < n , i/2) {
+                            {
+                                k : integer = 0;
+                                k = i;
+                                if (k < 10 ) break;
+
+
+                                print("The result is ",x);
+                x = a() + b()*c(d);
+                if (x < a(arr[0,i])) return;
+                x = x / max(x,y+sub(x-y));
+                for (i = 1, i < n , i/2) {
+                    {
+                        k : integer = 0;
+                        k = i;
+                        if (k < 10 ) break;
+
+                        for (i = 1, i < n , i/2) {
+                            {
+                                k : integer = 0;
+                                k = i;
+                                if (k < 10 ) break;
+                            }
+                        }
+                    }
+                }
+                print("The result is ",x);
+                            }
+                        }
+                    }
+                }
+                print("The result is ",x);
+
+                
+            }
         

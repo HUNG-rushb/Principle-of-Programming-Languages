@@ -1,5 +1,14 @@
 
-        a1, a2 : string = "Hello ", "World!" ;
-        a: string = a1 :: a2 ;            
-        a: string = (a :: ( a :: "a" ) ) :: a;        
+        x: integer;
+
+         abs: function integer() inherit plus {
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+        }
         

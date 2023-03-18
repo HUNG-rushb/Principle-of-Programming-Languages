@@ -1,0 +1,11 @@
+
+        main: function void () {
+                count = 1;
+        }
+        main: function void () {
+                count = 1;
+        }
+        main: function void () {
+                count = 1;
+        }
+        

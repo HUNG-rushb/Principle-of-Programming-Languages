@@ -1,0 +1,8 @@
+               
+            a : array [2] of integer;
+            arr : array [1,2,3] of string;
+            a : array [2] of integer;
+            arr : array [1,2,3] of string;
+            a : array [2] of integer;
+            arr : array [1,2,3] of string;
+        

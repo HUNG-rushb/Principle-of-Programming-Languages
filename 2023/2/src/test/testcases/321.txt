@@ -1,0 +1,35 @@
+
+        x,y,z: integer;
+
+         abs: function integer() inherit plus {
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+        }
+
+        plus: function integer(b: integer) {
+            a: integer = 2;
+            return a + b;
+            a: integer = 2;
+            return a + b;
+            a: integer = 2;
+            return a + b;
+            a: integer = 2;
+            return a + b;
+        }
+        abs: function integer() inherit plus {
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+            c: integer = a + plus(5);
+            return c;
+        }
+        

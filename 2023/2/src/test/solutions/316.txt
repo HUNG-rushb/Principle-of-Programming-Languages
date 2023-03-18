@@ -1,0 +1,4 @@
+Program([
+	FuncDecl(abs, IntegerType, [], None, BlockStmt([ReturnStmt(IntegerLit(0)), ReturnStmt(IntegerLit(0)), ReturnStmt(IntegerLit(0)), ReturnStmt(IntegerLit(0))]))
+	FuncDecl(main, VoidType, [], None, BlockStmt([ReturnStmt(), ReturnStmt(), ReturnStmt(), ReturnStmt()]))
+])

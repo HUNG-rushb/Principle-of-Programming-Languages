@@ -1,0 +1,8 @@
+
+        main: function void () {
+              if (a>b) a = b;
+        }
+        main: function void () {
+              if (a>b) a = b;
+        }
+        

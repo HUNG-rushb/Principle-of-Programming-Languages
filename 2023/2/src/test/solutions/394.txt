@@ -1,0 +1,4 @@
+Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([BlockStmt([BlockStmt([BlockStmt([BlockStmt([])])])])]), AssignStmt(Id(a), StringLit(This is 'else' )))]))
+	FuncDecl(main, VoidType, [], None, BlockStmt([IfStmt(BinExpr(>, Id(a), Id(b)), BlockStmt([BlockStmt([BlockStmt([BlockStmt([BlockStmt([])])])])]), AssignStmt(Id(a), StringLit(This is 'else' )))]))
+])

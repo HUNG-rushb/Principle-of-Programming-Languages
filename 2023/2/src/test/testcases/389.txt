@@ -1,0 +1,10 @@
+
+        count : auto = 0;
+        main: function void () {
+                
+        }
+        count : auto = 0;
+        main: function void () {
+                
+        }
+        

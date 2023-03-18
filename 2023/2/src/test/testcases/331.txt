@@ -1,0 +1,24 @@
+
+        main: function void () {
+                b = a + a1;
+                c = b*a/2.0;
+            }
+            
+            toString : function string () {
+        }
+        main: function void () {
+                b = a + a1;
+                c = b*a/2.0;
+            }
+            
+            toString : function string () {
+        }
+        main: function void () {
+                b = a + a1;
+                c = b*a/2.0;
+            }
+            
+            toString : function string () {
+        }
+        toInteger : function integer () {
+        }

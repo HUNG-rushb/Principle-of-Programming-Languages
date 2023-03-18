@@ -1,9 +1,6 @@
 
-        main: function void () {
-              if (a>b) {
-                print("Value a = ", a);
-              }
-              else if (true) a = b;
-                else a = 0;           
-              
-        }
+        x, y, z: integer = 1, 2, 3;
+        x, y, z: integer = 1, 2, 3;
+        x, y, z: integer = 1, 2, 3;
+        x, y, z: integer = 1, 2, 3;
+        
