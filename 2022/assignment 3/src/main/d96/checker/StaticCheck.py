@@ -682,6 +682,9 @@ class GlobalScope(BaseVisitor):
 
     def visitVoidType(self, ast: VoidType, classStore):
         return Type().VOID()
+
+
+        
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
 # ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
 # ! ██      ███████ █████   ██      █████   █████   ██████  
