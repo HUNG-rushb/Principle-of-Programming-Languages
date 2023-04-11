@@ -44,10 +44,6 @@ def toJSON(data, place, typ = None) :
 
 
 class Type:
-    def NONE(self): return "<3...None"
-
-    def VOID(self): return "<3...VOID"
-
     def INT(self): return "<3...INT"
 
     def FLOAT(self): return "<3...FLOAT"
@@ -57,6 +53,10 @@ class Type:
     def BOOLEAN(self): return "<3...BOOLEAN"
 
     def ARRAY(self, type, size): return "<3...ARRAY" + "**" + type + "**" + str(size)
+
+    def AUTO(self): return "<3...AUTO"
+
+    def VOID(self): return "<3...VOID"
 
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
 # ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
@@ -89,7 +89,7 @@ class StaticChecker(Visitor):
     
     # name: str, typ: Type, init: Expr or None = None
     def visitVarDecl(self, ast: VarDecl, funcStore):
-        varName = ast.name
+        varName = str(ast.name)
         varType = self.visit(ast.typ, funcStore)
         # varInit = self.visit(ast.init, funcStore)
 
@@ -100,28 +100,40 @@ class StaticChecker(Visitor):
         }
 
 
+    # name: str, typ: Type, out: bool = False, inherit: bool = False
+    def visitParamDecl(self, ast: ParamDecl, funcStore): pass
 
-
+    # name: str, return_type: Type, params: List[ParamDecl], inherit: str or None, body: BlockStmt
+    def visitFuncDecl(self, ast: FuncDecl, funcStore): pass
 
 
 
     
+    # op: str, left: Expr, right: Exp
+    def visitBinExpr(self, ast: BinExpr, funcStore): pass
+
+    # op: str, val: Expr
+    def visitUnExpr(self, ast: UnExpr, funcStore): pass
+
+    # name: str
+    def visitId(self, ast: Id, funcStore): pass
+
+    # name: str, cell: List[Expr]
+    def visitArrayCell(self, ast: ArrayCell, funcStore): pass
 
 
 
+    def visitIntegerLit(self, ast: IntegerLit, funcStore):
+        return Type().INT()
 
+    def visitFloatLit(self, ast: FloatLit, funcStore):
+        return Type().FLOAT()
 
-    # def visitIntLiteral(self, ast: IntLiteral, classStore):
-    #     return Type().INT()
+    def visitStringLit(self, ast: StringLit, funcStore):
+        return Type().STRING()
 
-    # def visitFloatLiteral(self, ast: FloatLiteral, classStore):
-    #     return Type().FLOAT()
-
-    # def visitStringLiteral(self, ast: StringLiteral, classStore):
-    #     return Type().STRING()
-
-    # def visitBooleanLiteral(self, ast: BooleanLiteral, classStore):
-    #     return Type().BOOLEAN()
+    def visitBooleanLit(self, ast: BooleanLit, funcStore):
+        return Type().BOOLEAN()
 
 
 
@@ -141,11 +153,14 @@ class StaticChecker(Visitor):
     def visitStringType(self, ast: StringType, funcStore):
         return Type().STRING()
 
-    def visitArrayType(self, ast: ArrayType, funcStore):
-        arrayType = self.visit(ast.eleType, funcStore)
-        arraySize = ast.size
+    # def visitArrayType(self, ast: ArrayType, funcStore):
+    #     arrayType = self.visit(ast.eleType, funcStore)
+    #     arraySize = ast.size
 
         return Type().ARRAY(arrayType, arraySize)
+
+    def visitAutoType(self, ast: AutoType, funcStore):
+        return Type().AUTO()
 
     def visitVoidType(self, ast: VoidType, funcStore):
         return Type().VOID()
@@ -172,10 +187,12 @@ class StaticChecker(Visitor):
     # def visitUnExpr(self, ast, param): pass
     # def visitId(self, ast, param): pass
     # def visitArrayCell(self, ast, param): pass
+
     # def visitIntegerLit(self, ast, param): pass
     # def visitFloatLit(self, ast, param): pass
     # def visitStringLit(self, ast, param): pass
     # def visitBooleanLit(self, ast, param): pass
+
     # def visitArrayLit(self, ast, param): pass
     # def visitFuncCall(self, ast, param): pass
 
