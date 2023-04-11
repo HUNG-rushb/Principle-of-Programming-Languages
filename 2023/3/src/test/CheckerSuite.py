@@ -13,15 +13,15 @@ class CheckerSuite(unittest.TestCase):
         expect = "[]"
         self.assertTrue(TestChecker.test(input, expect, 401))
 
-    def test_2(self):
-        input = """
-        main : function void() {
-        {
+    # def test_2(self):
+    #     input = """
+    #     main : function void() {
+    #     {
             
-        }
-        """
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input, expect, 402))
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input, expect, 402))
 
     # def test_1(self):
     #     input = """

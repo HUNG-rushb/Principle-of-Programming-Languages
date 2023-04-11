@@ -10,7 +10,6 @@ class MType:
         self.partype = partype
         self.rettype = rettype
 
-
 class Symbol:
     def __init__(self, name, mtype, value=None):
         self.name = name
@@ -33,6 +32,17 @@ def toJSON(data, place, typ = None) :
             f.close()
 
 
+
+
+
+
+
+
+
+
+
+
+
 class Type:
     def NONE(self): return "<3...None"
 
@@ -48,10 +58,6 @@ class Type:
 
     def ARRAY(self, type, size): return "<3...ARRAY" + "**" + type + "**" + str(size)
 
-    
-
-
-
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██████  
 # ! ██      ██   ██ ██      ██      ██  ██  ██      ██   ██ 
 # ! ██      ███████ █████   ██      █████   █████   ██████  
@@ -59,10 +65,7 @@ class Type:
 # !  ██████ ██   ██ ███████  ██████ ██   ██ ███████ ██   ██ 
 class StaticChecker(Visitor):
 
-    global_envi = [
-        Symbol("getInt", MType([], IntegerType())),
-        Symbol("putIntLn", MType([IntegerType()], VoidType()))
-    ]
+    global_envi = {}
 
     def __init__(self, ast):
         self.ast = ast
@@ -71,14 +74,9 @@ class StaticChecker(Visitor):
         return self.visit(self.ast, StaticChecker.global_envi)
 
     def visitProgram(self, ast: Program, funcStore):
-        print("00000000")
-        print(ast)
-     
-        
         funcStore = {}
 
         for decl in ast.decls:
-            print(1111111)
             self.visit(decl, funcStore)
 
         # if ('Program' not in classStore) or ('main' not in classStore['Program']):
@@ -91,16 +89,17 @@ class StaticChecker(Visitor):
     
     # name: str, typ: Type, init: Expr or None = None
     def visitVarDecl(self, ast: VarDecl, funcStore):
-        # varName = ast.name
-        # varType = self.visit(ast.typ, funcStore)
+        varName = ast.name
+        varType = self.visit(ast.typ, funcStore)
+        # varInit = self.visit(ast.init, funcStore)
 
-        funcStore['global']['variable'] = {
-            'type': 12,
-            'init': None
+        funcStore['global'] = {
+            'name': varName,
+            'type': varType,
+            'init': None,
         }
 
-        print(22222222)
-        # toJSON(funcStore, 'global')
+
 
 
 
@@ -142,8 +141,6 @@ class StaticChecker(Visitor):
     def visitStringType(self, ast: StringType, funcStore):
         return Type().STRING()
 
-    # size: int
-    # eleType: Type
     def visitArrayType(self, ast: ArrayType, funcStore):
         arrayType = self.visit(ast.eleType, funcStore)
         arraySize = ast.size
