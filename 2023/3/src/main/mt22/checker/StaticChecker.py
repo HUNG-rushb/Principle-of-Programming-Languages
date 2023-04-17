@@ -74,7 +74,12 @@ class StaticChecker(Visitor):
         return self.visit(self.ast, StaticChecker.global_envi)
 
     def visitProgram(self, ast: Program, funcStore):
-        funcStore = {}
+        print(ast)
+
+        funcStore = { 
+            "Global_Variable": {},
+            "Global_Function": {},
+        }
 
         for decl in ast.decls:
             self.visit(decl, funcStore)
@@ -83,7 +88,7 @@ class StaticChecker(Visitor):
         # if 'main' not in funcStore:
         #     raise NoEntryPoint()
 
-        toJSON(funcStore, 'global_scope')
+        toJSON(funcStore, 'all')
         return ""
         
     
@@ -91,20 +96,111 @@ class StaticChecker(Visitor):
     def visitVarDecl(self, ast: VarDecl, funcStore):
         varName = str(ast.name)
         varType = self.visit(ast.typ, funcStore)
-        # varInit = self.visit(ast.init, funcStore)
 
-        funcStore['global'] = {
-            'name': varName,
-            'type': varType,
-            'init': None,
-        }
+        if ast.init is not None:
+            varInit = self.visit(ast.init, funcStore)
+
+            # if varInit != varType:
+            #     if varType == Type().FLOAT() and varInit == Type().INT():
+            #         varInit = Type().FLOAT()
+            #     else:
+            #         raise TypeMismatchInStatement(ast)
+        else:
+            varInit = None
+
+        # Global
+        if len(funcStore) == 2:
+
+            if varName in funcStore["Global_Variable"]:
+                raise Redeclared(Variable(), varName)
+
+            funcStore['Global_Variable'][varName] = {
+                'type': varType,
+                'init': varInit,
+            }
+        # In function
+        elif len(funcStore) == 3:
+            if varName in funcStore['body'][0]:
+                raise Redeclared(Variable(), varName)
+
+            funcStore['body'][0][varName] = {
+                'type': varType,
+                'init': varInit,
+            }
+
+
 
 
     # name: str, typ: Type, out: bool = False, inherit: bool = False
-    def visitParamDecl(self, ast: ParamDecl, funcStore): pass
+    def visitParamDecl(self, ast: ParamDecl, funcStore): 
+        paramName = str(ast.name)
+        paramType = self.visit(ast.typ, funcStore)
+
+        if paramName in funcStore["methodParams"]:
+            raise Redeclared(Parameter(), paramName)
+
+        if ast.out == False:
+            out = False
+        else:
+            out = True
+
+        if ast.inherit == False:
+            inherit = False
+        else:
+            inherit = True
+
+
+        funcStore['methodParams'][paramName] = {
+            'type': paramType,
+            'out': out,
+            'inherit': inherit
+        }
 
     # name: str, return_type: Type, params: List[ParamDecl], inherit: str or None, body: BlockStmt
-    def visitFuncDecl(self, ast: FuncDecl, funcStore): pass
+    def visitFuncDecl(self, ast: FuncDecl, funcStore): 
+        funcName = str(ast.name)
+        returnType = self.visit(ast.return_type, funcStore)
+
+        if ast.inherit is not None:
+            inherit = str(ast.inherit)
+        else:
+            inherit = None
+
+        if funcName in funcStore["Global_Function"]:
+            raise Redeclared(Function(), funcName)
+
+        # Create Function in store
+        funcStore['Global_Function'][funcName] = {
+                'returnType': returnType,
+                'inherit': inherit,
+                'body': [{}, {}],
+                'params': {},
+                # 'localVar': {}
+        }
+
+        # Visit Params 
+        newMethodEnviroment = {
+            'methodParams': funcStore['Global_Function'][funcName]['params']
+        }
+
+        for param in ast.params:
+            self.visit(param, newMethodEnviroment)
+
+        # Visit Block 
+        newMethodEnviromentBlock = {
+            'inherit': funcStore['Global_Function'][funcName]['inherit'],
+            'methodParams': funcStore['Global_Function'][funcName]['params'],
+            'body': funcStore['Global_Function'][funcName]['body'],
+            # 'localVar': funcStore['Global_Function'][funcName]['localVar']
+        }
+
+        self.visit(ast.body, newMethodEnviromentBlock)
+    
+    #  body: List[Stmt or VarDecl]
+    def visitBlockStmt(self, ast: BlockStmt, funcStore): 
+        for stmt in ast.body:
+            self.visit(stmt, funcStore)
+
 
 
 
@@ -122,18 +218,18 @@ class StaticChecker(Visitor):
     def visitArrayCell(self, ast: ArrayCell, funcStore): pass
 
 
-
+    # val: int
     def visitIntegerLit(self, ast: IntegerLit, funcStore):
-        return Type().INT()
+        return int(ast.val)
 
     def visitFloatLit(self, ast: FloatLit, funcStore):
-        return Type().FLOAT()
+        return float(ast.val)
 
     def visitStringLit(self, ast: StringLit, funcStore):
-        return Type().STRING()
+        return str(ast.val)
 
     def visitBooleanLit(self, ast: BooleanLit, funcStore):
-        return Type().BOOLEAN()
+        return bool(ast.val)
 
 
 
@@ -171,13 +267,7 @@ class StaticChecker(Visitor):
 
 
 
-    # def visit(self, ast, param):
-    #     return ast.accept(self, param)
 
-    # def visitIntegerType(self, ast, param): pass
-    # def visitFloatType(self, ast, param): pass
-    # def visitBooleanType(self, ast, param): pass
-    # def visitStringType(self, ast, param): pass
 
     # def visitArrayType(self, ast, param): pass
     # def visitAutoType(self, ast, param): pass
@@ -207,8 +297,3 @@ class StaticChecker(Visitor):
     # def visitReturnStmt(self, ast, param): pass
     # def visitCallStmt(self, ast, param): pass
 
-    # def visitVarDecl(self, ast, param): pass
-    # def visitParamDecl(self, ast, param): pass
-    # def visitFuncDecl(self, ast, param): pass
-
-    # def visitProgram(self, ast, param): pass

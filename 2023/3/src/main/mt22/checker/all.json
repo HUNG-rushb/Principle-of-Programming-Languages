@@ -1,0 +1,47 @@
+{
+    "Global_Variable": {
+        "a": {
+            "type": "<3...INT",
+            "init": 3
+        },
+        "d": {
+            "type": "<3...FLOAT",
+            "init": 3.5
+        },
+        "e": {
+            "type": "<3...BOOLEAN",
+            "init": true
+        },
+        "f": {
+            "type": "<3...STRING",
+            "init": "wfefwef"
+        }
+    },
+    "Global_Function": {
+        "main": {
+            "returnType": "<3...VOID",
+            "inherit": null,
+            "body": [
+                {
+                    "c": {
+                        "type": "<3...INT",
+                        "init": null
+                    }
+                },
+                {}
+            ],
+            "params": {
+                "animal": {
+                    "type": "<3...STRING",
+                    "out": false,
+                    "inherit": false
+                },
+                "num": {
+                    "type": "<3...INT",
+                    "out": false,
+                    "inherit": false
+                }
+            }
+        }
+    }
+}

@@ -8,7 +8,18 @@ class CheckerSuite(unittest.TestCase):
     
     def test_1(self):
         input = """
-        a : integer;
+        a : integer = 3;
+        d : float = 3.5;
+        e : boolean = true;
+        f : string = "wfefwef";
+
+
+
+        main : function void( animal: string, num: integer ) 
+        {
+            c : integer;
+        }
+        
         """
         expect = "[]"
         self.assertTrue(TestChecker.test(input, expect, 401))
@@ -18,6 +29,11 @@ class CheckerSuite(unittest.TestCase):
     #     main : function void() {
     #     {
             
+
+
+
+
+
     #     }
     #     """
     #     expect = "[]"
@@ -29,3 +45,7 @@ class CheckerSuite(unittest.TestCase):
     #     """
     #     expect = "[]"
     #     self.assertTrue(TestChecker.test(input, expect, 401))
+
+
+
+    

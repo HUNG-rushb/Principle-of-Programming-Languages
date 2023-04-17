@@ -1,3 +1,14 @@
 
-        a : integer;
+        a : integer = 3;
+        d : float = 3.5;
+        e : boolean = true;
+        f : string = "wfefwef";
+
+
+
+        main : function void( animal: string, num: integer ) 
+        {
+            c : integer;
+        }
+        
         
