@@ -1,14 +1,10 @@
 
-        a : integer = 3;
-        d : float = 3.5;
-        e : boolean = true;
-        f : string = "wfefwef";
 
 
+        arr : array [3] of integer = {1,2,3};
 
-        main : function void( animal: string, num: integer ) 
+        main : function void(  ) 
         {
-            c : integer;
+          
         }
-        
         

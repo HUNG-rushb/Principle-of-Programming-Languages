@@ -52,7 +52,7 @@ class Type:
 
     def BOOLEAN(self): return "<3...BOOLEAN"
 
-    def ARRAY(self, type, size): return "<3...ARRAY" + "**" + type + "**" + str(size)
+    def ARRAY(self, type, size): return "<3...ARRAY" + "__" + type + "__" + str(size)
 
     def AUTO(self): return "<3...AUTO"
 
@@ -82,11 +82,23 @@ class StaticChecker(Visitor):
         }
 
         for decl in ast.decls:
+            # if isinstance(decl, VarDecl):            
+            #     funcStore['Global_Variable'][decl.name] = {}
+            if isinstance(decl, FuncDecl):
+                if decl.name in funcStore["Global_Function"]:
+                    raise Redeclared(Function(), decl.name)
+                funcStore['Global_Function'][decl.name] = {}
+
+        toJSON(funcStore, 'first')
+
+        
+        
+
+        for decl in ast.decls:
             self.visit(decl, funcStore)
 
-        # if ('Program' not in classStore) or ('main' not in classStore['Program']):
-        # if 'main' not in funcStore:
-        #     raise NoEntryPoint()
+        if 'main' not in funcStore['Global_Function'] or funcStore['Global_Function']['main']['returnType'] != Type().VOID() or len(funcStore['Global_Function']['main']['params']) > 0:
+            raise NoEntryPoint()
 
         toJSON(funcStore, 'all')
         return ""
@@ -104,13 +116,12 @@ class StaticChecker(Visitor):
             #     if varType == Type().FLOAT() and varInit == Type().INT():
             #         varInit = Type().FLOAT()
             #     else:
-            #         raise TypeMismatchInStatement(ast)
+            #         raise TypeMismatchInVarDecl(ast)
         else:
             varInit = None
 
         # Global
         if len(funcStore) == 2:
-
             if varName in funcStore["Global_Variable"]:
                 raise Redeclared(Variable(), varName)
 
@@ -166,8 +177,7 @@ class StaticChecker(Visitor):
         else:
             inherit = None
 
-        if funcName in funcStore["Global_Function"]:
-            raise Redeclared(Function(), funcName)
+        
 
         # Create Function in store
         funcStore['Global_Function'][funcName] = {
@@ -212,31 +222,38 @@ class StaticChecker(Visitor):
     def visitUnExpr(self, ast: UnExpr, funcStore): pass
 
     # name: str
-    def visitId(self, ast: Id, funcStore): pass
+    def visitId(self, ast: Id, funcStore): 
+        return str(ast.name)
 
     # name: str, cell: List[Expr]
     def visitArrayCell(self, ast: ArrayCell, funcStore): pass
 
 
-    # val: int
+
     def visitIntegerLit(self, ast: IntegerLit, funcStore):
-        return int(ast.val)
+        return Type().INT()
 
     def visitFloatLit(self, ast: FloatLit, funcStore):
-        return float(ast.val)
+        return Type().FLOAT()
 
     def visitStringLit(self, ast: StringLit, funcStore):
-        return str(ast.val)
+        return Type().STRING()
 
     def visitBooleanLit(self, ast: BooleanLit, funcStore):
-        return bool(ast.val)
+        return Type().BOOLEAN()
+    
+    # explist: List[Expr]
+    def visitArrayLit(self, ast: ArrayLit, funcStore):
+        exprlist = []
+        for expr in ast.explist:
+            exprlist.append(self.visit(expr, funcStore))
+
+        return exprlist
 
 
 
-
-
-
-
+    # def visitFuncCall(self, ast, param): pass
+# ----------------------------------------------------------------  
     def visitIntegerType(self, ast: IntegerType, funcStore):
         return Type().INT()
 
@@ -249,18 +266,25 @@ class StaticChecker(Visitor):
     def visitStringType(self, ast: StringType, funcStore):
         return Type().STRING()
 
-    # def visitArrayType(self, ast: ArrayType, funcStore):
-    #     arrayType = self.visit(ast.eleType, funcStore)
-    #     arraySize = ast.size
-
-        return Type().ARRAY(arrayType, arraySize)
-
     def visitAutoType(self, ast: AutoType, funcStore):
         return Type().AUTO()
 
     def visitVoidType(self, ast: VoidType, funcStore):
         return Type().VOID()
 
+    # dimensions: List[int], typ: AtomicType
+    def visitArrayType(self, ast: ArrayType, funcStore):
+        arrayType = self.visit(ast.typ, funcStore)
+        arraySize = ''
+
+        for size in ast.dimensions:
+            arraySize = arraySize + '-' + str(size)
+
+        return Type().ARRAY(arrayType, arraySize)
+
+
+
+   
 
 
 
@@ -269,22 +293,14 @@ class StaticChecker(Visitor):
 
 
 
-    # def visitArrayType(self, ast, param): pass
-    # def visitAutoType(self, ast, param): pass
-    # def visitVoidType(self, ast, param): pass
 
-    # def visitBinExpr(self, ast, param): pass
-    # def visitUnExpr(self, ast, param): pass
-    # def visitId(self, ast, param): pass
-    # def visitArrayCell(self, ast, param): pass
+    
 
-    # def visitIntegerLit(self, ast, param): pass
-    # def visitFloatLit(self, ast, param): pass
-    # def visitStringLit(self, ast, param): pass
-    # def visitBooleanLit(self, ast, param): pass
+   
 
-    # def visitArrayLit(self, ast, param): pass
-    # def visitFuncCall(self, ast, param): pass
+
+
+
 
     # def visitAssignStmt(self, ast, param): pass
     # def visitBlockStmt(self, ast, param): pass
