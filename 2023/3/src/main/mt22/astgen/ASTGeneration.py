@@ -271,63 +271,63 @@ class ASTGeneration(MT22Visitor):
 
     # read_integer_function: READ_INTEGER LB expr_list RB;
     # print_integer_function: PRINT_INTEGER LB expr_list RB;
-    def visitRead_integer_function(self, ctx:MT22Parser.Read_integer_functionContext):
-        name = ctx.READ_INTEGER().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitRead_integer_function(self, ctx:MT22Parser.Read_integer_functionContext):
+    #     name = ctx.READ_INTEGER().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    def visitPrint_integer_function(self, ctx:MT22Parser.Print_integer_functionContext):
-        name = ctx.PRINT_INTEGER().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitPrint_integer_function(self, ctx:MT22Parser.Print_integer_functionContext):
+    #     name = ctx.PRINT_INTEGER().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    # read_float_function: READ_FLOAT LB expr_list RB;
-    # write_float_function: WRITE_FLOAT LB expr_list RB;
-    def visitRead_float_function(self, ctx:MT22Parser.Read_float_functionContext):
-        name = ctx.READ_FLOAT().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # # read_float_function: READ_FLOAT LB expr_list RB;
+    # # write_float_function: WRITE_FLOAT LB expr_list RB;
+    # def visitRead_float_function(self, ctx:MT22Parser.Read_float_functionContext):
+    #     name = ctx.READ_FLOAT().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    def visitWrite_float_function(self, ctx:MT22Parser.Write_float_functionContext):
-        name = ctx.WRITE_FLOAT().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitWrite_float_function(self, ctx:MT22Parser.Write_float_functionContext):
+    #     name = ctx.WRITE_FLOAT().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    # read_boolean_function: READ_BOOLEAN LB expr_list RB;
-    # print_boolean_function: PRINT_BOOLEAN LB expr_list RB;
-    def visitRead_boolean_function(self, ctx:MT22Parser.Read_boolean_functionContext):
-        name = ctx.READ_BOOLEAN().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # # read_boolean_function: READ_BOOLEAN LB expr_list RB;
+    # # print_boolean_function: PRINT_BOOLEAN LB expr_list RB;
+    # def visitRead_boolean_function(self, ctx:MT22Parser.Read_boolean_functionContext):
+    #     name = ctx.READ_BOOLEAN().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    def visitPrint_boolean_function(self, ctx:MT22Parser.Print_boolean_functionContext):
-        name = ctx.PRINT_BOOLEAN().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitPrint_boolean_function(self, ctx:MT22Parser.Print_boolean_functionContext):
+    #     name = ctx.PRINT_BOOLEAN().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    # read_string_function: READ_STRING LB expr_list RB;
-    # print_string_function: PRINT_STRING LB expr_list RB;
-    def visitRead_string_function(self, ctx:MT22Parser.Read_string_functionContext):
-        name = ctx.READ_STRING().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # # read_string_function: READ_STRING LB expr_list RB;
+    # # print_string_function: PRINT_STRING LB expr_list RB;
+    # def visitRead_string_function(self, ctx:MT22Parser.Read_string_functionContext):
+    #     name = ctx.READ_STRING().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    def visitPrint_string_function(self, ctx:MT22Parser.Print_string_functionContext):
-        name = ctx.PRINT_STRING().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitPrint_string_function(self, ctx:MT22Parser.Print_string_functionContext):
+    #     name = ctx.PRINT_STRING().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    # super_function: SUPER LB expr_list RB;
-    # prevent_default_function: PREVENT_DEFAULT LB expr_list RB;
-    def visitSuper_function(self, ctx:MT22Parser.Super_functionContext):
-        name = ctx.SUPER().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # # super_function: SUPER LB expr_list RB;
+    # # prevent_default_function: PREVENT_DEFAULT LB expr_list RB;
+    # def visitSuper_function(self, ctx:MT22Parser.Super_functionContext):
+    #     name = ctx.SUPER().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
-    def visitPrevent_default_function(self, ctx:MT22Parser.Prevent_default_functionContext):
-        name = ctx.PREVENT_DEFAULT().getText()
-        args = self.visit(ctx.expr_list())
-        return CallStmt(name, args)
+    # def visitPrevent_default_function(self, ctx:MT22Parser.Prevent_default_functionContext):
+    #     name = ctx.PREVENT_DEFAULT().getText()
+    #     args = self.visit(ctx.expr_list())
+    #     return CallStmt(name, args)
 
 
 

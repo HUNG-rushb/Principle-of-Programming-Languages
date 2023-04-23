@@ -1,8 +1,5 @@
 
-        main: function void() {
-            res : auto = readString();
-            b: integer = a;
-        }
-        foo : function auto (){}
-        a : integer = 1;
+        foo : function auto () {}
+        a : boolean = (foo() :: "string")::foo();
+        main: function void(){}
         

@@ -1,10 +1,6 @@
 
-
-
-        arr : array [3] of integer = {1,2,3};
-
-        main : function void(  ) 
-        {
-          
+        main: function void() {
+            i : float ;
+            for (i = 1, i < 10, i+1) break;
         }
         

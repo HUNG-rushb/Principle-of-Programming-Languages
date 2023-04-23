@@ -48,29 +48,31 @@ lhs: VARIABLE_IDENTIFIERS | VARIABLE_IDENTIFIERS LSB expr_list_no_empty RSB;
 
 
 // Method invocation statement
-method_invocation_statements: (VARIABLE_IDENTIFIERS LB expr_list RB 
-                            | read_integer_function
-                            | print_integer_function
-                            | read_float_function
-                            | write_float_function
-                            | read_boolean_function
-                            | print_boolean_function
-                            | read_string_function
-                            | print_string_function
-                            | super_function
-                            | prevent_default_function) SEMICOLON;
+method_invocation_statements: VARIABLE_IDENTIFIERS LB expr_list RB SEMICOLON;
+// method_invocation_statements: (VARIABLE_IDENTIFIERS LB expr_list RB 
+//                             | read_integer_function
+//                             | print_integer_function
+//                             | read_float_function
+//                             | write_float_function
+//                             | read_boolean_function
+//                             | print_boolean_function
+//                             | read_string_function
+//                             | print_string_function
+//                             | super_function
+//                             | prevent_default_function) SEMICOLON;
 
 // Special function
-read_integer_function: READ_INTEGER LB expr_list RB;
-print_integer_function: PRINT_INTEGER LB expr_list RB;
-read_float_function: READ_FLOAT LB expr_list RB;
-write_float_function: WRITE_FLOAT LB expr_list RB;
-read_boolean_function: READ_BOOLEAN LB expr_list RB;
-print_boolean_function: PRINT_BOOLEAN LB expr_list RB;
-read_string_function: READ_STRING LB expr_list RB;
-print_string_function: PRINT_STRING LB expr_list RB;
-super_function: SUPER LB expr_list RB;
-prevent_default_function: PREVENT_DEFAULT LB expr_list RB;
+// read_integer_function: 'readInteger' LB expr_list RB;
+// print_integer_function: 'printInteger' LB expr_list RB;
+// read_float_function: 'readFloat' LB expr_list RB;
+// write_float_function: 'writeFloat' LB expr_list RB;
+// read_boolean_function: 'readBoolean' LB expr_list RB;
+// print_boolean_function: 'printBoolean' LB expr_list RB;
+// read_string_function: 'readString' LB expr_list RB;
+// print_string_function: 'printString' LB expr_list RB;
+// super_function: 'super' LB expr_list RB;
+// prevent_default_function: 'preventDefault' LB expr_list RB;
+
 
 
 // If statements 
@@ -178,17 +180,7 @@ expr9: literal | VARIABLE_IDENTIFIERS | array_init | LCB RCB | expr10;
 expr10: LB expr RB;
 
 
-expr8_func_call_name: VARIABLE_IDENTIFIERS 
-                    | READ_INTEGER 
-                    | PRINT_INTEGER 
-                    | READ_FLOAT
-                    | WRITE_FLOAT
-                    | READ_BOOLEAN
-                    | PRINT_BOOLEAN 
-                    | READ_STRING
-                    | PRINT_STRING
-                    | SUPER
-                    | PREVENT_DEFAULT;
+expr8_func_call_name: VARIABLE_IDENTIFIERS ;
 
 
 
@@ -230,16 +222,16 @@ MAIN: 'main';
 FUNCTION: 'function';
 
 // Special function
-READ_INTEGER: 'readInteger';
-PRINT_INTEGER: 'printInteger';
-READ_FLOAT: 'readFloat';
-WRITE_FLOAT: 'writeFloat';
-READ_BOOLEAN: 'readBoolean';
-PRINT_BOOLEAN: 'printBoolean';
-READ_STRING: 'readString';
-PRINT_STRING: 'printString';
-SUPER: 'super';
-PREVENT_DEFAULT: 'preventDefault';
+// READ_INTEGER: 'readInteger';
+// PRINT_INTEGER: 'printInteger';
+// READ_FLOAT: 'readFloat';
+// WRITE_FLOAT: 'writeFloat';
+// READ_BOOLEAN: 'readBoolean';
+// PRINT_BOOLEAN: 'printBoolean';
+// READ_STRING: 'readString';
+// PRINT_STRING: 'printString';
+// SUPER: 'super';
+// PREVENT_DEFAULT: 'preventDefault';
 
 // Keywords
 AUTO: 'auto';
@@ -306,7 +298,8 @@ BOOLLIT: 'true' | 'false';
 
 
 // Variable indentifiers
-VARIABLE_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]*;
+VARIABLE_IDENTIFIERS: [_a-zA-Z] [_a-zA-Z0-9]* ;
+
 
 
 

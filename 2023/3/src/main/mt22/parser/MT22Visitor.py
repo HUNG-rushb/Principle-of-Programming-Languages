@@ -74,56 +74,6 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#read_integer_function.
-    def visitRead_integer_function(self, ctx:MT22Parser.Read_integer_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#print_integer_function.
-    def visitPrint_integer_function(self, ctx:MT22Parser.Print_integer_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#read_float_function.
-    def visitRead_float_function(self, ctx:MT22Parser.Read_float_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#write_float_function.
-    def visitWrite_float_function(self, ctx:MT22Parser.Write_float_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#read_boolean_function.
-    def visitRead_boolean_function(self, ctx:MT22Parser.Read_boolean_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#print_boolean_function.
-    def visitPrint_boolean_function(self, ctx:MT22Parser.Print_boolean_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#read_string_function.
-    def visitRead_string_function(self, ctx:MT22Parser.Read_string_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#print_string_function.
-    def visitPrint_string_function(self, ctx:MT22Parser.Print_string_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#super_function.
-    def visitSuper_function(self, ctx:MT22Parser.Super_functionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#prevent_default_function.
-    def visitPrevent_default_function(self, ctx:MT22Parser.Prevent_default_functionContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MT22Parser#if_statements.
     def visitIf_statements(self, ctx:MT22Parser.If_statementsContext):
         return self.visitChildren(ctx)

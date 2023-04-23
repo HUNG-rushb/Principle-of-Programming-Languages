@@ -1,0 +1,59 @@
+{
+    "Global_Variable": {
+        "a": {
+            "type": "<3...INT",
+            "init": "<3...INT"
+        }
+    },
+    "Global_Function": {
+        "main": {
+            "returnType": "<3...VOID",
+            "inherit": null,
+            "body": [
+                {
+                    "a": {
+                        "type": "<3...INT",
+                        "init": "<3...INT"
+                    }
+                },
+                {}
+            ],
+            "params": {}
+        },
+        "foo": {
+            "returnType": "<3...AUTO",
+            "inherit": null,
+            "body": [
+                {},
+                {}
+            ],
+            "params": {}
+        },
+        "foo1": {
+            "returnType": "<3...AUTO",
+            "inherit": null,
+            "body": [
+                {},
+                {}
+            ],
+            "params": {
+                "j": {
+                    "type": "<3...INT",
+                    "out": false,
+                    "inherit": false
+                }
+            }
+        }
+    },
+    "inherit": null,
+    "methodParams": {},
+    "body": [
+        {
+            "a": {
+                "type": "<3...INT",
+                "init": "<3...INT"
+            }
+        },
+        {}
+    ]
+}

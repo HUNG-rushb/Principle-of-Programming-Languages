@@ -1,6 +1,14 @@
 {
     "Global_Variable": {},
     "Global_Function": {
-        "main": {}
+        "main": {
+            "returnType": "<3...VOID",
+            "inherit": null,
+            "body": [
+                {},
+                {}
+            ],
+            "params": {}
+        }
     }
 }

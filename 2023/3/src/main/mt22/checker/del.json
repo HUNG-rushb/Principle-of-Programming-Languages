@@ -15,5 +15,17 @@
             ],
             "params": {}
         }
-    }
+    },
+    "inherit": null,
+    "methodParams": {},
+    "body": [
+        {
+            "i": {
+                "type": "<3...FLOAT",
+                "init": null
+            }
+        },
+        {}
+    ],
+    "in_loop": true
 }
