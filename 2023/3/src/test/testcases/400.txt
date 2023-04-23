@@ -1,5 +1,5 @@
 
-        foo : function auto () {}
-        a : boolean = (foo() :: "string")::foo();
-        main: function void(){}
+        element : string = arr[10];
+        main: function void(){
+        }
         

@@ -16,20 +16,20 @@ class Symbol:
         self.mtype = mtype
         self.value = value
 
-def toJSON(data, place, typ = None) :
-    if typ == 't':
-        try:
-            print(json.dumps(data, sort_keys=False, indent=4))
-        except Exception as e:
-            print(e)
-    else:
-        f = open('./main/mt22/checker/' + place + '.json', 'w', encoding='utf-8')
-        try:
-            f.write(json.dumps(data, sort_keys=False, indent=4))
-        except Exception as e:
-            f.write(e)
-        finally:
-            f.close()
+# def toJSON(data, place, typ = None) :
+#     if typ == 't':
+#         try:
+#             print(json.dumps(data, sort_keys=False, indent=4))
+#         except Exception as e:
+#             print(e)
+#     else:
+#         f = open('./main/mt22/checker/' + place + '.json', 'w', encoding='utf-8')
+#         try:
+#             f.write(json.dumps(data, sort_keys=False, indent=4))
+#         except Exception as e:
+#             f.write(e)
+#         finally:
+#             f.close()
 
 
 
@@ -74,7 +74,7 @@ class StaticChecker(Visitor):
         return self.visit(self.ast, StaticChecker.global_envi)
 
     def visitProgram(self, ast: Program, funcStore):
-        print(ast)
+        # print(ast)
 
         funcStore = { 
             "Global_Variable": {},
@@ -122,7 +122,7 @@ class StaticChecker(Visitor):
                 for param in decl.params:
                     self.visit(param, newMethodEnviroment)
 
-        toJSON(funcStore, 'first')
+        # toJSON(funcStore, 'first')
 
         for decl in ast.decls:
             self.visit(decl, funcStore)
@@ -132,7 +132,7 @@ class StaticChecker(Visitor):
                 or len(funcStore['Global_Function']['main']['params']) > 0:
             raise NoEntryPoint()
 
-        toJSON(funcStore, 'all')
+        # toJSON(funcStore, 'all')
         return ""
         
     
@@ -177,7 +177,7 @@ class StaticChecker(Visitor):
                 'init': varInit,
             }
         # In function
-        elif len(funcStore) == 5:
+        elif len(funcStore) == 6:
             if varName in funcStore['body'][0]:
                 raise Redeclared(Variable(), varName)
 
@@ -218,17 +218,21 @@ class StaticChecker(Visitor):
     def visitFuncDecl(self, ast: FuncDecl, funcStore): 
         funcName = str(ast.name)
     
-        # Visit Block 
-        newMethodEnviromentBlock = {
-            'Global_Variable': funcStore['Global_Variable'],
-            'Global_Function': funcStore['Global_Function'],
-            'inherit': funcStore['Global_Function'][funcName]['inherit'],
-            'methodParams': funcStore['Global_Function'][funcName]['params'],
-            'body': funcStore['Global_Function'][funcName]['body'],
-            # 'localVar': funcStore['Global_Function'][funcName]['localVar']
-        }
+        if len(funcStore) == 2:
+            # Visit Block 
+            newMethodEnviromentBlock = {
+                'Global_Variable': funcStore['Global_Variable'],
+                'Global_Function': funcStore['Global_Function'],
+                'inherit': funcStore['Global_Function'][funcName]['inherit'],
+                'methodParams': funcStore['Global_Function'][funcName]['params'],
+                'body': funcStore['Global_Function'][funcName]['body'],
+                # 'localVar': funcStore['Global_Function'][funcName]['localVar']
+                'in_loop': False,
+            }
 
-        self.visit(ast.body, newMethodEnviromentBlock)
+            self.visit(ast.body, newMethodEnviromentBlock)
+        elif len(funcStore) == 6:
+            raise InvalidStatementInFunction(funcName)
     
     #  body: List[Stmt or VarDecl]
     def visitBlockStmt(self, ast: BlockStmt, funcStore): 
@@ -245,6 +249,7 @@ class StaticChecker(Visitor):
         left = self.visit(ast.left, funcStore)
         right = self.visit(ast.right, funcStore)
 
+       
         if operand in ["+", "-", "*", "/", "%"]:
             if left == Type().INT() and right == Type().INT():
                 return Type().INT()
@@ -314,7 +319,7 @@ class StaticChecker(Visitor):
     # name: str
     def visitId(self, ast: Id, funcStore): 
         name = str(ast.name)
-       
+
         if name in funcStore['Global_Variable']: 
             return funcStore['Global_Variable'][name]['type']
         elif name in funcStore['body'][0]: 
@@ -323,12 +328,14 @@ class StaticChecker(Visitor):
             return funcStore['methodParams'][name]['type']
         else:
             raise Undeclared(Identifier(), name)
+        
+        
                 
     # name: str, cell: List[Expr]
     def visitArrayCell(self, ast: ArrayCell, funcStore): 
         name = str(ast.name)
 
-        toJSON(funcStore, 'del')
+        # toJSON(funcStore, 'del')
 
         index_type = self.visit(ast.cell[0], funcStore)
 
@@ -349,7 +356,7 @@ class StaticChecker(Visitor):
                 return Type().BOOLEAN()
 
         # In function
-        elif len(funcStore) == 5:
+        elif len(funcStore) == 6:
             if name not in funcStore['body'][0]:
                 raise Undeclared(Identifier(), name)
 
@@ -394,38 +401,41 @@ class StaticChecker(Visitor):
 
     # init: AssignStmt, cond: Expr, upd: Expr, stmt: Stmt
     def visitForStmt(self, ast: ForStmt, funcStore): 
-        
+        # toJSON(funcStore, 'del')
+
+        init = self.visit(ast.init, funcStore)
         cond = self.visit(ast.cond, funcStore)
         upd = self.visit(ast.upd, funcStore)
 
-        funcStore_in_loop = {
-            **funcStore,
-            "in_loop": True
-        }
-        self.visit(ast.stmt, funcStore_in_loop)
+        funcStore['in_loop'] = True
+        self.visit(ast.stmt, funcStore)
+        funcStore['in_loop'] = False
 
     # cond: Expr, stmt: Stmt
     def visitWhileStmt(self, ast: WhileStmt, funcStore): 
         cond = self.visit(ast.cond, funcStore)
-        self.visit(ast.tstmt, funcStore)
+        funcStore['in_loop'] = True
+        self.visit(ast.stmt, funcStore)
+        funcStore['in_loop'] = False
 
     # cond: Expr, stmt: BlockStmt
     def visitDoWhileStmt(self, ast: DoWhileStmt, funcStore): 
         cond = self.visit(ast.cond, funcStore)
+        funcStore['in_loop'] = True
         self.visit(ast.stmt, funcStore)
+        funcStore['in_loop'] = False
 
 
 
     def visitBreakStmt(self, ast: BreakStmt, funcStore): 
-        toJSON(funcStore, 'del')
-        if 'in_loop' in funcStore:
-            funcStore.pop('in_loop')
+        # toJSON(funcStore, 'del2')
+        if 'in_loop' in funcStore and funcStore['in_loop'] == True:
             pass
         else:
             raise MustInLoop(ast)
 
     def visitContinueStmt(self, ast: ContinueStmt, funcStore): 
-        if 'in_loop' in funcStore:
+        if 'in_loop' in funcStore and funcStore['in_loop'] == True:
             pass
         else:
             raise MustInLoop(ast)

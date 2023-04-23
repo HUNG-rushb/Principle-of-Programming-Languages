@@ -6,9 +6,9 @@
             "inherit": null,
             "body": [
                 {
-                    "i": {
-                        "type": "<3...FLOAT",
-                        "init": null
+                    "a": {
+                        "type": "<3...INT",
+                        "init": "<3...INT"
                     }
                 },
                 {}

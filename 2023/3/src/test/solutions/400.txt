@@ -1,1 +1,1 @@
-Type mismatch in expression: BinExpr(::, FuncCall(foo, []), StringLit(string))
+Undeclared Identifier: arr

@@ -1,6 +1,7 @@
 
-        main: function void() {
-            i : float ;
-            for (i = 1, i < 10, i+1) break;
+        arr : array [5] of integer = {0,1,2,3,4};
+        b : integer = arr[0];
+        element : integer = arr[arr[0]];
+        main: function void(){
         }
         

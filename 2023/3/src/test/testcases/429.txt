@@ -1,0 +1,4 @@
+
+        a : string = foo(1,2) + 1;
+        main: function void(){}
+        
